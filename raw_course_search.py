@@ -2,6 +2,7 @@ from course_list_cleaner import cleaner
 import requests
 import json
 
+
 switch_case2 = {
     "keyword": "keyword",
     "season_year": "srcdb",
@@ -11,7 +12,7 @@ switch_case2 = {
     "hours": "hours",
     "instruction_method": "instmode"
 }
-
+x
 
 switch_case = {
     "season_year": {
