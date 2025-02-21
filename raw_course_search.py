@@ -1,3 +1,4 @@
+from course_list_cleaner import cleaner
 import requests
 import json
 
@@ -10,7 +11,6 @@ switch_case2 = {
     "hours": "hours",
     "instruction_method": "instmode"
 }
-
 
 
 switch_case = {
@@ -253,6 +253,7 @@ switch_case = {
 
 
 
+
 def set_up():
     keyword = input("Key word for search\n")
     season = input("Select year season:\n")
@@ -270,6 +271,8 @@ def set_up():
             "hours": hours,
             "instruction_method": instruction_method
             }
+
+
 
 
 def convert_query(Set_up_variables):
@@ -298,6 +301,7 @@ def convert_query(Set_up_variables):
 
 
 
+
 def api_call(filter_list):
     url = 'https://catalog.uconn.edu/course-search/api/?page=fose&route=search'
     data = {
@@ -313,8 +317,9 @@ def api_call(filter_list):
         # Print the response JSON data (if the response is in JSON format)
 
 
-        with open('./course_scheduler/response_output.txt', 'w') as file:
-            json.dump(response.json(), file, indent=4)  # Write the JSON to the file with indentation for readability
+        with open('./raw_response_output.txt', 'w') as file:
+            json.dump(response.json().get("results"), file, indent=4)  # Write the JSON to the file with indentation for readability
+        return response.json().get("results")
 
     else:
         print(f"Failed to send POST request. Status code: {response.status_code}")
@@ -323,7 +328,5 @@ def api_call(filter_list):
 
 
 
-
-
 if __name__ == "__main__":
-    api_call(convert_query(set_up()))
+    cleaner(api_call(convert_query(set_up())))
