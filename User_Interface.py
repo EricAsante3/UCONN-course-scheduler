@@ -2,7 +2,7 @@ from unfiltered_course_list_fetcher import send_to_cleaner
 
 
 key_value_switch_case = {
-    "keyword": "keyword",
+    "alias": "alias",
     "season_year": "srcdb",
     "campus": "camp",
     "subject": "subject",
@@ -255,8 +255,9 @@ value_switch_case = {
 
 
 def set_up():
-    # Keyword input remains the same
-    keyword = input("Key word for search: ")
+    # alias input remains the same
+    alias = input("class name... (ex. CSE 1010) for search: ").upper()
+    print(alias)
 
     # Function to display options and get user choice
     def get_choice(options, category_name):
@@ -284,7 +285,7 @@ def set_up():
 
     # return user choices in dictionary
     return {
-        "keyword": keyword,
+        "alias": alias,
         "season_year": season,
         "campus": campus,
         "subject": subject,
@@ -302,7 +303,7 @@ def convert_query(Set_up_variables):
     for key, value in Set_up_variables.items():
         if ((value_switch_case.get(key, {}).get(value) == "") or (value_switch_case.get(key, {}).get(value) == '') or (len(value) == 0)):
             continue
-        elif key == "keyword":
+        elif key == "alias":
             filter_list.append({"field": key,"value": value})
         elif key == "C_area":
             filter_list.append({"field": value,"value": 'Y'})
