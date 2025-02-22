@@ -28,20 +28,27 @@ def dic_appender(dict,course,select,schd):
 
 def cleaner(raw_course_list):
     cleaned_course_results = {}
+    independent_courses = ["IND","LSA"]
     while raw_course_list:
         course = raw_course_list[0]
         raw_course_list.pop(0)
-        required = find_associated_class_components(course["code"],course["crn"])
-
-        for raw_course in reversed(raw_course_list):
-            if raw_course["schd"] == "LSA":
-                dic_appender(cleaned_course_results,raw_course,1,0) # append course to cleaned_course_results
-                raw_course_list.remove(raw_course)
+        if course["schd"] in independent_courses:
+            course["required"] = ""
+        else:
+            required = find_associated_class_components(course["code"],course["crn"])
+            if len(required) == 0:
+                course["required"] = ""
             else:
-                if raw_course["schd"] in required:
-                    if raw_course["crn"] in required[raw_course["schd"]]:
-                            dic_appender(course,raw_course,0,raw_course["schd"]) # append/associate raw_course to course
-                            raw_course_list.remove(raw_course)
+                for raw_course in reversed(raw_course_list):
+                    if raw_course["schd"] in independent_courses:
+                        raw_course["required"] = ""
+                        dic_appender(cleaned_course_results,raw_course,1,0) # remove and append course to cleaned_course_results
+                        raw_course_list.remove(raw_course)
+                    else:
+                        if raw_course["schd"] in required:
+                            if raw_course["crn"] in required[raw_course["schd"]]:
+                                    dic_appender(course,raw_course,0,raw_course["schd"]) # append/associate raw_course to course
+                                    raw_course_list.remove(raw_course)
 
         dic_appender(cleaned_course_results,course,1,0) # append course to cleaned_course_results
 

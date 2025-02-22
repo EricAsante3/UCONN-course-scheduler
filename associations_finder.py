@@ -37,3 +37,7 @@ def find_associated_class_components(class_code, class_crn):
     raw_html = api_call(class_code,class_crn) # Returns html containing required associated classes
     associated_classes = response_cleaner(raw_html) # parse html and extract class code and crn numbers only
     return associated_classes
+
+
+if __name__ == "__main__":
+    print(find_associated_class_components("PHRX 3001","3835"))

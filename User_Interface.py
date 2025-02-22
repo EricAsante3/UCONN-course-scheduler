@@ -300,12 +300,10 @@ def convert_query(Set_up_variables):
     semester_year = value_switch_case.get("season_year", {}).get(Set_up_variables["season_year"])
 
     for key, value in Set_up_variables.items():
-        if ((value_switch_case.get(key, {}).get(value) == "") or (value_switch_case.get(key, {}).get(value) == '')):
+        if ((value_switch_case.get(key, {}).get(value) == "") or (value_switch_case.get(key, {}).get(value) == '') or (len(value) == 0)):
             continue
-
-        if key == "keyword":
+        elif key == "keyword":
             filter_list.append({"field": key,"value": value})
-
         elif key == "C_area":
             filter_list.append({"field": value,"value": 'Y'})
 
