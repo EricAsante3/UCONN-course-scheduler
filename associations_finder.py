@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-import json
 
 
 def api_call(class_code,class_crn):
@@ -35,9 +34,6 @@ def response_cleaner(raw_html):
 
 
 def find_associated_class_components(class_code, class_crn):
-    raw_html = api_call(class_code,class_crn)
-    associated_classes = response_cleaner(raw_html)
+    raw_html = api_call(class_code,class_crn) # Returns html containing required associated classes
+    associated_classes = response_cleaner(raw_html) # parse html and extract class code and crn numbers only
     return associated_classes
-
-if __name__ == "__main__":
-    print(find_associated_class_components("ECE 2001", "7865"))

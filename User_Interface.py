@@ -1,9 +1,7 @@
-from course_list_cleaner import cleaner
-import requests
-import json
+from unfiltered_course_list_fetcher import send_to_cleaner
 
 
-switch_case2 = {
+key_value_switch_case = {
     "keyword": "keyword",
     "season_year": "srcdb",
     "campus": "camp",
@@ -12,9 +10,9 @@ switch_case2 = {
     "hours": "hours",
     "instruction_method": "instmode"
 }
-x
 
-switch_case = {
+
+value_switch_case = {
     "season_year": {
         "Spring 2025": "1253",
         "Winter 2025": "1251",
@@ -43,6 +41,7 @@ switch_case = {
         "UConn Health Center (Sch of Dental Medicine)": "UCHC@DENTAL"
     },
     "subject": {
+        "Any subject": "",
         "Asian and Asian American Studies": "AAAS",
         "Accounting": "ACCT",
         "American English Language Institute": "AELI",
@@ -235,12 +234,14 @@ switch_case = {
         "TOI6L: Science Emp Inq (Lab)": "course_attribute_TOI6L"
     },
     "hours": {
+        "Any hours": "",
         "1 Credits": "1",
         "2 Credits": "2",
         "3 Credits": "3",
         "4 Credits": "4"
     },
     "instruction_method": {
+        "Any instruction_method": "",
         "By Arrangement": "AR",
         "Hybrid": "HB",
         "Hybrid Limited": "HL",
@@ -253,81 +254,77 @@ switch_case = {
 }
 
 
-
-
 def set_up():
-    keyword = input("Key word for search\n")
-    season = input("Select year season:\n")
-    campus = input("Select campus\n")
-    subject = input("Select Subject:\n")  # Fixed here
-    C_area = input("Select C_area:\n")  # Fixed here
-    hours = input("Select hours:\n")  # Fixed here
-    instruction_method = input("Select Instruction Method:\n")  # Fixed here
+    # Keyword input remains the same
+    keyword = input("Key word for search: ")
 
-    return {"keyword":keyword, 
-            "season_year": season,
-            "campus": campus,
-            "subject": subject,
-            "C_area": C_area,
-            "hours": hours,
-            "instruction_method": instruction_method
-            }
+    # Function to display options and get user choice
+    def get_choice(options, category_name):
+        print(f"Select {category_name}:")
+        for i, option in enumerate(options.keys(), 1):
+            print(f"{i}. {option}")
+        while True:
+            try:
+                choice = int(input("Enter the number corresponding to your choice: "))
+                if 1 <= choice <= len(options):
+                    return list(options.keys())[choice - 1]
+                else:
+                    print("Invalid choice. Please try again.")
+            except ValueError:
+                print("Invalid input. Please enter a number.")
 
+    # Get user choices for each category
+    season = get_choice(value_switch_case["season_year"], "year season")
+    campus = get_choice(value_switch_case["campus"], "campus")
+    subject = get_choice(value_switch_case["subject"], "subject")
+    C_area = get_choice(value_switch_case["C_area"], "C_area")
+    hours = get_choice(value_switch_case["hours"], "hours")
+    instruction_method = get_choice(value_switch_case["instruction_method"], "instruction method")
+
+
+    # return user choices in dictionary
+    return {
+        "keyword": keyword,
+        "season_year": season,
+        "campus": campus,
+        "subject": subject,
+        "C_area": C_area,
+        "hours": hours,
+        "instruction_method": instruction_method
+    }
 
 
 
 def convert_query(Set_up_variables):
     filter_list = []
+    semester_year = value_switch_case.get("season_year", {}).get(Set_up_variables["season_year"])
 
     for key, value in Set_up_variables.items():
-        if (value != "") and (key != "keyword" ):
-            qstr_value = switch_case.get(key, {}).get(value)
-            qstr_field = switch_case2.get(key)
-            filter_list.append({"field": qstr_field,
-                                "value": qstr_value})
-        elif ((key == "keyword") and (value != "")):
-            filter_list.append({"field": key,
-                                "value": value})
-        elif ((key == "C_area") and (value != "")):
-            filter_list.append({"field": value,
-                                "value": 'Y'})
-        elif ((key == "hours") and (value != "")):
-            filter_list.append({"field": key,
-                                "value": (">="+ value)})
-            filter_list.append({"field": (key + "_min"),
-                                "value": ("<="+ value)})
+        if ((value_switch_case.get(key, {}).get(value) == "") or (value_switch_case.get(key, {}).get(value) == '')):
+            continue
 
-    return filter_list
+        if key == "keyword":
+            filter_list.append({"field": key,"value": value})
 
+        elif key == "C_area":
+            filter_list.append({"field": value,"value": 'Y'})
 
+        elif key == "hours":
+            filter_list.append({"field": key,"value": (">="+ value)})
+            filter_list.append({"field": (key + "_min"),"value": ("<="+ value)})
+        else:
+            qstr_value = value_switch_case.get(key, {}).get(value)
+            qstr_field = key_value_switch_case.get(key)
+            filter_list.append({"field": qstr_field,"value": qstr_value})
+            
+    return [filter_list,semester_year]
 
+def main():
+    user_preferences = set_up()
+    filter_list = convert_query(user_preferences)
+    print(filter_list[0])
+    print(filter_list[1])
 
+    send_to_cleaner(filter_list)
 
-def api_call(filter_list):
-    url = 'https://catalog.uconn.edu/course-search/api/?page=fose&route=search'
-    data = {
-        "other": {
-            "srcdb": "1253"
-        },
-        "criteria": filter_list
-    }
-
-    response = requests.post(url, json=data)
-    if response.status_code == 200:
-        print("Request was successful.")
-        # Print the response JSON data (if the response is in JSON format)
-
-
-        with open('./raw_response_output.txt', 'w') as file:
-            json.dump(response.json().get("results"), file, indent=4)  # Write the JSON to the file with indentation for readability
-        return response.json().get("results")
-
-    else:
-        print(f"Failed to send POST request. Status code: {response.status_code}")
-    return 0
-
-
-
-
-if __name__ == "__main__":
-    cleaner(api_call(convert_query(set_up())))
+main()
