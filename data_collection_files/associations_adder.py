@@ -1,4 +1,4 @@
-from associations_finder import find_associated_class_components
+from .associations_finder import find_associated_class_components
 import json
 
 
@@ -53,4 +53,4 @@ def cleaner(raw_course_list):
         dic_appender(cleaned_course_results,course,1,0) # append course to cleaned_course_results
 
     send_txt(cleaned_course_results) # Write cleaned_course_results to a .txt file
-
+    return cleaned_course_results

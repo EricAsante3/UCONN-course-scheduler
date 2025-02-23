@@ -1,4 +1,4 @@
-from associations_adder import cleaner
+from .associations_adder import cleaner
 import requests
 import json
 
@@ -28,4 +28,4 @@ def api_call(filter_list):
 
 def send_to_cleaner(filter_list):
     unfiltered_course_info = api_call(filter_list)
-    cleaner(unfiltered_course_info)
+    return cleaner(unfiltered_course_info)

@@ -1,4 +1,4 @@
-from unfiltered_course_list_fetcher import send_to_cleaner
+from .unfiltered_course_list_fetcher import send_to_cleaner
 
 
 key_value_switch_case = {
@@ -318,12 +318,28 @@ def convert_query(Set_up_variables):
             
     return [filter_list,semester_year]
 
-def main():
+
+def main_call():
     user_preferences = set_up()
     filter_list = convert_query(user_preferences)
-    print(filter_list[0])
-    print(filter_list[1])
-
     send_to_cleaner(filter_list)
 
-main()
+def import_call(search_dictionary):
+    user_preferences = {
+        "alias": search_dictionary["alias"],
+        "season_year": search_dictionary["season_year"],
+        "campus": search_dictionary["campus"],
+        "subject": search_dictionary["subject"],
+        "C_area": search_dictionary["C_area"],
+        "hours": search_dictionary["hours"],
+        "instruction_method": search_dictionary["instruction_method"]
+    }
+    filter_list = convert_query(user_preferences)
+    return send_to_cleaner(filter_list)
+
+
+
+
+
+if __name__ == "__main__":
+    main_call()
