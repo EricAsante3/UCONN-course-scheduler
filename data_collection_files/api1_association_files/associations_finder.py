@@ -40,4 +40,4 @@ def find_associated_class_components(class_code, class_crn):
 
 
 if __name__ == "__main__":
-    print(find_associated_class_components("PHRX 3001","3835"))
+    print(find_associated_class_components("CSE 1010","6057"))

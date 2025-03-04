@@ -8,6 +8,7 @@ def send_txt(courses):
 
 def requirement_pairer(class_info):
     # Iterate over each class in the dictionary
+    send_txt(class_info)
     class_componets = {(list(class_info.keys())[0]): []}
     for class_name, crn_dict in class_info.items():
         # Iterate over each CRN in the class
@@ -16,7 +17,10 @@ def requirement_pairer(class_info):
             base_class = class_details
             # Extract all required components dynamically
             required_components = {}
-            if class_details["required"] != "":
+            if class_details["required"] == "":
+                base_class.pop("required", None)
+                class_componets[(list(class_info.keys())[0])].append([base_class])
+            elif (len(class_details["required"]) == 1):
                 for component_type, component_dict in class_details["required"].items():
                     required_components[component_type] = list(component_dict.values())
                 base_class.pop("required", None)
@@ -24,8 +28,8 @@ def requirement_pairer(class_info):
                 combinations = list(itertools.product([base_class], *component_lists))
                 class_componets[(list(class_info.keys())[0])].extend(combinations)
             else:
-                base_class.pop("required", None)
-                class_componets[(list(class_info.keys())[0])].append([base_class])
+                print("jj")
+
     send_txt(class_componets)
     return class_componets
          

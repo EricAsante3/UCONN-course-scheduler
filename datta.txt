@@ -1,0 +1,1808 @@
+{
+    "CSE 1010, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 200,
+        "Enrollment Total": 106,
+        "Seats Available": 94,
+        "Professor": "Olga Glebova (PI)"
+    },
+    "CSE 1010, 002L": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 20,
+        "Seats Available": 0,
+        "Professor": "Olga Glebova (SI)"
+    },
+    "CSE 1010, 003L": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 20,
+        "Seats Available": 0,
+        "Professor": "Olga Glebova (SI)"
+    },
+    "CSE 1010, 004L": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 18,
+        "Seats Available": 2,
+        "Professor": "Olga Glebova (SI)"
+    },
+    "CSE 1010, 005L": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 9,
+        "Seats Available": 11,
+        "Professor": "Olga Glebova (SI)"
+    },
+    "CSE 1010, 007L": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 20,
+        "Seats Available": 0,
+        "Professor": "Olga Glebova (SI)"
+    },
+    "CSE 1010, 008L": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 19,
+        "Seats Available": 1,
+        "Professor": "Olga Glebova (SI)"
+    },
+    "CSE 1010, 020": {
+        "reserved": "",
+        "Enrollment Capacity": 200,
+        "Enrollment Total": 187,
+        "Seats Available": 13,
+        "Professor": "Swamy Narayan Jignaas Pattipati (PI)"
+    },
+    "CSE 1010, 021L": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 14,
+        "Seats Available": 6,
+        "Professor": "Swamy Narayan Jignaas Pattipati (SI)"
+    },
+    "CSE 1010, 022L": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 18,
+        "Seats Available": 2,
+        "Professor": "Swamy Narayan Jignaas Pattipati (SI)"
+    },
+    "CSE 1010, 023L": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 18,
+        "Seats Available": 2,
+        "Professor": "Swamy Narayan Jignaas Pattipati (SI)"
+    },
+    "CSE 1010, 024L": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 20,
+        "Seats Available": 0,
+        "Professor": "Swamy Narayan Jignaas Pattipati (SI)"
+    },
+    "CSE 1010, 025L": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 20,
+        "Seats Available": 0,
+        "Professor": "Swamy Narayan Jignaas Pattipati (SI)"
+    },
+    "CSE 1010, 026L": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 20,
+        "Seats Available": 0,
+        "Professor": "Swamy Narayan Jignaas Pattipati (SI)"
+    },
+    "CSE 1010, 027L": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 20,
+        "Seats Available": 0,
+        "Professor": "Swamy Narayan Jignaas Pattipati (SI)"
+    },
+    "CSE 1010, 028L": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 18,
+        "Seats Available": 2,
+        "Professor": "Swamy Narayan Jignaas Pattipati (SI)"
+    },
+    "CSE 1010, 029L": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 20,
+        "Seats Available": 0,
+        "Professor": "Swamy Narayan Jignaas Pattipati (SI)"
+    },
+    "CSE 1010, 030L": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 19,
+        "Seats Available": 1,
+        "Professor": "Swamy Narayan Jignaas Pattipati (SI)"
+    },
+    "CSE 2050, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 120,
+        "Enrollment Total": 108,
+        "Seats Available": 12,
+        "Professor": "Matthew Lamoureux (PI)"
+    },
+    "CSE 2050, 002L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 23,
+        "Enrollment Total": 23,
+        "Seats Available": 0,
+        "Professor": "Matthew Lamoureux (SI)"
+    },
+    "CSE 2050, 003L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 22,
+        "Seats Available": 0,
+        "Professor": "Matthew Lamoureux (SI)"
+    },
+    "CSE 2050, 004L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 23,
+        "Enrollment Total": 23,
+        "Seats Available": 0,
+        "Professor": "Matthew Lamoureux (SI)"
+    },
+    "CSE 2050, 005L": {
+        "reserved": "4 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 18,
+        "Seats Available": 4,
+        "Professor": "Matthew Lamoureux (SI)"
+    },
+    "CSE 2050, 006L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 22,
+        "Seats Available": 0,
+        "Professor": "Matthew Lamoureux (SI)"
+    },
+    "CSE 2050, 011": {
+        "reserved": "",
+        "Enrollment Capacity": 100,
+        "Enrollment Total": 37,
+        "Seats Available": 63,
+        "Professor": "Swamy Narayan Jignaas Pattipati (PI)"
+    },
+    "CSE 2050, 012L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 8,
+        "Seats Available": 12,
+        "Professor": "Swamy Narayan Jignaas Pattipati (SI)"
+    },
+    "CSE 2050, 013L": {
+        "reserved": "1 for RC Computing majors",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 13,
+        "Seats Available": 7,
+        "Professor": "Swamy Narayan Jignaas Pattipati (SI)"
+    },
+    "CSE 2050, 014L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 9,
+        "Seats Available": 11,
+        "Professor": "Swamy Narayan Jignaas Pattipati (SI)"
+    },
+    "CSE 2050, 015L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 7,
+        "Seats Available": 13,
+        "Professor": "Swamy Narayan Jignaas Pattipati (SI)"
+    },
+    "CSE 2050, 021": {
+        "reserved": "",
+        "Enrollment Capacity": 120,
+        "Enrollment Total": 69,
+        "Seats Available": 51,
+        "Professor": "Lina Kloub (PI)"
+    },
+    "CSE 2050, 022L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 24,
+        "Seats Available": 0,
+        "Professor": "Lina Kloub (SI)"
+    },
+    "CSE 2050, 023L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 19,
+        "Seats Available": 5,
+        "Professor": "Lina Kloub (SI)"
+    },
+    "CSE 2050, 024L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 23,
+        "Enrollment Total": 16,
+        "Seats Available": 7,
+        "Professor": "Lina Kloub (SI)"
+    },
+    "CSE 2050, 026L": {
+        "reserved": "2 for RC Computing majors",
+        "Enrollment Capacity": 23,
+        "Enrollment Total": 10,
+        "Seats Available": 13,
+        "Professor": "Lina Kloub (SI)"
+    },
+    "CSE 2050, 031": {
+        "reserved": "",
+        "Enrollment Capacity": 120,
+        "Enrollment Total": 82,
+        "Seats Available": 38,
+        "Professor": "Matthew Lamoureux (PI)"
+    },
+    "CSE 2050, 032L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 23,
+        "Enrollment Total": 22,
+        "Seats Available": 1,
+        "Professor": "Matthew Lamoureux (SI)"
+    },
+    "CSE 2050, 033L": {
+        "reserved": "2 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 17,
+        "Seats Available": 5,
+        "Professor": "Matthew Lamoureux (SI)"
+    },
+    "CSE 2050, 034L": {
+        "reserved": "3 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 19,
+        "Seats Available": 3,
+        "Professor": "Matthew Lamoureux (SI)"
+    },
+    "CSE 2050, 035L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 23,
+        "Enrollment Total": 15,
+        "Seats Available": 8,
+        "Professor": "Matthew Lamoureux (SI)"
+    },
+    "CSE 2050, 036L": {
+        "reserved": "1 for RC Computing majors",
+        "Enrollment Capacity": 23,
+        "Enrollment Total": 9,
+        "Seats Available": 14,
+        "Professor": "Matthew Lamoureux (SI)"
+    },
+    "CSE 2102, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 120,
+        "Enrollment Total": 81,
+        "Seats Available": 39,
+        "Professor": "Tingting Yu (PI)"
+    },
+    "CSE 2102, 001L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 24,
+        "Seats Available": 0,
+        "Professor": "Tingting Yu (SI)"
+    },
+    "CSE 2102, 002L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 24,
+        "Seats Available": 0,
+        "Professor": "Tingting Yu (SI)"
+    },
+    "CSE 2102, 004L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 16,
+        "Seats Available": 8,
+        "Professor": "Tingting Yu (SI)"
+    },
+    "CSE 2102, 005L": {
+        "reserved": "2 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 17,
+        "Seats Available": 7,
+        "Professor": "Tingting Yu (SI)"
+    },
+    "CSE 2102, 011": {
+        "reserved": "",
+        "Enrollment Capacity": 120,
+        "Enrollment Total": 54,
+        "Seats Available": 66,
+        "Professor": "Tingting Yu (PI)"
+    },
+    "CSE 2102, 013L": {
+        "reserved": "1 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 23,
+        "Seats Available": 1,
+        "Professor": "Tingting Yu (SI)"
+    },
+    "CSE 2102, 014L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 21,
+        "Seats Available": 3,
+        "Professor": "Tingting Yu (SI)"
+    },
+    "CSE 2102, 015L": {
+        "reserved": "1 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 10,
+        "Seats Available": 14,
+        "Professor": "Tingting Yu (SI)"
+    },
+    "CSE 2301, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 120,
+        "Enrollment Total": 110,
+        "Seats Available": 10,
+        "Professor": "Sheida Nabavi (PI)"
+    },
+    "CSE 2301, 001L": {
+        "reserved": "2 for RC Computing and EE Majors",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 18,
+        "Seats Available": 2,
+        "Professor": "Sheida Nabavi (SI)"
+    },
+    "CSE 2301, 002L": {
+        "reserved": "0 for RC Computing and EE Majors",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 16,
+        "Seats Available": 4,
+        "Professor": "Sheida Nabavi (SI)"
+    },
+    "CSE 2301, 003L": {
+        "reserved": "0 for RC Computing and EE Majors",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 20,
+        "Seats Available": 0,
+        "Professor": "Sheida Nabavi (SI)"
+    },
+    "CSE 2301, 004L": {
+        "reserved": "0 for RC Computing and EE Majors",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 20,
+        "Seats Available": 0,
+        "Professor": "Sheida Nabavi (SI)"
+    },
+    "CSE 2301, 005L": {
+        "reserved": "2 for RC Computing and EE Majors",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 16,
+        "Seats Available": 4,
+        "Professor": "Sheida Nabavi (SI)"
+    },
+    "CSE 2301, 006L": {
+        "reserved": "0 for RC Computing and EE Majors",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 20,
+        "Seats Available": 0,
+        "Professor": "Sheida Nabavi (SI)"
+    },
+    "CSE 2500, 001": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 70,
+        "Enrollment Total": 52,
+        "Seats Available": 18,
+        "Professor": "Seung-Hyun Hong (PI)"
+    },
+    "CSE 2500, 002": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 70,
+        "Enrollment Total": 25,
+        "Seats Available": 45,
+        "Professor": "Yufeng Wu (PI)"
+    },
+    "CSE 2500, 003": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 70,
+        "Enrollment Total": 70,
+        "Seats Available": 0,
+        "Professor": "Olga Glebova (PI)"
+    },
+    "CSE 2500, 004": {
+        "reserved": "2 for RC Computing majors",
+        "Enrollment Capacity": 70,
+        "Enrollment Total": 40,
+        "Seats Available": 30,
+        "Professor": "Seung-Hyun Hong (PI)"
+    },
+    "CSE 2600, 001": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 60,
+        "Enrollment Total": 60,
+        "Seats Available": 0,
+        "Professor": "Matthew Lamoureux (PI)"
+    },
+    "CSE 3000, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 29,
+        "Seats Available": 1,
+        "Professor": "Rye Howard-Stone (PI)"
+    },
+    "CSE 3000, 002": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 29,
+        "Seats Available": 1,
+        "Professor": "Rye Howard-Stone (PI)"
+    },
+    "CSE 3000, 003": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 30,
+        "Seats Available": 0,
+        "Professor": "Rye Howard-Stone (PI)"
+    },
+    "CSE 3000, 004": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 30,
+        "Seats Available": 0,
+        "Professor": "Soumyashree Sahoo (PI)"
+    },
+    "CSE 3000, 005": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 30,
+        "Seats Available": 0,
+        "Professor": "Soumyashree Sahoo (PI)"
+    },
+    "CSE 3000, 006": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 30,
+        "Seats Available": 0,
+        "Professor": "Soumyashree Sahoo (PI)"
+    },
+    "CSE 3100, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 96,
+        "Enrollment Total": 35,
+        "Seats Available": 61,
+        "Professor": "Wei Zhang (PI)"
+    },
+    "CSE 3100, 002L": {
+        "reserved": "2 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 8,
+        "Seats Available": 16,
+        "Professor": "Wei Zhang (SI)"
+    },
+    "CSE 3100, 003L": {
+        "reserved": "2 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 10,
+        "Seats Available": 14,
+        "Professor": "Wei Zhang (SI)"
+    },
+    "CSE 3100, 004L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 7,
+        "Seats Available": 17,
+        "Professor": "Wei Zhang (SI)"
+    },
+    "CSE 3100, 005L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 10,
+        "Seats Available": 14,
+        "Professor": "Wei Zhang (SI)"
+    },
+    "CSE 3100, 011": {
+        "reserved": "",
+        "Enrollment Capacity": 108,
+        "Enrollment Total": 57,
+        "Seats Available": 51,
+        "Professor": "Swamy Narayan Jignaas Pattipati (PI)"
+    },
+    "CSE 3100, 012L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 16,
+        "Seats Available": 6,
+        "Professor": "Swamy Narayan Jignaas Pattipati (SI)"
+    },
+    "CSE 3100, 013L": {
+        "reserved": "2 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 8,
+        "Seats Available": 14,
+        "Professor": "Swamy Narayan Jignaas Pattipati (SI)"
+    },
+    "CSE 3100, 015L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 22,
+        "Seats Available": 0,
+        "Professor": "Swamy Narayan Jignaas Pattipati (SI)"
+    },
+    "CSE 3100, 016L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 11,
+        "Seats Available": 9,
+        "Professor": "Swamy Narayan Jignaas Pattipati (SI)"
+    },
+    "CSE 3100, 021": {
+        "reserved": "",
+        "Enrollment Capacity": 96,
+        "Enrollment Total": 42,
+        "Seats Available": 54,
+        "Professor": "Wei Zhang (PI)"
+    },
+    "CSE 3100, 023L": {
+        "reserved": "1 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 15,
+        "Seats Available": 9,
+        "Professor": "Wei Zhang (PI)"
+    },
+    "CSE 3100, 024L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 16,
+        "Seats Available": 8,
+        "Professor": "Wei Zhang (PI)"
+    },
+    "CSE 3100, 025L": {
+        "reserved": "1 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 11,
+        "Seats Available": 13,
+        "Professor": "Wei Zhang (PI)"
+    },
+    "CSE 3140, 001": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 27,
+        "Seats Available": 3,
+        "Professor": "Amir Herzberg (PI), \rTimothy Curry (PI)"
+    },
+    "CSE 3140, 002": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 30,
+        "Seats Available": 0,
+        "Professor": "Amir Herzberg (PI), \rTimothy Curry (PI)"
+    },
+    "CSE 3140, 003": {
+        "reserved": "1 for RC Computing majors",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 29,
+        "Seats Available": 1,
+        "Professor": "Amir Herzberg (PI), \rTimothy Curry (PI)"
+    },
+    "CSE 3140, 004": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 28,
+        "Seats Available": 2,
+        "Professor": "Amir Herzberg (PI), \rTimothy Curry (PI)"
+    },
+    "CSE 3140, 005": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 30,
+        "Seats Available": 0,
+        "Professor": "Amir Herzberg (PI), \rTimothy Curry (PI)"
+    },
+    "CSE 3140, 006": {
+        "reserved": "2 for RC Computing majors",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 28,
+        "Seats Available": 2,
+        "Professor": "Amir Herzberg (PI), \rTimothy Curry (PI)"
+    },
+    "CSE 3140, 007": {
+        "reserved": "2 for RC Computing majors",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 29,
+        "Seats Available": 1,
+        "Professor": "Amir Herzberg (PI), \rTimothy Curry (PI)"
+    },
+    "CSE 3140, 008": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 30,
+        "Seats Available": 0,
+        "Professor": "Amir Herzberg (PI), \rTimothy Curry (PI)"
+    },
+    "CSE 3150, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 100,
+        "Enrollment Total": 96,
+        "Seats Available": 4,
+        "Professor": "Song Han (PI)"
+    },
+    "CSE 3150, 002L": {
+        "reserved": "1 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 16,
+        "Seats Available": 6,
+        "Professor": "Song Han (SI)"
+    },
+    "CSE 3150, 003L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 18,
+        "Seats Available": 4,
+        "Professor": "Song Han (SI)"
+    },
+    "CSE 3150, 004L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 22,
+        "Seats Available": 0,
+        "Professor": "Song Han (SI)"
+    },
+    "CSE 3150, 005L": {
+        "reserved": "4 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 18,
+        "Seats Available": 4,
+        "Professor": "Song Han (SI)"
+    },
+    "CSE 3150, 006L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 22,
+        "Seats Available": 0,
+        "Professor": "Song Han (SI)"
+    },
+    "CSE 3150, 011": {
+        "reserved": "",
+        "Enrollment Capacity": 88,
+        "Enrollment Total": 87,
+        "Seats Available": 1,
+        "Professor": "Song Han (PI)"
+    },
+    "CSE 3150, 012L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 22,
+        "Seats Available": 0,
+        "Professor": "Song Han (SI)"
+    },
+    "CSE 3150, 013L": {
+        "reserved": "1 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 21,
+        "Seats Available": 1,
+        "Professor": "Song Han (SI)"
+    },
+    "CSE 3150, 014L": {
+        "reserved": "1 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 21,
+        "Seats Available": 1,
+        "Professor": "Song Han (SI)"
+    },
+    "CSE 3150, 015L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 23,
+        "Seats Available": -1,
+        "Professor": "Song Han (SI)"
+    },
+    "CSE 3160, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 90,
+        "Enrollment Total": 85,
+        "Seats Available": 5,
+        "Professor": "Timothy Curry (PI)"
+    },
+    "CSE 3160, 002L": {
+        "reserved": "1 for RC Computing majors",
+        "Enrollment Capacity": 23,
+        "Enrollment Total": 22,
+        "Seats Available": 1,
+        "Professor": "Timothy Curry (SI)"
+    },
+    "CSE 3160, 003L": {
+        "reserved": "4 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 18,
+        "Seats Available": 4,
+        "Professor": "Timothy Curry (SI)"
+    },
+    "CSE 3160, 004L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 23,
+        "Enrollment Total": 23,
+        "Seats Available": 0,
+        "Professor": "Timothy Curry (SI)"
+    },
+    "CSE 3160, 005L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 22,
+        "Enrollment Total": 22,
+        "Seats Available": 0,
+        "Professor": "Timothy Curry (SI)"
+    },
+    "CSE 3200, 001": {
+        "reserved": "3 for RC Computing majors",
+        "Enrollment Capacity": 70,
+        "Enrollment Total": 14,
+        "Seats Available": 56,
+        "Professor": "David Strimple (PI)"
+    },
+    "CSE 3200, 002": {
+        "reserved": "6 for RC Computing majors",
+        "Enrollment Capacity": 70,
+        "Enrollment Total": 21,
+        "Seats Available": 49,
+        "Professor": "David Strimple (PI)"
+    },
+    "CSE 3250, 001": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 90,
+        "Enrollment Total": 106,
+        "Seats Available": -16,
+        "Professor": "Jonathan Clark (PI)"
+    },
+    "CSE 3300, 001": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 50,
+        "Enrollment Total": 52,
+        "Seats Available": -2,
+        "Professor": "Minmei Wang (PI)"
+    },
+    "CSE 3400, 001": {
+        "reserved": "4 for RC Computing majors",
+        "Enrollment Capacity": 50,
+        "Enrollment Total": 48,
+        "Seats Available": 2,
+        "Professor": "Walter Krawec (PI)"
+    },
+    "CSE 3500, 001": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 60,
+        "Enrollment Total": 60,
+        "Seats Available": 0,
+        "Professor": "Lina Kloub (PI)"
+    },
+    "CSE 3500, 002": {
+        "reserved": "1 for RC Computing majors",
+        "Enrollment Capacity": 60,
+        "Enrollment Total": 59,
+        "Seats Available": 1,
+        "Professor": "Lina Kloub (PI)"
+    },
+    "CSE 3500, 003": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 40,
+        "Enrollment Total": 35,
+        "Seats Available": 5,
+        "Professor": "Derek Aguiar (PI)"
+    },
+    "CSE 3500, 004": {
+        "reserved": "15 for RC Honors Students Only",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 5,
+        "Seats Available": 15,
+        "Professor": "Derek Aguiar (PI)"
+    },
+    "CSE 3500, 005": {
+        "reserved": "1 for RC Computing majors",
+        "Enrollment Capacity": 60,
+        "Enrollment Total": 59,
+        "Seats Available": 1,
+        "Professor": "Pavel Skums (PI)"
+    },
+    "CSE 3502, 001": {
+        "reserved": "10 for RC Computing majors",
+        "Enrollment Capacity": 50,
+        "Enrollment Total": 26,
+        "Seats Available": 24,
+        "Professor": "Dina Goldin (PI)"
+    },
+    "CSE 3504, 001": {
+        "reserved": "2 for RC Computing majors",
+        "Enrollment Capacity": 60,
+        "Enrollment Total": 57,
+        "Seats Available": 3,
+        "Professor": "Swapna Gokhale (PI)"
+    },
+    "CSE 3666, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 120,
+        "Enrollment Total": 66,
+        "Seats Available": 54,
+        "Professor": "Zhijie Shi (PI)"
+    },
+    "CSE 3666, 002L": {
+        "reserved": "3 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 10,
+        "Seats Available": 14,
+        "Professor": "Zhijie Shi (SI)"
+    },
+    "CSE 3666, 003L": {
+        "reserved": "2 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 20,
+        "Seats Available": 4,
+        "Professor": "Zhijie Shi (SI)"
+    },
+    "CSE 3666, 004L": {
+        "reserved": "1 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 9,
+        "Seats Available": 15,
+        "Professor": "Zhijie Shi (SI)"
+    },
+    "CSE 3666, 005L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 13,
+        "Seats Available": 11,
+        "Professor": "Zhijie Shi (SI)"
+    },
+    "CSE 3666, 006L": {
+        "reserved": "1 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 14,
+        "Seats Available": 10,
+        "Professor": "Zhijie Shi (SI)"
+    },
+    "CSE 3666, 011": {
+        "reserved": "",
+        "Enrollment Capacity": 120,
+        "Enrollment Total": 119,
+        "Seats Available": 1,
+        "Professor": "Jake Scoggin (PI)"
+    },
+    "CSE 3666, 012L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 24,
+        "Seats Available": 0,
+        "Professor": "Jake Scoggin (SI)"
+    },
+    "CSE 3666, 013L": {
+        "reserved": "1 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 23,
+        "Seats Available": 1,
+        "Professor": "Jake Scoggin (SI)"
+    },
+    "CSE 3666, 014L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 24,
+        "Seats Available": 0,
+        "Professor": "Jake Scoggin (SI)"
+    },
+    "CSE 3666, 015L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 24,
+        "Seats Available": 0,
+        "Professor": "Jake Scoggin (SI)"
+    },
+    "CSE 3666, 016L": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 24,
+        "Enrollment Total": 24,
+        "Seats Available": 0,
+        "Professor": "Jake Scoggin (SI)"
+    },
+    "CSE 4095, 002": {
+        "reserved": "",
+        "Enrollment Capacity": 40,
+        "Enrollment Total": 11,
+        "Seats Available": 29,
+        "Professor": "Jonathan Ji (PI)"
+    },
+    "CSE 4099, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 2,
+        "Seats Available": 1,
+        "Professor": "Derek Aguiar (PI)"
+    },
+    "CSE 4099, 002": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Song Han (PI)"
+    },
+    "CSE 4099, 003": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Jinbo Bi (PI)"
+    },
+    "CSE 4099, 004": {
+        "reserved": "",
+        "Enrollment Capacity": 12,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Ghada Almashaqbeh (PI)"
+    },
+    "CSE 4099, 005": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 2,
+        "Seats Available": 1,
+        "Professor": "Qian Yang (PI)"
+    },
+    "CSE 4099, 006": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Jonathan Ji (PI)"
+    },
+    "CSE 4099, 007": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Swapna Gokhale (PI)"
+    },
+    "CSE 4099, 008": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Wei Wei (PI)"
+    },
+    "CSE 4099, 009": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Mohammad Khan (PI)"
+    },
+    "CSE 4099, 010": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Mukul Bansal (PI)"
+    },
+    "CSE 4099, 011": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Ion Mandoiu (PI)"
+    },
+    "CSE 4099, 012": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 2,
+        "Seats Available": 1,
+        "Professor": "Suining He (PI)"
+    },
+    "CSE 4099, 013": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Joseph Johnson (PI)"
+    },
+    "CSE 4099, 014": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Laurent Michel (PI)"
+    },
+    "CSE 4099, 015": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Alexander Russell (PI)"
+    },
+    "CSE 4099, 016": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 1,
+        "Seats Available": 2,
+        "Professor": "Sanguthevar Rajasekaran (PI)"
+    },
+    "CSE 4099, 017": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 1,
+        "Seats Available": 2,
+        "Professor": "Fei Miao (PI)"
+    },
+    "CSE 4099, 018": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Zhijie Shi (PI)"
+    },
+    "CSE 4099, 019": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Dong Shin (PI)"
+    },
+    "CSE 4099, 020": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Benjamin Fuller (PI)"
+    },
+    "CSE 4099, 021": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 2,
+        "Seats Available": 1,
+        "Professor": "Bing Wang (PI)"
+    },
+    "CSE 4099, 022": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 1,
+        "Seats Available": 2,
+        "Professor": "Yufeng Wu (PI)"
+    },
+    "CSE 4099, 023": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Sheida Nabavi (PI)"
+    },
+    "CSE 4099, 024": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Walter Krawec (PI)"
+    },
+    "CSE 4099, 025": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Amir Herzberg (PI)"
+    },
+    "CSE 4099, 026": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Dongjin Song (PI)"
+    },
+    "CSE 4099, 027": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 1,
+        "Seats Available": 2,
+        "Professor": "Wei Zhang (PI)"
+    },
+    "CSE 4099, 028": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 1,
+        "Seats Available": 2,
+        "Professor": "Tingting Yu (PI)"
+    },
+    "CSE 4099, 041": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "David Strimple (PI)"
+    },
+    "CSE 4099, 042": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 2,
+        "Seats Available": 1,
+        "Professor": "Matthew Lamoureux (PI)"
+    },
+    "CSE 4099, 043": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 2,
+        "Seats Available": 3,
+        "Professor": "Lina Kloub (PI)"
+    },
+    "CSE 4099, 044": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 1,
+        "Seats Available": 4,
+        "Professor": "Yuan Hong (PI)"
+    },
+    "CSE 4099, 045": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 1,
+        "Seats Available": 4,
+        "Professor": "Jake Scoggin (PI)"
+    },
+    "CSE 4102, 001": {
+        "reserved": "5 for RC Computing majors",
+        "Enrollment Capacity": 40,
+        "Enrollment Total": 37,
+        "Seats Available": 3,
+        "Professor": "Wei Wei (PI)"
+    },
+    "CSE 4300, 001": {
+        "reserved": "3 for RC Computing majors",
+        "Enrollment Capacity": 40,
+        "Enrollment Total": 39,
+        "Seats Available": 1,
+        "Professor": "Mohammad Khan (PI)"
+    },
+    "CSE 4400, 001": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 32,
+        "Enrollment Total": 33,
+        "Seats Available": -1,
+        "Professor": "Yuan Hong (PI)"
+    },
+    "CSE 4412, 001": {
+        "reserved": "6 for RC Computing majors",
+        "Enrollment Capacity": 45,
+        "Enrollment Total": 43,
+        "Seats Available": 2,
+        "Professor": "Walter Krawec (PI)"
+    },
+    "CSE 4502, 001": {
+        "reserved": "11 for RC Computing majors",
+        "Enrollment Capacity": 50,
+        "Enrollment Total": 48,
+        "Seats Available": 2,
+        "Professor": "Suining He (PI)"
+    },
+    "CSE 4701, 001": {
+        "reserved": "5 for RC Computing majors",
+        "Enrollment Capacity": 70,
+        "Enrollment Total": 66,
+        "Seats Available": 4,
+        "Professor": "Seung-Hyun Hong (PI)"
+    },
+    "CSE 4705, 001": {
+        "reserved": "0 for RC Computing majors",
+        "Enrollment Capacity": 60,
+        "Enrollment Total": 60,
+        "Seats Available": 0,
+        "Professor": "Dongjin Song (PI)"
+    },
+    "CSE 4820, 001": {
+        "reserved": "2 for RC Computing majors",
+        "Enrollment Capacity": 45,
+        "Enrollment Total": 35,
+        "Seats Available": 10,
+        "Professor": "Qian Yang (PI)"
+    },
+    "CSE 4820, 002": {
+        "reserved": "9 for RC Computing majors",
+        "Enrollment Capacity": 40,
+        "Enrollment Total": 32,
+        "Seats Available": 8,
+        "Professor": "Fei Miao (PI)"
+    },
+    "CSE 4830, 001": {
+        "reserved": "3 for RC Computing majors",
+        "Enrollment Capacity": 40,
+        "Enrollment Total": 17,
+        "Seats Available": 23,
+        "Professor": "Sheida Nabavi (PI)"
+    },
+    "CSE 4940, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 22,
+        "Seats Available": 8,
+        "Professor": "Dong Shin (PI)"
+    },
+    "CSE 4940, 002": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 18,
+        "Seats Available": 12,
+        "Professor": "Bing Wang (PI)"
+    },
+    "CSE 4940, 003": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 17,
+        "Seats Available": 13,
+        "Professor": "Song Han (PI)"
+    },
+    "CSE 4940, 004": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 22,
+        "Seats Available": 8,
+        "Professor": "Timothy Curry (PI)"
+    },
+    "CSE 4940, 005": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 21,
+        "Seats Available": 9,
+        "Professor": "Zhijie Shi (PI)"
+    },
+    "CSE 4940, 006": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 20,
+        "Seats Available": 10,
+        "Professor": "David Strimple (PI)"
+    },
+    "CSE 4940, 007": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 18,
+        "Seats Available": 12,
+        "Professor": "Wei Wei (PI)"
+    },
+    "CSE 4940, 008": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 20,
+        "Seats Available": 10,
+        "Professor": "Jake Scoggin (PI)"
+    },
+    "CSE 4940, 009": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 19,
+        "Seats Available": 11,
+        "Professor": "Yufeng Wu (PI)"
+    },
+    "CSE 4940, 010": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 15,
+        "Seats Available": 15,
+        "Professor": "Suining He (PI)"
+    },
+    "CSE 4940, 011": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 19,
+        "Seats Available": 11,
+        "Professor": "Jonathan Ji (PI)"
+    },
+    "CSE 4940, 012": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 23,
+        "Seats Available": 7,
+        "Professor": "Amir Herzberg (PI)"
+    },
+    "CSE 4940, 013": {
+        "reserved": "",
+        "Enrollment Capacity": 40,
+        "Enrollment Total": 26,
+        "Seats Available": 14,
+        "Professor": "Dongjin Song (PI)"
+    },
+    "CSE 4997, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Mukul Bansal (PI)"
+    },
+    "CSE 4997, 002": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Mohammad Khan (PI)"
+    },
+    "CSE 4997, 003": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Derek Aguiar (PI)"
+    },
+    "CSE 4997, 004": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 1,
+        "Seats Available": 2,
+        "Professor": "Dong Shin (PI)"
+    },
+    "CSE 4997, 005": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Fei Miao (PI)"
+    },
+    "CSE 4997, 006": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Walter Krawec (PI)"
+    },
+    "CSE 4997, 007": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Amir Herzberg (PI)"
+    },
+    "CSE 4997, 008": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Bing Wang (PI)"
+    },
+    "CSE 4997, 009": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Benjamin Fuller (PI)"
+    },
+    "CSE 4997, 010": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 1,
+        "Seats Available": 2,
+        "Professor": "Song Han (PI)"
+    },
+    "CSE 4997, 011": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Jinbo Bi (PI)"
+    },
+    "CSE 4997, 012": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 1,
+        "Seats Available": 2,
+        "Professor": "Swapna Gokhale (PI)"
+    },
+    "CSE 4997, 013": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Joseph Johnson (PI)"
+    },
+    "CSE 4997, 014": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Suining He (PI)"
+    },
+    "CSE 4997, 015": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 1,
+        "Seats Available": 2,
+        "Professor": "Wei Wei (PI)"
+    },
+    "CSE 4997, 016": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 1,
+        "Seats Available": 2,
+        "Professor": "Dongjin Song (PI)"
+    },
+    "CSE 4997, 017": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Jonathan Ji (PI)"
+    },
+    "CSE 4997, 018": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Qian Yang (PI)"
+    },
+    "CSE 4997, 019": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 2,
+        "Seats Available": 1,
+        "Professor": "Suining He (PI)"
+    },
+    "CSE 4997, 020": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 1,
+        "Seats Available": 2,
+        "Professor": "Wei Zhang (PI)"
+    },
+    "CSE 4997, 021": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 1,
+        "Seats Available": 2,
+        "Professor": "Tingting Yu (PI)"
+    },
+    "CSE 5095, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 25,
+        "Seats Available": 5,
+        "Professor": "Dong Shin (PI)"
+    },
+    "CSE 5095, 004": {
+        "reserved": "",
+        "Enrollment Capacity": 15,
+        "Enrollment Total": 20,
+        "Seats Available": -5,
+        "Professor": "Jonathan Ji (PI)"
+    },
+    "CSE 5097, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 5,
+        "Seats Available": 25,
+        "Professor": "Derek Aguiar (PI)"
+    },
+    "CSE 5099, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Ghada Almashaqbeh (PI)"
+    },
+    "CSE 5099, 002": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Mukul Bansal (PI)"
+    },
+    "CSE 5099, 003": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 1,
+        "Seats Available": 2,
+        "Professor": "Jinbo Bi (PI)"
+    },
+    "CSE 5099, 004": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 1,
+        "Seats Available": 2,
+        "Professor": "Song Han (PI)"
+    },
+    "CSE 5099, 005": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Minmei Wang (PI)"
+    },
+    "CSE 5099, 006": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 1,
+        "Seats Available": 2,
+        "Professor": "Yuan Hong (PI)"
+    },
+    "CSE 5099, 007": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 2,
+        "Seats Available": 1,
+        "Professor": "Swapna Gokhale (PI)"
+    },
+    "CSE 5099, 008": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 1,
+        "Seats Available": 4,
+        "Professor": "Amir Herzberg (PI)"
+    },
+    "CSE 5099, 009": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 1,
+        "Seats Available": 2,
+        "Professor": "Mohammad Khan (PI)"
+    },
+    "CSE 5099, 010": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 1,
+        "Seats Available": 2,
+        "Professor": "Suining He (PI)"
+    },
+    "CSE 5099, 011": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Walter Krawec (PI)"
+    },
+    "CSE 5099, 012": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Jonathan Ji (PI)"
+    },
+    "CSE 5099, 013": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 2,
+        "Seats Available": 3,
+        "Professor": "Tingting Yu (PI)"
+    },
+    "CSE 5099, 014": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Laurent Michel (PI)"
+    },
+    "CSE 5099, 015": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 4,
+        "Seats Available": 1,
+        "Professor": "Fei Miao (PI)"
+    },
+    "CSE 5099, 016": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 2,
+        "Seats Available": 3,
+        "Professor": "Sanguthevar Rajasekaran (PI)"
+    },
+    "CSE 5099, 017": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Alexander Russell (PI)"
+    },
+    "CSE 5099, 018": {
+        "reserved": "",
+        "Enrollment Capacity": 3,
+        "Enrollment Total": 3,
+        "Seats Available": 0,
+        "Professor": "Zhijie Shi (PI)"
+    },
+    "CSE 5099, 019": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 1,
+        "Seats Available": 4,
+        "Professor": "Dong Shin (PI)"
+    },
+    "CSE 5099, 020": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 6,
+        "Seats Available": -1,
+        "Professor": "Wei Zhang (PI)"
+    },
+    "CSE 5099, 021": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 3,
+        "Seats Available": 2,
+        "Professor": "Bing Wang (PI)"
+    },
+    "CSE 5099, 022": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Yufeng Wu (PI)"
+    },
+    "CSE 5099, 023": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 2,
+        "Seats Available": 3,
+        "Professor": "Derek Aguiar (PI)"
+    },
+    "CSE 5099, 024": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 2,
+        "Seats Available": 3,
+        "Professor": "Sheida Nabavi (PI)"
+    },
+    "CSE 5099, 025": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 5,
+        "Seats Available": 0,
+        "Professor": "Benjamin Fuller (PI)"
+    },
+    "CSE 5099, 026": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 2,
+        "Seats Available": 3,
+        "Professor": "Dongjin Song (PI)"
+    },
+    "CSE 5099, 027": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Ion Mandoiu (PI)"
+    },
+    "CSE 5099, 028": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Chuxu Zhang (PI)"
+    },
+    "CSE 5099, 029": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Qian Yang (PI)"
+    },
+    "CSE 5099, 030": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Seyedhamed Ghavamnia (PI)"
+    },
+    "CSE 5099, 031": {
+        "reserved": "",
+        "Enrollment Capacity": 5,
+        "Enrollment Total": 0,
+        "Seats Available": null,
+        "Professor": "Pavel Skums (PI)"
+    },
+    "CSE 5102, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 16,
+        "Seats Available": 4,
+        "Professor": "Wei Wei (PI)"
+    },
+    "CSE 5299, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 14,
+        "Seats Available": 6,
+        "Professor": "Minmei Wang (PI)"
+    },
+    "CSE 5300, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 25,
+        "Enrollment Total": 17,
+        "Seats Available": 8,
+        "Professor": "Bing Wang (PI)"
+    },
+    "CSE 5305, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 10,
+        "Seats Available": 10,
+        "Professor": "Mohammad Khan (PI)"
+    },
+    "CSE 5400, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 10,
+        "Enrollment Total": 9,
+        "Seats Available": 1,
+        "Professor": "Yuan Hong (PI)"
+    },
+    "CSE 5500, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 40,
+        "Enrollment Total": 28,
+        "Seats Available": 12,
+        "Professor": "Mukul Bansal (PI)"
+    },
+    "CSE 5503, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 15,
+        "Seats Available": 5,
+        "Professor": "Dina Goldin (PI)"
+    },
+    "CSE 5602, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 8,
+        "Seats Available": 22,
+        "Professor": "Qian Yang (PI)"
+    },
+    "CSE 5710, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 60,
+        "Enrollment Total": 25,
+        "Seats Available": 35,
+        "Professor": "Joseph Johnson (PI)"
+    },
+    "CSE 5710, 002": {
+        "reserved": "",
+        "Enrollment Capacity": 60,
+        "Enrollment Total": 56,
+        "Seats Available": 4,
+        "Professor": "Joseph Johnson (PI)"
+    },
+    "CSE 5717, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 19,
+        "Seats Available": 1,
+        "Professor": "Suining He (PI)"
+    },
+    "CSE 5717, 002": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 25,
+        "Seats Available": 5,
+        "Professor": "Wei Wei (PI)"
+    },
+    "CSE 5819, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 25,
+        "Enrollment Total": 16,
+        "Seats Available": 9,
+        "Professor": "Qian Yang (PI)"
+    },
+    "CSE 5819, 002": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 15,
+        "Seats Available": 5,
+        "Professor": "Fei Miao (PI)"
+    },
+    "CSE 5820, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 27,
+        "Seats Available": 3,
+        "Professor": "Jinbo Bi (PI)"
+    },
+    "CSE 5850, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 20,
+        "Enrollment Total": 22,
+        "Seats Available": -2,
+        "Professor": "Walter Krawec (PI)"
+    },
+    "CSE 5860, 001": {
+        "reserved": "",
+        "Enrollment Capacity": 30,
+        "Enrollment Total": 7,
+        "Seats Available": 23,
+        "Professor": "Mukul Bansal (PI)"
+    }
+}

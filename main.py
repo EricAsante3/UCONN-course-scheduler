@@ -35,8 +35,12 @@ def schedulke_maker():
         "C_area": "",
         "hours": "",
         "instruction_method": ""
-        })
+        })       
        classes_to_schedule.update(requirement_pairer(filtered_course_list))
+
+
+
+    print(classes_to_schedule)
     main(classes_to_schedule)
        
 

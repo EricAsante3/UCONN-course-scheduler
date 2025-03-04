@@ -1,4 +1,5 @@
-from .unfiltered_course_list_fetcher import send_to_cleaner
+from .raw_courses_fetcher import api_call
+from .raw_courses_fetcher import send_to_cleaner
 
 
 key_value_switch_case = {

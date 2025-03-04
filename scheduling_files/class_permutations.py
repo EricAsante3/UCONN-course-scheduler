@@ -2,16 +2,11 @@ from itertools import product
 import json
 
 
-def send_txt(courses):
-    """Writes json to a .txt file"""
-    with open('./s_output.txt', 'w') as file:
-            json.dump(courses, file, indent=4)
-
-
 # Function to check if two time slots overlap
 def time_slots_overlap(slot1, slot2):
     # Convert time slots into comparable format (e.g., start and end times)
     def parse_time_slot(slot):
+        print(slot.split())
         day, time = slot.split()
         start, end = time.split("-")
         start_time = convert_to_minutes(start)

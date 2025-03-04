@@ -1,11 +1,9 @@
-from .associations_finder import find_associated_class_components
 import json
+import re
+from availabilities_adder import requirement_pairer
+from testing_files.json_printer import json_printer
 
 
-def send_txt(courses):
-    """Writes json to a .txt file"""
-    with open('./clean_response_output.txt', 'w') as file:
-            json.dump(courses, file, indent=4)
 
 
 def dic_appender(dict,course,select,schd):
@@ -18,25 +16,33 @@ def dic_appender(dict,course,select,schd):
             dict[course["code"]][course["crn"]] = course
     else: # If select is one appending course to course dictionary
         if ("required" in dict) and (course["schd"] in dict["required"]):
-            dict["required"][schd][course["crn"]] = course
+            dict["required"][schd][course["no"]] = course
         else:
             if "required" not in dict:
                 dict["required"] = {}
             dict["required"][schd] = {}
-            dict["required"][schd][course["crn"]] = course
+            dict["required"][schd][course["no"]] = course
 
 
-def cleaner(raw_course_list):
+def api2_cleaner(raw_course_list):
+    """input [{c1},{c1},]"""
+
     cleaned_course_results = {}
     independent_courses = ["IND","LSA"]
     while raw_course_list:
-        course = raw_course_list[0]
-        raw_course_list.pop(0)
+
+        for index, i in enumerate(raw_course_list):
+            if i["no"].isdigit():  # Check if "no" contains only digits
+                course = raw_course_list.pop(index)  # Remove the dictionary by index
+                break  # Stop after removing the first match
+
         if course["schd"] in independent_courses:
             course["required"] = ""
         else:
-            required = find_associated_class_components(course["code"],course["crn"])
-            if len(required) == 0:
+            result = re.split(r'[;,]\s*', course["linked_crns"])
+            required = list(map(str, result))
+
+            if (required[0] == '') or (required[0] == ""):
                 course["required"] = ""
             else:
                 for raw_course in reversed(raw_course_list):
@@ -45,12 +51,14 @@ def cleaner(raw_course_list):
                         dic_appender(cleaned_course_results,raw_course,1,0) # remove and append course to cleaned_course_results
                         raw_course_list.remove(raw_course)
                     else:
-                        if raw_course["schd"] in required:
-                            if raw_course["crn"] in required[raw_course["schd"]]:
-                                    dic_appender(course,raw_course,0,raw_course["schd"]) # append/associate raw_course to course
-                                    raw_course_list.remove(raw_course)
+                        if raw_course["crn"] in required:
+                            dic_appender(course,raw_course,0,raw_course["schd"]) # append/associate raw_course to course
+                            raw_course_list.remove(raw_course)
+
 
         dic_appender(cleaned_course_results,course,1,0) # append course to cleaned_course_results
+    json_printer(cleaned_course_results, "before")
+    requirement_pairer(cleaned_course_results)
+    json_printer(cleaned_course_results, "after")
 
-    send_txt(cleaned_course_results) # Write cleaned_course_results to a .txt file
     return cleaned_course_results
