@@ -1,5 +1,6 @@
 from itertools import product
 import json
+from testing_files.json_printer import json_printer
 
 
 # Function to check if two time slots overlap
@@ -62,6 +63,7 @@ def generate_valid_permutations(data):
 # Generate and print valid permutations
 def main(data):
     valid_permutations = generate_valid_permutations(data)
+    json_printer(valid_permutations, "valid per")
     for i, permutation in enumerate(valid_permutations, 1):
         print(f"\nPossible Schedule {i}:\n" + "-" * 50)
 

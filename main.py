@@ -6,7 +6,7 @@ import json
 
 def send_txt(courses):
     """Writes json to a .txt file"""
-    with open('./s_output.txt', 'w') as file:
+    with open('./qqq_output.txt', 'w') as file:
             json.dump(courses, file, indent=4)
 
 
@@ -37,6 +37,7 @@ def schedulke_maker():
         "instruction_method": ""
         })       
        classes_to_schedule.update(requirement_pairer(filtered_course_list))
+    send_txt(classes_to_schedule)
 
 
 

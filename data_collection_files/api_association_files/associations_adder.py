@@ -16,12 +16,12 @@ def dic_appender(dict,course,select,schd):
             dict[course["code"]][course["crn"]] = course
     else: # If select is one appending course to course dictionary
         if ("required" in dict) and (course["schd"] in dict["required"]):
-            dict["required"][schd][course["no"]] = course
+            dict["required"][schd][re.sub(r"[a-zA-Z]", "", course["no"])] = course
         else:
             if "required" not in dict:
                 dict["required"] = {}
             dict["required"][schd] = {}
-            dict["required"][schd][course["no"]] = course
+            dict["required"][schd][re.sub(r"[a-zA-Z]", "", course["no"])] = course
 
 
 def api2_cleaner(raw_course_list):

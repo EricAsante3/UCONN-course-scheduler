@@ -5,8 +5,7 @@ from data_collection_files.api2_association_files.associations_adder import api2
 
 from testing_files.json_printer import json_printer
 
-api1_url = "https://catalog.uconn.edu/course-search/api/?page=fose&route=search"
-api2_url = "https://classes.uconn.edu/api/?page=fose&route=search"
+api_url = "https://classes.uconn.edu/api/?page=fose&route=search"
 
 
 def api_call(filter_list, url):
@@ -77,24 +76,23 @@ def send_to_cleaner(filter_list):
     #Ex. cleaned_course_list = [{c1 info, "required": ["lab": [c3,c4], "DIS": [c5,c6]]}, {c6 info, "required": ["DIS": [c9]]}]
     """ 
 
-    raw_course_list = api_call(filter_list, api1_url)
+    raw_course_list = api_call(filter_list, api_url)
 
-    if (raw_course_list.status_code <= 400) and ("fatal" in raw_course_list.json()):
-        raw_course_list = api_call(filter_list, api2_url)
+    if (raw_course_list.status_code >= 400) or ("fatal" in raw_course_list.json()):
+        raise TypeError
+    else:
+        raw_course_list = api_call(filter_list, api_url)
         orgnized_cousre_list = orginizer(raw_course_list.json()["results"])
 
         course_list_with_dependents = {}
         for key, value in orgnized_cousre_list.items():
             course_list_with_dependents.update(api2_cleaner(value))
         json_printer(course_list_with_dependents, "testt")
-        return course_list_with_dependents
-    
-    orgnized_cousre_list = orginizer(raw_course_list.json()["results"])
-    course_list_with_dependents = {}
-    for key, value in orgnized_cousre_list.items():
-        course_list_with_dependents.update(api1_cleaner(value))
 
-    return course_list_with_dependents
+        return course_list_with_dependents
+
+    
+
 
 if __name__ == "__main__":
     """ Demonstration Run """
