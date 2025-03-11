@@ -36,7 +36,7 @@ def api2_cleaner(raw_course_list):
                 course = raw_course_list.pop(index)  # Remove the dictionary by index
                 break  # Stop after removing the first match
 
-        if course["schd"] in independent_courses:
+        if ( (course["schd"] in independent_courses) or (len(course["linked_crns"]) == 0)):
             course["required"] = ""
         else:
             result = re.split(r'[;,]\s*', course["linked_crns"])
@@ -57,8 +57,6 @@ def api2_cleaner(raw_course_list):
 
 
         dic_appender(cleaned_course_results,course,1,0) # append course to cleaned_course_results
-    json_printer(cleaned_course_results, "before")
+    json_printer(cleaned_course_results, "done")
     requirement_pairer(cleaned_course_results)
-    json_printer(cleaned_course_results, "after")
-
     return cleaned_course_results

@@ -1,13 +1,15 @@
 from data_collection_files.init_interface import import_call
 from scheduling_files.class_componets_combinations import requirement_pairer
 from scheduling_files.class_permutations import main
-
 import json
+from testing_files.json_printer import json_printer
 
-def send_txt(courses):
-    """Writes json to a .txt file"""
-    with open('./qqq_output.txt', 'w') as file:
-            json.dump(courses, file, indent=4)
+"""
+to do: 
+1. 10   10 classes full
+2. online classes
+"""
+
 
 
 
@@ -27,7 +29,7 @@ def schedulke_maker():
 
     classes_to_schedule = {}
     for i in picked_classes:
-       filtered_course_list = import_call({
+        filtered_course_list = import_call({
         "alias": i,
         "season_year": "Spring 2025",
         "campus": "Storrs (Main Campus at Storrs)",
@@ -35,14 +37,12 @@ def schedulke_maker():
         "C_area": "",
         "hours": "",
         "instruction_method": ""
-        })       
-       classes_to_schedule.update(requirement_pairer(filtered_course_list))
-    send_txt(classes_to_schedule)
+        })
 
+        classes_to_schedule.update(requirement_pairer(filtered_course_list))
+    
 
-
-    print(classes_to_schedule)
-    main(classes_to_schedule)
+    json_printer(main(classes_to_schedule), "classes")
        
 
 if __name__ == "__main__":

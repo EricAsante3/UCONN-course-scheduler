@@ -1,16 +1,7 @@
 import requests
 import json
 from bs4 import BeautifulSoup
-import re
 from testing_files.json_printer import json_printer
-
-
-
-def send_txt(courses):
-    """Writes json to a .txt file"""
-    with open('./s22.txt', 'w') as file:
-            file.write(json.dumps(courses))
-
  
 def api_call(campus, season_year, subject):
     # Define session to persist cookies
@@ -37,18 +28,16 @@ def api_call(campus, season_year, subject):
             "UC_DERIVED_GST_ENRL_STAT$chk": "C",
             "UC_DERIVED_GST_STRM1": season_year,
 
-            "UC_DERIVED_GST_SUBJECT": re.sub(r'[^a-zA-Z]', '', subject)
+            "UC_DERIVED_GST_SUBJECT": subject.split(' ')[0]
         }
 
     response = session.post(post_url, headers=headers, data=form_data)
-    json_printer(response.text, "ssssk")
 
     # Step 4: Update form data for enrollment status and send a second POST request
     form_data.update({
         "UC_DERIVED_GST_ENRL_STAT$chk": "C",
         "UC_DERIVED_GST_STRM": season_year,
         "ICAction": "UC_DERIVED_GST_SEARCH_PB"
-
 
     })
     
@@ -118,10 +107,10 @@ def extract_class_info(html_content):
 
 def availabilities_adder(campus, season_year, subject):
     raw_html = api_call(campus, season_year, subject)
+    json_printer(raw_html, "hrml ava")
     data = extract_class_info(raw_html)
     return data
 
 
-
-
-send_txt(api_call(1,"1253","CSE"))
+if __name__ == "__main__":
+    raw_html = api_call("D", "1258", "CSE")

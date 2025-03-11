@@ -1,7 +1,6 @@
 import requests
 
-from data_collection_files.api1_association_files.associations_adder import api1_cleaner
-from data_collection_files.api2_association_files.associations_adder import api2_cleaner
+from data_collection_files.api_association_files.associations_adder import api2_cleaner
 
 from testing_files.json_printer import json_printer
 
@@ -83,11 +82,11 @@ def send_to_cleaner(filter_list):
     else:
         raw_course_list = api_call(filter_list, api_url)
         orgnized_cousre_list = orginizer(raw_course_list.json()["results"])
+        json_printer(raw_course_list.json()["results"], "sss")
 
         course_list_with_dependents = {}
         for key, value in orgnized_cousre_list.items():
             course_list_with_dependents.update(api2_cleaner(value))
-        json_printer(course_list_with_dependents, "testt")
 
         return course_list_with_dependents
 
@@ -96,8 +95,5 @@ def send_to_cleaner(filter_list):
 
 if __name__ == "__main__":
     """ Demonstration Run """
-    raw = api_call([[{'field': 'alias', 'value': 'CSE 1010'}, {'field': 'srcdb', 'value': '1253'}, {'field': 'camp', 'value': 'OFF@DARIENHIGH'}], '1253'])
-    print(raw)
-    
-    json_printer(raw, "rawcourse")
+    raw = api_call([[{'field': 'alias', 'value': 'CSE 1010'}, {'field': 'srcdb', 'value': '1253'}, {'field': 'camp', 'value': 'OFF@DARIENHIGH'}], '1253'])    
     #subject

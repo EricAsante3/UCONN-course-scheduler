@@ -1,43 +1,61 @@
 import itertools
 import json
 import copy
+from testing_files.json_printer import json_printer
 
-def send_txt(courses):
-    """Writes json to a .txt file"""
-    with open('./iiipaired_class_components.txt', 'w') as file:
-            json.dump(courses, file, indent=4)
+
 
 def requirement_pairer(class_info):
+
     # Iterate over each class in the dictionary
-    send_txt(class_info)
     class_componets = {(list(class_info.keys())[0]): []}
     for class_name, crn_dict in class_info.items():
         # Iterate over each CRN in the class
         for crn, class_details in crn_dict.items():
             # Extract the base class (lecture)
             base_class = class_details
+            if base_class["Seats Available"] == 0:
+                continue
+
             # Extract all required components dynamically
             required_components = {}
+
+
             if class_details["required"] == "":
                 base_class.pop("required", None)
                 class_componets[(list(class_info.keys())[0])].append([base_class])
+
             elif (len(class_details["required"]) == 1):
+
+
                 for component_type, component_dict in class_details["required"].items():
-                    required_components[component_type] = list(component_dict.values())
+                    required_components[component_type] = [
+                        value for value in component_dict.values() if value["Seats Available"] != 0
+                    ]
+
+                
+                json_printer(required_components, "chevck")
+
                 base_class.pop("required", None)
-                component_lists = [required_components[comp] for comp in required_components]
+
+                component_lists = []
+                for comp in required_components:
+                    component_lists.append(required_components[comp])
+                
                 combinations = list(itertools.product([base_class], *component_lists))
                 class_componets[(list(class_info.keys())[0])].extend(combinations)
+
+
+
             else:
                 required_parts = class_details["required"]
                 base_class_copy = copy.deepcopy(base_class)
                 base_class_copy.pop("required", None)
-
-                
-                
                 required_parts_keys = list(required_parts.keys())
                 startindex = len(required_parts_keys)-1
                 for i in class_details["required"][required_parts_keys[startindex]]:
+                    if class_details["required"][required_parts_keys[startindex]][i]["Seats Available"] == 0:
+                        continue
                     temp_list = []
                     temp_list.append(base_class_copy)
                     temp_list.append(class_details["required"][required_parts_keys[startindex]][i])
@@ -57,525 +75,3 @@ def requirement_pairer(class_info):
 
 
 
-
-if __name__ == "__main__":
-    send_txt(requirement_pairer({
-    "ECE 2001": {
-        "7865": {
-            "key": "8465",
-            "code": "ECE 2001",
-            "title": "Electrical Circuits",
-            "hide": "",
-            "crn": "7865",
-            "no": "001",
-            "total": "25",
-            "schd": "LEC",
-            "stat": "A",
-            "isCancelled": "",
-            "meets": "MWF 10:10-11a",
-            "mpkey": "2462",
-            "meetingTimes": "[{\"meet_day\":\"0\",\"start_time\":\"1010\",\"end_time\":\"1100\"},{\"meet_day\":\"2\",\"start_time\":\"1010\",\"end_time\":\"1100\"},{\"meet_day\":\"4\",\"start_time\":\"1010\",\"end_time\":\"1100\"}]",
-            "instr": "",
-            "start_date": "2025-01-21",
-            "end_date": "2025-05-02",
-            "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"4\",\"label\":\"4\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":false,\"hidden\":true,\"options\":[{\"value\":\"\",\"label\":\"NA\",\"default\":true,\"selected\":\"selected\"}]}}",
-            "linked_crns": "7866,7868,7870,7872,7874,7876,7878,7880;7867,7869,7871,7873,7875,7877,7879,7881",
-            "instructorresult_html": "",
-            "acad_career": "UGRD",
-            "open_enroll": "",
-            "is_enroll_section": "0",
-            "srcdb": "1253",
-            "required": {
-                "LAB": {
-                    "009": {
-                        "key": "8481",
-                        "code": "ECE 2001",
-                        "title": "Electrical Circuits",
-                        "hide": "",
-                        "crn": "7881",
-                        "no": "009L",
-                        "total": "25",
-                        "schd": "LAB",
-                        "stat": "F",
-                        "isCancelled": "",
-                        "meets": "Th 4:30-6:30p",
-                        "mpkey": "2799",
-                        "meetingTimes": "[{\"meet_day\":\"3\",\"start_time\":\"1630\",\"end_time\":\"1830\"}]",
-                        "instr": "",
-                        "start_date": "2025-01-21",
-                        "end_date": "2025-05-02",
-                        "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"4\",\"label\":\"4\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
-                        "linked_crns": "7880;7865",
-                        "instructorresult_html": "",
-                        "acad_career": "UGRD",
-                        "open_enroll": "",
-                        "is_enroll_section": "1",
-                        "srcdb": "1253",
-                        "reserved": "",
-                        "Enrollment Capacity": 20,
-                        "Enrollment Total": 20,
-                        "Seats Available": 0,
-                        "Professor": "A Anwar (SI), \rNina Stefanovic (TA)"
-                    },
-                    "008": {
-                        "key": "8479",
-                        "code": "ECE 2001",
-                        "title": "Electrical Circuits",
-                        "hide": "",
-                        "crn": "7879",
-                        "no": "008L",
-                        "total": "25",
-                        "schd": "LAB",
-                        "stat": "F",
-                        "isCancelled": "",
-                        "meets": "Th 2-4p",
-                        "mpkey": "2647",
-                        "meetingTimes": "[{\"meet_day\":\"3\",\"start_time\":\"1400\",\"end_time\":\"1600\"}]",
-                        "instr": "",
-                        "start_date": "2025-01-21",
-                        "end_date": "2025-05-02",
-                        "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"4\",\"label\":\"4\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
-                        "linked_crns": "7878;7865",
-                        "instructorresult_html": "",
-                        "acad_career": "UGRD",
-                        "open_enroll": "",
-                        "is_enroll_section": "1",
-                        "srcdb": "1253",
-                        "reserved": "",
-                        "Enrollment Capacity": 20,
-                        "Enrollment Total": 20,
-                        "Seats Available": 0,
-                        "Professor": "A Anwar (SI), \rNina Stefanovic (TA)"
-                    },
-                    "007": {
-                        "key": "8477",
-                        "code": "ECE 2001",
-                        "title": "Electrical Circuits",
-                        "hide": "",
-                        "crn": "7877",
-                        "no": "007L",
-                        "total": "25",
-                        "schd": "LAB",
-                        "stat": "F",
-                        "isCancelled": "",
-                        "meets": "Th 11:30a-1:30p",
-                        "mpkey": "4072",
-                        "meetingTimes": "[{\"meet_day\":\"3\",\"start_time\":\"1130\",\"end_time\":\"1330\"}]",
-                        "instr": "",
-                        "start_date": "2025-01-21",
-                        "end_date": "2025-05-02",
-                        "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"4\",\"label\":\"4\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
-                        "linked_crns": "7876;7865",
-                        "instructorresult_html": "",
-                        "acad_career": "UGRD",
-                        "open_enroll": "",
-                        "is_enroll_section": "1",
-                        "srcdb": "1253",
-                        "reserved": "",
-                        "Enrollment Capacity": 20,
-                        "Enrollment Total": 20,
-                        "Seats Available": 0,
-                        "Professor": "A Anwar (SI), \rGaurav Gupta (TA)"
-                    },
-                    "006": {
-                        "key": "8475",
-                        "code": "ECE 2001",
-                        "title": "Electrical Circuits",
-                        "hide": "",
-                        "crn": "7875",
-                        "no": "006L",
-                        "total": "25",
-                        "schd": "LAB",
-                        "stat": "F",
-                        "isCancelled": "",
-                        "meets": "Th 9-11a",
-                        "mpkey": "2339",
-                        "meetingTimes": "[{\"meet_day\":\"3\",\"start_time\":\"900\",\"end_time\":\"1100\"}]",
-                        "instr": "",
-                        "start_date": "2025-01-21",
-                        "end_date": "2025-05-02",
-                        "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"4\",\"label\":\"4\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
-                        "linked_crns": "7874;7865",
-                        "instructorresult_html": "",
-                        "acad_career": "UGRD",
-                        "open_enroll": "",
-                        "is_enroll_section": "1",
-                        "srcdb": "1253",
-                        "reserved": "",
-                        "Enrollment Capacity": 20,
-                        "Enrollment Total": 20,
-                        "Seats Available": 0,
-                        "Professor": "A Anwar (SI), \rGaurav Gupta (TA)"
-                    },
-                    "004": {
-                        "key": "8473",
-                        "code": "ECE 2001",
-                        "title": "Electrical Circuits",
-                        "hide": "",
-                        "crn": "7873",
-                        "no": "004L",
-                        "total": "25",
-                        "schd": "LAB",
-                        "stat": "F",
-                        "isCancelled": "",
-                        "meets": "T 4:30-6:30p",
-                        "mpkey": "3532",
-                        "meetingTimes": "[{\"meet_day\":\"1\",\"start_time\":\"1630\",\"end_time\":\"1830\"}]",
-                        "instr": "",
-                        "start_date": "2025-01-21",
-                        "end_date": "2025-05-02",
-                        "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"4\",\"label\":\"4\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
-                        "linked_crns": "7872;7865",
-                        "instructorresult_html": "",
-                        "acad_career": "UGRD",
-                        "open_enroll": "",
-                        "is_enroll_section": "1",
-                        "srcdb": "1253",
-                        "reserved": "",
-                        "Enrollment Capacity": 20,
-                        "Enrollment Total": 20,
-                        "Seats Available": 0,
-                        "Professor": "A Anwar (SI), \rJuli Yang (TA)"
-                    },
-                    "003": {
-                        "key": "8471",
-                        "code": "ECE 2001",
-                        "title": "Electrical Circuits",
-                        "hide": "",
-                        "crn": "7871",
-                        "no": "003L",
-                        "total": "25",
-                        "schd": "LAB",
-                        "stat": "F",
-                        "isCancelled": "",
-                        "meets": "T 2-4p",
-                        "mpkey": "2636",
-                        "meetingTimes": "[{\"meet_day\":\"1\",\"start_time\":\"1400\",\"end_time\":\"1600\"}]",
-                        "instr": "",
-                        "start_date": "2025-01-21",
-                        "end_date": "2025-05-02",
-                        "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"4\",\"label\":\"4\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
-                        "linked_crns": "7870;7865",
-                        "instructorresult_html": "",
-                        "acad_career": "UGRD",
-                        "open_enroll": "",
-                        "is_enroll_section": "1",
-                        "srcdb": "1253",
-                        "reserved": "",
-                        "Enrollment Capacity": 20,
-                        "Enrollment Total": 20,
-                        "Seats Available": 0,
-                        "Professor": "A Anwar (SI), \rJuli Yang (TA)"
-                    },
-                    "002": {
-                        "key": "8469",
-                        "code": "ECE 2001",
-                        "title": "Electrical Circuits",
-                        "hide": "",
-                        "crn": "7869",
-                        "no": "002L",
-                        "total": "25",
-                        "schd": "LAB",
-                        "stat": "F",
-                        "isCancelled": "",
-                        "meets": "T 11:30a-1:30p",
-                        "mpkey": "3531",
-                        "meetingTimes": "[{\"meet_day\":\"1\",\"start_time\":\"1130\",\"end_time\":\"1330\"}]",
-                        "instr": "",
-                        "start_date": "2025-01-21",
-                        "end_date": "2025-05-02",
-                        "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"4\",\"label\":\"4\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
-                        "linked_crns": "7868;7865",
-                        "instructorresult_html": "",
-                        "acad_career": "UGRD",
-                        "open_enroll": "",
-                        "is_enroll_section": "1",
-                        "srcdb": "1253",
-                        "reserved": "",
-                        "Enrollment Capacity": 20,
-                        "Enrollment Total": 20,
-                        "Seats Available": 0,
-                        "Professor": "A Anwar (SI), \rHaoyi Wang (TA)"
-                    },
-                    "001": {
-                        "key": "8467",
-                        "code": "ECE 2001",
-                        "title": "Electrical Circuits",
-                        "hide": "",
-                        "crn": "7867",
-                        "no": "001L",
-                        "total": "25",
-                        "schd": "LAB",
-                        "stat": "A",
-                        "isCancelled": "",
-                        "meets": "T 9-11a",
-                        "mpkey": "2338",
-                        "meetingTimes": "[{\"meet_day\":\"1\",\"start_time\":\"900\",\"end_time\":\"1100\"}]",
-                        "instr": "",
-                        "start_date": "2025-01-21",
-                        "end_date": "2025-05-02",
-                        "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"4\",\"label\":\"4\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
-                        "linked_crns": "7866;7865",
-                        "instructorresult_html": "",
-                        "acad_career": "UGRD",
-                        "open_enroll": "",
-                        "is_enroll_section": "1",
-                        "srcdb": "1253",
-                        "reserved": "",
-                        "Enrollment Capacity": 19,
-                        "Enrollment Total": 18,
-                        "Seats Available": 1,
-                        "Professor": "A Anwar (SI), \rHaoyi Wang (TA)"
-                    }
-                },
-                "DIS": {
-                    "009": {
-                        "key": "8480",
-                        "code": "ECE 2001",
-                        "title": "Electrical Circuits",
-                        "hide": "",
-                        "crn": "7880",
-                        "no": "009D",
-                        "total": "25",
-                        "schd": "DIS",
-                        "stat": "F",
-                        "isCancelled": "",
-                        "meets": "W 4-6p",
-                        "mpkey": "2642",
-                        "meetingTimes": "[{\"meet_day\":\"2\",\"start_time\":\"1600\",\"end_time\":\"1800\"}]",
-                        "instr": "",
-                        "start_date": "2025-01-21",
-                        "end_date": "2025-05-02",
-                        "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"4\",\"label\":\"4\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
-                        "linked_crns": "7881;7865",
-                        "instructorresult_html": "",
-                        "acad_career": "UGRD",
-                        "open_enroll": "",
-                        "is_enroll_section": "0",
-                        "srcdb": "1253",
-                        "reserved": "",
-                        "Enrollment Capacity": 20,
-                        "Enrollment Total": 20,
-                        "Seats Available": 0,
-                        "Professor": "A Anwar (SI)"
-                    },
-                    "008": {
-                        "key": "8478",
-                        "code": "ECE 2001",
-                        "title": "Electrical Circuits",
-                        "hide": "",
-                        "crn": "7878",
-                        "no": "008D",
-                        "total": "25",
-                        "schd": "DIS",
-                        "stat": "F",
-                        "isCancelled": "",
-                        "meets": "W 4-6p",
-                        "mpkey": "2642",
-                        "meetingTimes": "[{\"meet_day\":\"2\",\"start_time\":\"1600\",\"end_time\":\"1800\"}]",
-                        "instr": "",
-                        "start_date": "2025-01-21",
-                        "end_date": "2025-05-02",
-                        "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"4\",\"label\":\"4\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
-                        "linked_crns": "7879;7865",
-                        "instructorresult_html": "",
-                        "acad_career": "UGRD",
-                        "open_enroll": "",
-                        "is_enroll_section": "0",
-                        "srcdb": "1253",
-                        "reserved": "",
-                        "Enrollment Capacity": 20,
-                        "Enrollment Total": 20,
-                        "Seats Available": 0,
-                        "Professor": "A Anwar (SI)"
-                    },
-                    "007": {
-                        "key": "8476",
-                        "code": "ECE 2001",
-                        "title": "Electrical Circuits",
-                        "hide": "",
-                        "crn": "7876",
-                        "no": "007D",
-                        "total": "25",
-                        "schd": "DIS",
-                        "stat": "F",
-                        "isCancelled": "",
-                        "meets": "W 4-6p",
-                        "mpkey": "2642",
-                        "meetingTimes": "[{\"meet_day\":\"2\",\"start_time\":\"1600\",\"end_time\":\"1800\"}]",
-                        "instr": "",
-                        "start_date": "2025-01-21",
-                        "end_date": "2025-05-02",
-                        "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"4\",\"label\":\"4\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
-                        "linked_crns": "7877;7865",
-                        "instructorresult_html": "",
-                        "acad_career": "UGRD",
-                        "open_enroll": "",
-                        "is_enroll_section": "0",
-                        "srcdb": "1253",
-                        "reserved": "",
-                        "Enrollment Capacity": 20,
-                        "Enrollment Total": 20,
-                        "Seats Available": 0,
-                        "Professor": "A Anwar (SI)"
-                    },
-                    "006": {
-                        "key": "8474",
-                        "code": "ECE 2001",
-                        "title": "Electrical Circuits",
-                        "hide": "",
-                        "crn": "7874",
-                        "no": "006D",
-                        "total": "25",
-                        "schd": "DIS",
-                        "stat": "F",
-                        "isCancelled": "",
-                        "meets": "W 4-6p",
-                        "mpkey": "2642",
-                        "meetingTimes": "[{\"meet_day\":\"2\",\"start_time\":\"1600\",\"end_time\":\"1800\"}]",
-                        "instr": "",
-                        "start_date": "2025-01-21",
-                        "end_date": "2025-05-02",
-                        "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"4\",\"label\":\"4\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
-                        "linked_crns": "7875;7865",
-                        "instructorresult_html": "",
-                        "acad_career": "UGRD",
-                        "open_enroll": "",
-                        "is_enroll_section": "0",
-                        "srcdb": "1253",
-                        "reserved": "",
-                        "Enrollment Capacity": 20,
-                        "Enrollment Total": 20,
-                        "Seats Available": 0,
-                        "Professor": "A Anwar (SI)"
-                    },
-                    "004": {
-                        "key": "8472",
-                        "code": "ECE 2001",
-                        "title": "Electrical Circuits",
-                        "hide": "",
-                        "crn": "7872",
-                        "no": "004D",
-                        "total": "25",
-                        "schd": "DIS",
-                        "stat": "F",
-                        "isCancelled": "",
-                        "meets": "W 4-6p",
-                        "mpkey": "2642",
-                        "meetingTimes": "[{\"meet_day\":\"2\",\"start_time\":\"1600\",\"end_time\":\"1800\"}]",
-                        "instr": "",
-                        "start_date": "2025-01-21",
-                        "end_date": "2025-05-02",
-                        "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"4\",\"label\":\"4\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
-                        "linked_crns": "7873;7865",
-                        "instructorresult_html": "",
-                        "acad_career": "UGRD",
-                        "open_enroll": "",
-                        "is_enroll_section": "0",
-                        "srcdb": "1253",
-                        "reserved": "",
-                        "Enrollment Capacity": 20,
-                        "Enrollment Total": 20,
-                        "Seats Available": 0,
-                        "Professor": "A Anwar (SI)"
-                    },
-                    "003": {
-                        "key": "8470",
-                        "code": "ECE 2001",
-                        "title": "Electrical Circuits",
-                        "hide": "",
-                        "crn": "7870",
-                        "no": "003D",
-                        "total": "25",
-                        "schd": "DIS",
-                        "stat": "F",
-                        "isCancelled": "",
-                        "meets": "W 4-6p",
-                        "mpkey": "2642",
-                        "meetingTimes": "[{\"meet_day\":\"2\",\"start_time\":\"1600\",\"end_time\":\"1800\"}]",
-                        "instr": "",
-                        "start_date": "2025-01-21",
-                        "end_date": "2025-05-02",
-                        "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"4\",\"label\":\"4\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
-                        "linked_crns": "7871;7865",
-                        "instructorresult_html": "",
-                        "acad_career": "UGRD",
-                        "open_enroll": "",
-                        "is_enroll_section": "0",
-                        "srcdb": "1253",
-                        "reserved": "",
-                        "Enrollment Capacity": 20,
-                        "Enrollment Total": 20,
-                        "Seats Available": 0,
-                        "Professor": "A Anwar (SI)"
-                    },
-                    "002": {
-                        "key": "8468",
-                        "code": "ECE 2001",
-                        "title": "Electrical Circuits",
-                        "hide": "",
-                        "crn": "7868",
-                        "no": "002D",
-                        "total": "25",
-                        "schd": "DIS",
-                        "stat": "F",
-                        "isCancelled": "",
-                        "meets": "W 4-6p",
-                        "mpkey": "2642",
-                        "meetingTimes": "[{\"meet_day\":\"2\",\"start_time\":\"1600\",\"end_time\":\"1800\"}]",
-                        "instr": "",
-                        "start_date": "2025-01-21",
-                        "end_date": "2025-05-02",
-                        "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"4\",\"label\":\"4\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
-                        "linked_crns": "7869;7865",
-                        "instructorresult_html": "",
-                        "acad_career": "UGRD",
-                        "open_enroll": "",
-                        "is_enroll_section": "0",
-                        "srcdb": "1253",
-                        "reserved": "",
-                        "Enrollment Capacity": 20,
-                        "Enrollment Total": 20,
-                        "Seats Available": 0,
-                        "Professor": "A Anwar (SI)"
-                    },
-                    "001": {
-                        "key": "8466",
-                        "code": "ECE 2001",
-                        "title": "Electrical Circuits",
-                        "hide": "",
-                        "crn": "7866",
-                        "no": "001D",
-                        "total": "25",
-                        "schd": "DIS",
-                        "stat": "A",
-                        "isCancelled": "",
-                        "meets": "W 4-6p",
-                        "mpkey": "2642",
-                        "meetingTimes": "[{\"meet_day\":\"2\",\"start_time\":\"1600\",\"end_time\":\"1800\"}]",
-                        "instr": "",
-                        "start_date": "2025-01-21",
-                        "end_date": "2025-05-02",
-                        "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"4\",\"label\":\"4\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
-                        "linked_crns": "7867;7865",
-                        "instructorresult_html": "",
-                        "acad_career": "UGRD",
-                        "open_enroll": "",
-                        "is_enroll_section": "0",
-                        "srcdb": "1253",
-                        "reserved": "",
-                        "Enrollment Capacity": 20,
-                        "Enrollment Total": 18,
-                        "Seats Available": 2,
-                        "Professor": "A Anwar (SI)"
-                    }
-                }
-            },
-            "reserved": "",
-            "Enrollment Capacity": 165,
-            "Enrollment Total": 158,
-            "Seats Available": 7,
-            "Professor": "A Anwar (PI)"
-        }
-    }
-}))

@@ -15,6 +15,7 @@ key_value_switch_case = {
 
 value_switch_case = {
     "season_year": {
+        "Fall 2025": "1258",
         "Spring 2025": "1253",
         "Winter 2025": "1251",
         "Fall 2024": "1248",
@@ -336,6 +337,9 @@ def import_call(search_dictionary):
         "instruction_method": search_dictionary["instruction_method"]
     }
     filter_list = convert_query(user_preferences)
+
+
+    
     return send_to_cleaner(filter_list)
 
 
