@@ -6,6 +6,8 @@ from data_collection_files.class_components_files.components_finder import compo
 from scheduling_files.componet_combiner import pairer
 from scheduling_files.builder import schedule_maker
 
+from testing_files.printers import json_printer
+
 # Initialize the Flask application
 app = Flask(__name__)
 
@@ -76,12 +78,13 @@ def make_schedule():
 
     # Get the JSON data sent in the request body
     data = request.get_json()
-
     classes_with_componets = pairer(data)
-    
-    schedules = schedule_maker(classes_with_componets)
 
-    return jsonify(schedules)
+    if len(classes_with_componets[1]) == 0:
+        schedules = schedule_maker(classes_with_componets[0])
+        return jsonify(schedules)
+    else:
+        return(classes_with_componets)
 
 
 

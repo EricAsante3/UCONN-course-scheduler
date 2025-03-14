@@ -2,12 +2,11 @@ import itertools
 import json
 import copy
 
-
-
 def pairer(class_info):
 
     # Iterate over each class in the dictionary
-    class_componets = {(list(class_info.keys())[0]): []}
+    class_componets = {key: [] for key in class_info.keys()}
+    empty_seats = {}
     for class_name, crn_dict in class_info.items():
         # Iterate over each CRN in the class
         for crn, class_details in crn_dict.items():
@@ -40,10 +39,7 @@ def pairer(class_info):
                     component_lists.append(required_components[comp])
                 
                 combinations = list(itertools.product([base_class], *component_lists))
-                class_componets[(list(class_info.keys())[0])].extend(combinations)
-
-
-
+                class_componets[class_name].extend(combinations)
             else:
                 required_parts = class_details["required"]
                 base_class_copy = copy.deepcopy(base_class)
@@ -59,11 +55,9 @@ def pairer(class_info):
                     for m in range(0,len(required_parts_keys)-1):
                         if (i in class_details["required"][required_parts_keys[m]]):
                             temp_list.append(class_details["required"][required_parts_keys[m]][i])
-                    class_componets[(list(class_info.keys())[0])].append(temp_list)
+                    class_componets[class_name].append(temp_list)
 
+        if class_componets[class_name] == []:
+            empty_seats[class_name] = "No classes open"
 
-                        
-    if [] in list(class_componets.values()):
-        return None
-
-    return class_componets
+    return [class_componets, empty_seats]
