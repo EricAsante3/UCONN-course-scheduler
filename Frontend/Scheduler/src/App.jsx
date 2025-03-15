@@ -1,7 +1,8 @@
 import { useContext } from "react";
 
-import Cart_block from "./components/Cart_block.jsx"
-import Search_block from "./components/Search_block.jsx"
+import Search_and_Cart_section from "./components/Search_and_Cart_section.jsx"
+import Schedule_block from "./components/Schedule_block.jsx"
+
 import { DataContext } from "./data/data.jsx";
 
 function App() {
@@ -10,10 +11,11 @@ function App() {
 
   console.log(searched_data)
   return (
-    <div>
-      <Search_block></Search_block>
-      {cart_data}
-      <Cart_block></Cart_block>
+    <div className="flex flex-col items-center justify-center p-[2rem]">
+      
+      <Search_and_Cart_section></Search_and_Cart_section>
+      <Schedule_block></Schedule_block>
+
     </div>
   )
 }
