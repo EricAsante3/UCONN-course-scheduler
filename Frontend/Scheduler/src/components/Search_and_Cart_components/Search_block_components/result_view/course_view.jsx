@@ -8,14 +8,6 @@ import Course_card from './course_card';
 function course_view() {
     const {searched_data} = useContext(DataContext);
 
-    const colors = { ben: "green", sam: "red", man: "yellow" };
-
-    useEffect(() => {
-        
-
-        console.log(searched_data)
-
-    }, [searched_data]);
 
   return (
 

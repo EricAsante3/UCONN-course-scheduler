@@ -232,6 +232,7 @@ const teaching_method = [
 function Search_block_form() {
     const { campus, semester, api_url, setsearched_data} = useContext(DataContext);
     const [subject_filter, set_subject_filter] = useState('');
+    
     const [ContentArea_filter, set_ContentArea_filter] = useState('Any');
     const [CreditHours_filter, set_CreditHours_filter] = useState('Any');
     const [inquiry_filter, set_inquiry_filter] = useState('Any');
@@ -307,7 +308,6 @@ function Search_block_form() {
             <Search filter={teaching_method_filter} setfilter={set_teaching_method_filter} options={teaching_method}></Search>
 
             <button type="submit">Submit</button>
-
         </form>    
     )
   }

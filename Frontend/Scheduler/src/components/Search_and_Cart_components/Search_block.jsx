@@ -5,12 +5,12 @@ import Course_view from "./Search_block_components/result_view/course_view.jsx"
 
 
 import { DataContext} from "../../data/data.jsx";
-import { useState,useEffect,useContext } from 'react';
+import { useContext } from 'react';
 
 
 
 function Search_block() {
-    const { searched_data, setsearched_data} = useContext(DataContext);
+    const { setsearched_data} = useContext(DataContext);
 
 
     return (

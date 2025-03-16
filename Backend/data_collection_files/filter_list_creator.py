@@ -8,7 +8,8 @@ key_value_switch_case = {
     "subject": "subject",
     "C_area": "C_area",
     "hours": "hours",
-    "instruction_method": "instmode"
+    "teaching_method": "teaching_method",
+    "seats": "stat"
 }
 
 
@@ -216,16 +217,22 @@ value_switch_case = {
         "Women's, Gender, and Sexuality Studies": "WGSS"
     },
     "C_area": {
-        "Any General Education Course Attribute": "",
-        "CA1: Arts & Humanities": "course_attribute_CA1",
-        "CA2: Social Science": "course_attribute_CA2",
-        "CA3: Science & Technology": "course_attribute_CA3",
-        "CA3LAB: Science & Tech Lab": "course_attribute_CA3LAB",
-        "CA4: Diversity & Multicultural": "course_attribute_CA4",
-        "CA4INT: Div & Multi Intl": "course_attribute_CA4INT",
-        "COMP: Environmental Literacy": "course_attribute_COMPE",
-        "COMP: Quantitative Competency": "course_attribute_COMPQ",
-        "COMP: Writing Competency": "course_attribute_COMPW",
+        "Any": "",
+        "CA1: Arts & Humanities": "content_area_course_CA1",
+        "CA2: Social Science": "content_area_course_CA2",
+        "CA3: Science & Technology": "content_area_course_CA3",
+        "CA3LAB: Science & Tech Lab": "content_area_course_CA3LAB",
+        "CA4: Diversity & Multicultural": "content_area_course_CA4",
+        "CA4INT: Div & Multi Intl": "content_area_course_CA4INT"
+    },
+    "competency":{
+        "Any": "",
+        "COMP: Environmental Literacy": "competency_COMPE",
+        "COMP: Quantitative Competency": "competency_COMPE",
+        "COMP: Writing Competency": "competency_COMPW"
+    },
+    "inquiry": {
+        "Any": "",
         "TOI1: Creativity: Des,Expr,Inn": "course_attribute_TOI1",
         "TOI2: Cultural Dimen Human Exp": "course_attribute_TOI2",
         "TOI3: Div, Equity, Soc Just": "course_attribute_TOI3",
@@ -235,22 +242,22 @@ value_switch_case = {
         "TOI6L: Science Emp Inq (Lab)": "course_attribute_TOI6L"
     },
     "hours": {
-        "Any hours": "",
+        "Any": "",
         "1 Credits": "1",
         "2 Credits": "2",
         "3 Credits": "3",
         "4 Credits": "4"
     },
-    "instruction_method": {
-        "Any instruction_method": "",
-        "By Arrangement": "AR",
-        "Hybrid": "HB",
-        "Hybrid Limited": "HL",
-        "In Person": "P",
-        "In Person Remote": "PR",
-        "Online Asynchronous": "OA",
-        "Online Blended": "OB",
-        "Online Synchronous": "OS"
+    "seats":{
+        "Any": "",
+        "Open Classes": "A",
+        "Closed (Waitlist Open)": "W"
+    },
+    "teaching_method": {
+        "Any": "",
+        "In-person classes": "in_person",
+        "Hybrid classes": "hybrid_blended",
+        "Online classes": "online"
     }
 }
 
@@ -264,12 +271,11 @@ def convert_query(Set_up_variables):
             continue
         elif key == "alias":
             filter_list.append({"field": key,"value": value})
-        elif key == "C_area":
-            filter_list.append({"field": value,"value": 'Y'})
-
+        elif (key == "C_area") or (key == "competency") or (key == "inquiry") or (key == "teaching_method"):
+            filter_list.append({"field": value_switch_case.get(key, {}).get(value),"value": 'Y'})
         elif key == "hours":
-            filter_list.append({"field": key,"value": (">="+ value)})
-            filter_list.append({"field": (key + "_min"),"value": ("<="+ value)})
+            filter_list.append({"field": key,"value": (">="+ value_switch_case.get(key, {}).get(value))})
+            filter_list.append({"field": (key + "_min"),"value": ("<="+ value_switch_case.get(key, {}).get(value))})
         else:
             qstr_value = value_switch_case.get(key, {}).get(value)
             qstr_field = key_value_switch_case.get(key)
@@ -279,15 +285,6 @@ def convert_query(Set_up_variables):
 
 
 def filter_maker(search_dictionary):
-    user_preferences = {
-        "alias": search_dictionary["alias"],
-        "season_year": search_dictionary["season_year"],
-        "campus": search_dictionary["campus"],
-        "subject": search_dictionary["subject"],
-        "C_area": search_dictionary["C_area"],
-        "hours": search_dictionary["hours"],
-        "instruction_method": search_dictionary["instruction_method"]
-    }
+    user_preferences = search_dictionary
     filter_list = convert_query(user_preferences)
-
     return filter_list
