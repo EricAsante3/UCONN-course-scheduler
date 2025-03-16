@@ -5,8 +5,6 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
 function Cart_block() {
 
-    // const items = ["Apple", "Banana", "Cherry"];
-
     const [data, setData] = useState({
         "CSE 1010": {
             "4376": {
@@ -1721,13 +1719,6 @@ function Cart_block() {
     const class_names = Object.keys(data)
 
     const [open, setOpen] = useState(false);
-  
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-    const handleClick = () => {
-        alert("Button Clicked!");
-    };
 
     const deleteItem = (index) => {
         const keyToDelete = class_names[index]; // Get key based on index
@@ -1739,71 +1730,105 @@ function Cart_block() {
         setData(updatedData); // Update state
     };
 
-    // const getInfo = (index) => {
-    //     const prof = class_names[index][]
-    // }
 
-    const style = {
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        width: 400,
-        bgcolor: "background.paper",
-        border: "2px solid #000",
-        boxShadow: 24,
-        p: 4,
-      };
+    const [selectedClass, setSelectedClass] = useState(null)
+    // When info is clicked, store the selected class and open the modal.
+    const handleOpenModal = (className) => {
+        setSelectedClass(className);
+        setOpen(true);
+    };
+
+    function getClassLectureInfo(className) {
+        if (!data.hasOwnProperty(className)) {
+          return [];
+        }
+        const classData = data[className];
+        return Object.keys(classData).map((crn) => ({
+          crn,
+          enrollmentCapacity: classData[crn]["Enrollment Capacity"],
+          professor: classData[crn]["Professor"],
+          meets: classData[crn]["meets"]
+        }));
+    }
 
     return (
-        <div className="h-[50rem] flex flex-col justify-top items-center bg-green-500 size-full">
-            <h1 className="text-5xl m-20">Class List</h1>
-            <div className="h-[80%] mt-auto border-2 size-full">
-            <ul className="flex flex-col justify-end items-center w-full p-4 border">
-                {class_names.map((item, index) => (
-                    <li key={index} className="flex items-center w-full p-4 border">
-                    <div className="flex items-center gap-3">
+        <>
+            <div className="h-[50rem] flex flex-col justify-top items-center bg-green-500 size-full">
+                <h1 className="text-5xl m-20">Class List</h1>
+                <div className="h-[80%] mt-auto border-2 size-full">
+                <ul className="flex flex-col justify-end items-center w-full p-4 border">
+                    {class_names.map((item, index) => (
+                        <li key={index} className="flex items-center w-full p-4 border">
+                        <div className="flex items-center gap-3">
 
-                        <Button onClick={() => setOpen(true)}>
+                        <Button onClick={() => handleOpenModal(item)}>
                             <InformationCircleIcon className="w-6 h-6" />
                         </Button>
+
                         <Modal open={open} onClose={() => setOpen(false)}>
-                            <Box sx={{
-                            position: "absolute",
-                            top: "50%",
-                            left: "50%",
-                            transform: "translate(-50%, -50%)",
-                            width: "70%",
-                            height: "60%",
-                            bgcolor: "background.paper",
-                            boxShadow: 24,
-                            overflowY: "auto",
-                            p: 4,
-                            borderRadius: 2
-                            }}>
-                            <Typography variant="h6" color="black">Class Name Info</Typography>
-                            <Typography color="black">This is a simple modal with some text.</Typography>
-                            <Button sx={{ mt: "50%" }} onClick={() => setOpen(false)}>Close</Button>
+                            <Box
+                            sx={{
+                                position: "absolute",
+                                top: "50%",
+                                left: "50%",
+                                transform: "translate(-50%, -50%)",
+                                width: "70%",
+                                height: "60%",
+                                bgcolor: "background.paper",
+                                boxShadow: 24,
+                                overflowY: "auto",
+                                p: 4,
+                                borderRadius: 2
+                            }}
+                            >
+                            {selectedClass ? (
+                                <>
+                                <Typography variant="h4" color="black">
+                                    {selectedClass} Info
+                                </Typography>
+                                {getClassLectureInfo(selectedClass).map((lecture) => (
+                                    <Box key={lecture.crn} sx={{ mt: 2, mb: 2, borderBottom: "1px solid #ccc", pb: 1 }}>
+                                    <Typography color="black">
+                                        <strong>CRN:</strong> {lecture.crn}
+                                    </Typography>
+                                    <Typography color="black">
+                                        <strong>Enrollment Capacity:</strong> {lecture.enrollmentCapacity}
+                                    </Typography>
+                                    <Typography color="black">
+                                        <strong>Professor:</strong> {lecture.professor}
+                                    </Typography>
+                                    <Typography color="black">
+                                        <strong>Meets:</strong> {lecture.meets}
+                                    </Typography>
+                                    </Box>
+                                ))}
+                                </>
+                            ) : (
+                                <Typography color="black">No class selected.</Typography>
+                            )}
+                            <Button sx={{ mt: 3 }} variant="contained" onClick={() => setOpen(false)}>
+                                Close
+                            </Button>
                             </Box>
                         </Modal>
-
-                        <div className="text-2xl border px-2 m-2">
-                            {item}
+                            <div className="text-2xl border px-2 m-2">
+                                {item}
+                            </div>
                         </div>
-                    </div>
-                    <button onClick={() => deleteItem(index)} className="border ml-auto mr-2">
-                        <TrashIcon className="w-6 h-6 text-red-500" />
-                    </button>
-                    </li>     
-                ))}
-            </ul>
-            <div className="text-5xl text-center mt-20 ">
-                Generate
+                        <button onClick={() => deleteItem(index)} className="border ml-auto mr-2">
+                            <TrashIcon className="w-6 h-6 text-red-500" />
+                        </button>
+                        </li>     
+                    ))}
+                </ul>
+                <div className="text-5xl text-center mt-20 ">
+                    Generate {}
+                </div>
+                </div>
             </div>
-            </div>
-        </div>
+        </>
     )
 }
   
-  export default Cart_block
+export default Cart_block
   
