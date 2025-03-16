@@ -1345,10 +1345,380 @@ function Cart_block() {
                 "title": "Introduction to Computing for Engineers",
                 "total": "68"
             }
+        },
+        "CSE 2050": {
+            "4448": {
+                "Enrollment Capacity": 120,
+                "Enrollment Total": 0,
+                "Professor": "Lina Kloub (PI)",
+                "Seats Available": null,
+                "acad_career": "UGRD",
+                "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"3\",\"label\":\"3\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":false,\"hidden\":true,\"options\":[{\"value\":\"\",\"label\":\"NA\",\"default\":true,\"selected\":\"selected\"}]}}",
+                "code": "CSE 2050",
+                "crn": "4448",
+                "end_date": "2025-12-05",
+                "hide": "",
+                "instr": "",
+                "instructorresult_html": "",
+                "isCancelled": "",
+                "is_enroll_section": "0",
+                "key": "8786",
+                "linked_crns": "4449,4450,4451,4452,4453",
+                "meetingTimes": "[{\"meet_day\":\"0\",\"start_time\":\"1115\",\"end_time\":\"1205\"},{\"meet_day\":\"2\",\"start_time\":\"1115\",\"end_time\":\"1205\"},{\"meet_day\":\"4\",\"start_time\":\"1115\",\"end_time\":\"1205\"}]",
+                "meets": "MWF 11:15a-12:05p",
+                "mpkey": "2593",
+                "no": "011",
+                "open_enroll": "",
+                "required": {
+                    "LAB": {
+                        "011": {
+                            "Enrollment Capacity": 24,
+                            "Enrollment Total": 0,
+                            "Professor": "Lina Kloub (SI)",
+                            "Seats Available": null,
+                            "acad_career": "UGRD",
+                            "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"3\",\"label\":\"3\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
+                            "code": "CSE 2050",
+                            "crn": "4449",
+                            "end_date": "2025-12-05",
+                            "hide": "",
+                            "instr": "",
+                            "instructorresult_html": "",
+                            "isCancelled": "",
+                            "is_enroll_section": "1",
+                            "key": "8787",
+                            "linked_crns": "4448",
+                            "meetingTimes": "[{\"meet_day\":\"3\",\"start_time\":\"1530\",\"end_time\":\"1645\"}]",
+                            "meets": "Th 3:30-4:45p",
+                            "mpkey": "2584",
+                            "no": "011L",
+                            "open_enroll": "",
+                            "reserved": "24 for RC Computing majors",
+                            "schd": "LAB",
+                            "srcdb": "1258",
+                            "start_date": "2025-08-25",
+                            "stat": "A",
+                            "title": "Data Structures and Object-Oriented Design",
+                            "total": "15"
+                        },
+                        "012": {
+                            "Enrollment Capacity": 24,
+                            "Enrollment Total": 0,
+                            "Professor": "Lina Kloub (SI)",
+                            "Seats Available": null,
+                            "acad_career": "UGRD",
+                            "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"3\",\"label\":\"3\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
+                            "code": "CSE 2050",
+                            "crn": "4450",
+                            "end_date": "2025-12-05",
+                            "hide": "",
+                            "instr": "",
+                            "instructorresult_html": "",
+                            "isCancelled": "",
+                            "is_enroll_section": "1",
+                            "key": "8788",
+                            "linked_crns": "4448",
+                            "meetingTimes": "[{\"meet_day\":\"3\",\"start_time\":\"1400\",\"end_time\":\"1515\"}]",
+                            "meets": "Th 2-3:15p",
+                            "mpkey": "2741",
+                            "no": "012L",
+                            "open_enroll": "",
+                            "reserved": "24 for RC Computing majors",
+                            "schd": "LAB",
+                            "srcdb": "1258",
+                            "start_date": "2025-08-25",
+                            "stat": "A",
+                            "title": "Data Structures and Object-Oriented Design",
+                            "total": "15"
+                        },
+                        "013": {
+                            "Enrollment Capacity": 24,
+                            "Enrollment Total": 0,
+                            "Professor": "Lina Kloub (SI)",
+                            "Seats Available": null,
+                            "acad_career": "UGRD",
+                            "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"3\",\"label\":\"3\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
+                            "code": "CSE 2050",
+                            "crn": "4451",
+                            "end_date": "2025-12-05",
+                            "hide": "",
+                            "instr": "",
+                            "instructorresult_html": "",
+                            "isCancelled": "",
+                            "is_enroll_section": "1",
+                            "key": "8789",
+                            "linked_crns": "4448",
+                            "meetingTimes": "[{\"meet_day\":\"3\",\"start_time\":\"1230\",\"end_time\":\"1345\"}]",
+                            "meets": "Th 12:30-1:45p",
+                            "mpkey": "2961",
+                            "no": "013L",
+                            "open_enroll": "",
+                            "reserved": "24 for RC Computing majors",
+                            "schd": "LAB",
+                            "srcdb": "1258",
+                            "start_date": "2025-08-25",
+                            "stat": "A",
+                            "title": "Data Structures and Object-Oriented Design",
+                            "total": "15"
+                        },
+                        "014": {
+                            "Enrollment Capacity": 24,
+                            "Enrollment Total": 0,
+                            "Professor": "Lina Kloub (SI)",
+                            "Seats Available": null,
+                            "acad_career": "UGRD",
+                            "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"3\",\"label\":\"3\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
+                            "code": "CSE 2050",
+                            "crn": "4452",
+                            "end_date": "2025-12-05",
+                            "hide": "",
+                            "instr": "",
+                            "instructorresult_html": "",
+                            "isCancelled": "",
+                            "is_enroll_section": "1",
+                            "key": "8790",
+                            "linked_crns": "4448",
+                            "meetingTimes": "[{\"meet_day\":\"3\",\"start_time\":\"1100\",\"end_time\":\"1215\"}]",
+                            "meets": "Th 11a-12:15p",
+                            "mpkey": "2483",
+                            "no": "014L",
+                            "open_enroll": "",
+                            "reserved": "24 for RC Computing majors",
+                            "schd": "LAB",
+                            "srcdb": "1258",
+                            "start_date": "2025-08-25",
+                            "stat": "A",
+                            "title": "Data Structures and Object-Oriented Design",
+                            "total": "15"
+                        },
+                        "015": {
+                            "Enrollment Capacity": 24,
+                            "Enrollment Total": 0,
+                            "Professor": "Lina Kloub (SI)",
+                            "Seats Available": null,
+                            "acad_career": "UGRD",
+                            "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"3\",\"label\":\"3\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
+                            "code": "CSE 2050",
+                            "crn": "4453",
+                            "end_date": "2025-12-05",
+                            "hide": "",
+                            "instr": "",
+                            "instructorresult_html": "",
+                            "isCancelled": "",
+                            "is_enroll_section": "1",
+                            "key": "8791",
+                            "linked_crns": "4448",
+                            "meetingTimes": "[{\"meet_day\":\"3\",\"start_time\":\"1700\",\"end_time\":\"1815\"}]",
+                            "meets": "Th 5-6:15p",
+                            "mpkey": "2742",
+                            "no": "015L",
+                            "open_enroll": "",
+                            "reserved": "24 for RC Computing majors",
+                            "schd": "LAB",
+                            "srcdb": "1258",
+                            "start_date": "2025-08-25",
+                            "stat": "A",
+                            "title": "Data Structures and Object-Oriented Design",
+                            "total": "15"
+                        }
+                    }
+                },
+                "reserved": "",
+                "schd": "LEC",
+                "srcdb": "1258",
+                "start_date": "2025-08-25",
+                "stat": "A",
+                "title": "Data Structures and Object-Oriented Design",
+                "total": "15"
+            },
+            "4454": {
+                "Enrollment Capacity": 115,
+                "Enrollment Total": 0,
+                "Professor": "Jake Scoggin (PI)",
+                "Seats Available": null,
+                "acad_career": "UGRD",
+                "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"3\",\"label\":\"3\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":false,\"hidden\":true,\"options\":[{\"value\":\"\",\"label\":\"NA\",\"default\":true,\"selected\":\"selected\"}]}}",
+                "code": "CSE 2050",
+                "crn": "4454",
+                "end_date": "2025-12-05",
+                "hide": "",
+                "instr": "",
+                "instructorresult_html": "",
+                "isCancelled": "",
+                "is_enroll_section": "0",
+                "key": "8792",
+                "linked_crns": "4455,4456,4457,4458,4459",
+                "meetingTimes": "[{\"meet_day\":\"0\",\"start_time\":\"1010\",\"end_time\":\"1100\"},{\"meet_day\":\"2\",\"start_time\":\"1010\",\"end_time\":\"1100\"},{\"meet_day\":\"4\",\"start_time\":\"1010\",\"end_time\":\"1100\"}]",
+                "meets": "MWF 10:10-11a",
+                "mpkey": "2462",
+                "no": "021",
+                "open_enroll": "",
+                "required": {
+                    "LAB": {
+                        "021": {
+                            "Enrollment Capacity": 24,
+                            "Enrollment Total": 0,
+                            "Professor": "Jake Scoggin (SI)",
+                            "Seats Available": null,
+                            "acad_career": "UGRD",
+                            "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"3\",\"label\":\"3\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
+                            "code": "CSE 2050",
+                            "crn": "4455",
+                            "end_date": "2025-12-05",
+                            "hide": "",
+                            "instr": "",
+                            "instructorresult_html": "",
+                            "isCancelled": "",
+                            "is_enroll_section": "1",
+                            "key": "8793",
+                            "linked_crns": "4454",
+                            "meetingTimes": "[{\"meet_day\":\"3\",\"start_time\":\"930\",\"end_time\":\"1045\"}]",
+                            "meets": "Th 9:30-10:45a",
+                            "mpkey": "2563",
+                            "no": "021L",
+                            "open_enroll": "",
+                            "reserved": "24 for RC Computing majors",
+                            "schd": "LAB",
+                            "srcdb": "1258",
+                            "start_date": "2025-08-25",
+                            "stat": "A",
+                            "title": "Data Structures and Object-Oriented Design",
+                            "total": "15"
+                        },
+                        "022": {
+                            "Enrollment Capacity": 24,
+                            "Enrollment Total": 0,
+                            "Professor": "Jake Scoggin (SI)",
+                            "Seats Available": null,
+                            "acad_career": "UGRD",
+                            "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"3\",\"label\":\"3\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
+                            "code": "CSE 2050",
+                            "crn": "4456",
+                            "end_date": "2025-12-05",
+                            "hide": "",
+                            "instr": "",
+                            "instructorresult_html": "",
+                            "isCancelled": "",
+                            "is_enroll_section": "1",
+                            "key": "8794",
+                            "linked_crns": "4454",
+                            "meetingTimes": "[{\"meet_day\":\"3\",\"start_time\":\"1230\",\"end_time\":\"1345\"}]",
+                            "meets": "Th 12:30-1:45p",
+                            "mpkey": "2961",
+                            "no": "022L",
+                            "open_enroll": "",
+                            "reserved": "24 for RC Computing majors",
+                            "schd": "LAB",
+                            "srcdb": "1258",
+                            "start_date": "2025-08-25",
+                            "stat": "A",
+                            "title": "Data Structures and Object-Oriented Design",
+                            "total": "15"
+                        },
+                        "023": {
+                            "Enrollment Capacity": 24,
+                            "Enrollment Total": 0,
+                            "Professor": "Jake Scoggin (SI)",
+                            "Seats Available": null,
+                            "acad_career": "UGRD",
+                            "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"3\",\"label\":\"3\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
+                            "code": "CSE 2050",
+                            "crn": "4457",
+                            "end_date": "2025-12-05",
+                            "hide": "",
+                            "instr": "",
+                            "instructorresult_html": "",
+                            "isCancelled": "",
+                            "is_enroll_section": "1",
+                            "key": "8795",
+                            "linked_crns": "4454",
+                            "meetingTimes": "[{\"meet_day\":\"3\",\"start_time\":\"1400\",\"end_time\":\"1515\"}]",
+                            "meets": "Th 2-3:15p",
+                            "mpkey": "2741",
+                            "no": "023L",
+                            "open_enroll": "",
+                            "reserved": "24 for RC Computing majors",
+                            "schd": "LAB",
+                            "srcdb": "1258",
+                            "start_date": "2025-08-25",
+                            "stat": "A",
+                            "title": "Data Structures and Object-Oriented Design",
+                            "total": "15"
+                        },
+                        "024": {
+                            "Enrollment Capacity": 24,
+                            "Enrollment Total": 0,
+                            "Professor": "Jake Scoggin (SI)",
+                            "Seats Available": null,
+                            "acad_career": "UGRD",
+                            "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"3\",\"label\":\"3\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
+                            "code": "CSE 2050",
+                            "crn": "4458",
+                            "end_date": "2025-12-05",
+                            "hide": "",
+                            "instr": "",
+                            "instructorresult_html": "",
+                            "isCancelled": "",
+                            "is_enroll_section": "1",
+                            "key": "8796",
+                            "linked_crns": "4454",
+                            "meetingTimes": "[{\"meet_day\":\"3\",\"start_time\":\"1530\",\"end_time\":\"1645\"}]",
+                            "meets": "Th 3:30-4:45p",
+                            "mpkey": "2584",
+                            "no": "024L",
+                            "open_enroll": "",
+                            "reserved": "24 for RC Computing majors",
+                            "schd": "LAB",
+                            "srcdb": "1258",
+                            "start_date": "2025-08-25",
+                            "stat": "A",
+                            "title": "Data Structures and Object-Oriented Design",
+                            "total": "15"
+                        },
+                        "025": {
+                            "Enrollment Capacity": 19,
+                            "Enrollment Total": 0,
+                            "Professor": "Jake Scoggin (SI)",
+                            "Seats Available": null,
+                            "acad_career": "UGRD",
+                            "cart_opts": "{\"credit_hrs\":{\"cartField\":\"p_hours\",\"enabled\":true,\"options\":[{\"value\":\"3\",\"label\":\"3\",\"default\":true,\"selected\":\"selected\"}],\"hidden\":true},\"grade_mode\":{\"cartField\":\"p_gmod\",\"enabled\":true,\"options\":[{\"value\":\"GRD\",\"label\":\"Graded Numeric\",\"default\":true,\"selected\":\"selected\"}]}}",
+                            "code": "CSE 2050",
+                            "crn": "4459",
+                            "end_date": "2025-12-05",
+                            "hide": "",
+                            "instr": "",
+                            "instructorresult_html": "",
+                            "isCancelled": "",
+                            "is_enroll_section": "1",
+                            "key": "8797",
+                            "linked_crns": "4454",
+                            "meetingTimes": "[{\"meet_day\":\"3\",\"start_time\":\"930\",\"end_time\":\"1045\"}]",
+                            "meets": "Th 9:30-10:45a",
+                            "mpkey": "2563",
+                            "no": "025L",
+                            "open_enroll": "",
+                            "reserved": "19 for RC Computing majors",
+                            "schd": "LAB",
+                            "srcdb": "1258",
+                            "start_date": "2025-08-25",
+                            "stat": "A",
+                            "title": "Data Structures and Object-Oriented Design",
+                            "total": "15"
+                        }
+                    }
+                },
+                "reserved": "",
+                "schd": "LEC",
+                "srcdb": "1258",
+                "start_date": "2025-08-25",
+                "stat": "A",
+                "title": "Data Structures and Object-Oriented Design",
+                "total": "15"
+            }
         }
     }
 
-    const firstKey = Object.keys(data)[0]
+    const class_names = Object.keys(data)
 
     const [open, setOpen] = useState(false);
   
@@ -1372,25 +1742,29 @@ function Cart_block() {
             <h1 className="text-5xl m-20">Class List</h1>
             <div className="h-[80%] mt-auto border-2 size-full">
             <ul className="flex flex-col items-center w-full p-4 border">
-                {items.map((item, index) => (
+                {class_names.map((item, index) => (
                     <li key={index} className="flex items-center w-full p-4 border">
                     <div className="flex items-center gap-3">
 
-                        <Button onClick={handleOpen}>Info</Button>
-                        <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                        >
-                        <Box sx={style}>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                            Text in a modal
-                            </Typography>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                Class: {Object.keys(data)[0]}
-                            </Typography>
-                        </Box>
+                        <Button variant="contained" onClick={() => setOpen(true)}>Open Modal</Button>
+                        <Modal open={open} onClose={() => setOpen(false)}>
+                            <Box sx={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            width: "70%",
+                            height: "60%",
+                            bgcolor: "background.paper",
+                            boxShadow: 24,
+                            overflowY: "auto",
+                            p: 4,
+                            borderRadius: 2
+                            }}>
+                            <Typography variant="h6" color="black">Class Name Info</Typography>
+                            <Typography color="black">This is a simple modal with some text.</Typography>
+                            <Button sx={{ mt: "50%" }} onClick={() => setOpen(false)}>Close</Button>
+                            </Box>
                         </Modal>
 
                         <div className="text-2xl border px-2">{item}</div>
@@ -1402,7 +1776,7 @@ function Cart_block() {
                 ))}
             </ul>
             <div className="text-5xl text-center mt-20">
-                Generate
+                Generate {Object.keys(data)[1]}
             </div>
             </div>
         </div>
