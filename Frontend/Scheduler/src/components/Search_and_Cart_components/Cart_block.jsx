@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Button, Modal, Box, Typography } from "@mui/material";
-
+import { TrashIcon } from "@heroicons/react/24/outline";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
 function Cart_block() {
 
     // const items = ["Apple", "Banana", "Cherry"];
-    const items = ["CSE 1010", "CSE 2050", "CSE 3150", "CSE 3666"]
 
-    const data = {
+    const [data, setData] = useState({
         "CSE 1010": {
             "4376": {
                 "Enrollment Capacity": 200,
@@ -1716,7 +1716,7 @@ function Cart_block() {
                 "total": "15"
             }
         }
-    }
+    })
 
     const class_names = Object.keys(data)
 
@@ -1724,6 +1724,24 @@ function Cart_block() {
   
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const handleClick = () => {
+        alert("Button Clicked!");
+    };
+
+    const deleteItem = (index) => {
+        const keyToDelete = class_names[index]; // Get key based on index
+    
+        // Create a copy of data without the deleted key
+        const updatedData = { ...data };
+        delete updatedData[keyToDelete]; // Remove the key
+    
+        setData(updatedData); // Update state
+    };
+
+    // const getInfo = (index) => {
+    //     const prof = class_names[index][]
+    // }
 
     const style = {
         position: "absolute",
@@ -1741,12 +1759,14 @@ function Cart_block() {
         <div className="h-[50rem] flex flex-col justify-top items-center bg-green-500 size-full">
             <h1 className="text-5xl m-20">Class List</h1>
             <div className="h-[80%] mt-auto border-2 size-full">
-            <ul className="flex flex-col items-center w-full p-4 border">
+            <ul className="flex flex-col justify-end items-center w-full p-4 border">
                 {class_names.map((item, index) => (
                     <li key={index} className="flex items-center w-full p-4 border">
                     <div className="flex items-center gap-3">
 
-                        <Button variant="contained" onClick={() => setOpen(true)}>Open Modal</Button>
+                        <Button onClick={() => setOpen(true)}>
+                            <InformationCircleIcon className="w-6 h-6" />
+                        </Button>
                         <Modal open={open} onClose={() => setOpen(false)}>
                             <Box sx={{
                             position: "absolute",
@@ -1767,16 +1787,18 @@ function Cart_block() {
                             </Box>
                         </Modal>
 
-                        <div className="text-2xl border px-2">{item}</div>
+                        <div className="text-2xl border px-2 m-2">
+                            {item}
+                        </div>
                     </div>
-                    <button className="text-xl border ml-auto px-2">
-                        delete
+                    <button onClick={() => deleteItem(index)} className="border ml-auto mr-2">
+                        <TrashIcon className="w-6 h-6 text-red-500" />
                     </button>
                     </li>     
                 ))}
             </ul>
-            <div className="text-5xl text-center mt-20">
-                Generate {Object.keys(data)[1]}
+            <div className="text-5xl text-center mt-20 ">
+                Generate
             </div>
             </div>
         </div>
