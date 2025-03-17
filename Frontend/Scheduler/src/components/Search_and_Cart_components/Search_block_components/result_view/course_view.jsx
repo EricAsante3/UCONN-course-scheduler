@@ -10,7 +10,7 @@ function course_view() {
 
   return (
 
-    <div className="bg-purple-950 w-full h-full flex flex-col divide-y-[0.25rem] divide-black overflow-y-auto hide-scrollbar">
+    <div className="bg-gray-100 w-full h-full flex flex-col divide-y-[0.25rem] p-2 overflow-y-auto hide-scrollbar">
 
     {Object.keys(searched_data).map((key) => (
         

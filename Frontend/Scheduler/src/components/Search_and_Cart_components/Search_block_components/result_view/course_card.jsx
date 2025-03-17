@@ -1,5 +1,6 @@
 import { useEffect,useState,useContext } from 'react';
 import {DataContext} from "../../../../data/data.jsx";
+import { PlusCircleIcon } from '@heroicons/react/24/outline'
 
 function course_card({title, course_information}) {
     const {transition_data,settransition_data,cart_data} = useContext(DataContext);
@@ -20,11 +21,11 @@ function course_card({title, course_information}) {
     };
   return (
 
-    <div className="w-full h-[10%] p-2 bg-blue-200 mb-2 flex flex-row">
+    <div className="w-full min-h-[10%] h-fit max-h-fit p-2  mb-2 flex flex-row border bg-[#ffffff] border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-blue-500 text-gray-900">
 
-        <div className='flex flex-col w-full h-full'>
-            <h1>{title}</h1>
-            <h1>{course_information[Object.keys(course_information)[0]]["title"]}</h1>
+        <div className='flex h-fit max-h-fit flex-col w-full '>
+            <h1 className="mr-1 text-lg font-bold">{title}</h1>
+            <h1 className='h-fit max-h-fit'>{course_information[Object.keys(course_information)[0]]["title"]}</h1>
 
         </div>
 
@@ -32,15 +33,18 @@ function course_card({title, course_information}) {
 
         {cart_status ? (
 
-        <button className='bg-amber-300 h-full w-fit' >
-            add
-        </button>
+            <PlusCircleIcon className=' text-green-300  h-full w-fit'>
+
+            </PlusCircleIcon>
 
         ) : (
 
-        <button className='bg-red-300 h-full w-fit' onClick={transition_to_cart}>
-            add
-        </button>
+            <PlusCircleIcon onClick={transition_to_cart} className='text-gray-500 h-full w-fit'>
+
+            </PlusCircleIcon>
+
+
+
         )}
 
 
