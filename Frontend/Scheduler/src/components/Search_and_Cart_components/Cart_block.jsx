@@ -1753,77 +1753,76 @@ function Cart_block() {
 
     return (
         <>
-            <div className="h-[50rem] flex flex-col justify-top items-center bg-green-500 size-full">
-                <h1 className="text-5xl m-20">Class List</h1>
-                <div className="h-[80%] mt-auto border-2 size-full">
-                <ul className="flex flex-col justify-end items-center w-full p-4 border">
+            <div className="h-[30rem] flex flex-col border-2 border-black justify-top items-center bg-white size-full mb-auto">
+                <h1 className="text-5xl mr-auto p-3 text-black">Class List</h1>
+                <div className="h-[80%] size-full">
+                <ul className="flex flex-col items-center border border-black w-full">
                     {class_names.map((item, index) => (
-                        <li key={index} className="flex items-center w-full p-4 border">
-                        <div className="flex items-center gap-3">
-
-                        <Button onClick={() => handleOpenModal(item)}>
-                            <InformationCircleIcon className="w-6 h-6" />
-                        </Button>
-
-                        <Modal open={open} onClose={() => setOpen(false)}>
-                            <Box
-                            sx={{
-                                position: "absolute",
-                                top: "50%",
-                                left: "50%",
-                                transform: "translate(-50%, -50%)",
-                                width: "70%",
-                                height: "60%",
-                                bgcolor: "background.paper",
-                                boxShadow: 24,
-                                overflowY: "auto",
-                                p: 4,
-                                borderRadius: 2
-                            }}
-                            >
-                            {selectedClass ? (
-                                <>
-                                <Typography variant="h4" color="black">
-                                    {selectedClass} Info
-                                </Typography>
-                                {getClassLectureInfo(selectedClass).map((lecture) => (
-                                    <Box key={lecture.crn} sx={{ mt: 2, mb: 2, borderBottom: "1px solid #ccc", pb: 1 }}>
-                                    <Typography color="black">
-                                        <strong>CRN:</strong> {lecture.crn}
-                                    </Typography>
-                                    <Typography color="black">
-                                        <strong>Enrollment Capacity:</strong> {lecture.enrollmentCapacity}
-                                    </Typography>
-                                    <Typography color="black">
-                                        <strong>Professor:</strong> {lecture.professor}
-                                    </Typography>
-                                    <Typography color="black">
-                                        <strong>Meets:</strong> {lecture.meets}
-                                    </Typography>
-                                    </Box>
-                                ))}
-                                </>
-                            ) : (
-                                <Typography color="black">No class selected.</Typography>
-                            )}
-                            <Button sx={{ mt: 3 }} variant="contained" onClick={() => setOpen(false)}>
-                                Close
+                        <li key={index} className="flex justify-between items-center w-full py-4 border">
+                        <div className="flex items-center">
+                            <Button onClick={() => handleOpenModal(item)}>
+                                <InformationCircleIcon className="w-6 h-6 border" />
                             </Button>
-                            </Box>
-                        </Modal>
-                            <div className="text-2xl border px-2 m-2">
+
+                            <Modal open={open} onClose={() => setOpen(false)}>
+                                <Box
+                                sx={{
+                                    position: "absolute",
+                                    top: "50%",
+                                    left: "50%",
+                                    transform: "translate(-50%, -50%)",
+                                    width: "70%",
+                                    height: "60%",
+                                    bgcolor: "background.paper",
+                                    boxShadow: 24,
+                                    overflowY: "auto",
+                                    p: 4,
+                                    borderRadius: 2
+                                }}
+                                >
+                                {selectedClass ? (
+                                    <>
+                                    <Typography variant="h4" color="black">
+                                        {selectedClass} Info
+                                    </Typography>
+                                    {getClassLectureInfo(selectedClass).map((lecture) => (
+                                        <Box key={lecture.crn} sx={{ mt: 2, mb: 2, borderBottom: "1px solid #ccc", pb: 1 }}>
+                                        <Typography color="black">
+                                            <strong>CRN:</strong> {lecture.crn}
+                                        </Typography>
+                                        <Typography color="black">
+                                            <strong>Enrollment Capacity:</strong> {lecture.enrollmentCapacity}
+                                        </Typography>
+                                        <Typography color="black">
+                                            <strong>Professor:</strong> {lecture.professor}
+                                        </Typography>
+                                        <Typography color="black">
+                                            <strong>Meets:</strong> {lecture.meets}
+                                        </Typography>
+                                        </Box>
+                                    ))}
+                                    </>
+                                ) : (
+                                    <Typography color="black">No class selected.</Typography>
+                                )}
+                                <Button sx={{ mt: 3 }} variant="contained" onClick={() => setOpen(false)}>
+                                    Close
+                                </Button>
+                                </Box>
+                            </Modal>
+                            <div className="text-4xl border px-1 text-black">
                                 {item}
                             </div>
                         </div>
-                        <button onClick={() => deleteItem(index)} className="border ml-auto mr-2">
+                        <button onClick={() => deleteItem(index)} className="border ml-auto mr-2 text-black">
                             <TrashIcon className="w-6 h-6 text-red-500" />
                         </button>
                         </li>     
                     ))}
                 </ul>
-                <div className="text-5xl text-center mt-20 ">
-                    Generate {}
-                </div>
+                    <div className="text-5xl text-center mt-20 text-black">
+                        Generate
+                    </div>
                 </div>
             </div>
         </>
