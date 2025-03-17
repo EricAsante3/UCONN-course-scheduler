@@ -43,7 +43,7 @@ value_switch_case = {
         "UConn Health Center (Sch of Dental Medicine)": "UCHC@DENTAL"
     },
     "subject": {
-        "Any subject": "",
+        "Any": "",
         "Asian and Asian American Studies": "AAAS",
         "Accounting": "ACCT",
         "American English Language Institute": "AELI",
@@ -202,11 +202,11 @@ value_switch_case = {
         "Systems Engineering": "SE",
         "Speech, Language and Hearing Science": "SLHS",
         "Sociology": "SOCI",
-        "Social Work": "SOWK",
+        "SOWK - Social Work": "SOWK",
         "Spanish": "SPAN",
         "Sustainable Plant and Soil Systems": "SPSS",
         "Special Topics (Social Work)": "SPTP",
-        "Social Work": "SSW",
+        "SSW - Social Work": "SSW",
         "Statistics": "STAT",
         "Surgery": "SURG",
         "Social Work Elective": "SWEL",
