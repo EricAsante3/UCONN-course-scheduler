@@ -1738,6 +1738,7 @@ function Cart_block() {
         setOpen(true);
     };
 
+    // helper function for setting up data for info button
     function getClassLectureInfo(className) {
         if (!data.hasOwnProperty(className)) {
           return [];
@@ -1820,8 +1821,18 @@ function Cart_block() {
                         </li>     
                     ))}
                 </ul>
-                    <div className="text-5xl text-center mt-20 text-black">
-                        Generate
+                    <div className="mr-auto mt-46 p-3 text-blue-500"> 
+                        <Button variant="contained" 
+                            sx={{
+                                backgroundColor: '#000E2F',
+                                color: 'white',
+                                padding: '8px 16px',
+                                '&:hover': {
+                                backgroundColor: '#00d2fc',
+                                },
+                            }}>
+                            Generate
+                        </Button>
                     </div>
                 </div>
             </div>
