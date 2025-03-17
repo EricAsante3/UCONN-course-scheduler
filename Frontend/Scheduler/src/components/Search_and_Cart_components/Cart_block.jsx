@@ -110,30 +110,30 @@ function Cart_block() {
                           <>
                             {selectedClass ? (
                               <>
-                                <Typography variant="h4" color="black">
+                                <Typography variant="h3" color="black" sx={{mb: 3}}>
                                   {selectedClass} Info
                                 </Typography>
                                 {lectureInfo.map((lecture) => (
-                                  <Box key={lecture.crn} sx={{ mt: 2, mb: 2, borderBottom: "1px solid #ccc", pb: 1 }}>
-                                    <Typography color="black">
-                                      <strong>CRN:</strong> {lecture.crn}
-                                    </Typography>
-                                    <Typography color="black">
-                                      <strong>Enrollment capacity:</strong> {lecture.enrollmentCapacity}
-                                    </Typography>
-                                    <Typography color="black">
-                                      <strong>Professor:</strong> {lecture.professor}
-                                    </Typography>
-                                    <Typography color="black">
-                                      <strong>Meets:</strong> {lecture.meets}
-                                    </Typography>
+                                  <Box key={lecture.crn} sx={{ py: 2, px: 2, border: "1px solid #ccc", pb: 1, display: "flex", gap: 5, padding: 4, marginBottom: 2}}>
+                                        <Typography color="black">
+                                        <strong>CRN:</strong> {lecture.crn}
+                                        </Typography>
+                                        <Typography color="black">
+                                        <strong>Enrollment capacity:</strong> {lecture.enrollmentCapacity}
+                                        </Typography>
+                                        <Typography color="black">
+                                        <strong>Professor:</strong> {lecture.professor}
+                                        </Typography>
+                                        <Typography color="black">
+                                        <strong>Meets:</strong> {lecture.meets}
+                                        </Typography>
                                   </Box>
                                 ))}
                               </>
                             ) : (
                               <Typography color="black">No class selected.</Typography>
                             )}
-                            <Button sx={{ mt: 3 }} variant="contained" onClick={() => setOpen(false)}>
+                            <Button className="mb-auto" variant="contained" onClick={() => setOpen(false)}>
                               Close
                             </Button>
                           </>
