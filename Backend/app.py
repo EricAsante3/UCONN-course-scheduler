@@ -6,6 +6,8 @@ from data_collection_files.course_fetcher import course_fetcher
 from data_collection_files.class_components_files.components_finder import components_adder
 
 from scheduling_files.componet_combiner import pairer
+from scheduling_files.componet_combiner_no_remove import pairer_no_remove
+
 from scheduling_files.builder import schedule_maker
 
 from testing_files.printers import json_printer
@@ -90,6 +92,24 @@ def group_class_components():
         course_list_with_dependents.update(components_adder(value, campus))
 
     return jsonify(course_list_with_dependents)
+
+
+
+@app.route('/course_scheduler/pairer_no_remove', methods=['POST'])
+def pair_class_components():
+    '''
+        REQUEST BODY MUST BE   
+    {
+        "CSE 1010": {Class Info after components are grouped},
+        "CSE 2050": {Class Info after components are grouped}
+    }
+    '''
+
+    # Get the JSON data sent in the request body
+    data = request.get_json()
+    classes_with_componets = pairer_no_remove(data)
+
+    return classes_with_componets
 
 
 
