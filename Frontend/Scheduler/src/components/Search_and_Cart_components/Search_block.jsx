@@ -14,7 +14,7 @@ function Search_block() {
 
 
     return (
-        <div className="h-[50rem]  bg-yellow-500 size-full flex flex-row divide-x-[0.25rem] divide-black border-4 border-black ">
+        <div className="h-[50rem] size-full flex flex-row divide-x-[0.25rem] divide-black border-4 border-black ">
             
             <div className="bg-gray-100 w-full h-full flex flex-col divide-y-[0.25rem] divide-black">
                 <div className=" bg-[F8F8F8] w-full h-[10%]">

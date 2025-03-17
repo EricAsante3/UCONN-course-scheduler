@@ -8,6 +8,14 @@ from data_collection_files.class_components_files.components_finder import compo
 from scheduling_files.componet_combiner import pairer
 from scheduling_files.componet_combiner_no_remove import pairer_no_remove
 
+
+
+
+from data_collection_files.seat_open_files.availabilities_finder import availabilities_adder
+from data_collection_files.seat_open_files.availabilities_adder import availabilities_helper
+
+
+
 from scheduling_files.builder import schedule_maker
 
 from testing_files.printers import json_printer
@@ -89,7 +97,7 @@ def group_class_components():
     campus = request.args.get('campus')  # Gets 'campus' from the query string
 
     for key, value in data.items():
-        course_list_with_dependents.update(components_adder(value, campus))
+        course_list_with_dependents.update(components_adder(value))
 
     return jsonify(course_list_with_dependents)
 
@@ -108,9 +116,70 @@ def pair_class_components():
     # Get the JSON data sent in the request body
     data = request.get_json()
     classes_with_componets = pairer_no_remove(data)
-
     return classes_with_componets
 
+
+
+@app.route('/course_scheduler/class_availabilities', methods=['POST'])
+def class_availabilities():
+    '''
+        REQUEST BODY MUST BE   
+    {
+        "campus":...
+        "season_year":...
+        "subject":...
+    }
+    '''
+
+    season_year = {
+        "Fall 2025": "1258",
+        "Spring 2025": "1253",
+        "Winter 2025": "1251",
+        "Fall 2024": "1248",
+        "Spring 2024": "1243"
+    }
+
+    # Get the JSON data sent in the request body
+    data = request.get_json()
+
+
+
+    availabilities = availabilities_adder(data["campus"],season_year[data["season_year"]],data["subject"])
+    return availabilities
+
+
+@app.route('/course_scheduler/availabilities_helper', methods=['POST'])
+def availability_helper():
+    '''
+        REQUEST BODY MUST BE   
+    {
+        base:
+        dic:
+        campus
+        season_year
+        subject
+    }
+    '''
+
+
+
+
+    season_year = {
+        "Fall 2025": "1258",
+        "Spring 2025": "1253",
+        "Winter 2025": "1251",
+        "Fall 2024": "1248",
+        "Spring 2024": "1243"
+    }
+
+    # Get the JSON data sent in the request body
+    data = request.get_json()
+    print(data["subject"])
+    print("eeeeeeeeeeeeeeee")
+    availabilities = availabilities_adder(data["campus"],season_year[data["season_year"]],data["subject"])
+
+    availabilities_helper(data["base"],availabilities)
+    return [data["base"],availabilities]
 
 
 

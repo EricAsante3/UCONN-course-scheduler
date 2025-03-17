@@ -129,7 +129,7 @@ function Search_block_form() {
 
 
     return (
-        <form onSubmit={handleSubmit} className="bg-[F8F8F8] w-full h-full flex flex-col">
+        <form onSubmit={handleSubmit} className=" w-full h-full flex flex-col">
 
             <div className="flex flex-col p-2">
                 <label className="text-black">Select Subject:</label>

@@ -24,39 +24,23 @@ def dic_appender(dict,course,select,schd):
             dict["required"][schd][re.sub(r"[a-zA-Z]", "", course["no"])] = course
 
 
-def components_adder(raw_course_list,campus):
+def components_adder(raw_course_list):
     """input [{c1},{c1},]"""
 
+
     cleaned_course_results = {}
-    independent_courses = ["IND","LSA"]
-    while raw_course_list:
+    for key_crn, class_info in raw_course_list.items():
+        if len(class_info["linked_crns"]) == 0:
+            class_info["required"] = ""
 
-        for index, i in enumerate(raw_course_list):
-            if i["no"].isdigit():  # Check if "no" contains only digits
-                course = raw_course_list.pop(index)  # Remove the dictionary by index
-                break  # Stop after removing the first match
+            dic_appender(cleaned_course_results,class_info,1,0) # append course to cleaned_course_results
 
-        if ( (course["schd"] in independent_courses) or (len(course["linked_crns"]) == 0)):
-            course["required"] = ""
         else:
-            result = re.split(r'[;,]\s*', course["linked_crns"])
-            required = list(map(str, result))
+            if class_info["no"].isdigit() and (class_info["schd"] == "LEC"):  # Check if "no" contains only digits
+                result = re.split(r'[;,]\s*', class_info["linked_crns"])
+                required = list(map(str, result))
+                for req_class_info in required:
+                    dic_appender(class_info,raw_course_list[req_class_info],0,raw_course_list[req_class_info]["schd"]) # append/associate raw_course to course
+                dic_appender(cleaned_course_results,class_info,1,0) # append course to cleaned_course_results
 
-            if (required[0] == '') or (required[0] == ""):
-                course["required"] = ""
-            else:
-                for raw_course in reversed(raw_course_list):
-                    if raw_course["schd"] in independent_courses:
-                        raw_course["required"] = ""
-                        dic_appender(cleaned_course_results,raw_course,1,0) # remove and append course to cleaned_course_results
-                        raw_course_list.remove(raw_course)
-                    else:
-                        if raw_course["crn"] in required:
-                            dic_appender(course,raw_course,0,raw_course["schd"]) # append/associate raw_course to course
-                            raw_course_list.remove(raw_course)
-
-
-        dic_appender(cleaned_course_results,course,1,0) # append course to cleaned_course_results
-        
-    requirement_pairer(cleaned_course_results, campus)
     return cleaned_course_results
