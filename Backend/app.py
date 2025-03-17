@@ -1,4 +1,6 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
+
 from data_collection_files.filter_list_creator import filter_maker
 from data_collection_files.course_fetcher import course_fetcher
 from data_collection_files.class_components_files.components_finder import components_adder
@@ -10,7 +12,7 @@ from testing_files.printers import json_printer
 
 # Initialize the Flask application
 app = Flask(__name__)
-
+CORS(app, origins=["http://localhost:5173"]) # note to self may change
 
 @app.route('/', methods=['GET'])
 def home():
@@ -31,6 +33,33 @@ def get_classes():
         "C_area": "",
         "hours": "",
         "instruction_method": ""
+
+
+        "course_attribute_TOI1": "Y  or N"
+        "course_attribute_TOI2": "Y  or N"
+        "course_attribute_TOI3": "Y  or N"
+        "course_attribute_TOI4": "Y  or N"
+        "course_attribute_TOI5": "Y  or N"
+        "course_attribute_TOI6": "Y  or N"
+        "course_attribute_TOI6L": "Y  or N"
+
+
+
+
+        
+        "competency_COMPE":
+        "competency_COMPQ":
+        "competency_COMPW":
+        "Any": ""
+
+
+
+        "in_person": Y
+        "hybrid_blended": Y
+        "online": Y
+
+        "honors": Y
+        "service_learning": Y
     }
     '''
 
