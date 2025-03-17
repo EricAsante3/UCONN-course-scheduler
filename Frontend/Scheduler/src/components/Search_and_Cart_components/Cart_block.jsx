@@ -1792,7 +1792,7 @@ function Cart_block() {
                                             <strong>CRN:</strong> {lecture.crn}
                                         </Typography>
                                         <Typography color="black">
-                                            <strong>Enrollment Capacity:</strong> {lecture.enrollmentCapacity}
+                                            <strong>Enrollment capacity:</strong> {lecture.enrollmentCapacity}
                                         </Typography>
                                         <Typography color="black">
                                             <strong>Professor:</strong> {lecture.professor}
