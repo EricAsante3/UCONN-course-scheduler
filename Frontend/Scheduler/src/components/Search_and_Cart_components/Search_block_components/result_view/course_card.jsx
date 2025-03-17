@@ -18,14 +18,14 @@ function course_card({title, course_information}) {
             settransition_data([...transition_data, {[title]:course_information}]);
         }
     };
-
   return (
 
     <div className="w-full h-[10%] p-2 bg-blue-200 mb-2 flex flex-row">
 
         <div className='flex flex-col w-full h-full'>
             <h1>{title}</h1>
-            <h1>{course_information[0]["title"]}</h1>
+            <h1>{course_information[Object.keys(course_information)[0]]["title"]}</h1>
+
         </div>
 
 

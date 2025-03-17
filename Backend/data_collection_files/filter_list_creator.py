@@ -264,6 +264,7 @@ value_switch_case = {
 
 def convert_query(Set_up_variables):
     filter_list = []
+    campus = Set_up_variables["campus"]
     semester_year = value_switch_case.get("season_year", {}).get(Set_up_variables["season_year"])
 
     for key, value in Set_up_variables.items():
@@ -281,7 +282,7 @@ def convert_query(Set_up_variables):
             qstr_field = key_value_switch_case.get(key)
             filter_list.append({"field": qstr_field,"value": qstr_value})
             
-    return [filter_list,semester_year]
+    return [filter_list,semester_year,campus]
 
 
 def filter_maker(search_dictionary):

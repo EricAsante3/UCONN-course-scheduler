@@ -8,7 +8,6 @@ import Course_card from './course_card';
 function course_view() {
     const {searched_data} = useContext(DataContext);
 
-
   return (
 
     <div className="bg-purple-950 w-full h-full flex flex-col divide-y-[0.25rem] divide-black overflow-y-auto hide-scrollbar">

@@ -17,3 +17,30 @@ def requirement_pairer(class_info, campus):
                         req_class_details.update(data[(req_class_details["code"] + ", " + req_class_details["no"])])
 
 
+def availabilities_helper(obj, availabilities_data):
+    # Iterate over a copy of the dictionary's keys
+    for key in list(obj.keys()):  # Use list() to create a copy of the keys
+        value = obj[key]
+
+        # Check if the value is a dictionary (equivalent to JavaScript's object)
+        if isinstance(value, dict):
+            # If it's a dictionary, recursively traverse it
+            availabilities_helper(value, availabilities_data)
+
+        # Check if the current object represents a course section
+        if "code" in obj and "campus" in obj and "no" in obj:
+            code_prefix = obj["code"].split(" ")[0]  # Extract course prefix (e.g., "ACCT")
+            campus = obj["campus"]
+            lookup_key = f"{obj['code']}, {obj['no']}"  # Construct lookup key
+
+            # Check if the required data exists in availabilities_data
+            if (code_prefix in availabilities_data and
+                campus in availabilities_data[code_prefix] and
+                lookup_key in availabilities_data[code_prefix][campus]):
+                # Add Professor and instruction_method fields
+                obj["Professor"] = availabilities_data[code_prefix][campus][lookup_key]["Professor"]
+                obj["instruction_method"] = availabilities_data[code_prefix][campus][lookup_key]["instruction_method"]
+            else:
+                # If data is not found, set default values
+                obj["Professor"] = "Unknown"
+                obj["instruction_method"] = "Unknown"
