@@ -86,6 +86,8 @@ function Cart_block() {
                       <InformationCircleIcon className="w-6 h-6 border" />
                     </Button>
 
+
+
                     <Modal open={open} onClose={() => setOpen(false)}>
                       <Box
                         sx={{
@@ -140,6 +142,10 @@ function Cart_block() {
                         )}
                       </Box>
                     </Modal>
+
+
+
+                    
                     <div className="text-4xl px-1 text-black">{item}</div>
                   </div>
                   <button
