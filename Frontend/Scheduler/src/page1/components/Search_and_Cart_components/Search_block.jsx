@@ -4,7 +4,7 @@ import Search_block_form from "./Search_block_components/filter/Search_block_for
 import Course_view from "./Search_block_components/result_view/course_view.jsx"
 
 
-import { DataContext} from "../../data/data.jsx";
+import { DataContext} from "../../../data/data.jsx";
 import { useContext } from 'react';
 
 

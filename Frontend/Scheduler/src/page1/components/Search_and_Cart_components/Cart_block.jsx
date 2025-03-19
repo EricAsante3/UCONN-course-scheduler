@@ -2,10 +2,51 @@ import React, { useState, useContext, useEffect } from "react";
 import { Button, Modal, Box, Typography, CircularProgress } from "@mui/material";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
-import { DataContext } from "../../data/data.jsx";
+import { DataContext } from "../../../data/data.jsx";
+
+function traverseDict(d, e) {
+  let keysToDelete = []; // Stores top-level keys to delete
+
+  for (let key2 of Object.keys(d)) {
+      let keysToDeleteInner = []; // Stores inner keys to delete
+      for (let i of Object.keys(d[key2])) {
+          let flag2 = 1; // Assume it should be deleted
+          for (let key1 in e) {
+              let campus = Object.values(e[key1])[0]["campus"];
+              if (key2 === key1.split(" ", 1)[0] && campus === i) {
+                  flag2 = 0; // If condition matches, don't delete
+                  break;
+              }
+          }
+          if (flag2 === 1) {
+              keysToDeleteInner.push(i); // Mark for deletion
+          }
+      }
+
+      // Delete inner keys after iteration
+      for (let key of keysToDeleteInner) {
+          delete d[key2][key];
+      }
+
+      // If value2 is empty after removals, mark key2 for deletion
+      if (Object.keys(d[key2]).length === 0) {
+          keysToDelete.push(key2);
+      }
+  }
+
+  // Delete top-level keys after iteration
+  for (let key of keysToDelete) {
+      delete d[key];
+  }
+}
+
+
+
+
+
 
 function Cart_block() {
-  const { cart_data, setcart_data } = useContext(DataContext);
+  const { cart_data, setcart_data, availabilities_data, setavailabilities_data  } = useContext(DataContext);
   const class_names = Object.keys(cart_data);
 
   const [open, setOpen] = useState(false);
@@ -15,11 +56,19 @@ function Cart_block() {
   // New state for pending deletion: stores the class name that the user wants to delete.
   const [pendingDeletion, setPendingDeletion] = useState(null);
 
+
+
+
   const deleteItem = (index) => {
     const keyToDelete = class_names[index];
-    const updatedData = { ...cart_data };
-    delete updatedData[keyToDelete];
-    setcart_data(updatedData);
+    const Curr_cart_data = { ...cart_data };
+    const Curr_availabilities_data = { ...availabilities_data};
+    delete Curr_cart_data[keyToDelete];
+    traverseDict(Curr_availabilities_data,Curr_cart_data)
+    setcart_data(Curr_cart_data);
+    if (JSON.stringify(Curr_availabilities_data) !== JSON.stringify(availabilities_data)){
+      setavailabilities_data(Curr_availabilities_data)
+    }
   };
 
   function getClassLectureInfo(className) {
@@ -70,8 +119,8 @@ function Cart_block() {
 
   return (
     <>
-      <div className="h-[50rem] flex flex-col justify-top items-center bg-white border-2 border-black size-full mb-auto">
-        <div className="flex p-1 w-full border border-b-black">
+      <div className="h-[50rem] flex flex-col justify-top items-center bg-white   divide-black border-4 border-black size-full ">
+        <div className="flex  w-full border border-b-black">
           <h1 className="text-5xl mr-auto p-3 text-black">Class List</h1>
         </div>
         <div className="h-[80%] size-full">

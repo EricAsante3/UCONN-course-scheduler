@@ -1,5 +1,5 @@
-import Search_and_Cart_section from "./components/Search_and_Cart_section.jsx"
-import Schedule_block from "./components/Schedule_block.jsx"
+import Search_and_Cart_section from "./page1/components/Search_and_Cart_section.jsx"
+import Schedule_block from "./page1/components/Schedule_block.jsx"
 
 
 

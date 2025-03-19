@@ -115,37 +115,6 @@ function transition_helper(obj,availabilities_data) {
 
 
 
-export const availabilities_handler =  async (subject, campus, season_year,api_url,setavailabilities_data) => {
-
-
-    const postFormData = async () => {    
-        const response = await fetch((api_url + '/course_scheduler/class_availabilities'), {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(), // Form data automatically sets the appropriate Content-Type
-        });
-        if (response.ok) {
-            const responseData = await response.json(); // Parse the JSON response
-            return responseData
-        } else {
-        return 1
-    }};
-
-
-    let response_json = await postFormData()
-
-
-
-
-
-    return response_json
-
-};
-
-
-
 
 export const DataProvider = ({ children }) => {
     const api_url = 'http://127.0.0.1:5000';  // Immutable message
@@ -232,7 +201,7 @@ export const DataProvider = ({ children }) => {
 
 
     return (
-        <DataContext.Provider value={{ api_url, campus, set_campuss, semester, set_semester, searched_data, setsearched_data, cart_data, setcart_data, transition_data, settransition_data}}>
+        <DataContext.Provider value={{ api_url, campus, set_campuss, semester, set_semester, searched_data, setsearched_data, cart_data, setcart_data, transition_data, settransition_data , availabilities_data, setavailabilities_data}}>
             {children}
         </DataContext.Provider>
     );

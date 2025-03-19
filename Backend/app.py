@@ -174,12 +174,25 @@ def availability_helper():
 
     # Get the JSON data sent in the request body
     data = request.get_json()
-    print(data["subject"])
-    print("eeeeeeeeeeeeeeee")
+
     availabilities = availabilities_adder(data["campus"],season_year[data["season_year"]],data["subject"])
 
     availabilities_helper(data["base"],availabilities)
     return [data["base"],availabilities]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
