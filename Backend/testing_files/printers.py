@@ -10,7 +10,10 @@ day_mapping = {
     "TH": "Thursday",
     "F": "Friday"
 }
-
+    # Split multiple day-time pairs separated by semicolons
+def split_multiple_slots(slot):
+        # Strip leading/trailing spaces and split by semicolon
+    return [s.strip() for s in slot.split(";") if s.strip()]
 
 def get_days_from_combined_string(day_string):
     # Initialize an empty list to store the full day names
@@ -56,11 +59,11 @@ def schedule_printer(valid_permutations, file_name):
                         days = "Online"
                         time = "Asynchronous"
                     else:
-                        days, time = meets.split(" ", 1)
-                    
-                    # Map abbreviations to full day names
-                    for short_day in get_days_from_combined_string(days):
-                        schedule_by_day[short_day].append(f"Class {code}, CRN {crn}: {time}")
+                        slots = split_multiple_slots(meets)
+                    for i in slots:
+                        days, time = i.split(" ", 1)
+                        for short_day in get_days_from_combined_string(days):
+                            schedule_by_day[short_day].append(f"Class {code}, CRN {crn}: {time}")
 
             # Write the formatted schedule to the file
             for day, classes in schedule_by_day.items():

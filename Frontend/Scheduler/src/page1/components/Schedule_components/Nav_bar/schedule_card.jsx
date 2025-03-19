@@ -27,22 +27,25 @@ function Schedule_card() {
 
 
 
-
           <div className="relative">
 
+
+
           { popup &&
-            (<div className="absolute -right-40 bottom-10">
+            (<div className="absolute left-60 -top-6 ">
               <CalendarApp ></CalendarApp>
             </div>)
           }
 
+
           </div>
 
 
-          <EyeIcon className="h-full mr-10">
+
+          <div className="w-full h-full flex items-center justify-center">
+          <EyeIcon className="h-full mr-5">
           </EyeIcon>
 
-          <div className="w-full h-full flex items-center justify-start">
             SCHEDULE ?
           </div>
 

@@ -9,11 +9,25 @@ function Schedule_block() {
       
 
 
-        <div className="p-[1rem] bg-green-800 flex flex-col items-center  divide-black border-4 border-black w-full h-96">
+        <div className="p-[1rem] bg-green-800 flex flex-col items-center relative overflow-auto divide-black border-4 border-black w-full h-96">
           <h1>Possible Schedules:</h1>
             <Schedule_card></Schedule_card>
             <Schedule_card></Schedule_card>
 
+            <Schedule_card></Schedule_card>
+            <Schedule_card></Schedule_card>
+            <Schedule_card></Schedule_card>
+            <Schedule_card></Schedule_card>
+            <Schedule_card></Schedule_card>
+            <Schedule_card></Schedule_card>
+            <Schedule_card></Schedule_card>
+            <Schedule_card></Schedule_card>
+            <Schedule_card></Schedule_card>
+            <Schedule_card></Schedule_card>
+            <Schedule_card></Schedule_card>
+            <Schedule_card></Schedule_card>
+            <Schedule_card></Schedule_card>
+            <Schedule_card></Schedule_card>
 
         </div>
       

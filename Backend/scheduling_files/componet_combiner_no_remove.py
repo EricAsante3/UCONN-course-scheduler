@@ -19,11 +19,11 @@ def pairer_no_remove(class_info):
             if class_details["required"] == "":
                 base_class.pop("required", None)
                 if base_class["Professor"] in class_componets[class_name]:
-                    class_componets[class_name][base_class["Professor"]].append(base_class)
+                    class_componets[class_name][base_class["Professor"]].update({f'{base_class["campus"]}({base_class["code"]}, {base_class["no"]}){base_class["crn"]}': [base_class]})        
                 else:
-                    class_componets[class_name][base_class["Professor"]] = []
-                    class_componets[class_name][base_class["Professor"]].append(base_class)
-                
+                    class_componets[class_name][base_class["Professor"]] = {}
+                    class_componets[class_name][base_class["Professor"]].update({f'{base_class["campus"]}({base_class["code"]}, {base_class["no"]}){base_class["crn"]}': [base_class]})        
+
 
             elif (len(class_details["required"]) == 1):
                 for component_type, component_dict in class_details["required"].items():
@@ -35,12 +35,12 @@ def pairer_no_remove(class_info):
                 for comp in required_components:
                     component_lists.append(required_components[comp])
                 combinations = list(itertools.product([base_class], *component_lists))
-
+                result_dict = { f"{lst[-1]['campus']}({lst[-1]['code']}, {lst[-1]['no']}){lst[-1]['crn']}": lst for lst in combinations }
                 if base_class["Professor"] in class_componets[class_name]:
-                    class_componets[class_name][base_class["Professor"]].extend(combinations)
+                    class_componets[class_name][base_class["Professor"]].update(result_dict)
                 else:
-                    class_componets[class_name][base_class["Professor"]] = []
-                    class_componets[class_name][base_class["Professor"]].extend(combinations)
+                    class_componets[class_name][base_class["Professor"]] = {}
+                    class_componets[class_name][base_class["Professor"]].update(result_dict)
 
             else:
                 required_parts = class_details["required"]
@@ -56,9 +56,10 @@ def pairer_no_remove(class_info):
                         if (i in class_details["required"][required_parts_keys[m]]):
                             temp_list.append(class_details["required"][required_parts_keys[m]][i])                    
                     if base_class["Professor"] in class_componets[class_name]:
-                        class_componets[class_name][base_class["Professor"]].append(temp_list)
+                        class_componets[class_name][base_class["Professor"]].update({f'{temp_list[-1]["campus"]}({temp_list[-1]["code"]}, {temp_list[-1]["no"]}){temp_list[-1]["crn"]}': temp_list})        
                     else:
-                        class_componets[class_name][base_class["Professor"]] = []
-                        class_componets[class_name][base_class["Professor"]].append(temp_list)
+                        class_componets[class_name][base_class["Professor"]] = {}
+                        class_componets[class_name][base_class["Professor"]].update({f'{temp_list[-1]["campus"]}({temp_list[-1]["code"]}, {temp_list[-1]["no"]}){temp_list[-1]["crn"]}': temp_list})        
+
 
     return class_componets
