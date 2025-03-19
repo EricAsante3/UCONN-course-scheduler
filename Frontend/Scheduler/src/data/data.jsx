@@ -4,9 +4,11 @@ export const DataContext = createContext();
 
 
 
-export const transition_handler =  async (course,setcart_data,cart_data,api_url,temp_ava,semester,setavailabilities_data) => {
+export const transition_handler =  async (course,setcart_data,cart_data,api_url,temp_ava,semester,setavailabilities_data,individual_classes,setindividual_classes) => {
 
     let response_json;
+    let individual;
+
     let result;
     let temp_course = Object.keys(course)[0]
 
@@ -42,9 +44,23 @@ export const transition_handler =  async (course,setcart_data,cart_data,api_url,
     } else {
     return 1
     }
-
-
     };
+
+    const individual_classes_post = async () => {    
+        const response = await fetch((api_url + '/course_scheduler/pairer_no_remove'), {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(response_json), // Form data automatically sets the appropriate Content-Type
+        });
+        if (response.ok) {
+            const responseData = await response.json(); // Parse the JSON response
+            return responseData
+        } 
+        };
+
+
 
     if (temp_ava){
         result = await ava_post()
@@ -70,12 +86,22 @@ export const transition_handler =  async (course,setcart_data,cart_data,api_url,
     }
 
 
+    individual = await individual_classes_post()
 
 
 
 
 
 
+    setindividual_classes(previndividual_classe => {
+            if (response_json !== 1) {
+                let updatedData = {
+                    ...previndividual_classe,
+                    ...individual // Adds an empty string to temp_course key1
+                };
+                return updatedData;
+            }
+    });
 
     setcart_data(prevCartData => {
         if (response_json !== 1) {
@@ -131,15 +157,41 @@ export const DataProvider = ({ children }) => {
 
 
 
+    const [individual_classes,setindividual_classes] = useState({});
+
+    const [classes_combinations,setclasses_combinations] = useState({});
+    const [valid_class_combinations,setvalid_class_combinations] = useState({});
+
+
+    useEffect(() => {
+
+        console.log(classes_combinations)
+        console.log("classes_combinations------------------")
+
+    }, [classes_combinations]);
+
+    useEffect(() => {
+
+        console.log(valid_class_combinations)
+        console.log("valid_class_combinations------------------")
+
+    }, [valid_class_combinations]);
 
 
 
     useEffect(() => {
 
         console.log(cart_data)
+        setclasses_combinations({})
+        setvalid_class_combinations({})
 
-    }, [cart_data]); 
+    }, [cart_data]);
 
+    useEffect(() => {
+
+        console.log(individual_classes)
+
+    }, [individual_classes]); 
 
     useEffect(() => {
     if (transition_data.length !== 0) {
@@ -157,7 +209,7 @@ export const DataProvider = ({ children }) => {
                         [temp_course]: ""  };
                         return updatedData})
                 
-                transition_handler(course,setcart_data,cart_data,api_url,0,semester,setavailabilities_data);
+                transition_handler(course,setcart_data,cart_data,api_url,0,semester,setavailabilities_data,individual_classes,setindividual_classes);
 
             }
             else{
@@ -168,7 +220,7 @@ export const DataProvider = ({ children }) => {
                         [temp_course]: ""  };
                         return updatedData})
         
-                transition_handler(course,setcart_data,cart_data,api_url,1,semester,setavailabilities_data);
+                transition_handler(course,setcart_data,cart_data,api_url,1,semester,setavailabilities_data,individual_classes,setindividual_classes);
                 
 
             }
@@ -179,7 +231,7 @@ export const DataProvider = ({ children }) => {
                     ...prevCartData,
                     [temp_course]: ""  };
                     return updatedData})
-                    transition_handler(course,setcart_data,cart_data,api_url,1,semester,setavailabilities_data);
+                    transition_handler(course,setcart_data,cart_data,api_url,1,semester,setavailabilities_data,individual_classes,setindividual_classes);
                 }
         
 
@@ -201,7 +253,7 @@ export const DataProvider = ({ children }) => {
 
 
     return (
-        <DataContext.Provider value={{ api_url, campus, set_campuss, semester, set_semester, searched_data, setsearched_data, cart_data, setcart_data, transition_data, settransition_data , availabilities_data, setavailabilities_data}}>
+        <DataContext.Provider value={{ api_url, campus, set_campuss, semester, set_semester, searched_data, setsearched_data, cart_data, setcart_data, transition_data, settransition_data , availabilities_data, setavailabilities_data,individual_classes,setindividual_classes,classes_combinations,setclasses_combinations,valid_class_combinations,setvalid_class_combinations}}>
             {children}
         </DataContext.Provider>
     );

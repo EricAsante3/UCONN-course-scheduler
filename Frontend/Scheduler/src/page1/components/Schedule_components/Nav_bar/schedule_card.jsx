@@ -3,7 +3,7 @@ import { EyeIcon } from "@heroicons/react/24/outline"; // Import the icon
 import CalendarApp from '../Viewer_pop_up/Calender'
 
 
-function Schedule_card() {
+function Schedule_card({schedule_key, schedule_info, index }) {
   const [popup,set_popup] = useState(false);
 
 
@@ -33,7 +33,7 @@ function Schedule_card() {
 
           { popup &&
             (<div className="absolute left-60 -top-6 ">
-              <CalendarApp ></CalendarApp>
+              <CalendarApp schedule_info={schedule_info} ></CalendarApp>
             </div>)
           }
 
@@ -46,7 +46,7 @@ function Schedule_card() {
           <EyeIcon className="h-full mr-5">
           </EyeIcon>
 
-            SCHEDULE ?
+            SCHEDULE {index}
           </div>
 
       </div>
