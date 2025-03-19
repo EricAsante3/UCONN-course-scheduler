@@ -122,6 +122,8 @@ function generateEvents(data) {
           for (const m of splitMultipleSlots(k.meets)) {
                 if (placed.includes(m)) {
                   continue;
+                  } else {
+                    placed.push(m)
                   }
 
               const [dayString, timeRange] = m.split(" ");
