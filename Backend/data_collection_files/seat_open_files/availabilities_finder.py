@@ -120,7 +120,9 @@ def extract_class_info(html_content,subject,campus):
         # Extract the professor's name
         professor = row.find('span', {'id': lambda x: x and x.startswith('UC_DERIVED_GST_SSR_INSTR_LONG$')})
         professor = professor.text.strip() if professor else None
-        
+
+        time = row.find('span', {'id': lambda x: x and x.startswith('HRS_DAYS_LOC_CLMN$')})
+        time = time.text.strip() if time else None
 
         instruction_method = row.find('span', {'id': lambda x: x and x.startswith('INSTRUCT_MODE_DESCR$')})
         instruction_method = instruction_method.text.strip() if instruction_method else None
@@ -133,8 +135,8 @@ def extract_class_info(html_content,subject,campus):
                     'Enrollment Total': enrollment_tot,
                     'Seats Available': available_seats,
                     'Professor': professor,
-                    'instruction_method': instruction_method
-
+                    'instruction_method': instruction_method,
+                    'time': time
                 }
     
     return class_info_list

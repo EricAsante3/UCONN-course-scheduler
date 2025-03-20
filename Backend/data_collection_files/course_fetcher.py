@@ -8,7 +8,6 @@ api_url = "https://classes.uconn.edu/api/?page=fose&route=search"
 
 
 
-
 def api_call(filter_list, url):
     """
     Retrives raw couse info from Uconn's couse search API endpoint 
@@ -49,6 +48,7 @@ def orginizer(raw_course_list,campus):
     orgnized_cousre_list = {}
     for course in raw_course_list:
         course["campus"] = campus
+
         if course["stat"] != "X":
             if (course["code"] in orgnized_cousre_list):
                 orgnized_cousre_list[course["code"]][course["crn"]] = course

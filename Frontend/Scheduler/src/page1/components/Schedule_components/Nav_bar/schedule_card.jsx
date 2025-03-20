@@ -1,17 +1,28 @@
 import { useContext, useState } from "react";
 import { EyeIcon } from "@heroicons/react/24/outline"; // Import the icon
 import CalendarApp from '../Viewer_pop_up/Calender'
+import { useNavigate } from "react-router-dom";
 
 
 function Schedule_card({schedule_key, schedule_info, index }) {
   const [popup,set_popup] = useState(false);
+
+  const navigate = useNavigate();
+  
+
+  const handleClick = () => {
+
+
+    navigate("/display");
+  };
+
 
 
     return (
 
       <div
       
-      onMouseEnter={() => set_popup(true)}
+      onMouseEnter={() => { console.log(schedule_key); set_popup(true); }}
       onMouseLeave={() => set_popup(false)}
 
 
@@ -42,7 +53,7 @@ function Schedule_card({schedule_key, schedule_info, index }) {
 
 
 
-          <div className="w-full h-full flex items-center justify-center">
+          <div className="w-full h-full flex items-center justify-center " onClick={handleClick}>
           <EyeIcon className="h-full mr-5">
           </EyeIcon>
 

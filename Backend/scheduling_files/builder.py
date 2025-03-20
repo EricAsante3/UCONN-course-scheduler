@@ -7,8 +7,8 @@ from scheduling_files.class_combiner import combination_maker
 # Function to check if two time slots overlap
 def time_slots_overlap(slot1, slot2):
     # Handle the case where either slot is "Online Instruction"
-    if slot1 == "Online Instruction" or slot2 == "Online Instruction":
-        return True
+    if slot1 == "Online Instruction" or slot2 == "Online Instruction" or slot1 == "Does Not Meet" or slot2 == "Does Not Meet" or slot1 == "by arrangement" or slot2 == "by arrangement":
+        return False
 
     # Split multiple day-time pairs separated by semicolons
     def split_multiple_slots(slot):
@@ -114,8 +114,7 @@ def time_slots_overlap(slot1, slot2):
                 return True
 
     return False    # Handle the case where either slot is "Online Instruction"
-    if slot1 == "Online Instruction" or slot2 == "Online Instruction":
-        return True
+
 
     def split_multiple_slots(slot):
         # Strip leading/trailing spaces and split by semicolon
@@ -181,7 +180,6 @@ def generate_valid_permutations(data):
     # Generate all possible combinations of components
     all_combinations = combination_maker(data)
     new_dict = {key: {} for key in all_combinations.keys()}
-    print(new_dict)
     # Filter out combinations with overlapping time slots
     valid_permutations = []
     for combination in list(all_combinations.values()):

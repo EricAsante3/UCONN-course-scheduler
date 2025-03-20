@@ -1,3 +1,5 @@
+import hashlib
+
 
 day_mapping = {
     "Online":"Online",
@@ -50,7 +52,17 @@ def split_multiple_slots(slot):
         # Strip leading/trailing spaces and split by semicolon
     return [s.strip() for s in slot.split(";") if s.strip()]
 
-
+def string_to_light_hex(s):
+    # Create a hash of the string
+    hash_value = hashlib.md5(s.encode()).hexdigest()
+    
+    # Convert parts of the hash to RGB values
+    r = (int(hash_value[:2], 16) % 106) + 150  # Ensure 150-255 range
+    g = (int(hash_value[2:4], 16) % 106) + 150
+    b = (int(hash_value[4:6], 16) % 106) + 150
+    
+    # Convert to hex format
+    return f'#{r:02X}{g:02X}{b:02X}'
 
 
 
@@ -73,12 +85,31 @@ def get_days_from_combined_string(day_string):
 
 
 
+    
 events = []
+calendars_themes = {}
+
 for i in data[0]:
     for k in i:
+        if k["code"].replace(" ", "_") not in calendars_themes:
+            temp_dic2 = {}
+            temp_dic2
+            calendars_themes[k["code"].replace(" ", "_")] = {}
+            calendars_themes[k["code"].replace(" ", "_")]["colorName"] = k["code"].replace(" ", "_")
+            calendars_themes[k["code"].replace(" ", "_")]["lightColors"] = {}
+            calendars_themes[k["code"].replace(" ", "_")]["lightColors"]["main"] = string_to_light_hex((k["code"].replace(" ", "_")))
+            calendars_themes[k["code"].replace(" ", "_")]["lightColors"]["container"] = string_to_light_hex(k["code"].replace(" ", "_"))
+            calendars_themes[k["code"].replace(" ", "_")]["lightColors"]["onContainer"] = '#000000'
+
+
         id = k["code"] + ", " + k["no"]
         title = k["code"] + " (" + k["schd"] + ")"
+        graphed = []
         for m in split_multiple_slots(k["meets"]):
+            if m in graphed:
+                continue
+            graphed.append(m)
+            
             days = get_days_from_combined_string(m.split(" ")[0])
             time = convert_to_24_hour_format(m.split(" ")[1])
             for q in days:
@@ -90,8 +121,6 @@ for i in data[0]:
                 temp_dic["start"] = day_to_date[q] + " " + time[0]
                 temp_dic["end"] = day_to_date[q] + " " + time[1]
                 events.append(temp_dic)
-
-
 
 
 

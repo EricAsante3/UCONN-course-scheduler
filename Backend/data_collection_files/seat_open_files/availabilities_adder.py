@@ -40,7 +40,10 @@ def availabilities_helper(obj, availabilities_data):
                 # Add Professor and instruction_method fields
                 obj["Professor"] = availabilities_data[code_prefix][campus][lookup_key]["Professor"]
                 obj["instruction_method"] = availabilities_data[code_prefix][campus][lookup_key]["instruction_method"]
+                obj["time"] = availabilities_data[code_prefix][campus][lookup_key]["time"]
+
             else:
                 # If data is not found, set default values
                 obj["Professor"] = "Unknown"
                 obj["instruction_method"] = "Unknown"
+                obj["time"] = "Unknown"
