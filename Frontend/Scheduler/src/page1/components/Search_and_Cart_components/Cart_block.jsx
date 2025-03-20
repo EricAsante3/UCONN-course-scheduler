@@ -76,9 +76,7 @@ const LectureLabTable = ({ lectureInfo }) => {
                 <TableCell>Open</TableCell>
                 <TableCell>Regular Academic</TableCell>
                 <TableCell>
-                  <a href={`#`} style={{ color: "blue", textDecoration: "underline" }}>
-                    Component LEC-Section {lecture.lecture_meets}-Class# {lecture.lecture_crn}
-                  </a>
+                    Component LEC-Section - Class# {lecture.lecture_crn}
                 </TableCell>
                 <TableCell>{lecture.lecture_start_date} - {lecture.lecture_end_date}</TableCell>
                 <TableCell>{lecture.lecture_meets}</TableCell>
@@ -92,9 +90,7 @@ const LectureLabTable = ({ lectureInfo }) => {
                   <TableCell>Open</TableCell>
                   <TableCell>Regular Academic</TableCell>
                   <TableCell>
-                    <a href={`#`} style={{ color: "blue", textDecoration: "underline" }}>
-                      Component LAB-Section {lecture.lab_meets}-Class# {lecture.lab_crn}
-                    </a>
+                      Component LAB-Section - Class# {lecture.lab_crn}
                   </TableCell>
                   <TableCell>{lecture.lab_start_date} - {lecture.lab_end_date}</TableCell>
                   <TableCell>{lecture.lab_meets}</TableCell>
