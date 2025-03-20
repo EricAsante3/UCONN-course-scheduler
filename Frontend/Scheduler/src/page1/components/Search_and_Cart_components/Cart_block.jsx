@@ -76,7 +76,7 @@ const LectureLabTable = ({ lectureInfo }) => {
                 <TableCell>Open</TableCell>
                 <TableCell>Regular Academic</TableCell>
                 <TableCell>
-                    Component LEC-Section - Class# {lecture.lecture_crn}
+                  Component LEC-Section - Class# {lecture.lecture_crn}
                 </TableCell>
                 <TableCell>{lecture.lecture_start_date} - {lecture.lecture_end_date}</TableCell>
                 <TableCell>{lecture.lecture_meets}</TableCell>
@@ -90,7 +90,7 @@ const LectureLabTable = ({ lectureInfo }) => {
                   <TableCell>Open</TableCell>
                   <TableCell>Regular Academic</TableCell>
                   <TableCell>
-                      Component LAB-Section - Class# {lecture.lab_crn}
+                    Component LAB-Section - Class# {lecture.lab_crn}
                   </TableCell>
                   <TableCell>{lecture.lab_start_date} - {lecture.lab_end_date}</TableCell>
                   <TableCell>{lecture.lab_meets}</TableCell>
@@ -106,6 +106,7 @@ const LectureLabTable = ({ lectureInfo }) => {
     </TableContainer>
   );
 };
+
 
 
 
@@ -211,34 +212,32 @@ function Cart_block() {
             Object.keys(classData[professor]).forEach((section) => {
                 const lectures = classData[professor][section];
 
-                if (lectures.length >= 2) {
-                    // Handle Lecture-Lab pairs
-                    const lecture = lectures.find(l => l.schd === "LEC" || l.schd === "LSA");
-                    const lab = lectures.find(l => l.schd === "LAB");
-
-                    if (lecture && lab) {
-                        groupedLectures.push({
-                            option: groupedLectures.length + 1,
-                            lab_crn: lab.crn,
-                            lab_professor: lab.Professor,
-                            lab_campus: lab.campus,
-                            lab_start_date: lab.start_date,
-                            lab_end_date: lab.end_date,
-                            lab_instruction_method: lab.instruction_method,
-                            lab_meets: lab.meets,
-
-                            lecture_crn: lecture.crn,
-                            lecture_professor: lecture.Professor,
-                            lecture_campus: lecture.campus,
-                            lecture_start_date: lecture.start_date,
-                            lecture_end_date: lecture.end_date,
-                            lecture_instruction_method: lecture.instruction_method,
-                            lecture_meets: lecture.meets,
-                        });
-                    }
-                } else {
-                    // Handle standalone lecture (No Lab)
+                // If there's only one lecture and no lab, add it separately
+                if (lectures.length === 1) {
                     const lecture = lectures[0];
+
+                    groupedLectures.push({
+                        option: groupedLectures.length + 1,
+                        lecture_crn: lecture.crn,
+                        lecture_professor: lecture.Professor,
+                        lecture_campus: lecture.campus,
+                        lecture_start_date: lecture.start_date,
+                        lecture_end_date: lecture.end_date,
+                        lecture_instruction_method: lecture.instruction_method,
+                        lecture_meets: lecture.meets,
+
+                        lab_crn: null, // No lab
+                        lab_professor: null,
+                        lab_campus: null,
+                        lab_start_date: null,
+                        lab_end_date: null,
+                        lab_instruction_method: null,
+                        lab_meets: null,
+                    });
+                } else {
+                    // Handle Lecture-Lab pairs if both exist
+                    const lecture = lectures.find(l => l.schd !== "LAB");
+                    const lab = lectures.find(l => l.schd === "LAB");
 
                     if (lecture) {
                         groupedLectures.push({
@@ -251,13 +250,13 @@ function Cart_block() {
                             lecture_instruction_method: lecture.instruction_method,
                             lecture_meets: lecture.meets,
 
-                            lab_crn: null, // No lab
-                            lab_professor: null,
-                            lab_campus: null,
-                            lab_start_date: null,
-                            lab_end_date: null,
-                            lab_instruction_method: null,
-                            lab_meets: null,
+                            lab_crn: lab ? lab.crn : null,
+                            lab_professor: lab ? lab.Professor : null,
+                            lab_campus: lab ? lab.campus : null,
+                            lab_start_date: lab ? lab.start_date : null,
+                            lab_end_date: lab ? lab.end_date : null,
+                            lab_instruction_method: lab ? lab.instruction_method : null,
+                            lab_meets: lab ? lab.meets : null,
                         });
                     }
                 }
@@ -267,6 +266,7 @@ function Cart_block() {
 
     return groupedLectures;
   }
+
 
 
   
@@ -284,11 +284,19 @@ function Cart_block() {
         setLectureInfo([]);    // Clear previous data
         setLoadingInfo(true);  // Start buffering
 
-        const info = getClassLectureInfo(selectedClass, cart_data, individual_classes);
-        setLectureInfo(info);
-        setLoadingInfo(false);
+        const fetchLectureInfo = async () => {
+            await new Promise((resolve) => setTimeout(resolve, 300)); // Optional delay for UI feedback
+            const info = getClassLectureInfo(selectedClass, cart_data, individual_classes);
+
+            setLectureInfo(info);
+            setLoadingInfo(false);
+        };
+
+        fetchLectureInfo();
     }
   }, [open, selectedClass, cart_data, individual_classes]);
+
+
 
   // New effect: if the user clicked the trash icon (pendingDeletion is set)
   // and now the underlying info for that class is available, then delete the item.
