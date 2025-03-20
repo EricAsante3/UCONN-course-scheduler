@@ -190,18 +190,16 @@ const options = [
 
 
 const SearchableDropdown = ({filter, setfilter}) => {
-  const [selected, setSelected] = useState(null);
 
   const handleDropdownChange = (selectedOption) => {
-    setSelected(selectedOption);
     setfilter(String(selectedOption["value"]));
 };
 
   return (
     <div className="rounded z-1  text-start text-black inline-block relative">
-      <Select value={selected}
+      <Select value={filter}
         onChange={handleDropdownChange}
-        options={options}  styles={customStyles} placeholder="Any"> 
+        options={options}  styles={customStyles} placeholder={filter}> 
         
         </Select>
     </div>

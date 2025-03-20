@@ -1,7 +1,7 @@
 import Search from "./searchbar"
 import SearchableDropdown from "./subject_searchbar"
 import { useState,useEffect,useContext } from 'react';
-import { DataContext } from "../../../../data/data.jsx";
+import { DataContext } from "../../../../../data/data.jsx";
 
 
 
@@ -68,7 +68,7 @@ function Search_block_form() {
     const [seats_filter, set_seats_filter] = useState('Any');
     const [teaching_method_filter, set_teaching_method_filter] = useState('Any');
     const [formData, setFormData] = useState({});
-
+    const [defult, setdefult] = useState(false); // Additional state to force re-render
 
     useEffect(() => {
         const postFormData = async () => {    
@@ -83,7 +83,12 @@ function Search_block_form() {
         
                 if (response.ok) {
                     const responseData = await response.json(); // Parse the JSON response
-                    setsearched_data(responseData)
+                    if (Object.keys(responseData).length === 0) {
+                        setsearched_data({ "none": 0 }); // Set empty result
+                    } else {
+                        setsearched_data(responseData); // Set the actual response
+                    }
+
                 } else {
                     setsearched_data("error")
                 }
@@ -101,6 +106,18 @@ function Search_block_form() {
     }, [formData]);
 
 
+    function reset_filter() {
+
+        set_subject_filter('Any'); // Reset subject filter if needed
+        set_ContentArea_filter('Any');
+        set_CreditHours_filter('Any');
+        set_inquiry_filter('Any');
+        set_competency_filter('Any');
+        set_seats_filter('Any');
+        set_teaching_method_filter('Any');
+        setsearched_data({});
+
+    }
     // Handle form submission
     const handleSubmit = (e) => {
     e.preventDefault();
@@ -119,17 +136,34 @@ function Search_block_form() {
 
     };
 
-    console.log(jsonData)
 
-    if (JSON.stringify(formData) !== JSON.stringify(jsonData)) {
-        setFormData(jsonData);
+
+
+    if (
+        subject_filter === "Any" &&
+        ContentArea_filter === "Any" &&
+        CreditHours_filter === "Any" &&
+        seats_filter === "Any" &&
+        competency_filter === "Any" &&
+        inquiry_filter === "Any" &&
+        teaching_method_filter === "Any"
+    ) {
+        setsearched_data({"defult":0})
+    } else {
+
+        if (JSON.stringify(formData) !== JSON.stringify(jsonData)) {
+            setFormData(jsonData);
+        }
     }
+
+
     
     };
 
 
     return (
-        <form onSubmit={handleSubmit} className=" w-full h-full flex flex-col">
+
+        <form onSubmit={handleSubmit} className="w-full h-full flex flex-col">
 
             <div className="flex flex-col p-2">
                 <label className="text-black">Select Subject:</label>
@@ -168,18 +202,21 @@ function Search_block_form() {
             </div>
 
 
-            <div className="flex flex-row p-2">
-                <button   className=" mr-2 w-full py-2 px-3 border bg-[#ffffff] border-gray-300 rounded-md focus:outline-none  hover:border-blue-500 text-gray-900" type="submit">
+            <div className="flex flex-col p-2">
+                <button   className=" mb-4 w-full py-2 px-3 border bg-[#ffffff] border-gray-300 rounded-md focus:outline-none  hover:border-blue-500 text-gray-900" type="submit">
                     Submit
                 </button>
 
-                <button   className="w-full py-2 px-3 border bg-[#ffffff] border-gray-300 rounded-md focus:outline-none hover:border-blue-500 text-gray-900" type="button">
+                <button   className="w-full py-2 px-3 border bg-[#ffffff] border-gray-300 rounded-md focus:outline-none hover:border-blue-500 text-gray-900" onClick={reset_filter} type="button">
                     Reset Filters
                 </button>
             </div>
 
 
         </form>    
+
+
+        
     )
   }
   
