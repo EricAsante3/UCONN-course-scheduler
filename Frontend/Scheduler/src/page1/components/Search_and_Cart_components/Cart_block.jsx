@@ -3,6 +3,8 @@ import { Button, Modal, Box, Typography, CircularProgress } from "@mui/material"
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { DataContext } from "../../../data/data.jsx";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
+
 
 function traverseDict(d, e, flag) {
   let keysToDelete = []; // Stores top-level keys to delete
@@ -46,11 +48,68 @@ function traverseDict(d, e, flag) {
           }
       }
   }
-  
-
-
 }
 
+
+const LectureLabTable = ({ lectureInfo }) => {
+  return (
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="class schedule table">
+        <TableHead>
+          <TableRow>
+            <TableCell><strong>Option</strong></TableCell>
+            <TableCell><strong>Status</strong></TableCell>
+            <TableCell><strong>Session</strong></TableCell>
+            <TableCell><strong>Class</strong></TableCell>
+            <TableCell><strong>Meeting Dates</strong></TableCell>
+            <TableCell><strong>Days and Times</strong></TableCell>
+            <TableCell><strong>Campus</strong></TableCell>
+            <TableCell><strong>Instructor</strong></TableCell>
+            <TableCell><strong>Instruction Mode</strong></TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {lectureInfo.map((lecture, index) => (
+            <React.Fragment key={index}>
+              <TableRow>
+                <TableCell rowSpan={lecture.lab_crn ? 2 : 1}>{lecture.option}</TableCell>
+                <TableCell>Open</TableCell>
+                <TableCell>Regular Academic</TableCell>
+                <TableCell>
+                  <a href={`#`} style={{ color: "blue", textDecoration: "underline" }}>
+                    Component LEC-Section {lecture.lecture_meets}-Class# {lecture.lecture_crn}
+                  </a>
+                </TableCell>
+                <TableCell>{lecture.lecture_start_date} - {lecture.lecture_end_date}</TableCell>
+                <TableCell>{lecture.lecture_meets}</TableCell>
+                <TableCell>{lecture.lecture_campus}</TableCell>
+                <TableCell>{lecture.lecture_professor}</TableCell>
+                <TableCell>{lecture.lecture_instruction_method}</TableCell>
+              </TableRow>
+
+              {lecture.lab_crn && (
+                <TableRow>
+                  <TableCell>Open</TableCell>
+                  <TableCell>Regular Academic</TableCell>
+                  <TableCell>
+                    <a href={`#`} style={{ color: "blue", textDecoration: "underline" }}>
+                      Component LAB-Section {lecture.lab_meets}-Class# {lecture.lab_crn}
+                    </a>
+                  </TableCell>
+                  <TableCell>{lecture.lab_start_date} - {lecture.lab_end_date}</TableCell>
+                  <TableCell>{lecture.lab_meets}</TableCell>
+                  <TableCell>{lecture.lab_campus}</TableCell>
+                  <TableCell>{lecture.lab_professor}</TableCell>
+                  <TableCell>{lecture.lab_instruction_method}</TableCell>
+                </TableRow>
+              )}
+            </React.Fragment>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+};
 
 
 
@@ -122,6 +181,8 @@ function Cart_block() {
   }
 }
 
+  // console.log(Object.keys(individual_classes).length)
+
 
   const deleteItem = (index) => {
     const keyToDelete = class_names[index];
@@ -142,16 +203,78 @@ function Cart_block() {
     }
   };
 
-  function getClassLectureInfo(className) {
-    if (!cart_data[className]) return [];
-    const classData = cart_data[className];
-    return Object.keys(classData).map((crn) => ({
-      crn,
-      enrollmentCapacity: classData[crn]["Enrollment Capacity"],
-      professor: classData[crn]["Professor"],
-      meets: classData[crn]["meets"],
-    }));
+
+
+  function getClassLectureInfo(className, cart_data, individual_classes) {
+    let groupedLectures = [];
+
+    if (individual_classes && individual_classes[className]) {
+        const classData = individual_classes[className];
+
+        Object.keys(classData).forEach((professor) => {
+            Object.keys(classData[professor]).forEach((section) => {
+                const lectures = classData[professor][section];
+
+                if (lectures.length >= 2) {
+                    // Handle Lecture-Lab pairs
+                    const lecture = lectures.find(l => l.schd === "LEC" || l.schd === "LSA");
+                    const lab = lectures.find(l => l.schd === "LAB");
+
+                    if (lecture && lab) {
+                        groupedLectures.push({
+                            option: groupedLectures.length + 1,
+                            lab_crn: lab.crn,
+                            lab_professor: lab.Professor,
+                            lab_campus: lab.campus,
+                            lab_start_date: lab.start_date,
+                            lab_end_date: lab.end_date,
+                            lab_instruction_method: lab.instruction_method,
+                            lab_meets: lab.meets,
+
+                            lecture_crn: lecture.crn,
+                            lecture_professor: lecture.Professor,
+                            lecture_campus: lecture.campus,
+                            lecture_start_date: lecture.start_date,
+                            lecture_end_date: lecture.end_date,
+                            lecture_instruction_method: lecture.instruction_method,
+                            lecture_meets: lecture.meets,
+                        });
+                    }
+                } else {
+                    // Handle standalone lecture (No Lab)
+                    const lecture = lectures[0];
+
+                    if (lecture) {
+                        groupedLectures.push({
+                            option: groupedLectures.length + 1,
+                            lecture_crn: lecture.crn,
+                            lecture_professor: lecture.Professor,
+                            lecture_campus: lecture.campus,
+                            lecture_start_date: lecture.start_date,
+                            lecture_end_date: lecture.end_date,
+                            lecture_instruction_method: lecture.instruction_method,
+                            lecture_meets: lecture.meets,
+
+                            lab_crn: null, // No lab
+                            lab_professor: null,
+                            lab_campus: null,
+                            lab_start_date: null,
+                            lab_end_date: null,
+                            lab_instruction_method: null,
+                            lab_meets: null,
+                        });
+                    }
+                }
+            });
+        });
+    }
+
+    return groupedLectures;
   }
+
+
+  
+
 
   const handleOpenModal = (className) => {
     setSelectedClass(className);
@@ -162,16 +285,14 @@ function Cart_block() {
 
   useEffect(() => {
     if (open && selectedClass) {
-      // Check if detailed data for the selected class exists.
-      if (cart_data[selectedClass] && Object.keys(cart_data[selectedClass]).length > 0) {
-        const info = getClassLectureInfo(selectedClass);
+        setLectureInfo([]);    // Clear previous data
+        setLoadingInfo(true);  // Start buffering
+
+        const info = getClassLectureInfo(selectedClass, cart_data, individual_classes);
         setLectureInfo(info);
         setLoadingInfo(false);
-      } else {
-        setLoadingInfo(true);
-      }
     }
-  }, [open, selectedClass, cart_data]);
+  }, [open, selectedClass, cart_data, individual_classes]);
 
   // New effect: if the user clicked the trash icon (pendingDeletion is set)
   // and now the underlying info for that class is available, then delete the item.
@@ -213,8 +334,8 @@ function Cart_block() {
                           top: "50%",
                           left: "50%",
                           transform: "translate(-50%, -50%)",
-                          width: "70%",
-                          height: "60%",
+                          width: "80%",
+                          height: "75%",
                           bgcolor: "background.paper",
                           boxShadow: 24,
                           overflowY: "auto",
@@ -230,36 +351,26 @@ function Cart_block() {
                           <>
                             {selectedClass ? (
                               <>
-                                <Typography variant="h3" color="black" sx={{mb: 3}}>
+                                <Typography variant="h3" color="black" sx={{ mb: 3 }}>
                                   {selectedClass} Info
                                 </Typography>
-                                {lectureInfo.map((lecture) => (
-                                  <Box key={lecture.crn} sx={{ py: 2, px: 2, border: "1px solid #ccc", pb: 1, display: "flex", gap: 5, padding: 4, marginBottom: 2}}>
-                                        <Typography color="black">
-                                        <strong>CRN:</strong> {lecture.crn}
-                                        </Typography>
-                                        <Typography color="black">
-                                        <strong>Enrollment capacity:</strong> {lecture.enrollmentCapacity}
-                                        </Typography>
-                                        <Typography color="black">
-                                        <strong>Professor:</strong> {lecture.professor}
-                                        </Typography>
-                                        <Typography color="black">
-                                        <strong>Meets:</strong> {lecture.meets}
-                                        </Typography>
-                                  </Box>
-                                ))}
+                                <LectureLabTable lectureInfo={lectureInfo} />
                               </>
                             ) : (
                               <Typography color="black">No class selected.</Typography>
                             )}
-                            <Button className="mb-auto" variant="contained" onClick={() => setOpen(false)}>
+                            <div>
+                            <Button sx={{marginTop: 4 }} variant="contained" onClick={() => setOpen(false)}>
                               Close
                             </Button>
+                            </div>
                           </>
                         )}
                       </Box>
                     </Modal>
+
+
+
                     <div className="text-4xl px-1 text-black">{item}</div>
                   </div>
                   <button
