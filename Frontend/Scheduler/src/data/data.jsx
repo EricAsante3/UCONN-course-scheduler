@@ -133,6 +133,7 @@ function transition_helper(obj,availabilities_data) {
           // If it's a value (not an object), log or collect it
           obj["Professor"] = availabilities_data[obj["code"].split(" ")[0]][obj["campus"]][obj["code"] + ", " + obj["no"]]["Professor"];
           obj["instruction_method"] = availabilities_data[obj["code"].split(" ")[0]][obj["campus"]][obj["code"] + ", " + obj["no"]]["instruction_method"];
+          obj["time"] = availabilities_data[obj["code"].split(" ")[0]][obj["campus"]][obj["code"] + ", " + obj["no"]]["time"];
 
         }
       }
@@ -161,6 +162,11 @@ export const DataProvider = ({ children }) => {
 
     const [classes_combinations,setclasses_combinations] = useState({});
     const [valid_class_combinations,setvalid_class_combinations] = useState({});
+
+
+
+    const [temp_events,settemp_events] = useState({});
+    const [temp_schedule,settemp_schedule] = useState({});
 
 
     useEffect(() => {
@@ -253,7 +259,7 @@ export const DataProvider = ({ children }) => {
 
 
     return (
-        <DataContext.Provider value={{ api_url, campus, set_campuss, semester, set_semester, searched_data, setsearched_data, cart_data, setcart_data, transition_data, settransition_data , availabilities_data, setavailabilities_data,individual_classes,setindividual_classes,classes_combinations,setclasses_combinations,valid_class_combinations,setvalid_class_combinations}}>
+        <DataContext.Provider value={{ api_url, campus, set_campuss, semester, set_semester, searched_data, setsearched_data, cart_data, setcart_data, transition_data, settransition_data , availabilities_data, setavailabilities_data,individual_classes,setindividual_classes,classes_combinations,setclasses_combinations,valid_class_combinations,setvalid_class_combinations,temp_events,settemp_events,temp_schedule,settemp_schedule}}>
             {children}
         </DataContext.Provider>
     );

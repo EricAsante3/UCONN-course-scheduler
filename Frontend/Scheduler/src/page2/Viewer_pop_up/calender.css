@@ -1,0 +1,19 @@
+.sx__calendar-header {
+  display: none;
+}
+
+
+
+
+.sx__week-grid__date-number{
+  display: none;
+}
+
+
+
+
+.sx__week-grid__day-name {
+  padding-left: 0.2rem; /* Left padding */
+  padding-right: 0.2rem; /* Right padding */
+
+}
