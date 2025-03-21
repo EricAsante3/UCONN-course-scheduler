@@ -171,15 +171,13 @@ export const DataProvider = ({ children }) => {
 
     useEffect(() => {
 
-        console.log(classes_combinations)
-        console.log("classes_combinations------------------")
+
 
     }, [classes_combinations]);
 
     useEffect(() => {
 
-        console.log(valid_class_combinations)
-        console.log("valid_class_combinations------------------")
+
 
     }, [valid_class_combinations]);
 
@@ -187,7 +185,6 @@ export const DataProvider = ({ children }) => {
 
     useEffect(() => {
 
-        console.log(cart_data)
         setclasses_combinations({})
         setvalid_class_combinations({})
 
@@ -195,7 +192,6 @@ export const DataProvider = ({ children }) => {
 
     useEffect(() => {
 
-        console.log(individual_classes)
 
     }, [individual_classes]); 
 
@@ -250,7 +246,6 @@ export const DataProvider = ({ children }) => {
 
     useEffect(() => {
 
-        console.log(availabilities_data)
 
     }, [availabilities_data]); 
 
