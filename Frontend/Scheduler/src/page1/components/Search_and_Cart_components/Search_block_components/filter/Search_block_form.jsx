@@ -203,11 +203,11 @@ function Search_block_form() {
 
 
             <div className="flex flex-col p-2">
-                <button   className=" mb-4 w-full py-2 px-3 border bg-[#ffffff] border-gray-300 rounded-md focus:outline-none  hover:border-blue-500 text-gray-900" type="submit">
+                <button   className=" mb-4 w-full py-2 px-3 border-2 bg-[#ffffff] border-gray-300 rounded-md focus:outline-none  hover:border-blue-500 text-gray-900" type="submit">
                     Submit
                 </button>
 
-                <button   className="w-full py-2 px-3 border bg-[#ffffff] border-gray-300 rounded-md focus:outline-none hover:border-blue-500 text-gray-900" onClick={reset_filter} type="button">
+                <button   className="w-full py-2 px-3 border-2 bg-[#ffffff] border-gray-300 rounded-md focus:outline-none hover:border-blue-500 text-gray-900" onClick={reset_filter} type="button">
                     Reset Filters
                 </button>
             </div>

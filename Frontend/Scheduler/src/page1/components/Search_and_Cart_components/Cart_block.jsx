@@ -60,6 +60,9 @@ function Cart_block() {
 
   const [open, setOpen] = useState(false);
   const [selectedClass, setSelectedClass] = useState(null);
+
+
+  const [loadingschedules, setloadingschedules] = useState(false);
   const [loadingInfo, setLoadingInfo] = useState(false);
   const [lectureInfo, setLectureInfo] = useState([]);
   // New state for pending deletion: stores the class name that the user wants to delete.
@@ -161,7 +164,13 @@ function Cart_block() {
   };
 
   useEffect(() => {
+
+    
+
+
     if (open && selectedClass) {
+      console.log(valid_class_combinations, "start")
+
       // Check if detailed data for the selected class exists.
       if (cart_data[selectedClass] && Object.keys(cart_data[selectedClass]).length > 0) {
         const info = getClassLectureInfo(selectedClass);
@@ -171,7 +180,28 @@ function Cart_block() {
         setLoadingInfo(true);
       }
     }
-  }, [open, selectedClass, cart_data]);
+  }, [open, selectedClass, cart_data, valid_class_combinations]);
+
+
+
+
+
+
+  useEffect(() => {
+
+
+    if (Object.values(individual_classes).includes("")) {
+      setloadingschedules(false)
+
+    } else (
+      setloadingschedules(true)
+
+    )
+
+    
+
+
+  }, [individual_classes]);
 
   // New effect: if the user clicked the trash icon (pendingDeletion is set)
   // and now the underlying info for that class is available, then delete the item.
@@ -190,9 +220,9 @@ function Cart_block() {
 
   return (
     <>
-      <div className="h-[50rem] relative flex flex-col justify-top items-center bg-gray-100   divide-black border-4 border-black size-full ">
+      <div className="drop-shadow-[10px_15px_10px_rgba(0,0,0,0.5)] h-[50rem] relative flex flex-col justify-top items-center bg-gray-100   divide-black border-2 border-black size-full ">
 
-        <div className="flex  w-full border text-center border-b-black">
+        <div className="flex  w-full  text-center ">
           <h1 className="text-5xl text-center mr-auto p-3 w-full font-semibold  text-black">Class List</h1>
         </div>
         <div className="h-[80%] size-full overflow-auto">
@@ -287,9 +317,17 @@ function Cart_block() {
           </ul>
         </div>
         <div className="flex items-center border-black p-2 text-black justify-center w-full h-[10%] ">
-          <button className=" bg-[#a4c8e1] border-2 border-black rounded-xl w-full h-full text-black"  onClick={handle_schedule_create}>
-            Generate
-          </button>
+
+        {loadingschedules === false ? (
+              <CircularProgress size={24} />
+        ) : (
+              <button
+                className="bg-[#4d7ff1] text-center border-2 border-black rounded-xl w-full text-4xl font-semibold h-full text-white"
+                onClick={handle_schedule_create}>
+                Generate
+              </button>
+            )}
+
         </div>
       </div>
     </>

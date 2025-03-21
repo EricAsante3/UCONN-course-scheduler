@@ -17,9 +17,9 @@ function stringToLightHex(s) {
 function class_card({class_info}) {
     const color = stringToLightHex(class_info[0].code.replace(/ /g, "_") + class_info[0].title)
     return (
-        <div className="w-full border-2 border-black p-2 text-black rounded-xl mb-4" style={{ backgroundColor: color }}>
+        <div className="w-full border-2 border-black p-2 text-black rounded-xl mb-4 drop-shadow-[5px_5px_5px_rgba(0,0,0,0.5)] bg-white" >
 
-            <h1 className="p-2 text-lg border-b font-bold text-black"> {class_info[0].campus} - {class_info[0].code} - {class_info[0].title} </h1>
+            <h1 className="p-2 text-lg rounded-xl font-bold text-black" style={{ backgroundColor: color }}> {class_info[0].campus} - {class_info[0].code} - {class_info[0].title} </h1>
             <h1 className="p-2 text-lg border-b text-black"> Registration Number: {class_info[class_info.length - 1].crn} </h1>
 
             

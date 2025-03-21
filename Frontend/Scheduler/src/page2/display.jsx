@@ -22,7 +22,7 @@ function display() {
     
     <div className="p-2 flex flex-col">
 
-        <div className="bg-amber-500 w-full p-2 pr-2">
+        <div className="w-full p-2 pr-2">
         {temp_schedule[0].map((item, index) => (
             <Classs_card key={index} class_info={item} ></Classs_card>
             ))}
