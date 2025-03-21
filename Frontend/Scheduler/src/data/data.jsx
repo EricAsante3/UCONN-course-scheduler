@@ -185,8 +185,7 @@ export const DataProvider = ({ children }) => {
 
     useEffect(() => {
 
-        setclasses_combinations({})
-        setvalid_class_combinations({})
+
 
     }, [cart_data]);
 
@@ -210,7 +209,16 @@ export const DataProvider = ({ children }) => {
                         ...prevCartData,
                         [temp_course]: ""  };
                         return updatedData})
-                
+
+
+                setindividual_classes(prevCartData => {
+                            let updatedData = {
+                                ...prevCartData,
+                                [temp_course]: ""  };
+                                return updatedData})
+
+
+
                 transition_handler(course,setcart_data,cart_data,api_url,0,semester,setavailabilities_data,individual_classes,setindividual_classes);
 
             }
@@ -222,6 +230,14 @@ export const DataProvider = ({ children }) => {
                         [temp_course]: ""  };
                         return updatedData})
         
+                        setindividual_classes(prevCartData => {
+                            let updatedData = {
+                                ...prevCartData,
+                                [temp_course]: ""  };
+                                return updatedData})
+
+                
+
                 transition_handler(course,setcart_data,cart_data,api_url,1,semester,setavailabilities_data,individual_classes,setindividual_classes);
                 
 
@@ -233,10 +249,16 @@ export const DataProvider = ({ children }) => {
                     ...prevCartData,
                     [temp_course]: ""  };
                     return updatedData})
+
+                    setindividual_classes(prevCartData => {
+                        let updatedData = {
+                            ...prevCartData,
+                            [temp_course]: ""  };
+                            return updatedData})
+
                     transition_handler(course,setcart_data,cart_data,api_url,1,semester,setavailabilities_data,individual_classes,setindividual_classes);
                 }
         
-
 
 
         settransition_data(prevData => prevData.slice(0, -1)); // Remove last element immutably

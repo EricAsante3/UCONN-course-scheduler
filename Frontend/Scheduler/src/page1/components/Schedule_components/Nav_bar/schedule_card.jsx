@@ -33,7 +33,7 @@ function Schedule_card({schedule_key, schedule_info, index }) {
 
 
 
-      className={`bg-red-800 w-[90%] mb-4 h-16 flex flex-row p-2 items-center justify-center divide-black border-4 border-black
+      className={`bg-white w-[90%] mb-4 h-16 flex flex-row p-2 items-center justify-center divide-black border-2 border-black
       ${
         popup ? 'cursor-pointer' : 'cursor-default'
       }`}      
@@ -59,7 +59,7 @@ function Schedule_card({schedule_key, schedule_info, index }) {
 
 
 
-          <div className="w-full h-full flex items-center justify-center " onClick={handleClick}>
+          <div className="w-full h-full flex items-center justify-center text-black" onClick={handleClick}>
           <CalendarDateRangeIcon className="h-full mr-5"></CalendarDateRangeIcon>
 
             SCHEDULE {index} {result}
