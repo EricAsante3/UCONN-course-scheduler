@@ -3,7 +3,6 @@ import json
 from testing_files.printers import json_printer,schedule_printer
 from scheduling_files.class_combiner import combination_maker
 
-
 # Function to check if two time slots overlap
 def time_slots_overlap(slot1, slot2):
     # Handle the case where either slot is "Online Instruction"
@@ -109,11 +108,17 @@ def time_slots_overlap(slot1, slot2):
                 print(f"Error parsing time slot '{s2}': {e}")
                 continue
 
+            if set(day1).intersection(set(day2)) and (slot1.split(" ")[1].split("-")[0] == slot2.split(" ")[1].split("-")[0]):
+                return True
+
             # Check if the days overlap and time slots overlap
             if set(day1).intersection(set(day2)) and not (end1 <= start2 or end2 <= start1):
                 return True
 
     return False    # Handle the case where either slot is "Online Instruction"
+
+
+
 
 
     def split_multiple_slots(slot):
@@ -207,3 +212,5 @@ def schedule_maker(data):
     valid_permutations = generate_valid_permutations(data)
     return valid_permutations
 
+if __name__ == "__main__":
+    print(time_slots_overlap("W 11:15a-1:05p", "MWF 11:15a-12:05p"))

@@ -10,6 +10,7 @@ import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 
 function display() {
     const {temp_schedule,temp_events} = useContext(DataContext);
+    console.log(temp_schedule)
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -30,16 +31,16 @@ function display() {
 
         <div>
         
-        <div className="bg-blue-500 h-24 w-full p-2 pr-2 flex justify-between items-center">
-        <div onClick={handleClick} className=" cursor-pointer h-full flex border-2 flex-col justify-center items-center border-black p-2  text-black rounded-xl">
-                <ArrowLeftIcon></ArrowLeftIcon>
-                <button >Back to search</button>
+        <div className="bg-[#4d7ff1] h-24 w-full p-2 pr-2 flex justify-between items-center">
+        <div onClick={handleClick} className=" cursor-pointer h-full flex border-2 flex-col justify-center items-center border-black p-2  text-white rounded-xl">
+                <ArrowLeftIcon className="text-white"></ArrowLeftIcon>
+                <button className="text-white">Back to search</button>
             </div>
-            <h1 className="text-4xl p-2 font-bold text-black">Schedule {temp_events["index"]}</h1>
+            <h1 className="text-4xl p-2 font-bold text-white">Schedule {temp_events["index"]}</h1>
 
-            <div className=" cursor-pointer h-full flex border-2 flex-col justify-center items-center border-black p-2 text-black rounded-xl">
-                <ShoppingCartIcon></ShoppingCartIcon>
-                <button className="flex" onClick={handleClick}>Register Classes</button>
+            <div className=" cursor-pointer h-full flex border-2 flex-col justify-center items-center border-black p-2 text-white rounded-xl">
+                <ShoppingCartIcon className="text-white"></ShoppingCartIcon>
+                <button className="flex text-white" onClick={handleClick}>Register Classes</button>
             </div>
         </div>
         <CalendarApp schedule_info={temp_events}></CalendarApp>
