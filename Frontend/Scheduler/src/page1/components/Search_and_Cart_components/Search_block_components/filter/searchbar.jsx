@@ -12,7 +12,7 @@ function search({ filter, setfilter, options }) {
 
       <div className="inline-block relative">
         <select
-          className="w-full py-2 px-3 border bg-[#ffffff] border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-blue-500 text-gray-900"
+          className="w-full py-2 px-3 border bg-[#ffffff] border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[##0424a4] focus:border-[#0424a4] hover:border-[#0424a4] text-gray-900"
           id="dropdown"
           value={filter}
           onChange={handleDropdownChange}

@@ -34,7 +34,6 @@ function class_card({class_info}) {
 
         </div>
 
-
     )
   }
   

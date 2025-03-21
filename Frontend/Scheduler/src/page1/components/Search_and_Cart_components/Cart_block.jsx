@@ -190,20 +190,21 @@ function Cart_block() {
 
   return (
     <>
-      <div className="h-[50rem] flex flex-col justify-top items-center bg-white   divide-black border-4 border-black size-full ">
-        <div className="flex  w-full border border-b-black">
-          <h1 className="text-5xl mr-auto p-3 text-black">Class List</h1>
+      <div className="h-[50rem] relative flex flex-col justify-top items-center bg-gray-100   divide-black border-4 border-black size-full ">
+
+        <div className="flex  w-full border text-center border-b-black">
+          <h1 className="text-5xl text-center mr-auto p-3 w-full font-semibold  text-black">Class List</h1>
         </div>
         <div className="h-[80%] size-full overflow-auto">
-          <ul className="flex flex-col items-center w-full">
+          <ul className="flex flex-col p-2 space-y-2 items-center w-full">
             {class_names.map((item, index) => {
               // For trash icon behavior: if pendingDeletion matches this item,
               // show spinner. Otherwise, show trash icon.
               return (
-                <li key={index} className="flex justify-between border border-b-black items-center w-full py-4">
+                <li key={index} className="flex rounded-md bg-white justify-between border border-gray-300 items-center w-full py-4">
                   <div className="flex items-center">
                     <Button onClick={() => handleOpenModal(item)}>
-                      <InformationCircleIcon className="w-6 h-6 border" />
+                      <InformationCircleIcon className="w-6 h-6 " />
                     </Button>
 
                     <Modal open={open} onClose={() => setOpen(false)}>
@@ -260,7 +261,7 @@ function Cart_block() {
                         )}
                       </Box>
                     </Modal>
-                    <div className="text-4xl px-1 text-black">{item}</div>
+                    <div className="text-2xl px-1 font-medium text-black">{item}</div>
                   </div>
                   <button
                     onClick={() => {
@@ -272,7 +273,7 @@ function Cart_block() {
                         setPendingDeletion(item);
                       }
                     }}
-                    className="border ml-auto mr-2 text-black"
+                    className=" ml-auto mr-2 text-black"
                   >
                     {pendingDeletion === item ? (
                       <CircularProgress size={24} />
@@ -285,8 +286,8 @@ function Cart_block() {
             })}
           </ul>
         </div>
-        <div className="flex items-center justify-center p-3 bg-amber-200 w-full h-[10%] text-blue-500">
-          <button className=" bg-fuchsia-300 w-full h-full "  onClick={handle_schedule_create}>
+        <div className="flex items-center border-black p-2 text-black justify-center w-full h-[10%] ">
+          <button className=" bg-[#a4c8e1] border-2 border-black rounded-xl w-full h-full text-black"  onClick={handle_schedule_create}>
             Generate
           </button>
         </div>
@@ -296,3 +297,4 @@ function Cart_block() {
 }
 
 export default Cart_block;
+

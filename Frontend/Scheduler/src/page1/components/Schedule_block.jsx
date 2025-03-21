@@ -11,7 +11,7 @@ function Schedule_block() {
     }, [valid_class_combinations]);
     return (
 
-      <div className="p-[2rem] w-full  bg-blue-500 space-x-4 items-center justify-center"> 
+      <div className="p-[2rem] w-full space-x-4 items-center justify-center"> 
       
 
 
