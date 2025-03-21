@@ -3,6 +3,8 @@ import { Button, Modal, Box, Typography, CircularProgress } from "@mui/material"
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { DataContext } from "../../../data/data.jsx";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
+
 
 function traverseDict(d, e, flag) {
   let keysToDelete = []; // Stores top-level keys to delete
@@ -46,10 +48,64 @@ function traverseDict(d, e, flag) {
           }
       }
   }
-  
-
-
 }
+
+
+const LectureLabTable = ({ lectureInfo }) => {
+  return (
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="class schedule table">
+        <TableHead>
+          <TableRow>
+            <TableCell><strong>Option</strong></TableCell>
+            <TableCell><strong>Status</strong></TableCell>
+            <TableCell><strong>Session</strong></TableCell>
+            <TableCell><strong>Class</strong></TableCell>
+            <TableCell><strong>Meeting Dates</strong></TableCell>
+            <TableCell><strong>Days and Times</strong></TableCell>
+            <TableCell><strong>Campus</strong></TableCell>
+            <TableCell><strong>Instructor</strong></TableCell>
+            <TableCell><strong>Instruction Mode</strong></TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {lectureInfo.map((lecture, index) => (
+            <React.Fragment key={index}>
+              <TableRow>
+                <TableCell rowSpan={lecture.lab_crn ? 2 : 1}>{lecture.option}</TableCell>
+                <TableCell>Open</TableCell>
+                <TableCell>Regular Academic</TableCell>
+                <TableCell>
+                  Component {lecture.lecture_schd}-Section - Class# {lecture.lecture_crn}
+                </TableCell>
+                <TableCell>{lecture.lecture_start_date} - {lecture.lecture_end_date}</TableCell>
+                <TableCell>{lecture.lecture_meets}</TableCell>
+                <TableCell>{lecture.lecture_campus}</TableCell>
+                <TableCell>{lecture.lecture_professor}</TableCell>
+                <TableCell>{lecture.lecture_instruction_method}</TableCell>
+              </TableRow>
+
+              {lecture.lab_crn && (
+                <TableRow>
+                  <TableCell>Open</TableCell>
+                  <TableCell>Regular Academic</TableCell>
+                  <TableCell>
+                    Component {lecture.lab_schd}-Section - Class# {lecture.lab_crn}
+                  </TableCell>
+                  <TableCell>{lecture.lab_start_date} - {lecture.lab_end_date}</TableCell>
+                  <TableCell>{lecture.lab_meets}</TableCell>
+                  <TableCell>{lecture.lab_campus}</TableCell>
+                  <TableCell>{lecture.lab_professor}</TableCell>
+                  <TableCell>{lecture.lab_instruction_method}</TableCell>
+                </TableRow>
+              )}
+            </React.Fragment>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+};
 
 
 
@@ -125,6 +181,8 @@ function Cart_block() {
   }
 }
 
+  // console.log(Object.keys(individual_classes).length)
+
 
   const deleteItem = (index) => {
     const keyToDelete = class_names[index];
@@ -145,16 +203,81 @@ function Cart_block() {
     }
   };
 
-  function getClassLectureInfo(className) {
-    if (!cart_data[className]) return [];
-    const classData = cart_data[className];
-    return Object.keys(classData).map((crn) => ({
-      crn,
-      enrollmentCapacity: classData[crn]["Enrollment Capacity"],
-      professor: classData[crn]["Professor"],
-      meets: classData[crn]["meets"],
-    }));
+
+
+  function getClassLectureInfo(className, cart_data, individual_classes) {
+    let groupedLectures = [];
+
+    if (individual_classes && individual_classes[className]) {
+        const classData = individual_classes[className];
+
+        Object.keys(classData).forEach((professor) => {
+            Object.keys(classData[professor]).forEach((section) => {
+                const lectures = classData[professor][section];
+
+                // If there's only one lecture and no lab, add it separately
+                if (lectures.length === 1) {
+                    const lecture = lectures[0];
+
+                    groupedLectures.push({
+                        option: groupedLectures.length + 1,
+                        lecture_crn: lecture.crn,
+                        lecture_professor: lecture.Professor,
+                        lecture_campus: lecture.campus,
+                        lecture_start_date: lecture.start_date,
+                        lecture_end_date: lecture.end_date,
+                        lecture_instruction_method: lecture.instruction_method,
+                        lecture_meets: lecture.meets,
+                        lecture_schd: lecture.schd,
+
+                        lab_crn: null, // No lab
+                        lab_professor: null,
+                        lab_campus: null,
+                        lab_start_date: null,
+                        lab_end_date: null,
+                        lab_instruction_method: null,
+                        lab_meets: null,
+                        lab_schd: null,
+                    });
+                } else {
+                    // Handle Lecture-Lab pairs if both exist
+                    const lecture = lectures.find(l => l.schd !== "LAB");
+                    const lab = lectures.find(l => l.schd === "LAB" || l.schd === "DIS");
+
+                    if (lecture) {
+                        groupedLectures.push({
+                            option: groupedLectures.length + 1,
+                            lecture_crn: lecture.crn,
+                            lecture_professor: lecture.Professor,
+                            lecture_campus: lecture.campus,
+                            lecture_start_date: lecture.start_date,
+                            lecture_end_date: lecture.end_date,
+                            lecture_instruction_method: lecture.instruction_method,
+                            lecture_meets: lecture.meets,
+                            lecture_schd: lecture.schd,
+
+                            lab_crn: lab ? lab.crn : null,
+                            lab_professor: lab ? lab.Professor : null,
+                            lab_campus: lab ? lab.campus : null,
+                            lab_start_date: lab ? lab.start_date : null,
+                            lab_end_date: lab ? lab.end_date : null,
+                            lab_instruction_method: lab ? lab.instruction_method : null,
+                            lab_meets: lab ? lab.meets : null,
+                            lab_schd: lab ? lab.schd : null,
+                        });
+                    }
+                }
+            });
+        });
+    }
+
+    return groupedLectures;
   }
+
+
+
+  
+
 
   const handleOpenModal = (className) => {
     setSelectedClass(className);
@@ -165,43 +288,38 @@ function Cart_block() {
 
   useEffect(() => {
 
-    
-
-
     if (open && selectedClass) {
-      console.log(valid_class_combinations, "start")
+        setLectureInfo([]);    // Clear previous data
+        setLoadingInfo(true);  // Start buffering
 
-      // Check if detailed data for the selected class exists.
-      if (cart_data[selectedClass] && Object.keys(cart_data[selectedClass]).length > 0) {
-        const info = getClassLectureInfo(selectedClass);
-        setLectureInfo(info);
-        setLoadingInfo(false);
-      } else {
-        setLoadingInfo(true);
-      }
+        const fetchLectureInfo = async () => {
+            await new Promise((resolve) => setTimeout(resolve, 300)); // Optional delay for UI feedback
+            const info = getClassLectureInfo(selectedClass, cart_data, individual_classes);
+
+            setLectureInfo(info);
+            setLoadingInfo(false);
+        };
+
+        fetchLectureInfo();
     }
-  }, [open, selectedClass, cart_data, valid_class_combinations]);
-
+  }, [open, selectedClass, cart_data, individual_classes]);
+      
+      
 
 
 
 
 
   useEffect(() => {
-
-
     if (Object.values(individual_classes).includes("")) {
       setloadingschedules(false)
-
     } else (
       setloadingschedules(true)
-
     )
-
-    
-
-
   }, [individual_classes]);
+
+
+
 
   // New effect: if the user clicked the trash icon (pendingDeletion is set)
   // and now the underlying info for that class is available, then delete the item.
@@ -244,8 +362,8 @@ function Cart_block() {
                           top: "50%",
                           left: "50%",
                           transform: "translate(-50%, -50%)",
-                          width: "70%",
-                          height: "60%",
+                          width: "80%",
+                          height: "75%",
                           bgcolor: "background.paper",
                           boxShadow: 24,
                           overflowY: "auto",
@@ -261,32 +379,19 @@ function Cart_block() {
                           <>
                             {selectedClass ? (
                               <>
-                                <Typography variant="h3" color="black" sx={{mb: 3}}>
+                                <Typography variant="h3" color="black" sx={{ mb: 3 }}>
                                   {selectedClass} Info
                                 </Typography>
-                                {lectureInfo.map((lecture) => (
-                                  <Box key={lecture.crn} sx={{ py: 2, px: 2, border: "1px solid #ccc", pb: 1, display: "flex", gap: 5, padding: 4, marginBottom: 2}}>
-                                        <Typography color="black">
-                                        <strong>CRN:</strong> {lecture.crn}
-                                        </Typography>
-                                        <Typography color="black">
-                                        <strong>Enrollment capacity:</strong> {lecture.enrollmentCapacity}
-                                        </Typography>
-                                        <Typography color="black">
-                                        <strong>Professor:</strong> {lecture.professor}
-                                        </Typography>
-                                        <Typography color="black">
-                                        <strong>Meets:</strong> {lecture.meets}
-                                        </Typography>
-                                  </Box>
-                                ))}
+                                <LectureLabTable lectureInfo={lectureInfo} />
                               </>
                             ) : (
                               <Typography color="black">No class selected.</Typography>
                             )}
-                            <Button className="mb-auto" variant="contained" onClick={() => setOpen(false)}>
+                            <div>
+                            <Button sx={{marginTop: 4 }} variant="contained" onClick={() => setOpen(false)}>
                               Close
                             </Button>
+                            </div>
                           </>
                         )}
                       </Box>
