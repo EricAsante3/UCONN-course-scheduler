@@ -136,7 +136,6 @@ function getDaysFromCombinedString(dayString) {
       return ["Online"];
   }
 
-  console.log(dayString)
   // Extract the day part (e.g., "TuTh" from "8:00AM - 9:15AM / TuTh")
   const dayPart = dayString; // Extracts "TuTh"
 
@@ -168,8 +167,8 @@ export function generateEvents(data) {
               calendarsThemes[codeKey] = {
                   colorName: codeKey,
                   lightColors: {
-                      main: stringToLightHex(codeKey),
-                      container: stringToLightHex(codeKey),
+                      main: stringToLightHex(codeKey + k.title),
+                      container: stringToLightHex(codeKey + k.title),
                       onContainer: '#000000'
                   }
               };
@@ -211,7 +210,6 @@ export function generateEvents(data) {
                   if (fullDay === "Online" || fullDay === undefined || fullDay === "Online Instruction" ) {
                       continue;
                   }
-                  console.log(fullDay)
                   if (!(fullDay in dayToDate)) {
 
                     for (let i of getDaysFromCombinedString(fullDay)){
@@ -219,9 +217,7 @@ export function generateEvents(data) {
                       if (i === "Online" || i === undefined || i === "Online Instruction") {
                         continue;
                     }
-                      console.log(i)
-                      console.log(dayToDate[i])
-                      console.log("---------------")
+
                       const tempDic = {
                         id: id,
                         title: title,
@@ -266,7 +262,7 @@ export function generateEvents(data) {
 
 
 
-function CalendarApp({schedule_info}) {
+function CalendarApp({schedule_info, index}) {
     const {settemp_schedule,settemp_events} = useContext(DataContext);
 
 
@@ -274,7 +270,7 @@ function CalendarApp({schedule_info}) {
     
  
   let generation = generateEvents(schedule_info)
-
+    generation["index"] = index
   useEffect(() => {
     settemp_events(generation)
     settemp_schedule(schedule_info)
