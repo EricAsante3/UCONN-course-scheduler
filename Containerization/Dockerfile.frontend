@@ -1,1 +1,13 @@
-FROM node:v22.11.0
+FROM node:22.11.0
+
+WORKDIR /app
+
+COPY Frontend /app/Frontend
+
+WORKDIR /app/Frontend/Scheduler
+
+RUN npm install
+
+EXPOSE 5173
+
+CMD ["npm", "run", "dev", "--", "--host"]

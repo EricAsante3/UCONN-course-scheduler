@@ -10,6 +10,7 @@ import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 
 function display() {
     const {temp_schedule,temp_events} = useContext(DataContext);
+    console.log(temp_schedule)
     const navigate = useNavigate();
 
     const handleClick = () => {
