@@ -76,7 +76,7 @@ const LectureLabTable = ({ lectureInfo }) => {
                 <TableCell>Open</TableCell>
                 <TableCell>Regular Academic</TableCell>
                 <TableCell>
-                  Component LEC-Section - Class# {lecture.lecture_crn}
+                  Component {lecture.lecture_schd}-Section - Class# {lecture.lecture_crn}
                 </TableCell>
                 <TableCell>{lecture.lecture_start_date} - {lecture.lecture_end_date}</TableCell>
                 <TableCell>{lecture.lecture_meets}</TableCell>
@@ -90,7 +90,7 @@ const LectureLabTable = ({ lectureInfo }) => {
                   <TableCell>Open</TableCell>
                   <TableCell>Regular Academic</TableCell>
                   <TableCell>
-                    Component LAB-Section - Class# {lecture.lab_crn}
+                    Component {lecture.lab_schd}-Section - Class# {lecture.lab_crn}
                   </TableCell>
                   <TableCell>{lecture.lab_start_date} - {lecture.lab_end_date}</TableCell>
                   <TableCell>{lecture.lab_meets}</TableCell>
@@ -225,6 +225,7 @@ function Cart_block() {
                         lecture_end_date: lecture.end_date,
                         lecture_instruction_method: lecture.instruction_method,
                         lecture_meets: lecture.meets,
+                        lecture_schd: lecture.schd,
 
                         lab_crn: null, // No lab
                         lab_professor: null,
@@ -233,11 +234,12 @@ function Cart_block() {
                         lab_end_date: null,
                         lab_instruction_method: null,
                         lab_meets: null,
+                        lab_schd: null,
                     });
                 } else {
                     // Handle Lecture-Lab pairs if both exist
                     const lecture = lectures.find(l => l.schd !== "LAB");
-                    const lab = lectures.find(l => l.schd === "LAB");
+                    const lab = lectures.find(l => l.schd === "LAB" || l.schd === "DIS");
 
                     if (lecture) {
                         groupedLectures.push({
@@ -249,6 +251,7 @@ function Cart_block() {
                             lecture_end_date: lecture.end_date,
                             lecture_instruction_method: lecture.instruction_method,
                             lecture_meets: lecture.meets,
+                            lecture_schd: lecture.schd,
 
                             lab_crn: lab ? lab.crn : null,
                             lab_professor: lab ? lab.Professor : null,
@@ -257,6 +260,7 @@ function Cart_block() {
                             lab_end_date: lab ? lab.end_date : null,
                             lab_instruction_method: lab ? lab.instruction_method : null,
                             lab_meets: lab ? lab.meets : null,
+                            lab_schd: lab ? lab.schd : null,
                         });
                     }
                 }
