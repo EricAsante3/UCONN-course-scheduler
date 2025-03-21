@@ -8,10 +8,7 @@ function Schedule_block() {
 
     useEffect(() => {
 
-      console.log("classes_combinations------------------")
-
     }, [valid_class_combinations]);
-    console.log(cart_data)
     return (
 
       <div className="p-[2rem] w-full  bg-blue-500 space-x-4 items-center justify-center"> 
@@ -28,6 +25,8 @@ function Schedule_block() {
     {Object.entries(valid_class_combinations).map(([key, value], index) => (
       <Schedule_card key={key} schedule_key={key} schedule_info={value} index={index + 1} />
     ))}
+    <div className='bg-amber-900 mb-56  w-full h-[800px]'></div>
+
   </>
 ) : (
   <h1>Schedules:</h1>
