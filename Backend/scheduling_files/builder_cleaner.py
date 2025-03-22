@@ -36,8 +36,6 @@ def schedule_cleaner(data, availabilities, class_lock):
 
 
     for i in list(data.keys()):
-        print(i)
-        print(is_subset(list(class_lock.values()), extract_integers(i)))
         if len(class_lock) != 0:
             if is_subset(list(class_lock.values()), extract_integers(i)) == False:
                 remove.append(i)

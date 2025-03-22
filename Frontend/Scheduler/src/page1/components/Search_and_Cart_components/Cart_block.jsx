@@ -5,6 +5,8 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { DataContext } from "../../../data/data.jsx";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 import { LockClosedIcon, LockOpenIcon } from '@heroicons/react/24/outline';
+import { stringToLightHex } from "../Schedule_components/Viewer_pop_up/Calender.jsx";
+
 
 function traverseDict(d, e, flag) {
   let keysToDelete = []; // Stores top-level keys to delete
@@ -111,7 +113,7 @@ const LectureLabTable = ({ lectureInfo }) => {
 
 
 function Cart_block() {
-  const { cart_data, setcart_data, availabilities_data, setavailabilities_data, individual_classes, setindividual_classes, classes_combinations, setclasses_combinations, valid_class_combinations,setvalid_class_combinations, api_url, class_lock, set_class_lock} = useContext(DataContext);
+  const { cart_data, setcart_data, availabilities_data, setavailabilities_data, individual_classes, setindividual_classes, classes_combinations, setclasses_combinations, valid_class_combinations,setvalid_class_combinations, api_url, class_lock, set_class_lock, init_search, set_init_search} = useContext(DataContext);
   const class_names = Object.keys(cart_data);
 
   const [open, setOpen] = useState(false);
@@ -191,9 +193,13 @@ function Cart_block() {
 
   // console.log(Object.keys(individual_classes).length)
   function buffer(){
-    if (valid_class_combinations !== null)
-        handle_schedule_create()
-    setvalid_class_combinations(null)
+    if (Object.keys(cart_data).length !== 0) {
+      set_init_search(false)
+      if (valid_class_combinations !== null)
+          handle_schedule_create()
+      setvalid_class_combinations(null)
+    }
+
   }
 
   const deleteItem = (index) => {
@@ -201,12 +207,17 @@ function Cart_block() {
     const Curr_cart_data = { ...cart_data };
     const Curr_availabilities_data = { ...availabilities_data};
     const Curr_individual_classes = { ...individual_classes};
+    const Curr_class_lock = { ...class_lock};
+    delete  Curr_class_lock[keyToDelete]
+
 
     delete Curr_cart_data[keyToDelete];
     traverseDict(Curr_availabilities_data,Curr_cart_data,"availabilities_data")
     traverseDict(Curr_individual_classes,Curr_cart_data,"individual_classes")
 
     setcart_data(Curr_cart_data);
+    set_class_lock(Curr_class_lock);
+
     if (JSON.stringify(Curr_availabilities_data) !== JSON.stringify(availabilities_data)){
       setavailabilities_data(Curr_availabilities_data)
     }
@@ -379,16 +390,10 @@ function Cart_block() {
                 
                 <li key={index} className="flex rounded-md bg-white justify-between border border-gray-300 items-center w-full py-4">
                   <div className="flex items-center">
-                    <Button onClick={() => handleOpenModal(item)}>
-                      <InformationCircleIcon className="w-6 h-6 " />
-                    </Button>
 
 
-                    {item in class_lock ? (
-                      <LockClosedIcon className="text-red-500 w-16 h-16 mr-2" onClick={handledelete}></LockClosedIcon>
-                    ) : (
-                      <LockOpenIcon className="text-black w-16 h-16 mr-2"></LockOpenIcon>
-                    )}
+
+
 
 
 
@@ -438,8 +443,34 @@ function Cart_block() {
                         )}
                       </Box>
                     </Modal>
-                    <div className="text-2xl px-1 font-medium text-black w-full">{item}</div>
+                    <div className="text-3xl  relative  font-medium text-black w-full flex flex-row items-center justify-center">
+
+                    <Button onClick={() => handleOpenModal(item)}>
+                      <InformationCircleIcon className="w-6 h-6 " />
+                    </Button>
+
+                      
+                    {item in class_lock ? (
+
+                        <LockClosedIcon className="text-red-500 w-15 h-15 mr-2 cursor-pointer" onClick={handledelete}></LockClosedIcon>
+
+                    ) : (
+
+                        <LockOpenIcon className="text-black peer  w-15 h-15 mr-2 cursor-pointer"></LockOpenIcon>
+
+                    )}
+                      <div className="min-w-fit">
+                      {item}
+
+                      </div>
+                      <h1 className="text-[1.2rem] text-black invisible peer-hover:visible text-center invisibleflex w-full font-normal items-center ml-3 justify-center">
+                        Lock class section in schedule view
+                      </h1>
+
+                    </div>
+
                   </div>
+
                   <button
                     onClick={() => {
                       // If underlying info for this class is loaded, delete immediately.
@@ -455,7 +486,7 @@ function Cart_block() {
                     {pendingDeletion === item ? (
                       <CircularProgress size={24} />
                     ) : (
-                      <TrashIcon className="w-6 h-6 text-red-500" />
+                      <TrashIcon className="w-6 h-6 text-red-500 cursor-pointer" />
                     )}
                   </button>
                 </li>

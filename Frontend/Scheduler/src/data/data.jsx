@@ -157,6 +157,7 @@ export const DataProvider = ({ children }) => {
 
     const [availabilities_data, setavailabilities_data] = useState({});
     const [cart_data, setcart_data] = useState({});
+    const [init_search, set_init_search] = useState(true);
 
 
 
@@ -175,13 +176,14 @@ export const DataProvider = ({ children }) => {
 
 
 
-    }, [classes_combinations]);
+    }, [classes_combinations]);class_lock
 
     useEffect(() => {
-
-
         console.log(valid_class_combinations)
+
     }, [valid_class_combinations]);
+
+
 
 
 
@@ -189,8 +191,8 @@ export const DataProvider = ({ children }) => {
 
         setvalid_class_combinations({})
         setclasses_combinations({})
-
-    }, [cart_data]);
+        set_init_search(true)
+    }, [cart_data,class_lock]);
 
 
 
@@ -299,7 +301,7 @@ export const DataProvider = ({ children }) => {
 
 
     return (
-        <DataContext.Provider value={{ api_url, campus, set_campuss, semester, set_semester, searched_data, setsearched_data, cart_data, setcart_data, transition_data, settransition_data , availabilities_data, setavailabilities_data,individual_classes,setindividual_classes,classes_combinations,setclasses_combinations,valid_class_combinations,setvalid_class_combinations,temp_events,settemp_events,temp_schedule,settemp_schedule, class_lock, set_class_lock}}>
+        <DataContext.Provider value={{ api_url, campus, set_campuss, semester, set_semester, searched_data, setsearched_data, cart_data, setcart_data, transition_data, settransition_data , availabilities_data, setavailabilities_data,individual_classes,setindividual_classes,classes_combinations,setclasses_combinations,valid_class_combinations,setvalid_class_combinations,temp_events,settemp_events,temp_schedule,settemp_schedule, class_lock, set_class_lock,init_search,set_init_search}}>
             {children}
         </DataContext.Provider>
     );

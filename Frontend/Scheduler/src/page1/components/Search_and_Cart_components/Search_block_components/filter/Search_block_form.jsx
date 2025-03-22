@@ -68,7 +68,6 @@ function Search_block_form() {
     const [seats_filter, set_seats_filter] = useState('Any');
     const [teaching_method_filter, set_teaching_method_filter] = useState('Any');
     const [formData, setFormData] = useState({});
-    const [defult, setdefult] = useState(false); // Additional state to force re-render
 
     useEffect(() => {
         const postFormData = async () => {    

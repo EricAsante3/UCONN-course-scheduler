@@ -5,7 +5,7 @@ import Welcome from './Welcome';
 import { CircularProgress } from '@mui/material';
 
 function Schedule_block() {
-    const { valid_class_combinations,setvalid_class_combinations,cart_data,classes_combinations } = useContext(DataContext);
+    const { valid_class_combinations,setvalid_class_combinations,cart_data,classes_combinations,init_search} = useContext(DataContext);
     const [count, setCount] = useState(0);
 
     useEffect(() => {
@@ -21,9 +21,9 @@ function Schedule_block() {
   { valid_class_combinations === null? (
 
     <CircularProgress size={24} />
-) : Object.keys(valid_class_combinations).length > 0 ? (
+) : Object.keys(valid_class_combinations).length >= 0 && init_search === false? (
   <>
-    <h1 className='text-4xl font-semibold text-white w-full mb-5 text-center'>Possible Schedules found:</h1>
+    <h1 className='text-4xl font-semibold text-white w-full mb-5 text-center'>Possible Schedules found: {Object.keys(valid_class_combinations).length}</h1>
 
 
 
@@ -43,7 +43,7 @@ function Schedule_block() {
   </>
 ) : (
 
-  <h1>Schedules:</h1>
+  <h1 className='text-4xl font-semibold text-white w-full mb-5 text-center'>Generate Schedule!</h1>
   
 )}
 

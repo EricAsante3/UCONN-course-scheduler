@@ -118,7 +118,7 @@ function convertTo24HourFormat(timeRange) {
   return [startTime24h, endTime24h];
 }
 
-function stringToLightHex(s) {
+export function stringToLightHex(s) {
     // Create a hash of the string using CryptoJS
     const hashValue = CryptoJS.MD5(s).toString();
 

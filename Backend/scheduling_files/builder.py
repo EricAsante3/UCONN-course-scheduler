@@ -4,207 +4,93 @@ from testing_files.printers import json_printer,schedule_printer
 from scheduling_files.class_combiner import combination_maker
 
 
+def remove_escape_chars(input_str):
+    # Replace all instances of \" with an empty string
+    return input_str.replace('\\"', '')
 
-def convert_meeting_time(meetingTimes):
-    # Mapping of numerical day values to letter representations
-    day_map = {"0": "M", "1": "Tu", "2": "W", "3": "Th", "4": "F", "5": "Sa", "6": "Su"}
+def time_slots_overlap(a, b, conflictions):
+    """
+    Check if two time slots overlap on the same day.
     
-    # Parse the JSON string
-    meetings = json.loads(meetingTimes)
-    
-    if not meetings:
-        return ""
-    
-    # Take only the first meeting time if multiple exist
-    meeting = meetings[0]
-    
-    # Extract relevant fields
-    day = day_map.get(meeting["meet_day"], "?")
-    start_time = meeting["start_time"]
-    end_time = meeting["end_time"]
-    
-    # Format output
-    return f"{day} {start_time}-{end_time}"
-
-
-
-
-
-
-
-
-
-# Function to check if two time slots overlap
-def time_slots_overlap(slot1, slot2):
-    # Handle the case where either slot is "Online Instruction"
-    if slot1 == "Online Instruction" or slot2 == "Online Instruction" or slot1 == "Does Not Meet" or slot2 == "Does Not Meet" or slot1 == "by arrangement" or slot2 == "by arrangement":
+    Args:
+        slot1 (list): A list of dictionaries representing the first time slot(s).
+        slot2 (list): A list of dictionaries representing the second time slot(s).
+        conflictions (set): A set of tuples representing conflicting slot pairs.
+        
+    Returns:
+        bool: True if there is an overlap on the same day, False otherwise.
+    """
+    ps1 = a[0]
+    ps2 = a[1]
+    if ps1 == "Online Instruction" or ps2 == "Online Instruction" or ps1 == "Does Not Meet" or ps2 == "Does Not Meet" or ps1 == "by arrangement" or ps2 == "by arrangement":
         return False
 
-    # Split multiple day-time pairs separated by semicolons
-    def split_multiple_slots(slot):
-        # Strip leading/trailing spaces and split by semicolon
-        return [s.strip() for s in slot.split(";") if s.strip()]
+    slot1 = a[0]
+    slot2 = b[0]
 
-    # Convert time slots into comparable format (e.g., start and end times)
-    def parse_time_slot(slot):
-        # Split the day and time parts
-        parts = slot.split()
-        if len(parts) < 2:
-            raise ValueError("Invalid time slot format")
-
-        day_part = parts[0]
-        time_part = " ".join(parts[1:])  # Handle cases where time part has spaces
-
-        # Split start and end times
-        if "-" not in time_part:
-            raise ValueError("Invalid time range format")
-
-        start, end = time_part.split("-")
-        start_time = convert_to_minutes(start.strip())
-        end_time = convert_to_minutes(end.strip())
-
-        # Parse days
-        days = get_days_from_combined_string(day_part)
-        return days, start_time, end_time
 
     def convert_to_minutes(time_str):
-        # Handle edge cases where time_str might be empty or invalid
+        """
+        Convert a time string in "HHMM" format to minutes since midnight.
+        
+        Args:
+            time_str (str): Time in "HHMM" format (24-hour notation).
+            
+        Returns:
+            int: Minutes since midnight.
+        """
         if not time_str:
-            raise ValueError("Empty time string")
-
-        # Remove 'a' or 'p' and handle edge cases
-        time_str = time_str.lower().replace("a", "").replace("p", "")
-        if ":" not in time_str:
-            time_str += ":00"  # Assume minutes are 00 if not provided
-
-        try:
-            hours, minutes = map(int, time_str.split(":"))
-        except ValueError:
             raise ValueError("Invalid time format")
-
-        # Handle 12-hour to 24-hour conversion
-        if "p" in time_str.lower() and hours != 12:
-            hours += 12
-        if "a" in time_str.lower() and hours == 12:
-            hours = 0  # Handle midnight case
-
+        if len(time_str) == 3:
+            time_str = "0" + time_str
+        
+        hours = int(time_str[:2])
+        minutes = int(time_str[2:])
         return hours * 60 + minutes
 
-    def get_days_from_combined_string(day_str):
-        # Map day abbreviations to full day names
-        day_map = {
-            "M": "Monday",
-            "T": "Tuesday",
-            "W": "Wednesday",
-            "Th": "Thursday",
-            "F": "Friday",
-            "S": "Saturday",
-            "Su": "Sunday",
-        }
+    # Precompute minutes for all slots
+    for slots in [slot1, slot2]:
+        for slot in slots:
+            slot["start_min"] = convert_to_minutes(slot["start_time"])
+            slot["end_min"] = convert_to_minutes(slot["end_time"])
 
-        # Handle multiple days (e.g., "MWF", "TTh")
-        days = []
-        i = 0
-        while i < len(day_str):
-            if i + 1 < len(day_str) and day_str[i:i+2] in day_map:
-                days.append(day_map[day_str[i:i+2]])
-                i += 2
-            elif day_str[i] in day_map:
-                days.append(day_map[day_str[i]])
-                i += 1
-            else:
-                raise ValueError(f"Invalid day abbreviation: {day_str[i]}")
-        return days
+    # Group slots by meet_day
+    def group_by_day(slots):
+        groups = {}
+        for slot in slots:
+            day = slot["meet_day"]
+            if day not in groups:
+                groups[day] = []
+            groups[day].append(slot)
+        return groups
 
-    # Split slots into individual day-time pairs
-    try:
-        slots1 = split_multiple_slots(slot1)
-        slots2 = split_multiple_slots(slot2)
-    except ValueError as e:
-        print(f"Error splitting time slots: {e}")
-        return False
+    group1 = group_by_day(slot1)
+    group2 = group_by_day(slot2)
 
-    # Compare all pairs of slots
-    for s1 in slots1:
-        try:
-            day1, start1, end1 = parse_time_slot(s1)
-        except ValueError as e:
-            print(f"Error parsing time slot '{s1}': {e}")
-            continue
+    # Check for overlapping slots on the same day
+    for day in group1:
+        if day in group2:
+            for s1 in group1[day]:
+                for s2 in group2[day]:
+                    # Check for overlap
+                    if not (s1["end_min"] <= s2["start_min"] or s2["end_min"] <= s1["start_min"]):
+                        # Add conflict pair to conflictions set
+                        conflict_pair = tuple(sorted([str(s1), str(s2)]))
+                        conflictions.add(conflict_pair)
+                        return True  # Overlap found
 
-        for s2 in slots2:
-            try:
-                day2, start2, end2 = parse_time_slot(s2)
-            except ValueError as e:
-                print(f"Error parsing time slot '{s2}': {e}")
-                continue
-
-            if set(day1).intersection(set(day2)) and (slot1.split(" ")[1].split("-")[0] == slot2.split(" ")[1].split("-")[0]):
-                return True
-
-            # Check if the days overlap and time slots overlap
-            if set(day1).intersection(set(day2)) and not (end1 <= start2 or end2 <= start1):
-                return True
-
-    return False    # Handle the case where either slot is "Online Instruction"
+    return False  # No overlap found
 
 
 
 
 
-    def split_multiple_slots(slot):
-        # Strip leading/trailing spaces and split by semicolon
-        return [s.strip() for s in slot.split(";") if s.strip()]
-
-    # Convert time slots into comparable format (e.g., start and end times)
-    def parse_time_slot(slot):
-        # Split the day and time parts
-        parts = slot.split()
-        if len(parts) < 2:
-            raise ValueError("Invalid time slot format")
-
-        day_part = parts[0]
-        time_part = " ".join(parts[1:])  # Handle cases where time part has spaces
-
-        # Split start and end times
-        if "-" not in time_part:
-            raise ValueError("Invalid time range format")
-
-        start, end = time_part.split("-")
-        start_time = convert_to_minutes(start.strip())
-        end_time = convert_to_minutes(end.strip())
-
-        # Parse days
-        days = get_days_from_combined_string(day_part)
-        return days, start_time, end_time
-
-    def convert_to_minutes(time_str):
-        # Handle edge cases where time_str might be empty or invalid
-        if not time_str:
-            raise ValueError("Empty time string")
-
-        # Remove 'a' or 'p' and handle edge cases
-        time_str = time_str.lower().replace("a", "").replace("p", "")
-        if ":" not in time_str:
-            time_str += ":00"  # Assume minutes are 00 if not provided
-
-        try:
-            hours, minutes = map(int, time_str.split(":"))
-        except ValueError:
-            raise ValueError("Invalid time format")
-
-        # Handle 12-hour to 24-hour conversion
-        if "p" in time_str.lower() and hours != 12:
-            hours += 12
-        if "a" in time_str.lower() and hours == 12:
-            hours = 0  # Handle midnight case
-
-        return hours * 60 + minute
 # Function to check if a combination of components has no overlapping time slots
 def is_valid_combination(components):
+    conflict = set()
     for i in range(len(components)):
         for j in range(i + 1, len(components)):
-            if time_slots_overlap(components[i]["meets"], components[j]["meets"]):
+            if time_slots_overlap( [json.loads(remove_escape_chars(components[i]["meetingTimes"])),components[i]["meets"]] , [json.loads(remove_escape_chars(components[j]["meetingTimes"])), components[j]["meets"]], conflict):
                 return False
     return True
 
@@ -243,29 +129,3 @@ def schedule_maker(data):
     valid_permutations = generate_valid_permutations(data)
     return valid_permutations
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if __name__ == "__main__":
-    print(time_slots_overlap2("5-6:10p", "11:15a-1:05p"))
-    print(time_slots_overlap2("11:50a-1:05p", "11:15a-1:05p"))

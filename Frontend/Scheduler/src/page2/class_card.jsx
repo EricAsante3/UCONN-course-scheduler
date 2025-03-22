@@ -3,38 +3,22 @@ import { useState,useContext,useEffect } from 'react';
 import CryptoJS from 'crypto-js';
 import { DataContext } from '../data/data';
 import { LockClosedIcon, LockOpenIcon } from '@heroicons/react/24/outline';
-
-
-
-function stringToLightHex(s) {
-    // Create a hash of the string using CryptoJS
-    const hashValue = CryptoJS.MD5(s).toString();
-
-    // Convert parts of the hash to RGB values
-    const r = (parseInt(hashValue.slice(0, 2), 16) % 106) + 150; // Ensure 150-255 range
-    const g = (parseInt(hashValue.slice(2, 4), 16) % 106) + 150;
-    const b = (parseInt(hashValue.slice(4, 6), 16) % 106) + 150;
-
-    // Convert to hex format
-    return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
-}
+import { stringToLightHex } from '../page1/components/Schedule_components/Viewer_pop_up/Calender';
 
 
 
 
-const handleClick = () => {
-    set_class_lock((prevState) => ({
-      ...prevState,  // Spread the old state to retain its values
-      newKey: 'newValue',  // Add the new key-value pair
-    }));
-  };
+
+
+
+
 
 
 
 
 
 function class_card({class_info}) {
-    const { class_lock, set_class_lock } = useContext(DataContext);
+    const { class_lock, set_class_lock, availabilities_data } = useContext(DataContext);
 
 
     const handleClick = () => {
@@ -69,7 +53,7 @@ function class_card({class_info}) {
             {class_info[0].code in class_lock ? (
                 <LockClosedIcon className='text-red-500 w-12 h-12 '></LockClosedIcon>
             ) : (
-                <LockOpenIcon className='text-black-500 w-12 h-12  top-16 right-16' onClick={handleClick}></LockOpenIcon>
+                <LockOpenIcon className='text-black-500 w-12 h-12  top-16 right-16 cursor-pointer' onClick={handleClick}></LockOpenIcon>
             )}
 
             </div>
@@ -80,9 +64,11 @@ function class_card({class_info}) {
 
 
             {class_info.map((item, index) => (
-                <h1 key={index} className="p-2 text-lg border-b  text-black">
-                    {item.schd} - {item.time} - {item.instruction_method}
-                </h1>
+                <h1 key={index} className="p-2 text-lg border-b text-black">
+  {item.schd} - {item.time} - {item.instruction_method}   
+  &nbsp;(Open Seats: <span className={`text-${availabilities_data[item.code.split(" ")[0]][item.campus][`${item.code}, ${item.no}`]["Enrollment Total"] >= 0 ? 'green-500' : 'red-500'}`}> {availabilities_data[item.code.split(" ")[0]][item.campus][`${item.code}, ${item.no}`]["Enrollment Total"]}</span> / Total Seats: {availabilities_data[item.code.split(" ")[0]][item.campus][`${item.code}, ${item.no}`]["Enrollment Capacity"]}
+  )
+</h1>
             ))}
 
         </div>
