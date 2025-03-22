@@ -5,7 +5,7 @@ This guide provides the necessary Docker commands to build and run the frontend 
 ## Prerequisites
 - Docker installed on your machine.
 - Dockerfiles for the frontend and backend applications located in the `Containerization` directory.
-- All Docker commands must be run in the root repository directory ./UCONN-course-scheduler for them to work!
+- All Docker commands must be run in the root repository directory ./UCONN-course-scheduler for them to work.
 
 ## Build Docker Images
 
