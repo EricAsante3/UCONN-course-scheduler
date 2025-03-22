@@ -23,6 +23,9 @@ This guide provides the necessary Docker commands to build and run the frontend 
    docker run -d -p 5173:5173 frontend
    
 
-3. **Run Backend**:
+4. **Run Backend**:
    ```bash
    docker run -d -p 5123:5123 backend
+   
+5. **Application should be visable at http://localhost:5173/**:
+   ```bash
