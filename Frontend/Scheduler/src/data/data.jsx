@@ -179,7 +179,6 @@ export const DataProvider = ({ children }) => {
     }, [classes_combinations]);class_lock
 
     useEffect(() => {
-        console.log(valid_class_combinations)
 
     }, [valid_class_combinations]);
 
@@ -199,13 +198,11 @@ export const DataProvider = ({ children }) => {
 
     useEffect(() => {
 
-        console.log(campus)
 
     }, [campus]);
 
     useEffect(() => {
 
-        console.log(semester)
 
 
     }, [semester]);

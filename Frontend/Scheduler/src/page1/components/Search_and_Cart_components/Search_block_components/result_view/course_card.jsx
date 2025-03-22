@@ -15,9 +15,16 @@ function course_card({title, course_information}) {
     }, [cart_data]); 
 
     const transition_to_cart = () => {
-        if (!(title in cart_data)) {
+
+
+
+        if (!(title in cart_data) && Object.keys(cart_data).length < 8) {
             settransition_data([...transition_data, {[title]:course_information}]);
         }
+
+
+
+
     };
 
 
