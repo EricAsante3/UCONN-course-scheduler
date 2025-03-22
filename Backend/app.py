@@ -132,6 +132,7 @@ def class_availabilities():
     '''
 
     season_year = {
+        "Summer 2025": "1255",
         "Fall 2025": "1258",
         "Spring 2025": "1253",
         "Winter 2025": "1251",
@@ -165,6 +166,7 @@ def availability_helper():
 
 
     season_year = {
+        "Summer 2025": "1255",
         "Fall 2025": "1258",
         "Spring 2025": "1253",
         "Winter 2025": "1251",
