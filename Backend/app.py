@@ -221,7 +221,7 @@ def validate_schedule():
 
     # Get the JSON data sent in the request body
     data = request.get_json()
-    valid_schedules = schedule_cleaner(data["schedules"],data["ava"])
+    valid_schedules = schedule_cleaner(data["schedules"],data["ava"],data["class_lock"])
     return(valid_schedules)
 
 

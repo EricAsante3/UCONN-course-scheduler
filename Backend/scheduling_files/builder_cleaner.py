@@ -1,10 +1,49 @@
 import re
 import json
 
+def is_subset(arr1, arr2):
+    # Convert both arrays to sets and check if arr1 is a subset of arr2
+    return set(arr1).issubset(set(arr2))
 
-def schedule_cleaner(data, availabilities):
+
+
+def extract_integers(input_string):
+    """
+    Extracts all integer values between closing bracket `)`, period `.`, or the end of the string.
+
+    Args:
+        input_string (str): The input string to process.
+
+    Returns:
+        list: A list of extracted integers.
+    """
+    # Regular expression to match integers after ), ., or end of string
+    pattern = r'\)(\d+)|\.(\d+)|(\d+)$'
+
+    # Find all matches
+    matches = re.findall(pattern, input_string)
+
+    # Flatten the matches and filter out empty strings
+    integers = [int(match) for group in matches for match in group if match]
+
+    return integers
+
+
+
+def schedule_cleaner(data, availabilities, class_lock):
     remove = []
+
+
+
     for i in list(data.keys()):
+        print(i)
+        print(is_subset(list(class_lock.values()), extract_integers(i)))
+        if len(class_lock) != 0:
+            if is_subset(list(class_lock.values()), extract_integers(i)) == False:
+                remove.append(i)
+                continue
+
+
         parts = i.split(".")
         for i in parts:
             if i in remove:
