@@ -363,9 +363,15 @@ function Cart_block() {
     <>
       <div className="drop-shadow-[10px_15px_10px_rgba(0,0,0,0.5)] h-[50rem] relative flex flex-col justify-top items-center bg-gray-100   divide-black border-2 border-black size-full ">
 
-        <div className="flex  w-full  text-center ">
-          <h1 className="text-5xl text-center mr-auto p-3 w-full font-semibold  text-black">Class List</h1>
+        <div className="flex flex-row w-full justify-center items-center text-center ">
+          <h1 className="text-5xl text-center  p-3 font-semibold  text-black">Class List</h1>
+
+          {Object.keys(cart_data).length >= 8 && (
+          <h1 className="text-5xl text-center p-3 font-semibold text-black">- Full</h1>
+          )}
+
         </div>
+
         <div className="h-[80%] size-full overflow-auto">
           <ul className="flex flex-col p-2 space-y-2 items-center w-full">
             {class_names.map((item, index) => {
