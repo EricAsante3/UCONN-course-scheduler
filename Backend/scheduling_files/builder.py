@@ -3,6 +3,37 @@ import json
 from testing_files.printers import json_printer,schedule_printer
 from scheduling_files.class_combiner import combination_maker
 
+
+
+def convert_meeting_time(meetingTimes):
+    # Mapping of numerical day values to letter representations
+    day_map = {"0": "M", "1": "Tu", "2": "W", "3": "Th", "4": "F", "5": "Sa", "6": "Su"}
+    
+    # Parse the JSON string
+    meetings = json.loads(meetingTimes)
+    
+    if not meetings:
+        return ""
+    
+    # Take only the first meeting time if multiple exist
+    meeting = meetings[0]
+    
+    # Extract relevant fields
+    day = day_map.get(meeting["meet_day"], "?")
+    start_time = meeting["start_time"]
+    end_time = meeting["end_time"]
+    
+    # Format output
+    return f"{day} {start_time}-{end_time}"
+
+
+
+
+
+
+
+
+
 # Function to check if two time slots overlap
 def time_slots_overlap(slot1, slot2):
     # Handle the case where either slot is "Online Instruction"
@@ -212,5 +243,29 @@ def schedule_maker(data):
     valid_permutations = generate_valid_permutations(data)
     return valid_permutations
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
-    print(time_slots_overlap("W 11:15a-1:05p", "MWF 11:15a-12:05p"))
+    print(time_slots_overlap2("5-6:10p", "11:15a-1:05p"))
+    print(time_slots_overlap2("11:50a-1:05p", "11:15a-1:05p"))

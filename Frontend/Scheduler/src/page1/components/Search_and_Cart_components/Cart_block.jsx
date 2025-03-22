@@ -4,7 +4,7 @@ import { TrashIcon } from "@heroicons/react/24/outline";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { DataContext } from "../../../data/data.jsx";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
-
+import { LockClosedIcon, LockOpenIcon } from '@heroicons/react/24/outline';
 
 function traverseDict(d, e, flag) {
   let keysToDelete = []; // Stores top-level keys to delete
@@ -111,7 +111,7 @@ const LectureLabTable = ({ lectureInfo }) => {
 
 
 function Cart_block() {
-  const { cart_data, setcart_data, availabilities_data, setavailabilities_data, individual_classes, setindividual_classes, classes_combinations, setclasses_combinations, valid_class_combinations,setvalid_class_combinations, api_url} = useContext(DataContext);
+  const { cart_data, setcart_data, availabilities_data, setavailabilities_data, individual_classes, setindividual_classes, classes_combinations, setclasses_combinations, valid_class_combinations,setvalid_class_combinations, api_url, class_lock, set_class_lock} = useContext(DataContext);
   const class_names = Object.keys(cart_data);
 
   const [open, setOpen] = useState(false);
@@ -121,6 +121,13 @@ function Cart_block() {
   const [loadingschedules, setloadingschedules] = useState(false);
   const [loadingInfo, setLoadingInfo] = useState(false);
   const [lectureInfo, setLectureInfo] = useState([]);
+
+
+  useEffect(() => {
+
+  }, [class_lock]);
+
+
   // New state for pending deletion: stores the class name that the user wants to delete.
   const [pendingDeletion, setPendingDeletion] = useState(null);
 
@@ -154,7 +161,8 @@ function Cart_block() {
                 },
                 body: JSON.stringify({
                     schedules: response_schedules, 
-                    ava: ava_data
+                    ava: ava_data,
+                    class_lock: class_lock
                 }), // Form data automatically sets the appropriate Content-Type
             });
             if (response.ok) {
@@ -182,7 +190,11 @@ function Cart_block() {
 }
 
   // console.log(Object.keys(individual_classes).length)
-
+  function buffer(){
+    if (valid_class_combinations !== null)
+        handle_schedule_create()
+    setvalid_class_combinations(null)
+  }
 
   const deleteItem = (index) => {
     const keyToDelete = class_names[index];
@@ -348,12 +360,42 @@ function Cart_block() {
             {class_names.map((item, index) => {
               // For trash icon behavior: if pendingDeletion matches this item,
               // show spinner. Otherwise, show trash icon.
+
+
+              const handledelete = () => {
+                set_class_lock((prevState) => {
+                  const newState = { ...prevState };  // Spread the old state to retain its values
+                  delete newState[item];  // Dynamically remove the key based on `item`
+                  return newState;
+                });
+              };
+            
+
+              
+ 
+
+
               return (
+                
                 <li key={index} className="flex rounded-md bg-white justify-between border border-gray-300 items-center w-full py-4">
                   <div className="flex items-center">
                     <Button onClick={() => handleOpenModal(item)}>
                       <InformationCircleIcon className="w-6 h-6 " />
                     </Button>
+
+
+                    {item in class_lock ? (
+                      <LockClosedIcon className="text-red-500 w-16 h-16 mr-2" onClick={handledelete}></LockClosedIcon>
+                    ) : (
+                      <LockOpenIcon className="text-black w-16 h-16 mr-2"></LockOpenIcon>
+                    )}
+
+
+
+
+
+
+
 
                     <Modal open={open} onClose={() => setOpen(false)}>
                       <Box
@@ -396,7 +438,7 @@ function Cart_block() {
                         )}
                       </Box>
                     </Modal>
-                    <div className="text-2xl px-1 font-medium text-black">{item}</div>
+                    <div className="text-2xl px-1 font-medium text-black w-full">{item}</div>
                   </div>
                   <button
                     onClick={() => {
@@ -428,7 +470,7 @@ function Cart_block() {
         ) : (
               <button
                 className="bg-[#000e2f] cursor-pointer text-center border-2 border-black rounded-xl w-full text-4xl hover:border-[#e4002b] font-semibold h-full text-white"
-                onClick={handle_schedule_create}>
+                onClick={buffer}>
                 Generate
               </button>
             )}
