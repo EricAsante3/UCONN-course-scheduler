@@ -5,6 +5,7 @@
   padding: 2rem;
   margin: 0 auto;
   max-width: 1280rem;
+  min-width: 1024px;
 }
 
 ::-webkit-scrollbar {

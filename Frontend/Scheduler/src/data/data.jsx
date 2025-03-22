@@ -146,8 +146,8 @@ function transition_helper(obj,availabilities_data) {
 export const DataProvider = ({ children }) => {
     const api_url = 'http://127.0.0.1:5123';  // Immutable message
 
-    const [campus, set_campuss] = useState("Storrs");
-    const [semester, set_semester] = useState("Fall 2025");
+    const [campus, set_campuss] = useState("-");
+    const [semester, set_semester] = useState("-");
 
     const [searched_data, setsearched_data] = useState({});
     const [transition_data, settransition_data] = useState([]);
@@ -188,6 +188,26 @@ export const DataProvider = ({ children }) => {
 
 
     }, [cart_data]);
+
+
+
+
+    useEffect(() => {
+
+        console.log(campus)
+
+    }, [campus]);
+
+    useEffect(() => {
+
+        console.log(semester)
+
+
+    }, [semester]);
+
+
+
+
 
     useEffect(() => {
 

@@ -19,7 +19,9 @@ value_switch_case = {
         "Spring 2025": "1253",
         "Winter 2025": "1251",
         "Fall 2024": "1248",
-        "Spring 2024": "1243"
+        "Spring 2024": "1243",
+        "Summer 2025": "1255",
+
     },
     "campus": {
         "Any Campus": "",

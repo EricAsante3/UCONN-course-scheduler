@@ -1,6 +1,8 @@
 import { DataContext } from '../../data/data';
 import Schedule_card from './Schedule_components/Nav_bar/schedule_card'
 import { useState,useContext, useEffect } from 'react'
+import Welcome from './Welcome';
+
 
 function Schedule_block() {
     const { valid_class_combinations,setvalid_class_combinations,cart_data,classes_combinations } = useContext(DataContext);
@@ -11,8 +13,7 @@ function Schedule_block() {
     }, [valid_class_combinations]);
     return (
 
-      <div className="p-[2rem] w-full space-x-4 items-center justify-center"> 
-      
+      <div className="p-[2rem] w-full space-x-4 items-center justify-center "> 
 
 
         <div className="p-[1rem] bg-[#4d7ff1] flex flex-col items-center relative overflow-auto divide-black border-2 border-black w-full h-96">
@@ -25,7 +26,7 @@ function Schedule_block() {
     {Object.entries(valid_class_combinations).map(([key, value], index) => (
       <Schedule_card key={key} schedule_key={key} schedule_info={value} index={index + 1} />
     ))}
-    <div className='bg-amber-900 mb-56  w-full h-[800px]'></div>
+    <div className=' mb-56  w-full h-[800px]'></div>
 
   </>
 ) : (
