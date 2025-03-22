@@ -1,0 +1,13 @@
+beautifulsoup4==4.13.3
+docker==7.1.0
+Flask==3.1.0
+Flask-Cors==5.0.0
+lxml==5.3.1
+MarkupSafe==3.0.2
+npm==0.1.1
+optional-django==0.1.0
+packaging==24.2
+pyparsing==3.0.9
+pytest==8.3.3
+requests==2.32.3
+soupsieve==2.6

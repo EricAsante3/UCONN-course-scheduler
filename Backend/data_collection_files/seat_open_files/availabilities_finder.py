@@ -75,11 +75,11 @@ def api_call(campus, season_year, subject):
     return response.text  # Return the final response
 
 
-def extract_class_info(html_content):
+def extract_class_info(html_content,subject,campus):
     # Parse the HTML content using BeautifulSoup
     soup = BeautifulSoup(html_content, 'lxml')    
     # Initialize an empty list to store the results
-    class_info_list = {}
+    class_info_list = {subject:{campus:{}}}
     
     # Find all rows in the table (each row represents a class)
     rows = soup.find_all('tr', id=lambda x: x and x.startswith('trUC_CLASS_G_VW$0_row'))
@@ -120,15 +120,23 @@ def extract_class_info(html_content):
         # Extract the professor's name
         professor = row.find('span', {'id': lambda x: x and x.startswith('UC_DERIVED_GST_SSR_INSTR_LONG$')})
         professor = professor.text.strip() if professor else None
-        
+
+        time = row.find('span', {'id': lambda x: x and x.startswith('HRS_DAYS_LOC_CLMN$')})
+        time = time.text.strip() if time else None
+
+        instruction_method = row.find('span', {'id': lambda x: x and x.startswith('INSTRUCT_MODE_DESCR$')})
+        instruction_method = instruction_method.text.strip() if instruction_method else None
+
         # Append the extracted information to the list as a dictionary
         if catalog_nbr != None:
-            class_info_list[(subject + " " + catalog_nbr + ", " + class_section)]= {
+            class_info_list[subject][campus][(subject + " " + catalog_nbr + ", " + class_section)]= {
                     'reserved': reserved,
                     'Enrollment Capacity': enrollment_cap,
                     'Enrollment Total': enrollment_tot,
                     'Seats Available': available_seats,
-                    'Professor': professor
+                    'Professor': professor,
+                    'instruction_method': instruction_method,
+                    'time': time
                 }
     
     return class_info_list
@@ -136,5 +144,10 @@ def extract_class_info(html_content):
 
 def availabilities_adder(campus, season_year, subject):
     raw_html = api_call(campus, season_year, subject)
-    data = extract_class_info(raw_html)
+    data = extract_class_info(raw_html,subject,campus)
     return data
+
+
+
+if __name__ == "__main__":
+    availabilities_adder("storrs", "Fall 2025", )

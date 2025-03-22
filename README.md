@@ -1,10 +1,28 @@
-# Project Dependencies
+# Docker Commands to Run Applications
 
-## Run Instructions
+This guide provides the necessary Docker commands to build and run the frontend and backend applications.
 
-```sh
-pip3 install -r requirements.txt
-python3 app.py
-```
-## Jira Board
-https://admin.atlassian.com/o/7301734a-8e2f-4227-b056-d5585d5e07ff/users?status=ACTIVE
+## Prerequisites
+- Docker installed on your machine.
+- Dockerfiles for the frontend and backend applications located in the `Containerization` directory.
+- All Docker commands must be run in the root repository directory ./UCONN-course-scheduler for them to work!
+
+## Build Docker Images
+
+1. **Build the Frontend Docker Image**:
+   ```bash
+   docker build -f Containerization/Dockerfile.frontend -t frontend .
+   
+2. **Build the Backend Docker Image**:
+   ```bash
+   docker build -f Containerization/Dockerfile.backend -t backend .
+   
+
+3. **Run Frontend**:
+   ```bash
+   docker run -d -p 5173:5173 frontend
+   
+
+3. **Run Backend**:
+   ```bash
+   docker run -d -p 5123:5123 backend

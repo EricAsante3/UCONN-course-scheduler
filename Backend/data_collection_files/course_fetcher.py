@@ -4,6 +4,10 @@ from testing_files.printers import json_printer
 api_url = "https://classes.uconn.edu/api/?page=fose&route=search"
 
 
+
+
+
+
 def api_call(filter_list, url):
     """
     Retrives raw couse info from Uconn's couse search API endpoint 
@@ -39,16 +43,18 @@ def api_call(filter_list, url):
     else:
         return None
 
-def orginizer(raw_course_list):
+def orginizer(raw_course_list,campus):
     """input: [{c1},{c1}]   ouput: {"cse 1010": [], "cse 1020": []}"""
     orgnized_cousre_list = {}
     for course in raw_course_list:
+        course["campus"] = campus
+
         if course["stat"] != "X":
             if (course["code"] in orgnized_cousre_list):
-                orgnized_cousre_list[course["code"]].append(course)
+                orgnized_cousre_list[course["code"]][course["crn"]] = course
             else:
-                orgnized_cousre_list[course["code"]] = []
-                orgnized_cousre_list[course["code"]].append(course)
+                orgnized_cousre_list[course["code"]] = {}
+                orgnized_cousre_list[course["code"]][course["crn"]] = course
     return orgnized_cousre_list
 
 def course_fetcher(filter_list):
@@ -56,5 +62,5 @@ def course_fetcher(filter_list):
     if (raw_course_list == None) or ("fatal" in raw_course_list.json()):
         return None
     else:
-        orgnized_courses = orginizer(raw_course_list.json()["results"])
+        orgnized_courses = orginizer(raw_course_list.json()["results"], filter_list[2])
         return orgnized_courses
