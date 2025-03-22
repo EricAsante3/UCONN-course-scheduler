@@ -33,7 +33,7 @@ function Welcome({state}) {
     }
   }
 
-
+  
     return (
       <div className="w-[50rem] h-[36rem]  flex flex-col  z-50 items-center absolute bg-gray-100 drop-shadow-[10px_15px_10px_rgba(0,0,0,0.5)] divide-black border-1 rounded-xl border-black p-4 space-y-6"> 
         <div className="w-full bg-[#000e2f] flex flex-col drop-shadow-[5px_5px_5px_rgba(0,0,0,0.5)] items-center rounded-xl justify-center h-[20%]">

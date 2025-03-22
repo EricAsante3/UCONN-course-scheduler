@@ -185,7 +185,8 @@ export const DataProvider = ({ children }) => {
 
     useEffect(() => {
 
-
+        setvalid_class_combinations({})
+        setclasses_combinations({})
 
     }, [cart_data]);
 

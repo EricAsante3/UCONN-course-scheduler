@@ -427,7 +427,7 @@ function Cart_block() {
               <CircularProgress size={24} />
         ) : (
               <button
-                className="bg-[#4d7ff1] cursor-pointer text-center border-2 border-black rounded-xl w-full text-4xl font-semibold h-full text-white"
+                className="bg-[#000e2f] cursor-pointer text-center border-2 border-black rounded-xl w-full text-4xl hover:border-[#e4002b] font-semibold h-full text-white"
                 onClick={handle_schedule_create}>
                 Generate
               </button>

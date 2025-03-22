@@ -13,7 +13,7 @@ function Search_block() {
 
 
     return (
-        <div className=" drop-shadow-[-10px_15px_10px_rgba(0,0,0,0.5)] relative h-[50rem] size-full flex flex-row divide-x-2 divide-black border-2 border-black ">
+        <div className=" drop-shadow-[-10px_15px_10px_rgba(0,0,0,0.5)] relative h-[50rem]  size-full flex flex-row divide-x-2 divide-black border-2 border-black ">
 
             <div className="bg-gray-100 w-full h-full flex flex-col  ">
                 <div className=" bg-[F8F8F8] w-full h-[10%]">

@@ -13,10 +13,10 @@ function Schedule_block() {
     }, [valid_class_combinations]);
     return (
 
-      <div className="p-[2rem] w-full space-x-4 items-center justify-center "> 
+      <div className="p-[2rem] w-full space-x-4 items-center justify-center  "> 
 
 
-        <div className="p-[1rem] bg-[#4d7ff1] flex flex-col items-center relative overflow-auto divide-black border-2 border-black w-full h-96">
+        <div className="p-[1rem] bg-[#000e2f] flex  rounded-xl flex-col items-center relative overflow-auto divide-black border-2 border-black w-full h-96">
         
         {Object.keys(classes_combinations).length === 0 && Object.keys(valid_class_combinations).length === 0 && Object.keys(cart_data).length > 0 ? (
   <div className="flex items-center justify-center h-full">Conflicts Found In Class List</div>
@@ -32,7 +32,6 @@ function Schedule_block() {
 ) : (
   <h1>Schedules:</h1>
 )}
-
 
 
 
