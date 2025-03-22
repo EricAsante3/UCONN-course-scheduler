@@ -10,6 +10,7 @@ import { createEventsServicePlugin } from '@schedule-x/events-service'
 import '@schedule-x/theme-default/dist/index.css'
 import './calender.css'
 import { customStyles } from '../../Search_and_Cart_components/Search_block_components/filter/Styles/searchbar_style'
+import { LockClosedIcon, LockOpenIcon } from '@heroicons/react/24/outline';
 
 
 import { DataContext } from '../../../../data/data';
@@ -263,7 +264,7 @@ export function generateEvents(data) {
 
 
 function CalendarApp({schedule_info, index}) {
-    const {settemp_schedule,settemp_events} = useContext(DataContext);
+  const {settemp_schedule,settemp_events} = useContext(DataContext);
 
 
 
