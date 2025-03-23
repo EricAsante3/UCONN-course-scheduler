@@ -24,11 +24,8 @@ function Schedule_block() {
 ) : Object.keys(valid_class_combinations).length >= 0 && init_search === false? (
   <>
     <div className="w-full flex flex-col items-center rounded-xl mb-5 justify-center ">
-      <div className='flec flex-row'>
-        <h1 className='text-4xl mb-1 font-semibold text-white w-full  text-center'>Possible Schedules found: {Object.keys(valid_class_combinations).length}</h1>
-
-
-      </div>
+    
+      <h1 className='text-4xl mb-1 font-semibold text-white w-full  text-center'>Possible Schedules found: {Object.keys(valid_class_combinations).length}</h1>
       <h1 className="text-sm font-medium"> (Consider locking class sections in schedule view to reduce possibilities and computation)   </h1>
 
     </div>
