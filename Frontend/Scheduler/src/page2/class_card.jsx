@@ -63,13 +63,24 @@ function class_card({class_info}) {
             <h1 className="p-2 text-lg border-b  text-black">Taught By: {class_info[0].Professor}</h1>
 
 
-            {class_info.map((item, index) => (
+            {class_info.map((item, index) => {
+                const availability = availabilities_data[item.code.split(" ")[0]][item.campus][`${item.code}, ${item.no}`]
+                const reserveCap = availability["reserved"]
+                const formattedReserveCap = Array.isArray(reserveCap) 
+                ? reserveCap.join(" ") 
+                : typeof reserveCap === 'string'
+                    ? reserveCap.replace(/([a-zA-Z])(\d)/g, '$1 $2')
+                    : reserveCap;
+                const openSeats = availability["Enrollment Capacity"] - availability["Enrollment Total"];
+                return (
+        
                 <h1 key={index} className="p-2 text-lg border-b text-black">
-  {item.schd} - {item.time} - {item.instruction_method}   
-  &nbsp;(Open Seats: <span className={`text-${availabilities_data[item.code.split(" ")[0]][item.campus][`${item.code}, ${item.no}`]["Enrollment Total"] >= 0 ? 'green-500' : 'red-500'}`}> {availabilities_data[item.code.split(" ")[0]][item.campus][`${item.code}, ${item.no}`]["Enrollment Total"]}</span> / Total Seats: {availabilities_data[item.code.split(" ")[0]][item.campus][`${item.code}, ${item.no}`]["Enrollment Capacity"]}
-  )
-</h1>
-            ))}
+                    {item.schd} - {item.time} - {item.instruction_method}   
+                    &nbsp;(Open Seats: <span className={`text-${openSeats > 0 ? 'green-500' : 'red-500'}`}> {openSeats} </span> / Total Seats: {availability["Enrollment Capacity"]}{" "} / Reserve Cap:{" "}{formattedReserveCap})
+  
+                </h1>
+            );
+            })}
 
         </div>
 

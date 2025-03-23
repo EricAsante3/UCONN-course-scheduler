@@ -65,8 +65,9 @@ function Welcome({state}) {
               <h1 className="text-sm text-black">
   <a href="https://www.linkedin.com/in/eric-asante-8a7275220" className="text-sm text-black hover:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
     Eric Asante
-  </a> and <a href="https://www.linkedin.com/in/ethanthomas0/" className="text-sm text-black hover:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
+  </a>, <a href="https://www.linkedin.com/in/ethanthomas0/" className="text-sm text-black hover:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
     Ethan Thomas
+  </a> and <a href="https://www.linkedin.com/in/abeshan-javed-6ba1a7265/" className="text-sm text-black hover:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Abeshan Javed
   </a>
 </h1>
 
@@ -77,11 +78,10 @@ function Welcome({state}) {
 
             <div className="flex flex-row">
 
-            <h1 className="text-sm text-black mr-2">UI/UX Designers:</h1>
+            <h1 className="text-sm text-black mr-2">UI/UX Designer:</h1>
 
             <h1 className="text-sm text-black">
-  <a href="https://www.linkedin.com/in/abeshan-javed-6ba1a7265/" className="text-sm text-black hover:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Abeshan Javed
-  </a> and <a href="https://www.linkedin.com/in/joel-duah/" className="text-sm text-black hover:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
+  <a href="https://www.linkedin.com/in/joel-duah/" className="text-sm text-black hover:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
     Joel Duah
   </a>
 </h1>
