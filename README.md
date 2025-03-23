@@ -61,7 +61,7 @@ docker run -d -p 5123:5123 backend
 
 Open Google Chrome (or your preferred browser) and enter the following URL:
 ```bash
-http://localhost:5172/
+http://localhost:5173/
 ```
 
 7. **Final Steps**    
