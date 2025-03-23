@@ -144,7 +144,7 @@ function transition_helper(obj,availabilities_data) {
 
 
 export const DataProvider = ({ children }) => {
-    const api_url = 'http://127.0.0.1:5123';  // Immutable message
+    const api_url = 'https://uconn-course-scheduler-backend.onrender.com/';  // Immutable message
 
     const [campus, set_campuss] = useState("-");
     const [semester, set_semester] = useState("-");
