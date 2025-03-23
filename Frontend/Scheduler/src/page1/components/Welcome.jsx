@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import Search from "./Search_and_Cart_components/Search_block_components/filter/searchbar"
+import Search from "./Search_and_Cart_components/Sb_compo/filter/searchbar"
 
 import { DataContext } from "../../data/data"
 

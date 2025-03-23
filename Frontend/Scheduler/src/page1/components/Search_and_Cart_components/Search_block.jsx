@@ -1,7 +1,7 @@
-import Search_block_form from "./Search_block_components/filter/Search_block_form.jsx"
+import Search_block_form from "./Sb_compo/filter/Search_block_form.jsx"
 
 
-import Course_view from "./Search_block_components/result_view/course_view.jsx"
+import Course_view from "./Sb_compo/result_view/course_view.jsx"
 
 
 import { DataContext} from "../../../data/data.jsx";
