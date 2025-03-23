@@ -10,7 +10,6 @@ import { stringToLightHex } from "../Schedule_components/Viewer_pop_up/Calender.
 
 function traverseDict(d, e, flag) {
   let keysToDelete = []; // Stores top-level keys to delete
-  const [prevState, setPrevState] = useState(null);
 
 
   if (flag === "availabilities_data"){
@@ -114,7 +113,7 @@ const LectureLabTable = ({ lectureInfo }) => {
 
 
 function Cart_block() {
-  const { cart_data, setcart_data, availabilities_data, setavailabilities_data, individual_classes, setindividual_classes, classes_combinations, setclasses_combinations, valid_class_combinations,setvalid_class_combinations, api_url, class_lock, set_class_lock, init_search, set_init_search} = useContext(DataContext);
+  const { newgen, setnewgen, cart_data, setcart_data, availabilities_data, setavailabilities_data, individual_classes, setindividual_classes, classes_combinations, setclasses_combinations, valid_class_combinations,setvalid_class_combinations, api_url, class_lock, set_class_lock, init_search, set_init_search} = useContext(DataContext);
   const class_names = Object.keys(cart_data);
 
   const [open, setOpen] = useState(false);
@@ -194,11 +193,10 @@ function Cart_block() {
 
   // console.log(Object.keys(individual_classes).length)
   function buffer(){
-
-    if (Object.keys(cart_data).length !== 0 ) {
+    if (Object.keys(cart_data).length !== 0 && newgen === false) {
+      setnewgen(true)
       set_init_search(false)
-      if (valid_class_combinations !== null && (Object.keys(cart_data) != prevState))
-          setPrevState(Object.keys(cart_data))
+      if (valid_class_combinations !== null)
           handle_schedule_create()
       setvalid_class_combinations(null)
     }
