@@ -12,7 +12,6 @@ import Register_classes from '/src/page2/Register_classes.jsx';
 
 function display() {
     const {temp_schedule,temp_events} = useContext(DataContext);
-    console.log(temp_schedule)
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
 
