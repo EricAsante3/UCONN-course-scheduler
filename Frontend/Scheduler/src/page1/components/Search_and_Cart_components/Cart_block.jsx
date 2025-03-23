@@ -10,6 +10,7 @@ import { stringToLightHex } from "../Schedule_components/Viewer_pop_up/Calender.
 
 function traverseDict(d, e, flag) {
   let keysToDelete = []; // Stores top-level keys to delete
+  const [prevState, setPrevState] = useState(null);
 
 
   if (flag === "availabilities_data"){
@@ -193,9 +194,11 @@ function Cart_block() {
 
   // console.log(Object.keys(individual_classes).length)
   function buffer(){
-    if (Object.keys(cart_data).length !== 0) {
+
+    if (Object.keys(cart_data).length !== 0 ) {
       set_init_search(false)
-      if (valid_class_combinations !== null)
+      if (valid_class_combinations !== null && (Object.keys(cart_data) != prevState))
+          setPrevState(Object.keys(cart_data))
           handle_schedule_create()
       setvalid_class_combinations(null)
     }
