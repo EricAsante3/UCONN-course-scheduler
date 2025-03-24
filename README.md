@@ -17,16 +17,16 @@ If asked to allow anything or accept anything, do so. If there is something that
 
 1. **Download VSCODE (Visual Studio Code)**  
    [VSCODE Download](https://code.visualstudio.com/Download)  
-   Run the exe file and keep clicking next, minimize the VSCode tab; we will use it later.
+   Run the exe file to install (it should be in the top right of your tab when you click download) and keep clicking next, minimize the VSCode tab; we will use it later.
 
 2. **Download Git**  
    [Git Download](https://git-scm.com/downloads)  
-   Run the exe file and keep clicking next.  
+   Run the exe file to install and keep clicking next.  
    If asked where to open, click VSCode and close out of the file.
 
 3. **Download Docker**  
    [Docker Download](https://www.docker.com/)  
-   Run the exe file and keep clicking next. You will be asked to restart—do so.  
+   Run the exe file to install and keep clicking next. You will be asked to restart—do so.  
    
    *After installation:*
    - Search for Docker on the taskbar search bar and open Docker.
