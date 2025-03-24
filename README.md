@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <td><img src="images/scheduler_preview.png" alt="Scheduler Preview" width="400"/></td>
+    <td><img src="images/home_page.png" alt="Scheduler Preview" width="400"/></td>
     <td><img src="images/course_selection.png" alt="Course Selection" width="400"/></td>
   </tr>
 </table>
