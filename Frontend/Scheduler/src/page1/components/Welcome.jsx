@@ -114,7 +114,7 @@ function Welcome({state}) {
         <div>
               {Troll ? (
                 <div className="h-full w-full">
-                  <h1 className="text-black">All Hail the ReadME specialist Abeshan Javed</h1>
+                  <h1 className="text-black">All Hail the READme specialist Abeshan Javed</h1>
                   <h1 className="text-black">Joel Mr.fold-alot Duah</h1>
                 </div>
               ) : null}
