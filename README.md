@@ -1,9 +1,13 @@
 # UCONN Course Scheduler Setup
 
-<table>
+<table style="width: 100%; text-align: center;">
   <tr>
-    <td><img src="images/homepage.png" alt="Scheduler Preview" width="400"/></td>
-    <td><img src="images/schedule_view.png" alt="Course Selection" width="400"/></td>
+    <td style="width: 50%; text-align: center;">
+      <img src="images/homepage.png" alt="Scheduler Preview" width="400"/>
+    </td>
+    <td style="width: 50%; text-align: center;">
+      <img src="images/schedule_view.png" alt="Course Selection" width="400"/>
+    </td>
   </tr>
 </table>
 
