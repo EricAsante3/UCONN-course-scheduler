@@ -68,7 +68,7 @@ docker run -d -p 5123:5123 backend
 
 6. **Access the Application**
 
-Open Google Chrome (do not use other browser) and enter the following URL:
+Open a browser and enter the following URL:  if it doesn't work on your browser use google chrome
 ```bash
 http://localhost:5173/
 ```
