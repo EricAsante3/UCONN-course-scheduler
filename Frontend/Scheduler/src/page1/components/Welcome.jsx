@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useState,useEffect } from "react"
 import Search from "./Search_and_Cart_components/Search_block_components/filter/searchbar"
 
 import { DataContext } from "../../data/data"
@@ -13,6 +13,8 @@ const Campus = [
   "School of Law"
 ]
 
+
+
 const Semester = [
   "-",
   "Fall 2025",
@@ -22,9 +24,29 @@ const Semester = [
 
 
 
+
 function Welcome({state}) {
 
-    const { campus, set_campuss, semester, set_semester} = useContext(DataContext);
+  const { campus, set_campuss, semester, set_semester} = useContext(DataContext);
+
+  let count = 0
+  const [Troll, setTroll] = useState(false)
+
+  function troller(){
+    if (count == 5){
+      setTroll(true)
+  
+    } else {
+      count += 1
+    }
+  }
+  
+  console.log(count)
+
+  useEffect (() => {
+
+  }, [Troll]
+  )
 
   function close(){
     if (!(campus == "-" || semester == "-")){
@@ -38,7 +60,7 @@ function Welcome({state}) {
       <div className="w-[50rem] h-[36rem]  flex flex-col  z-50 items-center absolute bg-gray-100 drop-shadow-[10px_15px_10px_rgba(0,0,0,0.5)] divide-black border-1 rounded-xl border-black p-4 space-y-6"> 
         <div className="w-full bg-[#000e2f] flex flex-col drop-shadow-[5px_5px_5px_rgba(0,0,0,0.5)] items-center rounded-xl justify-center h-[20%]">
             <h1 className="text-5xl font-bold m-0.5">UCONN Course Scheduler</h1>
-            <h1 className="font-medium">"For students, Made by students"</h1>
+            <h1 onClick={troller} className="font-medium">"For students, by students"</h1>
         </div>
 
 
@@ -60,15 +82,19 @@ function Welcome({state}) {
 
         <div className="w-full text-center " >
             <div className="flex flex-row">
-              <h1 className="text-sm text-black mr-2">Developers:</h1>
+              <h1 className="text-sm text-black mr-2">Developed by:</h1>
 
               <h1 className="text-sm text-black">
   <a href="https://www.linkedin.com/in/eric-asante-8a7275220" className="text-sm text-black hover:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
     Eric Asante
   </a>, <a href="https://www.linkedin.com/in/ethanthomas0/" className="text-sm text-black hover:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
     Ethan Thomas
-  </a> and <a href="https://www.linkedin.com/in/abeshan-javed-6ba1a7265/" className="text-sm text-black hover:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Abeshan Javed
+  </a>, 
+  <a href="https://www.linkedin.com/in/abeshan-javed-6ba1a7265/" className="text-sm text-black hover:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer"> Abeshan Javed
+  </a>, and
+  <a href="https://www.linkedin.com/in/joel-duah/" className="text-sm text-black hover:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer"> Joel Duah
   </a>
+  
 </h1>
 
 
@@ -78,15 +104,20 @@ function Welcome({state}) {
 
             <div className="flex flex-row">
 
-            <h1 className="text-sm text-black mr-2">UI/UX Designer:</h1>
 
-            <h1 className="text-sm text-black">
-  <a href="https://www.linkedin.com/in/joel-duah/" className="text-sm text-black hover:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
-    Joel Duah
-  </a>
-</h1>
+            <h1 className="text-sm text-black"></h1>
             </div>
 
+        </div>
+
+
+        <div>
+              {Troll ? (
+                <div className="h-full w-full">
+                  <h1 className="text-black">All Hail the ReadME specialist Abeshan Javed</h1>
+                  <h1 className="text-black">Joel Mr.fold-alot Duah</h1>
+                </div>
+              ) : null}
         </div>
 
       </div>
