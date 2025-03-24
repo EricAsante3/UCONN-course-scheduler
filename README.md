@@ -9,7 +9,7 @@
 
 Docker commands at bottom  
 Follow these steps to use the course scheduler. Skip any steps you have already completed. Please read over these steps carefully and have these steps open before moving on to the next step.  
-If asked to allow anything or accept anything, do so.
+If asked to allow anything or accept anything, do so. If there is something that pops up on your screen that isn't in the instructions, you can probably ignore it.
 
 ---
 
