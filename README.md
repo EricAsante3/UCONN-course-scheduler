@@ -3,7 +3,7 @@
 <table>
   <tr>
     <td><img src="images/homepage.png" alt="Scheduler Preview" width="400"/></td>
-    <td><img src="images/course_selection.png" alt="Course Selection" width="400"/></td>
+    <td><img src="images/schedule_view.png" alt="Course Selection" width="400"/></td>
   </tr>
 </table>
 
