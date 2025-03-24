@@ -2,6 +2,10 @@
 Docker commands at bottom
 Follow these steps to use the course scheduler. Skip any steps you have already completed.
 
+# Note: Please use Google Chrome
+## Other browsers may not work as supposed to
+
+
 ---
 
 ## Prerequisites
