@@ -88,4 +88,7 @@ If asked to allow anything or accept anything, do so. If there is something that
    - Return to the VSCode terminal and run the following command to stop the Docker containers **after** finishing building your schedule:
    ```bash
    docker kill $(docker ps -aq)
+   ```
+8. **Feedback Form**
+   - Please fill this out
    
