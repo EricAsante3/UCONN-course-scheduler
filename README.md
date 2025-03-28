@@ -85,7 +85,7 @@ If asked to allow anything or accept anything, do so. If there is something that
    - Once your schedule is built, remember to register for your courses on Student Admin.
    - You can leave the filters as "Any."
    - After clicking generate, scroll down to see the schedules
-   - If you close and want to reopen the site, just redo step 5 and 6 and you can access it again
+   - If you close and want to reopen the site, just redo step 5 and 6 and you can access it again, you may have to redo step 4 if the first docker command doesnt work
    - Return to the VSCode terminal and run the following command to stop the Docker containers **after** finishing building your schedule:
    ```bash
    docker kill $(docker ps -aq)
