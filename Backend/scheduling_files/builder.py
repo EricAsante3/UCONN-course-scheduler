@@ -2,7 +2,7 @@ from itertools import product
 import json
 from testing_files.printers import json_printer,schedule_printer
 from scheduling_files.class_combiner import combination_maker
-
+import concurrent.futures
 
 def remove_escape_chars(input_str):
     # Replace all instances of \" with an empty string
@@ -87,12 +87,37 @@ def time_slots_overlap(a, b, conflictions):
 
 # Function to check if a combination of components has no overlapping time slots
 def is_valid_combination(components):
-    conflict = set()
-    for i in range(len(components)):
-        for j in range(i + 1, len(components)):
-            if time_slots_overlap( [json.loads(remove_escape_chars(components[i]["meetingTimes"])),components[i]["meets"]] , [json.loads(remove_escape_chars(components[j]["meetingTimes"])), components[j]["meets"]], conflict):
+
+
+
+    # If there are fewer than 2 components, no conflict check is needed.
+    if len(components) < 2:
+        return True
+
+    # Prepare all unique pairs (i, j) with i < j.
+    pairs = [(i, j) for i in range(len(components)) for j in range(i + 1, len(components))]
+
+    # Define a helper function for checking a pair.
+    # To ensure picklability, we assign its __module__ to "__main__".
+    def check_pair(pair):
+        i, j = pair
+        return time_slots_overlap(
+            [json.loads(remove_escape_chars(components[i]["meetingTimes"])), components[i]["meets"]],
+            [json.loads(remove_escape_chars(components[j]["meetingTimes"])), components[j]["meets"]],
+            set()  # New set for each call to avoid conflicts.
+        )
+    
+
+    # Use a ProcessPoolExecutor to check pairs concurrently.
+    with concurrent.futures.ProcessPoolExecutor() as executor:
+        # executor.map returns results in order. As soon as a conflict is found, we can exit.
+        for result in executor.map(check_pair, pairs):
+            if result:
                 return False
+
     return True
+
+
 
 # Function to generate all valid permutations of classes
 def generate_valid_permutations(data):
