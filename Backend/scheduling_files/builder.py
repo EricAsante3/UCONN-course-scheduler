@@ -1,156 +1,199 @@
 from itertools import product
 import json
-from testing_files.printers import json_printer,schedule_printer
+from functools import lru_cache
+from concurrent.futures import ThreadPoolExecutor
+import time
 from scheduling_files.class_combiner import combination_maker
-import concurrent.futures
+# Global cache for meeting times to avoid repeated parsing
+meeting_time_cache = {}
 
 def remove_escape_chars(input_str):
-    # Replace all instances of \" with an empty string
-    return input_str.replace('\\"', '')
+    """Optimized escape character removal"""
+    if '\\"' in input_str:
+        return input_str.replace('\\"', '"')
+    return input_str
+
+@lru_cache(maxsize=None)
+def convert_to_minutes(time_str):
+    """Cached time conversion with error handling"""
+    if not time_str or time_str == "None":
+        return (0, (0, 0))
+    
+    if len(time_str) == 3:
+        time_str = "0" + time_str
+    
+    try:
+        hours = int(time_str[:2])
+        minutes = int(time_str[2:])
+        return (hours * 60 + minutes, (hours, minutes))
+    except (ValueError, IndexError):
+        return (0, (0, 0))
+
+def safe_json_parse(json_str):
+    """Robust JSON parsing with multiple fallbacks"""
+    if not json_str or not isinstance(json_str, str):
+        return []
+    
+    try:
+        # First try direct parse
+        return json.loads(json_str)
+    except json.JSONDecodeError:
+        try:
+            # Try with cleaned escape chars
+            cleaned = remove_escape_chars(json_str)
+            return json.loads(cleaned)
+        except json.JSONDecodeError:
+            try:
+                # Try wrapping in brackets if it looks like a list
+                if not (json_str.startswith('[') and json_str.endswith(']')):
+                    return json.loads(f'[{json_str}]')
+            except json.JSONDecodeError:
+                pass
+    return []
 
 def time_slots_overlap(a, b, conflictions):
     """
-    Check if two time slots overlap on the same day.
-    
-    Args:
-        slot1 (list): A list of dictionaries representing the first time slot(s).
-        slot2 (list): A list of dictionaries representing the second time slot(s).
-        conflictions (set): A set of tuples representing conflicting slot pairs.
-        
-    Returns:
-        bool: True if there is an overlap on the same day, False otherwise.
+    Optimized overlap checking with robust error handling
     """
-    ps1 = a[0]
-    ps2 = a[1]
-    if ps1 == "Online Instruction" or ps2 == "Online Instruction" or ps1 == "Does Not Meet" or ps2 == "Does Not Meet" or ps1 == "by arrangement" or ps2 == "by arrangement":
+    try:
+        ps1, ps2 = a[1], b[1]
+        
+        # Skip non-physical meetings
+        non_physical = {"Online Instruction", "Does Not Meet", "by arrangement"}
+        if ps1 in non_physical or ps2 in non_physical:
+            return False
+
+        # Create cache keys
+        mt1_key = (str(a[0]), str(a[1]))
+        mt2_key = (str(b[0]), str(b[1]))
+
+        # Get or create cached meeting times
+        if mt1_key not in meeting_time_cache:
+            meeting_time_cache[mt1_key] = safe_json_parse(a[0])
+        slot1 = meeting_time_cache[mt1_key]
+
+        if mt2_key not in meeting_time_cache:
+            meeting_time_cache[mt2_key] = safe_json_parse(b[0])
+        slot2 = meeting_time_cache[mt2_key]
+
+        # Validate parsed data
+        if not isinstance(slot1, list) or not isinstance(slot2, list):
+            return False
+
+        # Preprocess slots
+        def preprocess(slots):
+            processed = []
+            for slot in slots:
+                if not isinstance(slot, dict):
+                    continue
+                try:
+                    slot = slot.copy()
+                    slot["start_min"] = convert_to_minutes(slot.get("start_time", ""))[0]
+                    slot["end_min"] = convert_to_minutes(slot.get("end_time", ""))[0]
+                    processed.append(slot)
+                except (KeyError, AttributeError):
+                    continue
+            return processed
+
+        slot1 = preprocess(slot1)
+        slot2 = preprocess(slot2)
+
+        # Group by day
+        def group_by_day(slots):
+            groups = {}
+            for slot in slots:
+                day = slot.get("meet_day")
+                if day:
+                    groups.setdefault(day, []).append(slot)
+            return groups
+
+        group1 = group_by_day(slot1)
+        group2 = group_by_day(slot2)
+
+        # Check for overlaps
+        for day in group1:
+            if day in group2:
+                for s1 in group1[day]:
+                    for s2 in group2[day]:
+                        if not (s1["end_min"] <= s2["start_min"] or s2["end_min"] <= s1["start_min"]):
+                            conflict_pair = tuple(sorted((str(s1), str(s2))))
+                            conflictions.add(conflict_pair)
+                            return True
         return False
 
-    slot1 = a[0]
-    slot2 = b[0]
+    except Exception as e:
+        print(f"Error in time_slots_overlap: {str(e)}")
+        return False
 
-
-    def convert_to_minutes(time_str):
-        """
-        Convert a time string in "HHMM" format to minutes since midnight.
-        
-        Args:
-            time_str (str): Time in "HHMM" format (24-hour notation).
-            
-        Returns:
-            int: Minutes since midnight.
-        """
-        if not time_str:
-            raise ValueError("Invalid time format")
-        if len(time_str) == 3:
-            time_str = "0" + time_str
-        
-        hours = int(time_str[:2])
-        minutes = int(time_str[2:])
-        return hours * 60 + minutes
-
-    # Precompute minutes for all slots
-    for slots in [slot1, slot2]:
-        for slot in slots:
-            slot["start_min"] = convert_to_minutes(slot["start_time"])
-            slot["end_min"] = convert_to_minutes(slot["end_time"])
-
-    # Group slots by meet_day
-    def group_by_day(slots):
-        groups = {}
-        for slot in slots:
-            day = slot["meet_day"]
-            if day not in groups:
-                groups[day] = []
-            groups[day].append(slot)
-        return groups
-
-    group1 = group_by_day(slot1)
-    group2 = group_by_day(slot2)
-
-    # Check for overlapping slots on the same day
-    for day in group1:
-        if day in group2:
-            for s1 in group1[day]:
-                for s2 in group2[day]:
-                    # Check for overlap
-                    if not (s1["end_min"] <= s2["start_min"] or s2["end_min"] <= s1["start_min"]):
-                        # Add conflict pair to conflictions set
-                        conflict_pair = tuple(sorted([str(s1), str(s2)]))
-                        conflictions.add(conflict_pair)
-                        return True  # Overlap found
-
-    return False  # No overlap found
-
-
-
-
-
-# Function to check if a combination of components has no overlapping time slots
 def is_valid_combination(components):
+    """Validate combination of course components"""
+    try:
+        conflict = set()
+        n = len(components)
+        
+        # Prepare component data
+        prepared = []
+        for comp in components:
+            mt = comp.get("meetingTimes", "[]")
+            meets = comp.get("meets", "")
+            crn = comp.get("crn", "")
+            prepared.append((mt, meets, crn))
 
-
-
-    # If there are fewer than 2 components, no conflict check is needed.
-    if len(components) < 2:
+        # Check all pairs
+        with ThreadPoolExecutor() as executor:
+            futures = []
+            for i in range(n):
+                for j in range(i + 1, n):
+                    futures.append(executor.submit(
+                        time_slots_overlap,
+                        (prepared[i][0], prepared[i][1]),
+                        (prepared[j][0], prepared[j][1]),
+                        conflict
+                    ))
+            
+            for future in futures:
+                if future.result():  # If any overlap found
+                    return False
+        
         return True
-
-    # Prepare all unique pairs (i, j) with i < j.
-    pairs = [(i, j) for i in range(len(components)) for j in range(i + 1, len(components))]
-
-    # Define a helper function for checking a pair.
-    # To ensure picklability, we assign its __module__ to "__main__".
-    def check_pair(pair):
-        i, j = pair
-        return time_slots_overlap(
-            [json.loads(remove_escape_chars(components[i]["meetingTimes"])), components[i]["meets"]],
-            [json.loads(remove_escape_chars(components[j]["meetingTimes"])), components[j]["meets"]],
-            set()  # New set for each call to avoid conflicts.
-        )
     
+    except Exception as e:
+        print(f"Error in is_valid_combination: {str(e)}")
+        return False
 
-    # Use a ProcessPoolExecutor to check pairs concurrently.
-    with concurrent.futures.ProcessPoolExecutor() as executor:
-        # executor.map returns results in order. As soon as a conflict is found, we can exit.
-        for result in executor.map(check_pair, pairs):
-            if result:
-                return False
-
-    return True
-
-
-
-# Function to generate all valid permutations of classes
 def generate_valid_permutations(data):
-    # Extract all classes and their components
-
-
-    # Generate all possible combinations of components
-    all_combinations = combination_maker(data)
-    new_dict = {key: {} for key in all_combinations.keys()}
-    # Filter out combinations with overlapping time slots
-    valid_permutations = []
-    for combination in list(all_combinations.values()):
-        # Flatten the combination into a list of components
-        components = [comp for component in combination for comp in component]
-        if is_valid_combination(components):
-            valid_permutations.append(combination)
-
-
-    for i in valid_permutations:
-        crn = []
-        for k in i:
-            crn.append(k[-1]["crn"])
-        for key in new_dict:  
-            if all(word in key for word in crn):  # Check if all words are in the key
-                new_dict[key] = [i]  # Change the value to 1 if the condition is true
+    """Generate all valid schedule permutations"""
+    try:
+        all_combinations = combination_maker(data)
+        new_dict = {key: [] for key in all_combinations.keys()}
+        
+        # Process combinations in parallel
+        with ThreadPoolExecutor() as executor:
+            future_to_key = {}
+            for key, combination in all_combinations.items():
+                components = [comp for component in combination for comp in component]
+                future = executor.submit(is_valid_combination, components)
+                future_to_key[future] = (key, combination)
+            
+            for future in future_to_key:
+                key, combination = future_to_key[future]
+                if future.result():
+                    crns = [comp["crn"] for component in combination for comp in component]
+                    new_dict[key].append(combination)
+        
+        return {k: v for k, v in new_dict.items() if v}
     
-    valid_permutations = {key: value for key, value in new_dict.items() if value}
+    except Exception as e:
+        print(f"Error in generate_valid_permutations: {str(e)}")
+        return {}
 
-
-    return valid_permutations
-
-# Generate and print valid permutations
 def schedule_maker(data):
-    valid_permutations = generate_valid_permutations(data)
-    return valid_permutations
-
+    """Main entry point for schedule generation"""
+    start_time = time.time()
+    try:
+        result = generate_valid_permutations(data)
+        print(f"Schedule generation completed in {time.time() - start_time:.2f} seconds")
+        return result
+    except Exception as e:
+        print(f"Error in schedule_maker: {str(e)}")
+        return {}
