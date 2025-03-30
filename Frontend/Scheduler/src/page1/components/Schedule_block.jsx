@@ -10,9 +10,8 @@ import { CircularProgress } from '@mui/material';
 
 
 function Schedule_block() {
-    const { availabilities_data, class_lock,api_url,session_id_user, valid_class_combinations,setvalid_class_combinations,cart_data,classes_combinations,init_search} = useContext(DataContext);
-    const [page, setpage] = useState(0);
-    const [page_dic, setpage_dic] = useState({});
+    const { page,setpage, page_dic, setpage_dic, availabilities_data, class_lock,api_url,session_id_user, valid_class_combinations,setvalid_class_combinations,cart_data,classes_combinations,init_search} = useContext(DataContext);
+
 
 
 
@@ -31,16 +30,22 @@ function Schedule_block() {
 
 
     function right_handle(){
-      if (!("done"in page_dic)){
-        setvalid_class_combinations(null)
-      } else {
-        if (String(page + 10) in page_dic && page_dic[String(page+10)] !== 0){
+      if (String(page + 10) in page_dic){
+        if (page_dic[String(page+10)] !== 0){
           setpage(page + 10)
           setvalid_class_combinations(page_dic[String(page + 10)])
           return 0
         } else {
           return 0
         }
+      }
+
+      if (!("done"in page_dic)){
+        setvalid_class_combinations(null)
+      } else {
+
+          return 0
+  
       }
 
 
@@ -90,8 +95,7 @@ function Schedule_block() {
     console.log(page)
 
     useEffect(() => {
-      setpage(0)
-      setpage_dic({})
+
     }, [cart_data]);
     
     useEffect(() => {

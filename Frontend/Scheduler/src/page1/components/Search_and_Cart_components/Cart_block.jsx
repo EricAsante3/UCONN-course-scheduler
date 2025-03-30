@@ -113,7 +113,7 @@ const LectureLabTable = ({ lectureInfo }) => {
 
 
 function Cart_block() {
-  const { setsession_id_user, session_id_user, class_combinations, setclass_combinations, newgen, setnewgen, cart_data, setcart_data, availabilities_data, setavailabilities_data, individual_classes, setindividual_classes, classes_combinations, setclasses_combinations, valid_class_combinations,setvalid_class_combinations, api_url, class_lock, set_class_lock, init_search, set_init_search} = useContext(DataContext);
+  const { setpage_dic,setsession_id_user, session_id_user, class_combinations, setclass_combinations, newgen, setnewgen, cart_data, setcart_data, availabilities_data, setavailabilities_data, individual_classes, setindividual_classes, classes_combinations, setclasses_combinations, valid_class_combinations,setvalid_class_combinations, api_url, class_lock, set_class_lock, init_search, set_init_search} = useContext(DataContext);
   const class_names = Object.keys(cart_data);
 
   const [open, setOpen] = useState(false);
@@ -189,10 +189,12 @@ function Cart_block() {
 
             // Call the valid_schedules_post function with the response from schedules_post
 
-            // Set state with the resolved results
             console.log(result["session"])
             setsession_id_user(result["session"])
-            setclasses_combinations(result["classes"]);
+            setpage_dic(prevDict => ({
+              ...prevDict,
+              "0": result["classes"]
+            }));
             setvalid_class_combinations(result["classes"]);
         } catch (error) {
             console.error('Error:', error);

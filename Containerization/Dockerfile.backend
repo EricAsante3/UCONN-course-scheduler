@@ -7,8 +7,9 @@ COPY Backend /app/Backend
 WORKDIR /app/Backend
 
 RUN pip3 install -r requirements.txt
+RUN apt-get update && apt-get install -y redis-server
+COPY redis.conf /etc/redis/redis.conf
 
 
-EXPOSE 5123
-
-CMD ["python3", "app.py"]
+EXPOSE 5123 6380
+CMD sh -c "redis-server /etc/redis/redis.conf & python3 app.py"
