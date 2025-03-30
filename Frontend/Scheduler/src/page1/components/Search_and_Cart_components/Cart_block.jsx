@@ -113,7 +113,7 @@ const LectureLabTable = ({ lectureInfo }) => {
 
 
 function Cart_block() {
-  const { newgen, setnewgen, cart_data, setcart_data, availabilities_data, setavailabilities_data, individual_classes, setindividual_classes, classes_combinations, setclasses_combinations, valid_class_combinations,setvalid_class_combinations, api_url, class_lock, set_class_lock, init_search, set_init_search} = useContext(DataContext);
+  const { class_combinations, setclass_combinations, newgen, setnewgen, cart_data, setcart_data, availabilities_data, setavailabilities_data, individual_classes, setindividual_classes, classes_combinations, setclasses_combinations, valid_class_combinations,setvalid_class_combinations, api_url, class_lock, set_class_lock, init_search, set_init_search} = useContext(DataContext);
   const class_names = Object.keys(cart_data);
 
   const [open, setOpen] = useState(false);
@@ -138,13 +138,15 @@ function Cart_block() {
 
     if (Object.keys(individual_classes).length !== 0) {
 
-        const schedules_post = async (data1) => {    
-            const response = await fetch(api_url + '/course_scheduler/make_schedule_no_conflict', {
+        const schedules_post = async (Session_id) => {    
+            const response = await fetch(api_url + '/course_scheduler/make_schedule', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(data1), // Form data automatically sets the appropriate Content-Type
+                body: JSON.stringify({
+                  session_id:Session_id
+              }), // Form data automatically sets the appropriate Content-Type
             });
             if (response.ok) {
                 const responseData = await response.json(); // Parse the JSON response
@@ -155,36 +157,41 @@ function Cart_block() {
         };
 
         // Define valid_schedules_post as an async function
-        const valid_schedules_post = async (response_schedules, ava_data) => {    
-            const response = await fetch(api_url + '/course_scheduler/valid_schedules', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    schedules: response_schedules, 
-                    ava: ava_data,
-                    class_lock: class_lock
-                }), // Form data automatically sets the appropriate Content-Type
-            });
-            if (response.ok) {
-                const responseData = await response.json(); // Parse the JSON response
-                return responseData;
-            } else {
-                throw new Error('Failed to validate schedules');
-            }
-        };
+
+
+        const class_combinations_post = async (individual_classes) => {    
+          const response = await fetch(api_url + '/course_scheduler/combinations_maker', {
+              method: 'POST',
+              headers: {
+                  "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                classes:individual_classes,
+                lock: class_lock,
+                availabilities: availabilities_data,
+
+            }), // Form data automatically sets the appropriate Content-Type
+          });
+          if (response.ok) {
+              const responseData = await response.json(); // Parse the JSON response
+              return responseData;
+          } else {
+              throw new Error('Failed to create schedule');
+          }
+      };
+
+
+
 
         try {
             // Call the schedules_post function and await its result
+            const Session_id = await class_combinations_post(individual_classes);
 
-            const response_schedules = await schedules_post(individual_classes);
             // Call the valid_schedules_post function with the response from schedules_post
-            const response_valid_schedules = await valid_schedules_post(response_schedules, availabilities_data);
 
             // Set state with the resolved results
-            setclasses_combinations(response_schedules);
-            setvalid_class_combinations(response_valid_schedules);
+            setclasses_combinations(Session_id);
+            setvalid_class_combinations(Session_id);
         } catch (error) {
             console.error('Error:', error);
         }

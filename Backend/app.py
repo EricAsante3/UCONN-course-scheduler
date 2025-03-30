@@ -1,5 +1,11 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, session
+from flask_session import Session
 import json
+import redis
+import os
+import secrets
+
+
 from flask_cors import CORS
 
 from data_collection_files.filter_list_creator import filter_maker
@@ -18,13 +24,25 @@ from scheduling_files.class_combiner import combination_maker
 
 
 from scheduling_files.builder import schedule_maker
-from scheduling_files.builder_cleaner import schedule_cleaner
+from scheduling_files.class_combiner import combination_maker
 
 from testing_files.printers import json_printer
 
 # Initialize the Flask application
 app = Flask(__name__)
 CORS(app) # note to self may change
+
+app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY', secrets.token_hex(32))  # Secure & dynamic
+app.config['SESSION_TYPE'] = 'redis'
+app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_USE_SIGNER'] = True
+app.config['SESSION_REDIS'] = redis.Redis(host='localhost', port=6380, db=0, decode_responses=True)
+
+Session(app)
+
+redis_client = redis.Redis(host='localhost', port=6380, db=0, decode_responses=True)
+
+
 
 @app.route('/', methods=['GET'])
 def home():
@@ -142,9 +160,6 @@ def class_availabilities():
 
     # Get the JSON data sent in the request body
     data = request.get_json()
-
-
-
     availabilities = availabilities_adder(data["campus"],season_year[data["season_year"]],data["subject"])
     return availabilities
 
@@ -161,9 +176,6 @@ def availability_helper():
         subject
     }
     '''
-
-
-
 
     season_year = {
         "Summer 2025": "1255",
@@ -183,8 +195,38 @@ def availability_helper():
     return [data["base"],availabilities]
 
 
+
+
+
+
 # POST: Add a new task
-@app.route('/course_scheduler/make_schedule_no_conflict', methods=['POST'])
+@app.route('/course_scheduler/combinations_maker', methods=['POST'])
+def make_combinations():
+
+    if 'session_id' not in session:
+        session['session_id'] = request.cookies.get('session', str(hash(request.remote_addr)))  # Assign a session ID if not set
+        session.modified = True  # Make sure to update the session
+
+    session_id = session['session_id']
+
+    data = request.get_json()
+
+    class_combinations = combination_maker(data["classes"],data["lock"],data["availabilities"])
+
+    redis_client.set(f"class_combinations:{session_id}", json.dumps(class_combinations))
+
+
+    json_printer(class_combinations, "sched")
+    return class_combinations
+
+
+
+
+
+
+
+# POST: Add a new task
+@app.route('/course_scheduler/make_schedule', methods=['POST'])
 def make_schedule():
     '''
         REQUEST BODY MUST BE   
@@ -202,27 +244,13 @@ def make_schedule():
 
     # Get the JSON data sent in the request body
     data = request.get_json()
-    combined_classes_conflicts_removed = schedule_maker(data)
+
+    class_combinations = redis_client.get(f'class_combinations:{data["session_id"]}')
+
+    combined_classes_conflicts_removed = schedule_maker(json.loads(class_combinations))
 
     return(combined_classes_conflicts_removed)
 
-
-@app.route('/course_scheduler/valid_schedules', methods=['POST'])
-def validate_schedule():
-    '''
-        REQUEST BODY MUST BE   
-    schedules: {
-        "Storrs(ECE 2001, _001D__001L__001_)8175.Storrs(PHYS 1501Q, _001_)4587": [],
-        "Storrs(ECE 2001, _001D__001L__001_)8175.Storrs(PHYS 1501Q, _001_)4587": []
-    }
-
-    ava: {}
-    '''
-
-    # Get the JSON data sent in the request body
-    data = request.get_json()
-    valid_schedules = schedule_cleaner(data["schedules"],data["ava"],data["class_lock"])
-    return(valid_schedules)
 
 
 if __name__ == '__main__':

@@ -288,6 +288,5 @@ def convert_query(Set_up_variables):
 
 
 def filter_maker(search_dictionary):
-    user_preferences = search_dictionary
-    filter_list = convert_query(user_preferences)
+    filter_list = convert_query(search_dictionary)
     return filter_list
