@@ -48,6 +48,8 @@ def orginizer(raw_course_list,campus):
     orgnized_cousre_list = {}
     for course in raw_course_list:
         course["campus"] = campus
+        del course['cart_opts']
+        
 
         if course["stat"] != "X":
             if (course["code"] in orgnized_cousre_list):

@@ -5,7 +5,15 @@ from testing_files.printers import json_printer,schedule_printer
 from scheduling_files.builder import is_valid_combination
 
 
-
+def parse_course_info(course_string):
+    # Extract the part inside parentheses
+    inside_parentheses = course_string.split("(")[1].split(")")[0]
+    course_name = inside_parentheses.split(",")[0].strip()  # Extract "CSE 2050"
+    
+    # Extract course ID (last part of the string)
+    course_id = int(course_string.split(")")[-1])  # Extract "4453"
+    
+    return {course_name: course_id}
 
 def is_subset(arr1, arr2):
     # Convert both arrays to sets and check if arr1 is a subset of arr2
@@ -85,7 +93,6 @@ def combination_maker(data,class_lock,availabilities):
                 class_sections[course_name].append((section_id, section_data))
 
     course_lists = list(class_sections.values())  # Convert dict values to a list of lists
-    json_printer(course_lists, "course_list")
     class_lock_list = list(class_lock.values())
 
     # ✅ Handle edge case: If only one unique course exists, return its sections
@@ -132,9 +139,7 @@ def combination_maker(data,class_lock,availabilities):
 
             combined_dict[key] = [[value]]
 
-        json_printer(combined_dict,"tytttttttttt")
-
-        return combined_dict
+        return [combined_dict]
 
 
 
@@ -149,25 +154,34 @@ def combination_maker(data,class_lock,availabilities):
 
 
 
-
+    combinationss = list(itertools.product(*course_lists))
+    
     # ✅ General case: When 2 or more courses exist
     combined_dict = {}
     count = 0
+    no_count = 0
+    dead = 0
     conflict = set()
     no_conflict = set()
-    for combination in itertools.product(*course_lists):  # Cartesian product (all possible choices)
-        if count == 10:
-            break
+    sliceindex = 0
+    for i, combination in enumerate(combinationss):
+        sliceindex = i
+
+
         class_ids = []
         sections = []
         flag_combo = 0
         for cls in combination:
-            if len(class_lock) != 0 and len(class_ids) != 0:
-                if is_subset(class_lock_list, extract_integers(".".join(class_ids))) == False:
+            key = cls[0]
+            
+            if len(class_lock) != 0:
+                key_dic = parse_course_info(key)
+                name, value = list(key_dic.items())[0] 
+                if name in class_lock and class_lock[name] != value:
                     flag_combo = 1
                     break
+
                     
-            key = cls[0]
             section_list = extract_integers(key)
             if set(section_list) & set(full):
                 flag_combo = 1
@@ -205,7 +219,6 @@ def combination_maker(data,class_lock,availabilities):
             continue
 
 
-        json_printer(sections, "combo")
 
 
         key = ".".join(class_ids)  # Create a unique key
@@ -215,23 +228,126 @@ def combination_maker(data,class_lock,availabilities):
             if set(pair).issubset(section_list2):  # Convert tuple to set
                 continue
 
-        if len(class_lock) != 0:
-            if is_subset(class_lock_list, extract_integers(".".join(class_ids))) == False:
-                continue
+
+
+
 
         components = [comp for component in sections for comp in component]
         if is_valid_combination(components,conflict,no_conflict):
             count = count + 1
             combined_dict[key] = [sections]
+            if count == 10:
+                break
+        else:
+            no_count = no_count + 1
+            if no_count == 1000 or (count < 10 and no_count >= 500):
+                dead = 1
+                break
 
         
-
-
-    json_printer(combined_dict, "combined_dict")
-    return combined_dict
-
-
-
+    if dead == 1:
+        return [{"fail": 0, "found": combined_dict}]
+    print(sliceindex, "enddddd")
+    return [combined_dict,full,not_full,conflict,no_conflict,combinationss,sliceindex]
 
 
 
+
+
+
+def combination_maker_continuation(class_lock,availabilities,full,not_full,conflict,no_conflict,combinationss,sliceindex):
+        # ✅ General case: When 2 or more courses exist
+    full = []
+    not_full = []
+    combined_dict = {}
+    count = 0
+    no_count = 0
+    dead = 0
+    conflict = set()
+    no_conflict = set()
+    print(sliceindex, "start")
+
+    
+    for i, combination in enumerate(itertools.islice(combinationss, sliceindex, None), start=sliceindex):
+        sliceindex = i
+        class_ids = []
+        sections = []
+        flag_combo = 0
+        for cls in combination:
+            key = cls[0]
+            
+            if len(class_lock) != 0:
+                key_dic = parse_course_info(key)
+                name, value = list(key_dic.items())[0] 
+                if name in class_lock and class_lock[name] != value:
+                    flag_combo = 1
+                    break
+
+                    
+            section_list = extract_integers(key)
+            if set(section_list) & set(full):
+                flag_combo = 1
+                break
+
+
+            if not set(section_list) & set(not_full):
+
+                location = key.split("(")[0]
+                subject =  ((key.split(",")[0]).split("(")[1]).split(" ")[0]
+                code =  ((key.split(",")[0]).split("(")[1])
+                sectionss = re.findall(r"_(\w+?)_", key)
+
+                flag1 = 0
+                for k in sectionss:
+                    capacity = availabilities[subject][location][f"{code}, {k}"]["Enrollment Capacity"]
+                    total = availabilities[subject][location][f"{code}, {k}"]["Enrollment Total"]
+
+                    if ((capacity - total) <= 0):
+                        full.append(k)
+                        flag1 = 1
+                        break
+                    else:
+                        not_full.append(k)
+            
+                if flag1:
+                    flag_combo = 1
+                    break
+
+            class_ids.append(key)
+            sections.append(cls[1])
+
+
+        if flag_combo:
+            continue
+
+
+
+
+        key = ".".join(class_ids)  # Create a unique key
+        section_list2 = extract_classes(".".join(class_ids))
+
+        for pair in conflict:
+            if set(pair).issubset(section_list2):  # Convert tuple to set
+                continue
+
+
+
+
+
+        components = [comp for component in sections for comp in component]
+        if is_valid_combination(components,conflict,no_conflict):
+            count = count + 1
+            combined_dict[key] = [sections]
+            if count == 10:
+                break
+        else:
+            no_count = no_count + 1
+            if no_count == 1000 or (count < 10 and no_count >= 500):
+                dead = 1
+                break
+
+        
+    if dead == 1:
+        return [{"fail": 0, "found": combined_dict}]
+
+    return [combined_dict,full,not_full,conflict,no_conflict,sliceindex]

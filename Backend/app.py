@@ -4,7 +4,8 @@ import json
 import redis
 import os
 import secrets
-
+import ast
+import pickle
 
 from flask_cors import CORS
 
@@ -25,7 +26,7 @@ from scheduling_files.class_combiner import combination_maker
 
 from scheduling_files.builder import schedule_maker
 from scheduling_files.class_combiner import combination_maker
-
+from scheduling_files.class_combiner import combination_maker_continuation
 from testing_files.printers import json_printer
 
 # Initialize the Flask application
@@ -208,48 +209,59 @@ def make_combinations():
         session.modified = True  # Make sure to update the session
 
     session_id = session['session_id']
-
     data = request.get_json()
 
     class_combinations = combination_maker(data["classes"],data["lock"],data["availabilities"])
+    if len(class_combinations) != 1:
+        redis_client.set(f"full:{session_id}", str(class_combinations[1]))
+        redis_client.set(f"not_full:{session_id}", str(class_combinations[2]))
+        redis_client.set(f"conflict:{session_id}", str(class_combinations[3]))
+        redis_client.set(f"no_conflict:{session_id}", str(class_combinations[4]))
+        redis_client.set(f"combinationss:{session_id}", str(class_combinations[5]))
+        redis_client.set(f"sliceindex:{session_id}", str(class_combinations[6]))
 
-    redis_client.set(f"class_combinations:{session_id}", json.dumps(class_combinations))
-
-
-    json_printer(class_combinations, "sched")
-    return class_combinations
-
-
-
-
-
-
+    return {"classes":class_combinations[0],"session":session_id}
 
 # POST: Add a new task
-@app.route('/course_scheduler/make_schedule', methods=['POST'])
-def make_schedule():
-    '''
-        REQUEST BODY MUST BE   
-    {
-            "ECE 2001": {
-                "Ali Gokirmak (PI)": {
-                "Storrs(ECE 2001, _001D__001L__001_)8175": []
-                },    
-            "PHYS 1501Q": {
-                "Belter Ordaz (PI)": {
-                "Storrs(PHYS 1501Q, _003_)4589": []
-                }
-    }
-    '''
-
-    # Get the JSON data sent in the request body
+@app.route('/course_scheduler/combinations_maker_continue', methods=['POST'])
+def make_combinations_continue():
     data = request.get_json()
+    session_id = data["session_id"]
 
-    class_combinations = redis_client.get(f'class_combinations:{data["session_id"]}')
+    # Retrieve values from Redis and use ast.literal_eval to convert them to Python objects
+    full = redis_client.get(f"full:{session_id}")
+    not_full = redis_client.get(f"not_full:{session_id}")
+    conflict = redis_client.get(f"conflict:{session_id}")
+    no_conflict = redis_client.get(f"no_conflict:{session_id}")
+    combinationss = redis_client.get(f"combinationss:{session_id}")
+    sliceindex = redis_client.get(f"sliceindex:{session_id}")
+    # Safely convert string representations of Python objects to actual objects
 
-    combined_classes_conflicts_removed = schedule_maker(json.loads(class_combinations))
+    full = eval(full) if full else None
+    not_full = eval(not_full) if not_full else None
+    conflict = eval(conflict) if conflict else None
+    no_conflict = eval(no_conflict) if no_conflict else None
+    combinationss = eval(combinationss) if combinationss else None
+    sliceindex = eval(sliceindex) if sliceindex else None
 
-    return(combined_classes_conflicts_removed)
+
+    class_combinations = combination_maker_continuation(data["lock"],data["ava"],full,not_full,conflict,no_conflict,combinationss,sliceindex)
+
+    if len(class_combinations) != 1:
+        redis_client.set(f"full:{session_id}", str(class_combinations[1]))
+        redis_client.set(f"not_full:{session_id}", str(class_combinations[2]))
+        redis_client.set(f"conflict:{session_id}", str(class_combinations[3]))
+        redis_client.set(f"no_conflict:{session_id}", str(class_combinations[4]))
+        redis_client.set(f"sliceindex:{session_id}", str(class_combinations[5]))
+
+    if class_combinations[0] == {}:
+        return "done"
+        
+    return class_combinations[0]
+
+
+
+
 
 
 
