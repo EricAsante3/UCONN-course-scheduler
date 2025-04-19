@@ -30,12 +30,12 @@ jobs:
         GITHUB_REPO: UCONN-course-scheduler
       run: python Backend/scripts/traffic.py
     
-    - name: Commit traffic log
+    - name: Commit and Push traffic log
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions@users.noreply.github.com"
         git add traffic_log.json
         git commit -m "Update traffic log" || echo "No changes"
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-        git push origin HEAD
+        git push origin HEAD:Beta-v1.96
 
