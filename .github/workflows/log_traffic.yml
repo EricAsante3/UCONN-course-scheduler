@@ -36,4 +36,4 @@ jobs:
         git config user.email "github-actions[bot]@users.noreply.github.com"
         git add traffic_log.json
         git commit -m "Update traffic log" || echo "No changes to commit"
-        git push
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }} HEAD:main
