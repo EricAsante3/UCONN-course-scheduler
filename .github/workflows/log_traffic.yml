@@ -21,14 +21,14 @@ jobs:
         python-version: '3.x'
 
     - name: Install dependencies
-      run: pip install -r backend/scripts/requirements.txt
+      run: pip install -r Backend/scripts/requirements.txt
 
     - name: Run traffic logger
       env:
         GH_TRAFFIC_TOKEN: ${{ secrets.GH_TRAFFIC_TOKEN }}
         GITHUB_OWNER: EricAsante3
         GITHUB_REPO: UCONN-course-scheduler
-      run: python backend/scripts/traffic.py
+      run: python Backend/scripts/traffic.py
 
     - name: Commit updated log
       run: |
