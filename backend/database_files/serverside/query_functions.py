@@ -37,4 +37,3 @@ def get_uncompleted_databases(fetched_semesters):
     return fetched_semesters
 
 
-print(get_uncompleted_databases({'Fall 2025': '1258', 'Summer 2026': '1265', 'Summer 2025': '1255', 'Spring 2026': '1263'}))
