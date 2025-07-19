@@ -70,8 +70,14 @@ def api_call(campus, season_year, subject):
 
     })
     
-    response = session.post(post_url, headers=headers, data=form_data)
 
+    if switch_case[campus] == "STORR":
+        form_data.update({
+            "CAMPUS_TBL$selmh$0$$0": "Y",
+            "CAMPUS_TBL$selm$0$$0": "on",
+        })
+
+    response = session.post(post_url, headers=headers, data=form_data)
     return response.text  # Return the final response
 
 
@@ -85,7 +91,6 @@ def extract_class_info(html_content,subject,campus):
     rows = soup.find_all('tr', id=lambda x: x and x.startswith('trUC_CLASS_G_VW$0_row'))
     
     for row in rows:
-
 
         subject = row.find('span', {'id': lambda x: x and x.startswith('UC_CLASS_G_VW_SUBJECT$')})
         subject = subject.text.strip() if subject else None
