@@ -74,7 +74,7 @@ export class Class {
                 const dependentSectionObject = handleDependentSectionObjectCreation(section)
 
                 // Complete section requeries more than 1 sectiosn
-                if(dependentSectionObject.requiredSections.length < 2){
+                if(dependentSectionObject.requiredSections.length < 1){
 
                     let primarySectionObject = tempPrimarySectionStorage[this.className + ' ' + dependentSectionObject.requiredSections[0]]
                     let primarySectionObjectCopy = new PrimarySection(primarySectionObject)
@@ -93,8 +93,6 @@ export class Class {
                     });
 
                     tempDependentsList.push(dependentSectionObject);
-
-
                     primarySectionObjectCopy.addDependents(tempDependentsList)
                     this.#parsedSections[primarySectionObjectCopy.completeSectionCrn] = primarySectionObjectCopy
                 }
@@ -109,7 +107,7 @@ export class Class {
         // LOCK CASE
         if (this.constraints["lockedSections"] !== "") {
             const desiredSection = this.constraints["lockedSections"]
-            let converted = Object.fromEntries(Object.entries(this.#parsedSections[desiredSection].completeSectionSchedule).map(([key, value]) => [key, Array.from(value)]));
+            let converted = Object.fromEntries(Object.entries(this.#parsedSections[desiredSection].completeSectionSchedule).map(([key, value]) => [key, value]));
             return { status: 200, value: [{"crn": this.#parsedSections[desiredSection].completeSectionCrn, "timeSlots": converted}] }
         }
 
@@ -119,7 +117,7 @@ export class Class {
             Object.values(this.#parsedSections).forEach(element => {
                 if (element.openSeats()) {
                     if (element.professor === this.constraints["lockedProfessor"]){
-                        let converted = Object.fromEntries(Object.entries(element.completeSectionSchedule).map(([key, value]) => [key, Array.from(value)]));
+                        let converted = Object.fromEntries(Object.entries(element.completeSectionSchedule).map(([key, value]) => [key, value]));
                         validSections.push({"crn": element.completeSectionCrn, "timeSlots": converted})
                     }
                 }
@@ -132,7 +130,7 @@ export class Class {
         const validSections = []
         Object.values(this.#parsedSections).forEach(element => {
             if (element.openSeats() && element.validcompleteSection) {
-                let converted = Object.fromEntries(Object.entries(element.completeSectionSchedule).map(([key, value]) => [key, Array.from(value)]));
+                let converted = Object.fromEntries(Object.entries(element.completeSectionSchedule).map(([key, value]) => [key, value]));
                 validSections.push({"crn": element.completeSectionCrn, "timeSlots": converted})
             }
         })

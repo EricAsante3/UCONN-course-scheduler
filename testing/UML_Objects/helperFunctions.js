@@ -1,4 +1,47 @@
+function containsArray(mainArr, subArr) {
+    return mainArr.some(a => 
+        a.length === subArr.length &&
+        a.every((val, i) => val === subArr[i])
+    );
+}
+
+
+export function sortedInsert(array, value) {
+
+
+    value.forEach(element => {
+      
+      if (!containsArray(array, element)) {
+
+        // Find where the new value should go
+        let index = array.findIndex(el => el[0] > element[0]);
+        
+        if (index === -1) {
+            // If no element is greater, append at the end
+            array.push(element);
+        } else {
+            // Insert at the found index
+            array.splice(index, 0, element);
+        }
+
+      }
+    
+    });
+
+
+
+
+
+
+
+}
+
+
+
+
+
 export function parseSchedule(input) {
+
   // Map day abbreviations to full names
   const dayMap = {
     Mo: "monday",
@@ -25,13 +68,13 @@ export function parseSchedule(input) {
   const blocks = input.split("&").map(s => s.trim());
 
   const schedule = {
-    monday: new Set(),
-    tuesday: new Set(),
-    wednesday:new Set(),
-    thursday: new Set(),
-    friday: new Set(),
-    saturday: new Set(),
-    sunday: new Set(),
+    monday: [],
+    tuesday: [],
+    wednesday: [],
+    thursday: [],
+    friday: [],
+    saturday: [],
+    sunday: [],
   };
 
   for (const block of blocks) {
@@ -62,7 +105,7 @@ export function parseSchedule(input) {
     for (const dayAbbr of dayAbbreviations) {
       const fullDay = dayMap[dayAbbr];
       if (fullDay) {
-        schedule[fullDay].add(JSON.stringify([start, end]));
+        sortedInsert(schedule[fullDay], [[start, end]])
       }
     }
   }

@@ -1,4 +1,4 @@
-import { extractSections, parseSchedule } from "../helperFunctions.js";
+import { extractSections, parseSchedule, sortedInsert } from "../helperFunctions.js";
 
 
 export class PrimarySection {
@@ -21,8 +21,9 @@ export class PrimarySection {
         this.requiredSections = classInfo.requiredSections
         this.instructionMode = classInfo.instructionMode
         this.professor =  classInfo.professor
+
         if (classInfo instanceof PrimarySection) {
-            this.time = this.completeSectionSchedule = classInfo.time
+            this.time = this.completeSectionSchedule = structuredClone(classInfo.time)
         } else {
             this.time = this.completeSectionSchedule = parseSchedule(classInfo.time)
         }
@@ -39,10 +40,11 @@ export class PrimarySection {
 
 
     addDependents(data) {
+
         data.forEach(data => {
             for (const day of Object.keys(data.time)) {
-                if (data.time[day].size) {
-                    this.completeSectionSchedule[day].add(...data.time[day])
+                if (data.time[day].length > 0) {
+                    sortedInsert(this.completeSectionSchedule[day], data.time[day])
                 }
             }
         })
@@ -50,6 +52,10 @@ export class PrimarySection {
         this.completeSectionCrn = data[data.length - 1].crn
         this.validcompleteSection = data[data.length - 1].openSeats()
         this.#dependentSections = data
+
+
+
+
     }
 
 

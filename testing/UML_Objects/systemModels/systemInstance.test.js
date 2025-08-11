@@ -629,6 +629,7 @@ test('System Objects: Test 10 - Case where 1 or more dependent section in a prim
     }])
 
   const output = Cartinstance.handlePreScheduleProcessing()
+  console.log(output["value"]["ECE 2001"][0]["timeSlots"])
   expect(output["status"]).toBe(200);
   expect(output["value"]["ECE 2001"].length).toBe(1);
 });
