@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "paz0azoPWwyRwetnvpRQZUif2G6TKmxySSfJ7PJhnAicMLFSdBSX9OAxOz/WANOUU+3kyuTlyP4fmHBMiOYrKQ==",
+  "success": true,
+  "projectFilePath": "/home/eric/Documents/Projects/UCONN-course-scheduler/testing/MyApp/MyApp.csproj",
+  "expectedPackageFiles": [
+    "/home/eric/.nuget/packages/amazon.lambda.core/2.4.0/amazon.lambda.core.2.4.0.nupkg.sha512",
+    "/home/eric/.nuget/packages/amazon.lambda.serialization.systemtextjson/2.4.4/amazon.lambda.serialization.systemtextjson.2.4.4.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "MyApp depends on Amazon.Lambda.Core (>= 2.3.1) but Amazon.Lambda.Core 2.3.1 was not found. An approximate best match of Amazon.Lambda.Core 2.4.0 was resolved.",
+      "libraryId": "Amazon.Lambda.Core",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
+}

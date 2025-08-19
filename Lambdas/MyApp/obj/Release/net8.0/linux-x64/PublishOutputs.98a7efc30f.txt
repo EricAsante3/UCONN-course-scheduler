@@ -1,0 +1,5 @@
+/home/eric/Documents/Projects/UCONN-course-scheduler/testing/MyApp/publish/MyApp.dll
+/home/eric/Documents/Projects/UCONN-course-scheduler/testing/MyApp/publish/MyApp.deps.json
+/home/eric/Documents/Projects/UCONN-course-scheduler/testing/MyApp/publish/MyApp.pdb
+/home/eric/Documents/Projects/UCONN-course-scheduler/testing/MyApp/publish/Amazon.Lambda.Core.dll
+/home/eric/Documents/Projects/UCONN-course-scheduler/testing/MyApp/publish/Amazon.Lambda.Serialization.SystemTextJson.dll
