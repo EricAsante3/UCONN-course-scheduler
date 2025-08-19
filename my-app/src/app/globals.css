@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+:root {
+  max-width: 1280rem;
+  min-width: 1424px;
+  --background: #ffffff;
+  --foreground: #171717;
+  --Text: #ffffff;
+  --Highlight: #888a8c;
+  --Accent: "E4002B"
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    max-width: 1280rem;
+    min-width: 1424px;
+    --background: #0a0a0a;
+    --foreground: #212325;
+    --Text: #ffffff;
+    --Highlight: #888a8c;
+    --Accent: "E4002B"
+  }
+}
+
+@theme inline {
+  --color-Accent: var(--Accent);
+  --color-Highlight: var(--Highlight);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-Text: var(--Text)
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+
+
+body {
+  background: var(--background);
+  color: var(--Text);
+  font-family: Arial, Helvetica, sans-serif;
+}

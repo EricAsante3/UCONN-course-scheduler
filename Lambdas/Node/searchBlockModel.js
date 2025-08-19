@@ -64,14 +64,15 @@ export class SearchBlock {
             return {"status": 500, "message": "Invalid Term Selection"}
         }
         
-        if (!Object.keys(classAlias).includes(Class)){
+        if (!classAlias.includes(Class)){
             return {"status": 500, "message": "Invalid Class Selection"}
         }
+        console.log(Class)
 
         formdata["UC_DERIVED_GST_STRM"] = this.terms[Term]
         formdata["ICAction"] = "UC_DERIVED_GST_SEARCH_PB"
         formdata["UC_DERIVED_GST_ENRL_STAT$chk"] = "C"
-        formdata["UC_DERIVED_GST_SUBJECT"] = classAlias[Class]
+        formdata["UC_DERIVED_GST_SUBJECT"] = Class
 
 
         formBody = new URLSearchParams(formdata).toString();
