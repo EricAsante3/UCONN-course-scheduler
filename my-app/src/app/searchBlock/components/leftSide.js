@@ -11,13 +11,13 @@ import { classAlias } from "./classAlias"
 export default function LeftSide({setLeadClass, loadingSearch, setLoadingSearch}) {
     const previousSearch = useRef(null)
     const [currentInput, setCurrentInput] = useState("");
-    const { SearchBlockFetch, setSearchBlockResults, Term, Campus, setCampus, setTerm } = useContext(DataContext);
+    const {SearchBlockStates} = useContext(DataContext);
 
 
     async function action(inputarray) {
         setLoadingSearch(true)
         console.log("loadini")
-        await SearchBlockFetch(inputarray[0])
+        await SearchBlockStates.SearchBlockFetch(inputarray[0])
         if (inputarray.length > 1) setLeadClass(inputarray[0] + " " + inputarray[1])
         else setLeadClass(null)
         setLoadingSearch(false)
@@ -99,14 +99,14 @@ export default function LeftSide({setLeadClass, loadingSearch, setLoadingSearch}
 
                 { loadingSearch ?
                 <div className="w-full">                
-                    {Term}
+                    {SearchBlockStates.Term}
                 </div>
                 :       
                 <div className="w-full">                
-                    <select className="w-full" value={Term} onChange={(e) => {
-                    setTerm(e.target.value)
+                    <select className="w-full" value={SearchBlockStates.Term} onChange={(e) => {
+                    SearchBlockStates.setTerm(e.target.value)
                     setLeadClass(null)
-                    setSearchBlockResults({"status": 0, "message": {}})
+                    SearchBlockStates.setSearchBlockResults({"status": 0, "message": {}})
                     previousSearch.current = null
                     }}>                        
                         <option value="Fall 2025">Fall 2025</option>
@@ -122,14 +122,14 @@ export default function LeftSide({setLeadClass, loadingSearch, setLoadingSearch}
                 { loadingSearch ?
                 
                 <div className="w-full">                
-                    {Campus}
+                    {SearchBlockStates.Campus}
                 </div>
                 :
                 <div className="w-full">                
-                    <select className="w-full" value={Campus} onChange={(e) => {
-                        setCampus(e.target.value)
+                    <select className="w-full" value={SearchBlockStates.Campus} onChange={(e) => {
+                        SearchBlockStates.setCampus(e.target.value)
                         setLeadClass(null)
-                        setSearchBlockResults({"status": 0, "message": {}})
+                        SearchBlockStates.setSearchBlockResults({"status": 0, "message": {}})
                         previousSearch.current = null
                         }}>  
 

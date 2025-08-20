@@ -7,11 +7,11 @@ import LoadingClassCard from "../assets/loadingClassCard";
 import LeadClassCard from "../assets/leadClassCard";
 
 export default function RightSide({leadClass, loadingSearch}) {
-  const { searchBlockResults } = useContext(DataContext);
+  const { SearchBlockStates } = useContext(DataContext);
 
   useEffect(() => {
-    console.log(searchBlockResults.status)
-  }, [searchBlockResults, leadClass])
+    console.log(SearchBlockStates.searchBlockResults.status)
+  }, [SearchBlockStates.searchBlockResults, leadClass])
   
 
   return (
@@ -20,13 +20,13 @@ export default function RightSide({leadClass, loadingSearch}) {
 
       {loadingSearch ? null : (
 
-        (searchBlockResults["status"] ?? 500) === 0 ? <div>Home ICon</div>
+        (SearchBlockStates.searchBlockResults["status"] ?? 500) === 0 ? <div>Home ICon</div>
 
 
-          : (searchBlockResults["status"] ?? 500) === 350 ? <div>no results</div> 
+          : (SearchBlockStates.searchBlockResults["status"] ?? 500) === 350 ? <div>no results</div> 
         
         
-        :  (searchBlockResults["status"] ?? 500) > 200 ? 
+        :  (SearchBlockStates.searchBlockResults["status"] ?? 500) > 200 ? 
         
         <div>Error</div>        
         
@@ -34,15 +34,15 @@ export default function RightSide({leadClass, loadingSearch}) {
         :(
           <>
             {leadClass === null ? null : (
-              searchBlockResults["message"][leadClass] !== undefined ? (
-                <LeadClassCard element={searchBlockResults["message"][leadClass]} />
+              SearchBlockStates.searchBlockResults["message"][leadClass] !== undefined ? (
+                <LeadClassCard element={SearchBlockStates.searchBlockResults["message"][leadClass]} />
               ) : (
                 <div>{leadClass} not found</div>
               )
             )}
 
-            {Object.keys(searchBlockResults["message"]).length > 0 &&
-              Object.values(searchBlockResults["message"]).map((ResultElement, index) => {
+            {Object.keys(SearchBlockStates.searchBlockResults["message"]).length > 0 &&
+              Object.values(SearchBlockStates.searchBlockResults["message"]).map((ResultElement, index) => {
                 return <ClassCard key={index} element={ResultElement} />;
               })}
           </>
