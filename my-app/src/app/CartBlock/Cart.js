@@ -7,11 +7,27 @@ export default function Cart() {
     const classesInCart = CartStates.cartElements
     return (
 
-    <div className="relative grid grid-rows-[10%_75%_15%] bg-foreground aspect-square rounded-2xl min-w-xl w-xl row-span-1 col-span-1 justify-self-center text-2xl">
+    <div id="mainBoxes" className="relative grid grid-rows-[10%_75%_15%] bg-foreground aspect-square rounded-2xl min-w-xl w-xl row-span-1 col-span-1 justify-self-center text-2xl">
+        <button onClick={() => {
 
+            if (document.body.classList.contains("light")) {
+                document.body.classList.remove("light");
+                document.body.classList.add("dark");
+                localStorage.setItem("theme", "dark")
+
+            } else {
+                document.body.classList.remove("dark");
+                document.body.classList.add("light");
+                localStorage.setItem("theme", "light")
+            }
+
+        }} 
+        className="absolute -right-25 h-12 w-24 bg-amber-200">
+
+        </button>
 
         
-        <div className="w-full pr-8 pl-8  flex items-center justify-between">
+        <div className="w-full pr-8 pl-8  flex items-center justify-between bg-foreground rounded-2xl ">
             <h1>+ add break</h1>
             { 8 > classesInCart.length ?
                 <div className="flex flex-row space-x-2">
@@ -29,7 +45,7 @@ export default function Cart() {
 
         </div>
 
-        <div className="w-full p-2 space-y-4 overflow-y-scroll">
+        <div className="w-full p-2 space-y-4 overflow-y-scroll bg-Highlight">
             
             
             {classesInCart.map((element, index) => (
@@ -41,7 +57,7 @@ export default function Cart() {
 
         </div>
 
-        <div className="w-full p-2">
+        <div className="w-full p-2 bg-foreground rounded-2xl">
             <button onClick={() => {CartStates.ScheduleGeneration()}} className="bg-blue-500 h-full w-full rounded-full">
                 generate
             </button>

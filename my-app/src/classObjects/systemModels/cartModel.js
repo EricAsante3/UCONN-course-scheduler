@@ -120,6 +120,14 @@ export class CartModel {
         this.#cartClasses[className].handleInclusionChange()
     }
 
+
+    returnClassColor(className) {
+        return this.#cartClasses[className].colorTheme.container
+    }
+
+
+
+
     viewClassInclusionStatus(className) {
         return this.#cartClasses[className].viewInclusionStatus()
     }

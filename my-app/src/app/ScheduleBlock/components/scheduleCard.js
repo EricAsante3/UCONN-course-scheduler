@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { DataContext } from "@/data/Data";
-
+import { CalenderICon } from "@/app/Icons/Icons";
 
 export default function ScheduleCard({schedule, index}) {
   const {ScheduleBlockStates} = useContext(DataContext);
@@ -8,7 +8,7 @@ export default function ScheduleCard({schedule, index}) {
     <div 
     onClick={() => {
       ScheduleBlockStates.setLargeCalenderPopUpVisiablity(true)
-      ScheduleBlockStates.setCurrentScheduleLargePopUp(schedule)
+      ScheduleBlockStates.setCurrentScheduleLargePopUp({"calenderNumber": index, "scheduleData": schedule})
     }}
 
     onMouseEnter={() => {
@@ -19,7 +19,10 @@ export default function ScheduleCard({schedule, index}) {
     onMouseLeave={() => ScheduleBlockStates.setSmallCalenderPopUpVisiablity(false)}
     
     
-    className=" h-14 bg-white rounded-2xl text-black flex items-center justify-center mb-4">
+    className=" h-16 bg-white rounded-2xl text-black flex items-center justify-center mb-4 space-x-4">
+        <div className="aspect-square w-12">
+          <CalenderICon></CalenderICon>
+        </div>
         <h1 className="text-2xl">Schedule {index}</h1>
     </div>
   )}

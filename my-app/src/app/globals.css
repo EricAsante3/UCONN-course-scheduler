@@ -3,32 +3,63 @@
 :root {
   max-width: 1280rem;
   min-width: 1424px;
+  --navyBlue: #000E2F;
+}
+
+
+
+.light {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #f3f4f6;
+  --box-shadow1: rgba(0, 0, 0, 0.19);
+  --box-shadow2: rgba(0, 0, 0, 0.23);
+
+
+
+
+  --Text: #000;
+  --Highlight: #DCE0E2;
+  --Accent: #E4002B;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #212325;
+  --box-shadow1: rgba(255, 255, 255, 0.089);
+  --box-shadow2: rgba(223, 223, 223, 0.23);
+
+
+
   --Text: #ffffff;
   --Highlight: #888a8c;
-  --Accent: "E4002B"
+  --Accent: #E4002B;
 }
 
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    max-width: 1280rem;
-    min-width: 1424px;
-    --background: #0a0a0a;
-    --foreground: #212325;
-    --Text: #ffffff;
-    --Highlight: #888a8c;
-    --Accent: "E4002B"
-  }
-}
 
 @theme inline {
-  --color-Accent: var(--Accent);
-  --color-Highlight: var(--Highlight);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-Text: var(--Text)
+  --color-boxshadow1: var(--box-shadow1);
+  --color-boxshadow2: var(--box-shadow2);
+  --color-navyBlue: var(--navyBlue);
+
+
+
+
+
+
+
+
+
+
+
+
+
+  --color-Accent: var(--Accent);
+  --color-Highlight: var(--Highlight);
+
+  --color-Text: var(--Text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -39,4 +70,14 @@ body {
   background: var(--background);
   color: var(--Text);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+
+#mainBoxes {
+  box-shadow: var(--box-shadow1) 0px 10px 20px, var(--box-shadow2) 0px 6px 6px;
+
+
+
+
+
 }

@@ -100,6 +100,18 @@ export default function DataProvider({ children }) {
 
 
 
+
+    function returnClassColor(className) {
+        return CartSingleton.returnClassColor(className)
+    }
+
+
+
+
+
+
+
+
     async function ScheduleGeneration() {
         if (generationHold) return 0
 
@@ -143,8 +155,8 @@ export default function DataProvider({ children }) {
 
 
     const SearchBlockStates = { searchBlockResults, setSearchBlockResults, SearchBlockFetch, Campus, Term, setCampus, setTerm, appendToCart, scheduling}
-    const CartStates = {cartElements, removeFromCart, ScheduleGeneration, setLargeCalenderPopUpVisiablity, changeClassInclusion, viewClassInclusionStatus, viewProfessorConstraint, viewSectionConstraint,scheduling}
-    const ScheduleBlockStates = {largeCalenderPopUpVisiablity, setLargeCalenderPopUpVisiablity, validSchedules, currentScheduleSmallPopUp, smallCalenderPopUpVisiablity, setCurrentScheduleSmallPopUp, setSmallCalenderPopUpVisiablity, popUpSchedulerBuilder, currentScheduleLargePopUp, setCurrentScheduleLargePopUp, FullCalenderClassCardProccessing, scheduling}
+    const CartStates = {cartElements, removeFromCart, ScheduleGeneration, setLargeCalenderPopUpVisiablity, changeClassInclusion, viewClassInclusionStatus, viewProfessorConstraint, viewSectionConstraint,scheduling, returnClassColor}
+    const ScheduleBlockStates = {largeCalenderPopUpVisiablity, setLargeCalenderPopUpVisiablity, validSchedules, currentScheduleSmallPopUp, smallCalenderPopUpVisiablity, setCurrentScheduleSmallPopUp, setSmallCalenderPopUpVisiablity, popUpSchedulerBuilder, currentScheduleLargePopUp, setCurrentScheduleLargePopUp, FullCalenderClassCardProccessing, scheduling, returnClassColor}
 
     return (
         <DataContext.Provider value={{SearchBlockStates, CartStates, ScheduleBlockStates}}>

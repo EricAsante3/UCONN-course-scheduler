@@ -2,10 +2,12 @@ import { useContext, useEffect, useState } from "react"
 import { DataContext } from "@/data/Data"
 import ScheduleCard from "./components/scheduleCard";
 import Loader from "./components/loader";
+import { SearchArrow } from "../Icons/Icons";
+
+
 
 export default function ScheduleBlock() {
     const {ScheduleBlockStates} = useContext(DataContext);
-
 
     let currentSchedules = []
     const [page, setPage] = useState(0);
@@ -19,20 +21,22 @@ export default function ScheduleBlock() {
       }
     }
 
-
     useEffect(() => {}, [page])
     useEffect(() => {setPage(0)}, [ScheduleBlockStates.scheduling])
 
   return (
           <div className="col-span-2 p-4 h-[556px] min-h-[556px] ">
             
-            <div className="bg-foreground grid grid-rows-[15%_85%] h-full rounded-2xl p-2 max-h-2xl overflow-y-scroll">
-                <div className="h-full rounded-2xl bg-blue-400 flex items-center justify-evenly p-2">
+            <div className="bg-[#000e2f] text-white grid grid-rows-[15%_85%] h-full rounded-2xl p-2 max-h-2xl overflow-y-scroll">
+                <div className="h-full rounded-2xl flex items-center justify-evenly p-2">
 
 
 
                     { ScheduleBlockStates.validSchedules["status"] > 200 ? null  :
-                      <button onClick={() => setPage((p) => Math.max(p - 1, 0))} disabled={page === 0}className="rounded-full aspect-square w-10 bg-amber-300">
+                      <button onClick={() => setPage((p) => Math.max(p - 1, 0))} disabled={page === 0}className="rounded-full h-full w-28">
+                        { page === 0 ? null :
+                            <SearchArrow className="transform scale-x-[-1]" ></SearchArrow>
+                        }
                       </button>
                     }
 
@@ -63,11 +67,20 @@ export default function ScheduleBlock() {
 
                     { ScheduleBlockStates.validSchedules["status"] > 200 ?   
                       null
-                      :<button           
+                      :
+                      <button           
                       onClick={() => setPage((p) => (p + 1) * pageSize < ScheduleBlockStates.validSchedules["value"].length ? p + 1 : p)}  
                       disabled={(page + 1) * pageSize >= ScheduleBlockStates.validSchedules["value"].length} 
-                      className="rounded-full aspect-square w-10 bg-amber-300">
+                      className="rounded-full h-full w-28 ">
+
+
+                        { (page + 1) * pageSize >= ScheduleBlockStates.validSchedules["value"].length ? null :
+                            <SearchArrow className="" ></SearchArrow>
+                        }
+
+
                       </button>
+                      
                     }
 
 
@@ -88,14 +101,22 @@ export default function ScheduleBlock() {
 
                 { ScheduleBlockStates.scheduling ? 
                 
-                
                   <Loader></Loader>
 
                 :                
-                ScheduleBlockStates.validSchedules["status"] > 200 ?   
-                  <div>
-                    {ScheduleBlockStates.validSchedules["value"]}
-                  </div>
+                ScheduleBlockStates.validSchedules["status"] > 200 ?
+                
+                  (ScheduleBlockStates.validSchedules["value"] === "Home" ? null : 
+
+
+                    <div className="text-black text-3xl flex items-center justify-center flex-col bg-white h-16">
+                      {ScheduleBlockStates.validSchedules["value"]}
+                    </div>
+
+                  )
+
+
+
                 :
                   (currentSchedules.map((schedule, index) => (
                     <ScheduleCard key={index} index={start + index + 1} schedule={schedule} />

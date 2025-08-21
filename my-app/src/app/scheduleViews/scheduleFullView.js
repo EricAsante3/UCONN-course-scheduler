@@ -11,7 +11,7 @@ import { useContext } from 'react'
 function FullCalendar({className}) {
     const {ScheduleBlockStates} = useContext(DataContext);
 
-    const Scheduledata = ScheduleBlockStates.popUpSchedulerBuilder(ScheduleBlockStates.currentScheduleLargePopUp)
+    const Scheduledata = ScheduleBlockStates.popUpSchedulerBuilder(ScheduleBlockStates.currentScheduleLargePopUp["scheduleData"])
 
     const config = {
     events: Scheduledata.events,
