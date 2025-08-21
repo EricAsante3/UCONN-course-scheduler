@@ -5,6 +5,7 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import ClassCard from "../assets/classcard";
 import LoadingClassCard from "../assets/loadingClassCard";
 import LeadClassCard from "../assets/leadClassCard";
+import SearchIcon from "@/app/Icons/Icons";
 
 export default function RightSide({leadClass, loadingSearch}) {
   const { SearchBlockStates } = useContext(DataContext);
@@ -15,12 +16,15 @@ export default function RightSide({leadClass, loadingSearch}) {
   
 
   return (
-    <SkeletonTheme  baseColor="var(--color-Highlight)" highlightColor="#E4002B">
-      <div className="p-2 overflow-y-scroll">
+    <SkeletonTheme  baseColor="#cccccc" highlightColor="#ffffff">
+      <div className="relative p-2 overflow-y-scroll">
+
+
 
       {loadingSearch ? null : (
 
-        (SearchBlockStates.searchBlockResults["status"] ?? 500) === 0 ? <div>Home ICon</div>
+        (SearchBlockStates.searchBlockResults["status"] ?? 500) === 0 ? 
+          <SearchIcon className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 fill-Highlight opacity-15" color="#656565"></SearchIcon>
 
 
           : (SearchBlockStates.searchBlockResults["status"] ?? 500) === 350 ? <div>no results</div> 

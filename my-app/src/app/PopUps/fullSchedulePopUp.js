@@ -37,7 +37,7 @@ export default function FullSchedulePopUp() {
                     <div className=" flex items-center justify-between relative h-[60px] w-full pr-12 pl-12">
 
                         <div className="flex flex-row space-x-4 items-center justify-center">
-                            <div className="aspect-square w-12">
+                            <div className="aspect-square w-10">
                             <CalenderICon></CalenderICon>
                             </div>
                             <h1 className="text-4xl">Schedule {ScheduleBlockStates.currentScheduleLargePopUp.calenderNumber}</h1>

@@ -148,7 +148,7 @@ export class CartModel {
         const classData = []
 
         for (const [className, CRN] of Object.entries(scheduleDict)) {
-            classData.push({className: this.#cartClasses[className].parsedSections[CRN].className, Prof: this.#cartClasses[className].parsedSections[CRN].professor, seats: this.#cartClasses[className].parsedSections[CRN].sectionAvailableSeats, crn: this.#cartClasses[className].parsedSections[CRN].completeSectionCrn})
+            classData.push({className: this.#cartClasses[className].parsedSections[CRN].className, Prof: this.#cartClasses[className].parsedSections[CRN].professor, seats: this.#cartClasses[className].parsedSections[CRN].sectionAvailableSeats, crn: this.#cartClasses[className].parsedSections[CRN].completeSectionCrn, instructionMode: this.#cartClasses[className].parsedSections[CRN].instructionMode})
         }
         return classData
     }

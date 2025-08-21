@@ -2,7 +2,7 @@ export function AddToCartIcon(props) {
     return (
   <svg
     viewBox="0 0 122.88 104.43"
-    {...props}    
+    {...props}   
     >
     <defs>
       <style>{`.cls-1{fill-rule:evenodd;}`}</style>
@@ -78,7 +78,7 @@ export const CloseSquareIcon = (props) => {
 
 
 
-export const LockIcon = (props) => {
+export const LockIconUnlocked = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -97,6 +97,31 @@ export const LockIcon = (props) => {
     </svg>
   );
 };
+
+
+
+
+
+export const LockIconLocked = (props) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="#723212"
+      className="w-full h-full"
+      {...props}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
+      />
+    </svg>
+  );
+};
+
 
 
 export const CalenderICon = (props) => {
@@ -156,7 +181,7 @@ export const TrashIcon = (props) => {
   );
 };
 
-export const ToggleClassIcon = ({ fill = "#000000", ...props }) => {
+export const ToggleClassIconOn = ({ fill = "#000000", ...props }) => {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -170,6 +195,27 @@ export const ToggleClassIcon = ({ fill = "#000000", ...props }) => {
     </svg>
   );
 };
+
+
+
+export const ToggleClassIconOff = ({ fill = "#555555", ...props }) => {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      fill={fill}
+      width="100%"
+      height="100%"
+      {...props}
+    >
+      <path d="M17,7H7A5,5,0,0,0,7,17H17A5,5,0,0,0,17,7ZM7,15a3,3,0,1,1,3-3A3,3,0,0,1,7,15Z" />
+    </svg>
+  );
+};
+
+
+
+
 
 
 export const InfoIcon = ({ fill = "#000000", ...props }) => {
@@ -188,3 +234,23 @@ export const InfoIcon = ({ fill = "#000000", ...props }) => {
     </svg>
   );
 };
+
+export default function SearchIcon({ className = "", color = "currentColor" }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="#989898"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      <path
+        d="M11 6C13.7614 6 16 8.23858 16 11M16.6588 16.6549L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
+        stroke={color}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+

@@ -146,7 +146,19 @@ export function convertScheduleToEvents(array, schedule, className = "B1", secti
 
 // Helper: generate a random hex color
 export function randomHexColor() {
-  return '#' + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, '0');
+  // Bright RGB channels for contrast with black
+  const r = Math.floor(Math.random() * 106) + 100; // 150 - 255
+  const g = Math.floor(Math.random() * 106) + 100; // 150 - 255
+  const b = Math.floor(Math.random() * 106) + 110; // 150 - 255
+
+  // Convert to hex and pad
+  const hex =
+    '#' +
+    r.toString(16).padStart(2, '0') +
+    g.toString(16).padStart(2, '0') +
+    b.toString(16).padStart(2, '0');
+
+  return hex;
 }
 
 // Helper: darken or lighten a hex color

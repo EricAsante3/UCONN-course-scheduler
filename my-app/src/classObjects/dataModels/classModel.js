@@ -31,7 +31,7 @@ export class Class {
 
         const mainColor = randomHexColor();
         const containerColor = adjustHexColor(mainColor, 30); // 30% lighter
-        const onContainerColor = adjustHexColor(mainColor, -30); // 30% darker
+        const onContainerColor = "#000000"; // 30% darker
         
         this.colorTheme = {
             main: mainColor,
@@ -120,7 +120,7 @@ export class Class {
         if (this.constraints["lockedSections"] !== "") {
             const desiredSection = this.constraints["lockedSections"]
             let converted = Object.fromEntries(Object.entries(this.parsedSections[desiredSection].completeSectionSchedule).map(([key, value]) => [key, (value).map((value) => ({"Crn": this.parsedSections[desiredSection].completeSectionCrn, "ClassName": this.parsedSections[desiredSection].className, "TimeSlots": value}))]));
-            return { status: 200, value: {"AllClassCRNs": [this.parsedSections[desiredSection].completeSectionCrn], "AllClassTimeSlots": [{Crn: this.parsedSections[desiredSection].completeSectionCrn, ClassName: this.parsedSections[desiredSection].className, MeetingTime: converted}]} }
+            return { status: 200, value: {"AllClassCRNs": [this.parsedSections[desiredSection].completeSectionCrn], "SectionEntries": [{Crn: this.parsedSections[desiredSection].completeSectionCrn, ClassName: this.parsedSections[desiredSection].className, MeetingTime: converted}]} }
         }
 
         // professor LOCK
@@ -138,7 +138,7 @@ export class Class {
                 }
             })
 
-            return { status: 200, value: {"AllClassCRNs": AllClassCRNs, "AllClassTimeSlots": AllClassTimeSlots} }
+            return { status: 200, value: {"AllClassCRNs": AllClassCRNs, "SectionEntries": AllClassTimeSlots} }
         }
 
         // NO LOCK CASE
@@ -155,7 +155,7 @@ export class Class {
         if (0 < AllClassCRNs.length) {
             return { status: 200, value: {"AllClassCRNs": AllClassCRNs, "SectionEntries": AllClassTimeSlots} }
         } else {
-            return { status: 500, value: "error no open classes for " + this.className }
+            return { status: 500, value: "Detected no open classes for " + this.className }
         }
 
     }

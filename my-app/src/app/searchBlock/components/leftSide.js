@@ -69,15 +69,14 @@ export default function LeftSide({setLeadClass, loadingSearch, setLoadingSearch}
 
         <div className="flex items-center mb-4 justify-between">
             <h1 className="w-fit">Search</h1>
-            <h1 className="w-fit">Submit</h1>
         </div>
 
 
 
 
 
-        <input
-            className="w-full bg-Highlight rounded-lg p-2"
+        <input id="smallBoxes"
+            className="w-full bg-Highlight rounded-lg p-2 focus:outline-none"
             value={currentInput}
             onChange={(e) => setCurrentInput(e.target.value.toUpperCase())}
             onKeyDown={(e) => {

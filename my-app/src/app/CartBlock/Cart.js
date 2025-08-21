@@ -2,6 +2,10 @@ import { useContext } from "react"
 import CartClassCard from "./components/classCard"
 import { DataContext } from "@/data/Data"
 
+
+
+
+
 export default function Cart() {
     const {CartStates} = useContext(DataContext);
     const classesInCart = CartStates.cartElements
@@ -45,9 +49,16 @@ export default function Cart() {
 
         </div>
 
-        <div className="w-full p-2 space-y-4 overflow-y-scroll bg-Highlight">
+        <div className="relative w-full p-2 space-y-4 overflow-y-scroll bg-Highlight">
             
             
+
+
+
+
+
+
+
             {classesInCart.map((element, index) => (
                 <CartClassCard key={index} CartClassName={element} />
             ))}

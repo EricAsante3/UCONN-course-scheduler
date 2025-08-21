@@ -74,6 +74,40 @@ export default function DataProvider({ children }) {
 
 
 
+
+
+    function sectionConstraintAdder(className, lockedSection) {
+        setGenerationHold(false)
+        return CartSingleton.sectionConstraintAdder(className, lockedSection)
+    }
+
+    function sectionConstraintRemover(className) {
+        setGenerationHold(false)
+        return CartSingleton.sectionConstraintRemover(className)
+    }
+
+
+    function professorConstraintAdder(className, lockedProfessor) {
+        setGenerationHold(false)
+        return CartSingleton.professorConstraintAdder(className, lockedProfessor)
+    }
+
+    function professorConstraintRemover(className) {
+        setGenerationHold(false)
+        return CartSingleton.professorConstraintAdder(className)
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     function appendToCart(className, classData) {
         if (cartElements.length >= 8) {
             return 500
@@ -125,6 +159,7 @@ export default function DataProvider({ children }) {
 
         } else {
             const schedulingOutPut = await CartBlockSingleton.schedule(PreScheduleOutput)
+            console.log(schedulingOutPut)
             setValidSchedules(JSON.parse(schedulingOutPut))
         }
 
@@ -133,9 +168,6 @@ export default function DataProvider({ children }) {
 
 
     }
-
-
-
 
     function FullCalenderClassCardProccessing(scheduleDict) {
         return CartSingleton.FullCalenderClassCardProccessing(scheduleDict)
@@ -155,9 +187,10 @@ export default function DataProvider({ children }) {
 
 
     const SearchBlockStates = { searchBlockResults, setSearchBlockResults, SearchBlockFetch, Campus, Term, setCampus, setTerm, appendToCart, scheduling}
-    const CartStates = {cartElements, removeFromCart, ScheduleGeneration, setLargeCalenderPopUpVisiablity, changeClassInclusion, viewClassInclusionStatus, viewProfessorConstraint, viewSectionConstraint,scheduling, returnClassColor}
-    const ScheduleBlockStates = {largeCalenderPopUpVisiablity, setLargeCalenderPopUpVisiablity, validSchedules, currentScheduleSmallPopUp, smallCalenderPopUpVisiablity, setCurrentScheduleSmallPopUp, setSmallCalenderPopUpVisiablity, popUpSchedulerBuilder, currentScheduleLargePopUp, setCurrentScheduleLargePopUp, FullCalenderClassCardProccessing, scheduling, returnClassColor}
+    const CartStates = {cartElements, removeFromCart, ScheduleGeneration, setLargeCalenderPopUpVisiablity, changeClassInclusion, viewClassInclusionStatus, scheduling, returnClassColor, viewProfessorConstraint, viewSectionConstraint, professorConstraintRemover, professorConstraintAdder, sectionConstraintRemover, sectionConstraintAdder}
+    const ScheduleBlockStates = {largeCalenderPopUpVisiablity, setLargeCalenderPopUpVisiablity, validSchedules, currentScheduleSmallPopUp, smallCalenderPopUpVisiablity, setCurrentScheduleSmallPopUp, setSmallCalenderPopUpVisiablity, popUpSchedulerBuilder, currentScheduleLargePopUp, setCurrentScheduleLargePopUp, FullCalenderClassCardProccessing, scheduling, returnClassColor, viewSectionConstraint, sectionConstraintRemover, sectionConstraintAdder}
 
+    
     return (
         <DataContext.Provider value={{SearchBlockStates, CartStates, ScheduleBlockStates}}>
             {children}
