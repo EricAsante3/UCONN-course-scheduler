@@ -34,14 +34,14 @@ namespace DataObjects
                         return new Dictionary<string, object>
                         {
                             { "terminate", true },
-                            { "message", "All class section time conflict between" + this.CourseName + conflictCourse }
+                            { "value", "All class section time conflict between" + this.CourseName + conflictCourse }
                         };
 
                     }
                     return new Dictionary<string, object>
                     {
                         { "terminate", false },
-                        { "message", "" }
+                        { "value", "" }
                     };
                 }
             }
@@ -49,7 +49,7 @@ namespace DataObjects
             return new Dictionary<string, object>
             {
                 { "terminate", false },
-                { "message", "" }
+                { "value", "" }
             };
         }
 

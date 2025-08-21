@@ -18,7 +18,6 @@ export default function CartClassCard({CartClassName}) {
 
         <div className="w-40">
             <h1 className="h-[32px] truncate "> {CartClassName}</h1>
-            <p className="text-sm truncate w-40 h-[20px]">gggggggggggggggggggggggggggggggggggggggggggggg</p>
         </div>
 
         <div className=" z-10 space-x-4 flex">
@@ -27,10 +26,13 @@ export default function CartClassCard({CartClassName}) {
         </div>  
 
         <div className=" z-10 space-x-4 flex">
-            <button onClick={() => {CartStates.changeClassInclusion(CartClassName)
-                setInclusionStatus(!inclusionStatus)
-            }} className={`aspect-square w-10 ${inclusionStatus ? 'bg-blue-300' : 'bg-amber-300'}`} ></button>
-            <button   onClick={() => CartStates.removeFromCart(CartClassName)} className="aspect-square w-10 bg-red-500">ii</button>
+            <button  onClick={() => {CartStates.changeClassInclusion(CartClassName)
+                setInclusionStatus(!inclusionStatus)}}
+                className={`aspect-square w-10 ${inclusionStatus ? 'bg-blue-300' : 'bg-amber-300'} ${CartStates.scheduling ? 'opacity-50' : ''}`} >
+            </button>
+
+            <button disabled={CartStates.scheduling} onClick={() => CartStates.removeFromCart(CartClassName)} className={`aspect-square w-10 bg-red-500 ${CartStates.scheduling ? 'opacity-50' : ''}`}>i
+            </button>
         </div>  
         
 

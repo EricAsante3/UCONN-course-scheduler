@@ -19,7 +19,7 @@ namespace DataObjects
             Dictionary<string, object> output = new Dictionary<string, object>
                                                 {
                                                     { "status", 0 },
-                                                    { "message", "" }
+                                                    { "value", "" }
                                                 };
 
             int maxLength = new[]
@@ -179,7 +179,7 @@ namespace DataObjects
                 return new Dictionary<string, object>
                 {
                     { "status", 200 },
-                    { "message", "" }
+                    { "value", "" }
                 };
             }
             else if (terminate == false && invalidSchedule == true)
@@ -187,7 +187,7 @@ namespace DataObjects
                 return new Dictionary<string, object>
                 {
                     { "status", 400 },
-                    { "message", "" }
+                    { "value", "" }
                 };
             }
             else
@@ -195,7 +195,7 @@ namespace DataObjects
                 return new Dictionary<string, object>
                 {
                     { "status", 500 },
-                    { "message", (string)output["message"] }
+                    { "value", (string)output["value"] }
                 };
             }
 
@@ -361,7 +361,7 @@ namespace DataObjects
                     return new Dictionary<string, object>
                     {
                         { "status", 350 },
-                        { "message", validSchedules }
+                        { "value", validSchedules }
                     };
                 }
             }
@@ -369,7 +369,7 @@ namespace DataObjects
             return new Dictionary<string, object>
             {
                 { "status", 200 },
-                { "message", validSchedules }
+                { "value", validSchedules }
             };
 
         }

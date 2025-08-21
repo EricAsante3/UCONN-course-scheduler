@@ -1,14 +1,20 @@
 "use client"
-import Image from "next/image";
 import SearchBlock from "./searchBlock/searchBlock";
 import ScheduleBlock from "./ScheduleBlock/ScheduleBlock";
 import Cart from "./CartBlock/Cart";
+import PopUpCalendar from "./scheduleViews/schedulePopUpView";
+import { DataContext } from "@/data/Data";
+import { useContext } from "react";
+import FullSchedulePopUp from "./PopUps/fullSchedulePopUp";
+
 
 export default function Home() {
+  const {ScheduleBlockStates} = useContext(DataContext);
+  
   return (
-    <div className="flex items-center justify-center">
+    <div className="relative flex items-center justify-center">
       <div className="min-w-7xl w-7xl ">
-        <div className="grid grid-cols-2 grid-rows-[100px_1fr_1fr]">
+        <div className="relative grid grid-cols-2 grid-rows-[100px_1fr_1fr]">
 
           <div className="col-span-2 h-full p-4 ">
             <div className="bg-foreground h-full">
@@ -22,8 +28,26 @@ export default function Home() {
           <Cart></Cart>
 
           <ScheduleBlock></ScheduleBlock>
+
+
+          {ScheduleBlockStates.smallCalenderPopUpVisiablity ? 
+            <PopUpCalendar className={"absolute bottom-8 -left-8"}></PopUpCalendar> 
+            : null}
+
+
         </div>
       </div>
+
+
+
+      { 
+        ScheduleBlockStates.largeCalenderPopUpVisiablity ?
+        <FullSchedulePopUp></FullSchedulePopUp> : null
+      }
+
+
+
+
     </div>
   );
 }

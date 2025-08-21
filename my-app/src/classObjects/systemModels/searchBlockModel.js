@@ -26,7 +26,7 @@ export class SearchBlockModel {
 
             return response.data
         } catch (error) {
-            return {"status": 500, "message": "Internal Error"}
+            return {"status": 500, "value": "Internal Error"}
         }
     }
     

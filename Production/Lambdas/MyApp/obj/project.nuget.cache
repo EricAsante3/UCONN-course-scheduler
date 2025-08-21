@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "paz0azoPWwyRwetnvpRQZUif2G6TKmxySSfJ7PJhnAicMLFSdBSX9OAxOz/WANOUU+3kyuTlyP4fmHBMiOYrKQ==",
+  "dgSpecHash": "wZP/P1x6QT4P9Y6cpf1BunESm73/T40H8CIcE92uL03F7c97tFSs742hRy0MZoNOyIAJrrqrCmRtBYmxxo/dBg==",
   "success": true,
-  "projectFilePath": "/home/eric/Documents/Projects/UCONN-course-scheduler/testing/MyApp/MyApp.csproj",
+  "projectFilePath": "/home/eric/Documents/Projects/UCONN-course-scheduler/Production/Lambdas/MyApp/MyApp.csproj",
   "expectedPackageFiles": [
     "/home/eric/.nuget/packages/amazon.lambda.core/2.4.0/amazon.lambda.core.2.4.0.nupkg.sha512",
-    "/home/eric/.nuget/packages/amazon.lambda.serialization.systemtextjson/2.4.4/amazon.lambda.serialization.systemtextjson.2.4.4.nupkg.sha512"
+    "/home/eric/.nuget/packages/amazon.lambda.serialization.systemtextjson/2.4.4/amazon.lambda.serialization.systemtextjson.2.4.4.nupkg.sha512",
+    "/home/eric/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/8.0.18/microsoft.netcore.app.runtime.linux-x64.8.0.18.nupkg.sha512",
+    "/home/eric/.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/8.0.18/microsoft.aspnetcore.app.runtime.linux-x64.8.0.18.nupkg.sha512"
   ],
   "logs": [
     {
@@ -15,7 +17,8 @@
       "message": "MyApp depends on Amazon.Lambda.Core (>= 2.3.1) but Amazon.Lambda.Core 2.3.1 was not found. An approximate best match of Amazon.Lambda.Core 2.4.0 was resolved.",
       "libraryId": "Amazon.Lambda.Core",
       "targetGraphs": [
-        "net8.0"
+        "net8.0",
+        "net8.0/linux-x64"
       ]
     }
   ]

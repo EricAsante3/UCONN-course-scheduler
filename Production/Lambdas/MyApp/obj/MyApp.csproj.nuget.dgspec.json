@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/eric/Documents/Projects/UCONN-course-scheduler/testing/MyApp/MyApp.csproj": {}
+    "/home/eric/Documents/Projects/UCONN-course-scheduler/Production/Lambdas/MyApp/MyApp.csproj": {}
   },
   "projects": {
-    "/home/eric/Documents/Projects/UCONN-course-scheduler/testing/MyApp/MyApp.csproj": {
+    "/home/eric/Documents/Projects/UCONN-course-scheduler/Production/Lambdas/MyApp/MyApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/eric/Documents/Projects/UCONN-course-scheduler/testing/MyApp/MyApp.csproj",
+        "projectUniqueName": "/home/eric/Documents/Projects/UCONN-course-scheduler/Production/Lambdas/MyApp/MyApp.csproj",
         "projectName": "MyApp",
-        "projectPath": "/home/eric/Documents/Projects/UCONN-course-scheduler/testing/MyApp/MyApp.csproj",
+        "projectPath": "/home/eric/Documents/Projects/UCONN-course-scheduler/Production/Lambdas/MyApp/MyApp.csproj",
         "packagesPath": "/home/eric/.nuget/packages/",
-        "outputPath": "/home/eric/Documents/Projects/UCONN-course-scheduler/testing/MyApp/obj/",
+        "outputPath": "/home/eric/Documents/Projects/UCONN-course-scheduler/Production/Lambdas/MyApp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/eric/.nuget/NuGet/NuGet.Config"
@@ -58,12 +58,27 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
+              "version": "[8.0.18, 8.0.18]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.linux-x64",
+              "version": "[8.0.18, 8.0.18]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
           "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.118/PortableRuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "linux-x64": {
+          "#import": []
         }
       }
     }

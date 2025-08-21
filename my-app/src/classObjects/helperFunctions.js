@@ -8,7 +8,6 @@ function containsArray(mainArr, subArr) {
 
 export function sortedInsert(array, value) {
 
-
     value.forEach(element => {
       
       if (!containsArray(array, element)) {
@@ -27,13 +26,6 @@ export function sortedInsert(array, value) {
       }
     
     });
-
-
-
-
-
-
-
 }
 
 
@@ -114,10 +106,60 @@ export function parseSchedule(input) {
 }
 
 
-
 export function extractSections(str) {
   // Match groups of digits optionally followed by a letter
   return str.match(/\b\d{3}[A-Z]?\b/g) || [];
 }
 
-console.log(parseSchedule("12:00AM - 12:00AM /"))
+export function convertScheduleToEvents(array, schedule, className = "B1", section) {
+  const days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+  const startSunday = new Date(2025, 9, 19); // 2025-10-19, month 0-indexed
+
+  for (let i = 0; i < days.length; i++) {
+    const dayIntervals = schedule[days[i]] || [];
+    const date = new Date(startSunday);
+    date.setDate(startSunday.getDate() + i);
+
+    for (const interval of dayIntervals) {
+        const [startMin, endMin] = interval; // parseSchedule format
+
+        const format = (d, m) => {
+          const yyyy = d.getFullYear();
+          const mm = String(d.getMonth() + 1).padStart(2, "0");
+          const dd = String(d.getDate()).padStart(2, "0");
+          const hh = String(Math.floor(m / 60)).padStart(2, "0");
+          const min = String(m % 60).padStart(2, "0");
+          return `${yyyy}-${mm}-${dd} ${hh}:${min}`;
+        };
+
+        array.push({
+          id: array.length + 1,
+          title: className + " - " + section,
+          start: format(date, startMin),
+          end: format(date, endMin),
+          calendarId: className.replace(/\s+/g, "")
+        });
+
+    }
+  }
+}
+
+// Helper: generate a random hex color
+export function randomHexColor() {
+  return '#' + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, '0');
+}
+
+// Helper: darken or lighten a hex color
+export function adjustHexColor(hex, percent) {
+  hex = hex.replace('#', '');
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+
+  const newR = Math.min(255, Math.max(0, Math.floor(r * (1 + percent / 100))));
+  const newG = Math.min(255, Math.max(0, Math.floor(g * (1 + percent / 100))));
+  const newB = Math.min(255, Math.max(0, Math.floor(b * (1 + percent / 100))));
+
+  const toHex = (x) => x.toString(16).padStart(2, '0');
+  return `#${toHex(newR)}${toHex(newG)}${toHex(newB)}`;
+}

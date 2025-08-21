@@ -16,7 +16,7 @@ export class SearchBlock {
     async search(Class,Campus,Term){
         const rawHtml = await this.htmlScraper(Class,Campus,Term)
         if (rawHtml["status"] > 200) {return rawHtml}
-        const parsedHtml = this.htmlParser(rawHtml["message"])
+        const parsedHtml = this.htmlParser(rawHtml["value"])
         return parsedHtml
     }
 
@@ -29,7 +29,7 @@ export class SearchBlock {
         const firstRequestOutput = this.firstRequestTestCases(firstRequest.data)
         
         if (firstRequestOutput > 0) {
-            return {"status": 500, "message": "Internal Error"}
+            return {"status": 500, "value": "Internal Error"}
         }
 
         let formBody = new URLSearchParams(formdata).toString();
@@ -38,7 +38,7 @@ export class SearchBlock {
         const secondRequestOutput = this.secondRequestTestCases(secondRequest.data)
 
         if (secondRequestOutput > 0) {
-            return {"status": 500, "message": "Internal Error"}
+            return {"status": 500, "value": "Internal Error"}
         }
 
         if (Campus === "Storrs") {
@@ -57,15 +57,15 @@ export class SearchBlock {
             formdata["CAMPUS_TBL$selmh$2$$0"] = "Y"
             formdata["CAMPUS_TBL$selm$2$$0"] = "on"
         } else {
-            return {"status": 500, "message": "Invalid Campus Selection"}
+            return {"status": 500, "value": "Invalid Campus Selection"}
         }
 
         if (!Object.keys(this.terms).includes(Term)) {
-            return {"status": 500, "message": "Invalid Term Selection"}
+            return {"status": 500, "value": "Invalid Term Selection"}
         }
         
         if (!classAlias.includes(Class)){
-            return {"status": 500, "message": "Invalid Class Selection"}
+            return {"status": 500, "value": "Invalid Class Selection"}
         }
         console.log(Class)
 
@@ -82,13 +82,13 @@ export class SearchBlock {
 
         if (thrdRequestOutput > 0) {
             if (thrdRequestOutput === 350) {
-                return {"status": thrdRequestOutput, "message": "0 results"}
+                return {"status": thrdRequestOutput, "value": "0 results"}
             } else {
-                return {"status": 500, "message": "Internal Error"}
+                return {"status": 500, "value": "Internal Error"}
             }
         }
 
-        return {"status": 200, "message": thirdRequest.data}
+        return {"status": 200, "value": thirdRequest.data}
     }
 
     firstRequestTestCases(html) {
@@ -217,7 +217,7 @@ export class SearchBlock {
             }
         });
 
-        return {"status": 200, "message": extractedClass}
+        return {"status": 200, "value": extractedClass}
     }
 }
 

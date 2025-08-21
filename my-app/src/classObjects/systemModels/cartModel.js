@@ -1,5 +1,6 @@
 import { Class } from "../dataModels/classModel.js"
 import { Break } from "../dataModels/breakModel.js"
+import { convertScheduleToEvents } from "../helperFunctions.js"
 
 export class CartModel {
 
@@ -86,6 +87,10 @@ export class CartModel {
     handlePreScheduleProcessing() {
         let processedClasses = {};
 
+        if (Object.values(this.#cartClasses).length === 0) {
+            return {"status": 500, "value": "Empty Cart"};
+        }
+
         if (this.BreakModel.returnIntervalCount() > 0) {
             processedClasses["BREAK"] = this.BreakModel.handlePreScheduleProcessing()["value"]
         }
@@ -101,6 +106,12 @@ export class CartModel {
                 processedClasses[cartClass.className] = output["value"];
             }
         }
+
+        if (Object.keys(processedClasses).length <= 0){
+            return {"status": 500, "value": "No classes enabled to schedule"};
+        }
+
+
         return {"status": 200, "value": processedClasses};
     }
 
@@ -111,6 +122,27 @@ export class CartModel {
 
     viewClassInclusionStatus(className) {
         return this.#cartClasses[className].viewInclusionStatus()
+    }
+
+    miniScheduleViewProccessing(scheduleDict){
+        const eventArray = []
+        const eventColorThemes = {}
+
+        for (const [className, CRN] of Object.entries(scheduleDict)) {
+            const classSection = this.#cartClasses[className].parsedSections[CRN]
+            eventArray.push(...classSection.events)
+            eventColorThemes[className.replace(/\s+/g, "")] = {colorName: className.replace(/\s+/g, ""), lightColors: this.#cartClasses[className].colorTheme}
+        }
+        return {events: eventArray, themes: eventColorThemes}      
+    }
+
+    FullCalenderClassCardProccessing(scheduleDict){
+        const classData = []
+
+        for (const [className, CRN] of Object.entries(scheduleDict)) {
+            classData.push({className: this.#cartClasses[className].parsedSections[CRN].className, Prof: this.#cartClasses[className].parsedSections[CRN].professor, seats: this.#cartClasses[className].parsedSections[CRN].sectionAvailableSeats, crn: this.#cartClasses[className].parsedSections[CRN].completeSectionCrn})
+        }
+        return classData
     }
 
 

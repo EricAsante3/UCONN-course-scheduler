@@ -66,83 +66,80 @@ export default function LeftSide({setLeadClass, loadingSearch, setLoadingSearch}
     <div className="grid grid-rows-[40%_60%] p-2 rounded-2xl">
 
     <div className="flex flex-col justify-start mt-4">
-    <div className="flex items-center justify-between">
-        <h1 className="w-fit">Search</h1>
-        <h1 className="w-fit">Submit</h1>
-    </div>
+
+        <div className="flex items-center mb-4 justify-between">
+            <h1 className="w-fit">Search</h1>
+            <h1 className="w-fit">Submit</h1>
+        </div>
 
 
 
-        {loadingSearch ? 
 
-            <div className="w-full bg-red-300 rounded-lg p-2"> {currentInput} </div> 
-            
-            : 
 
-            <input
+        <input
             className="w-full bg-Highlight rounded-lg p-2"
             value={currentInput}
-            onChange={(e) => setCurrentInput(e.target.value)}
+            onChange={(e) => setCurrentInput(e.target.value.toUpperCase())}
             onKeyDown={(e) => {
                 if (e.key === "Enter") {
                     handleSubmit(currentInput)
                 }
-            }}
-            placeholder="CSE or CSE 1010..."
-            />
+                const allowed = /[A-Z0-9 ]/;
+                const key = e.key.toUpperCase();
+                
+                if (
+                e.key === "Backspace" ||
+                e.key === "Delete" ||
+                e.key === "ArrowLeft" ||
+                e.key === "ArrowRight" ||
+                e.key === "Tab"
+                ) {
+                return;
+                }
 
-        }
+                if (!allowed.test(key)) {
+                e.preventDefault();
+                }
+            }}
+            placeholder="CSE or CSE 1010... etc"
+            disabled={loadingSearch}
+        />
+
         
 
-        <div className="flex flex-row justify-start items-start w-full space-x-4">
+        <div className="mt-4 flex flex-row justify-start items-start w-full space-x-4">
 
+            <div className="w-full">                
+                <select className="w-full" disabled={loadingSearch} value={SearchBlockStates.Term} onChange={(e) => {
+                SearchBlockStates.setTerm(e.target.value)
+                setLeadClass(null)
+                SearchBlockStates.setSearchBlockResults({"status": 0, "value": {}})
+                previousSearch.current = null
+                }}>                        
+                    <option value="Fall 2025">Fall 2025</option>
+                    <option value="Spring 2026">Spring 2026</option>
+                    <option value="Summer 2026">Summer 2026</option>
+                    <option value="Fall 2026">Fall 2026</option>
 
-                { loadingSearch ?
-                <div className="w-full">                
-                    {SearchBlockStates.Term}
-                </div>
-                :       
-                <div className="w-full">                
-                    <select className="w-full" value={SearchBlockStates.Term} onChange={(e) => {
-                    SearchBlockStates.setTerm(e.target.value)
+                </select>
+            </div>
+
+            <div className="w-full">                
+                <select className="w-full" disabled={loadingSearch} value={SearchBlockStates.Campus} onChange={(e) => {
+                    SearchBlockStates.setCampus(e.target.value)
                     setLeadClass(null)
-                    SearchBlockStates.setSearchBlockResults({"status": 0, "message": {}})
+                    SearchBlockStates.setSearchBlockResults({"status": 0, "value": {}})
                     previousSearch.current = null
-                    }}>                        
-                        <option value="Fall 2025">Fall 2025</option>
-                        <option value="Spring 2026">Spring 2026</option>
-                        <option value="Summer 2026">Summer 2026</option>
-                        <option value="Fall 2026">Fall 2026</option>
+                    }}>  
 
-                    </select>
-                </div>
-                }
-
-
-                { loadingSearch ?
-                
-                <div className="w-full">                
-                    {SearchBlockStates.Campus}
-                </div>
-                :
-                <div className="w-full">                
-                    <select className="w-full" value={SearchBlockStates.Campus} onChange={(e) => {
-                        SearchBlockStates.setCampus(e.target.value)
-                        setLeadClass(null)
-                        SearchBlockStates.setSearchBlockResults({"status": 0, "message": {}})
-                        previousSearch.current = null
-                        }}>  
-
-                        <option value="Storrs">Storrs</option>
-                        <option value="Hartford">Hartford</option>
-                        <option value="Stamford">Stamford</option>
-                        <option value="Waterbury">Waterbury</option>
-                        <option value="Avery Point">Avery Point</option>
-                    </select>
-                </div>
-                }
-
-
+                    <option value="Storrs">Storrs</option>
+                    <option value="Hartford">Hartford</option>
+                    <option value="Stamford">Stamford</option>
+                    <option value="Waterbury">Waterbury</option>
+                    <option value="Avery Point">Avery Point</option>
+                </select>
+            </div>
+            
         </div>
 
 

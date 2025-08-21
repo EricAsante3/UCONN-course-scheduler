@@ -1,16 +1,22 @@
 "use client"
 
-import { createContext, useState, useRef } from "react";
+import { createContext, useState, useRef, useEffect } from "react";
 import { SearchBlockModel } from "@/classObjects/systemModels/searchBlockModel";
 import { CartModel } from "@/classObjects/systemModels/cartModel";
+import { CartBlockModel } from "@/classObjects/systemModels/cartBlockModel";
 
 export const DataContext = createContext();
 
+const CartBlockSingleton = new CartBlockModel()
 const SearchBlockSingleton = new SearchBlockModel() 
 export const CartSingleton = new CartModel() 
 
 
 export default function DataProvider({ children }) {
+
+
+
+
     /// cart states
     const [cartElements, setCartElements] = useState([]);
 
@@ -20,1019 +26,26 @@ export default function DataProvider({ children }) {
 
 
     /// schedule states
+    
+    const [scheduling, setScheduling] = useState(false);
 
-    const [validSchedules, setValidSchedules] = useState({
-  "status": 200,
-  "message": [
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4449",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4449",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4450",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4450",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4451",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4451",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4452",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4452",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4453",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4453",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4455",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4455",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4455",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4456",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4456",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4456",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4457",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4457",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4457",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4458",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4458",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4458",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4459",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4459",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4459",
-      "CSE 1010": "4377"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4449",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4449",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4449",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4449",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4450",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4450",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4450",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4450",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4451",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4451",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4451",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4451",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4452",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4452",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4452",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4452",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4453",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4453",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4453",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4453",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4455",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4455",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4455",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4455",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4455",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4456",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4456",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4456",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4456",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4456",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4457",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4457",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4457",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4457",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4457",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4458",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4458",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4458",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4458",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4458",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4459",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4459",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4459",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4459",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4459",
-      "CSE 1010": "4381"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4449",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4449",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4450",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4450",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4451",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4451",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4452",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4452",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4453",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4453",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4455",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4455",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4455",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4456",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4456",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4456",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4457",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4457",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4457",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4458",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4458",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4458",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4459",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4459",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4459",
-      "CSE 1010": "4382"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4455",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4455",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4455",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4455",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4455",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4456",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4456",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4456",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4456",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4456",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4457",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4457",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4457",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4457",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4457",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4458",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4458",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4458",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4458",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4458",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4459",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4459",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4459",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4459",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4459",
-      "CSE 1010": "4385"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4455",
-      "CSE 1010": "4386"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4455",
-      "CSE 1010": "4386"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4455",
-      "CSE 1010": "4386"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4456",
-      "CSE 1010": "4386"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4456",
-      "CSE 1010": "4386"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4456",
-      "CSE 1010": "4386"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4457",
-      "CSE 1010": "4386"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4457",
-      "CSE 1010": "4386"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4457",
-      "CSE 1010": "4386"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4458",
-      "CSE 1010": "4386"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4458",
-      "CSE 1010": "4386"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4458",
-      "CSE 1010": "4386"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4459",
-      "CSE 1010": "4386"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4459",
-      "CSE 1010": "4386"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4459",
-      "CSE 1010": "4386"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4449",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4449",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4449",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4449",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4450",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4450",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4450",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4450",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4451",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4451",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4451",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4451",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4452",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4452",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4452",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4452",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4453",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4453",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4453",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4453",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4455",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4455",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4455",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4455",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4455",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4456",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4456",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4456",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4456",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4456",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4457",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4457",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4457",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4457",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4457",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4458",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4458",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4458",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4458",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4458",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4459",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4459",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4459",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4459",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4459",
-      "CSE 1010": "4389"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4449",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4449",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4449",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4449",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4450",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4450",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4450",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4450",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4451",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4451",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4451",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4451",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4453",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4453",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4453",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4350",
-      "CSE 2050": "4453",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4336",
-      "CSE 2050": "4456",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4337",
-      "CSE 2050": "4456",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4348",
-      "CSE 2050": "4456",
-      "CSE 1010": "4390"
-    },
-    {
-      "CSE 2102": "4349",
-      "CSE 2050": "4456",
-      "CSE 1010": "4390"
-    }
-  ]
-});
+    const [validSchedules, setValidSchedules] = useState({"status": 500, "value": []});
+
+    
+    useEffect(() => {
+        if (!generationHold) {
+            setValidSchedules({"status": 500, "value": "Home"})
+        }
+    }, [generationHold])
 
 
+    const [currentScheduleSmallPopUp, setCurrentScheduleSmallPopUp] = useState({});
+    const [currentScheduleLargePopUp, setCurrentScheduleLargePopUp] = useState({});
 
+    const [smallCalenderPopUpVisiablity, setSmallCalenderPopUpVisiablity] = useState(false);
+    const [largeCalenderPopUpVisiablity, setLargeCalenderPopUpVisiablity] = useState(false);
 
-
-
-
+    ///
 
     // search states 
 
@@ -1040,7 +53,7 @@ export default function DataProvider({ children }) {
     const [Campus, setCampus] = useState("Storrs");
     const [Term, setTerm] = useState("Fall 2025");
 
-    const [searchBlockResults, setSearchBlockResults] = useState({"status": 0, "message": {}});
+    const [searchBlockResults, setSearchBlockResults] = useState({"status": 0, "value": {}});
     ///
 
 
@@ -1062,10 +75,14 @@ export default function DataProvider({ children }) {
 
 
     function appendToCart(className, classData) {
-        console.log("ssdasda")
-        CartSingleton.addClass(className, classData)
+        if (cartElements.length >= 8) {
+            return 500
+        }
+
+        const output = CartSingleton.addClass(className, classData)
         setCartElements(CartSingleton.currentCartClasses())
         setGenerationHold(false)
+        return output
     }
 
 
@@ -1083,16 +100,39 @@ export default function DataProvider({ children }) {
 
 
 
-    function ScheduleGeneration() {
-        
-        if (!generationHold) console.log("generation")
+    async function ScheduleGeneration() {
+        if (generationHold) return 0
 
+        setScheduling(true)
+        const PreScheduleOutput = CartSingleton.handlePreScheduleProcessing()
         console.log(CartSingleton.handlePreScheduleProcessing())
 
+        if (PreScheduleOutput["status"] > 200) {
+
+            setValidSchedules(PreScheduleOutput)
+
+        } else {
+            const schedulingOutPut = await CartBlockSingleton.schedule(PreScheduleOutput)
+            setValidSchedules(JSON.parse(schedulingOutPut))
+        }
+
         setGenerationHold(true)
+        setScheduling(false)
+
+
     }
 
 
+
+
+    function FullCalenderClassCardProccessing(scheduleDict) {
+        return CartSingleton.FullCalenderClassCardProccessing(scheduleDict)
+    }
+
+
+    function popUpSchedulerBuilder(scheduleDict) {
+      return CartSingleton.miniScheduleViewProccessing(scheduleDict)
+    }
 
     async function SearchBlockFetch(Class) {
         const output = await SearchBlockSingleton.search(Class, Term, Campus)
@@ -1101,9 +141,10 @@ export default function DataProvider({ children }) {
     }
 
 
-    const SearchBlockStates = { searchBlockResults, setSearchBlockResults, SearchBlockFetch, Campus, Term, setCampus, setTerm, appendToCart}
-    const CartStates = {cartElements, removeFromCart, ScheduleGeneration, changeClassInclusion, viewClassInclusionStatus, viewProfessorConstraint, viewSectionConstraint}
-    const ScheduleBlockStates = {validSchedules}
+
+    const SearchBlockStates = { searchBlockResults, setSearchBlockResults, SearchBlockFetch, Campus, Term, setCampus, setTerm, appendToCart, scheduling}
+    const CartStates = {cartElements, removeFromCart, ScheduleGeneration, setLargeCalenderPopUpVisiablity, changeClassInclusion, viewClassInclusionStatus, viewProfessorConstraint, viewSectionConstraint,scheduling}
+    const ScheduleBlockStates = {largeCalenderPopUpVisiablity, setLargeCalenderPopUpVisiablity, validSchedules, currentScheduleSmallPopUp, smallCalenderPopUpVisiablity, setCurrentScheduleSmallPopUp, setSmallCalenderPopUpVisiablity, popUpSchedulerBuilder, currentScheduleLargePopUp, setCurrentScheduleLargePopUp, FullCalenderClassCardProccessing, scheduling}
 
     return (
         <DataContext.Provider value={{SearchBlockStates, CartStates, ScheduleBlockStates}}>

@@ -1,4 +1,5 @@
 import { extractSections, parseSchedule, sortedInsert } from "../helperFunctions.js";
+import { convertScheduleToEvents } from "../helperFunctions.js"
 
 
 export class PrimarySection {
@@ -6,7 +7,8 @@ export class PrimarySection {
     #dependentSections = {}
     completeSectionSchedule = { monday: new Set(), tuesday: new Set(), wednesday:new Set(), thursday: new Set(), friday: new Set(), saturday: new Set(), sunday: new Set(),};
     completeSectionCrn = null
-
+    events = []
+    sectionAvailableSeats = 0
 
     constructor(classInfo) {
 
@@ -25,8 +27,10 @@ export class PrimarySection {
 
         if (classInfo instanceof PrimarySection) {
             this.time = this.completeSectionSchedule = structuredClone(classInfo.time)
+            convertScheduleToEvents(this.events, this.time, this.className, this.classSection)
         } else {
             this.time = this.completeSectionSchedule = parseSchedule(classInfo.time)
+            convertScheduleToEvents(this.events, this.time, this.className, this.classSection)
         }
 
         this.availableSeats = Number.isInteger(classInfo.availableSeats)
@@ -34,6 +38,7 @@ export class PrimarySection {
             : null;
 
         if(this.crn != ""){
+            this.sectionAvailableSeats = this.availableSeats
             this.completeSectionCrn = this.crn
         }
 
@@ -48,11 +53,14 @@ export class PrimarySection {
                     sortedInsert(this.completeSectionSchedule[day], data.time[day])
                 }
             }
+            convertScheduleToEvents(this.events, data.time, data.className, data.classSection)
         })
 
         this.completeSectionCrn = data[data.length - 1].crn
         this.validcompleteSection = data[data.length - 1].openSeats()
         this.#dependentSections = data
+
+        this.sectionAvailableSeats = data[data.length - 1].availableSeats
 
 
 
@@ -75,6 +83,7 @@ export class DependentSection {
     constructor(classInfo) {
         this.crn = classInfo.crn
         this.subject = classInfo.subject
+        this.className = classInfo.subject + " " + classInfo.catalogNbr
         this.catalogNbr = classInfo.catalogNbr
         this.classSection = classInfo.classSection
         this.academicCareer = classInfo.academicCareer

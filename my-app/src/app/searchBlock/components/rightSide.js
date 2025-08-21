@@ -34,15 +34,15 @@ export default function RightSide({leadClass, loadingSearch}) {
         :(
           <>
             {leadClass === null ? null : (
-              SearchBlockStates.searchBlockResults["message"][leadClass] !== undefined ? (
-                <LeadClassCard element={SearchBlockStates.searchBlockResults["message"][leadClass]} />
+              SearchBlockStates.searchBlockResults["value"][leadClass] !== undefined ? (
+                <LeadClassCard element={SearchBlockStates.searchBlockResults["value"][leadClass]} />
               ) : (
                 <div>{leadClass} not found</div>
               )
             )}
 
-            {Object.keys(SearchBlockStates.searchBlockResults["message"]).length > 0 &&
-              Object.values(SearchBlockStates.searchBlockResults["message"]).map((ResultElement, index) => {
+            {Object.keys(SearchBlockStates.searchBlockResults["value"]).length > 0 &&
+              Object.values(SearchBlockStates.searchBlockResults["value"]).map((ResultElement, index) => {
                 return <ClassCard key={index} element={ResultElement} />;
               })}
           </>
