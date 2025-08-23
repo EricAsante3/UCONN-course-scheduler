@@ -11,6 +11,16 @@ export class CartModel {
     constructor() {
     }
 
+
+
+
+    detailedViewPreProccesor(className) {
+        return this.#cartClasses[className].detailedViewPreProccesor(className)
+    }
+
+
+
+
     addClass(className, classList) { /// edge case already in cart
 
         if (!(Object.keys(this.#cartClasses).includes(className))){
@@ -80,9 +90,6 @@ export class CartModel {
         return this.#cartClasses[className].constraints["lockedProfessor"]
     }
 
-
-
-
     // generate pre-schedule
     handlePreScheduleProcessing() {
         let processedClasses = {};
@@ -115,18 +122,13 @@ export class CartModel {
         return {"status": 200, "value": processedClasses};
     }
 
-
     classInclusionChange(className) {
         this.#cartClasses[className].handleInclusionChange()
     }
 
-
     returnClassColor(className) {
         return this.#cartClasses[className].colorTheme.container
     }
-
-
-
 
     viewClassInclusionStatus(className) {
         return this.#cartClasses[className].viewInclusionStatus()

@@ -21,6 +21,8 @@ export default function DataProvider({ children }) {
     const [cartElements, setCartElements] = useState([]);
 
     const [generationHold, setGenerationHold] = useState(false);
+    const [detailedViewPopUpVisiablity, setDetailedViewPopUpVisiablity] = useState(false);
+    const [detailedViewContent, setDetailedViewContent] = useState({});
 
     ///
 
@@ -94,7 +96,7 @@ export default function DataProvider({ children }) {
 
     function professorConstraintRemover(className) {
         setGenerationHold(false)
-        return CartSingleton.professorConstraintAdder(className)
+        return CartSingleton.professorConstraintRemover(className)
     }
 
 
@@ -184,11 +186,13 @@ export default function DataProvider({ children }) {
         await setSearchBlockResults(JSON.parse(output))
     }
 
-
+    function detailedViewPreProccesor(className) {
+        return CartSingleton.detailedViewPreProccesor(className)
+    }
 
     const SearchBlockStates = { searchBlockResults, setSearchBlockResults, SearchBlockFetch, Campus, Term, setCampus, setTerm, appendToCart, scheduling}
-    const CartStates = {cartElements, removeFromCart, ScheduleGeneration, setLargeCalenderPopUpVisiablity, changeClassInclusion, viewClassInclusionStatus, scheduling, returnClassColor, viewProfessorConstraint, viewSectionConstraint, professorConstraintRemover, professorConstraintAdder, sectionConstraintRemover, sectionConstraintAdder}
-    const ScheduleBlockStates = {largeCalenderPopUpVisiablity, setLargeCalenderPopUpVisiablity, validSchedules, currentScheduleSmallPopUp, smallCalenderPopUpVisiablity, setCurrentScheduleSmallPopUp, setSmallCalenderPopUpVisiablity, popUpSchedulerBuilder, currentScheduleLargePopUp, setCurrentScheduleLargePopUp, FullCalenderClassCardProccessing, scheduling, returnClassColor, viewSectionConstraint, sectionConstraintRemover, sectionConstraintAdder}
+    const CartStates = {cartElements, removeFromCart, ScheduleGeneration, setLargeCalenderPopUpVisiablity, changeClassInclusion, viewClassInclusionStatus, scheduling, returnClassColor, viewProfessorConstraint, viewSectionConstraint, professorConstraintRemover, professorConstraintAdder, sectionConstraintRemover, sectionConstraintAdder, detailedViewPreProccesor, detailedViewPopUpVisiablity, setDetailedViewPopUpVisiablity, detailedViewContent, setDetailedViewContent}
+    const ScheduleBlockStates = {largeCalenderPopUpVisiablity, setLargeCalenderPopUpVisiablity, validSchedules, currentScheduleSmallPopUp, smallCalenderPopUpVisiablity, setCurrentScheduleSmallPopUp, setSmallCalenderPopUpVisiablity, popUpSchedulerBuilder, currentScheduleLargePopUp, setCurrentScheduleLargePopUp, FullCalenderClassCardProccessing, scheduling, returnClassColor, viewSectionConstraint, sectionConstraintRemover, sectionConstraintAdder, detailedViewPopUpVisiablity} 
 
     
     return (

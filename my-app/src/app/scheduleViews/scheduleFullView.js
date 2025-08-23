@@ -4,13 +4,14 @@ import { useCalendarApp, ScheduleXCalendar } from '@schedule-x/react'
 import { createViewWeek,} from '@schedule-x/calendar' 
 import '@schedule-x/theme-default/dist/index.css'
 import { DataContext } from '@/data/Data'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 
- 
+import { createEventsServicePlugin } from '@schedule-x/events-service'
+
 
 function FullCalendar({className}) {
+    const eventsService = useState(() => createEventsServicePlugin())[0]
     const {ScheduleBlockStates} = useContext(DataContext);
-
     const Scheduledata = ScheduleBlockStates.popUpSchedulerBuilder(ScheduleBlockStates.currentScheduleLargePopUp["scheduleData"])
 
     const config = {
@@ -30,13 +31,15 @@ function FullCalendar({className}) {
         gridHeight: 766, // Set the height of the calendar
         eventWidth: 100, // Make events take up full width
       },
+    plugins: [eventsService]
 
   }
     
    const calendar = useCalendarApp(config)
 
   return (
-    <div className={`w-full ${className}`}>
+    <div onClick={() =>     console.log(eventsService.getAll())
+} className={`w-full ${className}`}>
       <ScheduleXCalendar calendarApp={calendar} />
     </div>
   )

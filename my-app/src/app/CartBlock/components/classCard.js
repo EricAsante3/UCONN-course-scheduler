@@ -24,11 +24,12 @@ export default function CartClassCard({CartClassName}) {
 
     <div id="smallBoxes" className="relative bg-foreground h-16 rounded-md flex items-center justify-evenly">
 
-        <div className="z-10 h-14 w-full opacity-50 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
 
-        </div>
-
-        <div className="aspect-square w-10">
+        <div onClick={() => {
+            CartStates.setDetailedViewPopUpVisiablity(true) 
+            CartStates.setDetailedViewContent(CartStates.detailedViewPreProccesor(CartClassName))
+            }} className="aspect-square w-10 cursor-pointer">
+                
             <InfoIcon></InfoIcon>
         </div>
 
@@ -39,8 +40,26 @@ export default function CartClassCard({CartClassName}) {
         <div className=" z-10 space-x-4 flex">
 
             
-            <div className="aspect-square w-10 bg-amber-300 cursor-pointer">
-            </div>
+
+
+
+            {CartStates.viewProfessorConstraint(CartClassName) === "" ?
+
+                <button disabled={CartStates.scheduling} className={`aspect-square w-10  ${CartStates.scheduling ? 'opacity-50' : ''}`}>
+                    <LockIconUnlocked></LockIconUnlocked>
+                </button>
+
+                :
+                <button disabled={CartStates.scheduling} onClick={() => {
+                    CartStates.professorConstraintRemover(CartClassName)
+                    setlocked(!locked)
+                    }} className={`aspect-square w-10  ${CartStates.scheduling ? 'opacity-50' : 'cursor-pointer'}`}>
+                    <LockIconLocked></LockIconLocked>
+                </button>
+            }
+
+
+
 
 
 

@@ -6,7 +6,7 @@ import PopUpCalendar from "./scheduleViews/schedulePopUpView";
 import { DataContext } from "@/data/Data";
 import { useContext } from "react";
 import FullSchedulePopUp from "./PopUps/fullSchedulePopUp";
-
+import DetailViewPopUp from "./PopUps/DetailViewPopUp";
 
 export default function Home() {
   const {ScheduleBlockStates} = useContext(DataContext);
@@ -39,9 +39,12 @@ export default function Home() {
       </div>
 
 
+      { ScheduleBlockStates.detailedViewPopUpVisiablity ?
+        <DetailViewPopUp></DetailViewPopUp> : null
+      }
 
-      { 
-        ScheduleBlockStates.largeCalenderPopUpVisiablity ?
+
+      { ScheduleBlockStates.largeCalenderPopUpVisiablity ?
         <FullSchedulePopUp></FullSchedulePopUp> : null
       }
 

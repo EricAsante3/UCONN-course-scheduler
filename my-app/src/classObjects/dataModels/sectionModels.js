@@ -4,7 +4,7 @@ import { convertScheduleToEvents } from "../helperFunctions.js"
 
 export class PrimarySection {
     validcompleteSection = true
-    #dependentSections = {}
+    dependentSections = {}
     completeSectionSchedule = { monday: new Set(), tuesday: new Set(), wednesday:new Set(), thursday: new Set(), friday: new Set(), saturday: new Set(), sunday: new Set(),};
     completeSectionCrn = null
     events = []
@@ -26,10 +26,12 @@ export class PrimarySection {
         this.professor =  classInfo.professor
 
         if (classInfo instanceof PrimarySection) {
-            this.time = this.completeSectionSchedule = structuredClone(classInfo.time)
+            this.time = structuredClone(classInfo.time)
+            this.completeSectionSchedule = structuredClone(classInfo.completeSectionSchedule)
             convertScheduleToEvents(this.events, this.time, this.className, this.classSection)
         } else {
-            this.time = this.completeSectionSchedule = parseSchedule(classInfo.time)
+            this.time = parseSchedule(classInfo.time)
+            this.completeSectionSchedule = parseSchedule(classInfo.time)
             convertScheduleToEvents(this.events, this.time, this.className, this.classSection)
         }
 
@@ -58,7 +60,7 @@ export class PrimarySection {
 
         this.completeSectionCrn = data[data.length - 1].crn
         this.validcompleteSection = data[data.length - 1].openSeats()
-        this.#dependentSections = data
+        this.dependentSections = data
 
         this.sectionAvailableSeats = data[data.length - 1].availableSeats
 

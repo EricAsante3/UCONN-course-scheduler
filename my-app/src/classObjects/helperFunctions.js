@@ -147,9 +147,9 @@ export function convertScheduleToEvents(array, schedule, className = "B1", secti
 // Helper: generate a random hex color
 export function randomHexColor() {
   // Bright RGB channels for contrast with black
-  const r = Math.floor(Math.random() * 106) + 100; // 150 - 255
-  const g = Math.floor(Math.random() * 106) + 100; // 150 - 255
-  const b = Math.floor(Math.random() * 106) + 110; // 150 - 255
+  const r = Math.floor(Math.random() * 106) + 95; // 150 - 255
+  const g = Math.floor(Math.random() * 106) + 95; // 150 - 255
+  const b = Math.floor(Math.random() * 106) + 95; // 150 - 255
 
   // Convert to hex and pad
   const hex =
@@ -174,4 +174,92 @@ export function adjustHexColor(hex, percent) {
 
   const toHex = (x) => x.toString(16).padStart(2, '0');
   return `#${toHex(newR)}${toHex(newG)}${toHex(newB)}`;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+const dayMap = {
+  Mo: "monday",
+  Tu: "tuesday",
+  We: "wednesday",
+  Th: "thursday",
+  Fr: "friday",
+  Sa: "saturday",
+  Su: "sunday",
+};
+
+const reverseDayMap = Object.fromEntries(
+  Object.entries(dayMap).map(([k, v]) => [v, k])
+);
+
+const dayOrder = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
+
+function minutesToTime(mins) {
+  const hour = Math.floor(mins / 60);
+  const minute = mins % 60;
+  const ampm = hour >= 12 ? "PM" : "AM";
+  const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
+  return `${formattedHour}:${minute.toString().padStart(2, "0")}${ampm}`;
+}
+
+function mergeConsecutiveDays(days) {
+  if (days.length === 0) return "";
+  const sortedDays = days.sort((a, b) => dayOrder.indexOf(a) - dayOrder.indexOf(b));
+  let merged = [sortedDays[0]];
+  
+  for (let i = 1; i < sortedDays.length; i++) {
+    const prevIndex = dayOrder.indexOf(sortedDays[i - 1]);
+    const currIndex = dayOrder.indexOf(sortedDays[i]);
+    const lastMerged = merged[merged.length - 1];
+    
+    // If previous merged entry is a string (single day), convert to array
+    if (Array.isArray(lastMerged)) {
+      const lastIndex = dayOrder.indexOf(lastMerged[lastMerged.length - 1]);
+      if (currIndex === lastIndex + 1) {
+        lastMerged.push(sortedDays[i]);
+      } else {
+        merged.push([sortedDays[i]]);
+      }
+    } else {
+      if (currIndex === dayOrder.indexOf(lastMerged) + 1) {
+        merged[merged.length - 1] = [lastMerged, sortedDays[i]];
+      } else {
+        merged.push(sortedDays[i]);
+      }
+    }
+  }
+
+  // Convert arrays to concatenated strings
+  return merged
+    .map(d => (Array.isArray(d) ? d.join("") : d))
+    .join("");
+}
+
+export function ScheduleObjectToString(schedule) {
+  const timeGroups = {};
+
+  for (const [day, ranges] of Object.entries(schedule)) {
+    for (const [start, end] of ranges) {
+      const timeKey = `${minutesToTime(start)} - ${minutesToTime(end)}`;
+      if (!timeGroups[timeKey]) {
+        timeGroups[timeKey] = [];
+      }
+      timeGroups[timeKey].push(reverseDayMap[day]);
+    }
+  }
+
+  // Convert to final string
+  return Object.entries(timeGroups)
+    .map(([time, days]) => `${time} / ${mergeConsecutiveDays(days)}`)
+    .join(", ");
 }

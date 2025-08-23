@@ -163,8 +163,34 @@ export class Class {
 
 
     // metod for full view
-    handleSectionView() {
-        return this.parsedSections
+    detailedViewPreProccesor() {
+        const outputDict = {}
+        for (const classSections of Object.values(this.parsedSections)) {
+
+            if (classSections.professor in outputDict){
+                if (classSections.validcompleteSection) {
+                    outputDict[classSections.professor].open.push(classSections)
+                } else {
+                    outputDict[classSections.professor].closed.push(classSections)
+                }
+            } else {
+                outputDict[classSections.professor] = {open: [], closed: []}
+                if (classSections.validcompleteSection) {
+                    outputDict[classSections.professor].open.push(classSections)
+                } else {
+                    outputDict[classSections.professor].closed.push(classSections)
+                }
+            }
+        }
+        if (Object.values(this.parsedSections)[0].crn = "") {
+            outputDict["generalInfo"] = Object.values(Object.values(this.parsedSections)[0].dependentSections)[0]
+        } else {
+            outputDict["generalInfo"] = Object.values(this.parsedSections)[0]
+        }
+
+
+        console.log(outputDict)
+        return outputDict
     }
     
     handleInclusionChange(){
