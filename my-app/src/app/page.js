@@ -7,10 +7,12 @@ import { DataContext } from "@/data/Data";
 import { useContext } from "react";
 import FullSchedulePopUp from "./PopUps/fullSchedulePopUp";
 import DetailViewPopUp from "./PopUps/DetailViewPopUp";
+import BreakSelectPopUp from "./PopUps/breakSelectPopUp";
+
+
 
 export default function Home() {
   const {ScheduleBlockStates} = useContext(DataContext);
-  
   return (
     <div className="relative flex items-center justify-center">
       <div className="min-w-7xl w-7xl ">
@@ -48,6 +50,11 @@ export default function Home() {
         <FullSchedulePopUp></FullSchedulePopUp> : null
       }
 
+      {   ScheduleBlockStates.breakViewPopup ?
+        <BreakSelectPopUp></BreakSelectPopUp>: 
+        null
+
+      }
 
 
 

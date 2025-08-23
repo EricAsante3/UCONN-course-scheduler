@@ -16,11 +16,20 @@ export default function CartClassCard({CartClassName}) {
     const {CartStates} = useContext(DataContext);
     const [inclusionStatus, setInclusionStatus] = useState(false);
     const [locked, setlocked] = useState(false);
+    let color;
 
-    const color = CartStates.returnClassColor(CartClassName)
+    if (CartClassName !== "BREAK" ) {
+        color = CartStates.returnClassColor(CartClassName)
+    }
 
     console.log(inclusionStatus)
   return (
+
+
+    <>
+    { CartClassName !== "BREAK" ?
+
+    
 
     <div id="smallBoxes" className="relative bg-foreground h-16 rounded-md flex items-center justify-evenly">
 
@@ -109,5 +118,51 @@ export default function CartClassCard({CartClassName}) {
         
 
     </div>
+    :
+    <div id="smallBoxes" className="relative bg-foreground h-16 rounded-md flex items-center justify-evenly">
 
+
+        <div onClick={() => {CartStates.setBreakViewPopup(true)}} className="aspect-square w-10 cursor-pointer">
+                
+            <InfoIcon></InfoIcon>
+        </div>
+        <div className="w-56">
+            <h1 className="h-[32px] truncate ">Personal Break</h1>
+        </div>
+
+        <button disabled={CartStates.scheduling} className={`aspect-square w-10  ${CartStates.scheduling ? 'opacity-50' : ''}`}>
+        </button>
+
+
+         <div className=" z-10 space-x-4 flex">
+
+            <button disabled={CartStates.scheduling}  onClick={() => {
+
+                CartStates.changeClassInclusion("BREAK")
+                setInclusionStatus(!inclusionStatus)
+
+            }}
+                className={`aspect-square w-10 ${CartStates.scheduling ? 'opacity-50' : 'cursor-pointer'
+                }`} >
+
+                { inclusionStatus ? 
+                    <ToggleClassIconOff></ToggleClassIconOff>
+                :
+                    <ToggleClassIconOn ></ToggleClassIconOn>
+                }
+
+                
+            </button>
+
+            <button disabled={CartStates.scheduling} onClick={() => {
+                CartStates.removeFromCart("BREAK")
+                }} className={`aspect-square w-10  ${CartStates.scheduling ? 'opacity-50' : 'cursor-pointer'}`}>
+                <TrashIcon></TrashIcon>
+            </button>
+        </div>
+
+        
+    </div>
+    }
+    </>
   )}

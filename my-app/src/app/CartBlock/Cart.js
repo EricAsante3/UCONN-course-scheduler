@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import CartClassCard from "./components/classCard"
 import { DataContext } from "@/data/Data"
 
@@ -32,7 +32,7 @@ export default function Cart() {
 
         
         <div className="w-full pr-8 pl-8  flex items-center justify-between bg-foreground rounded-2xl ">
-            <h1>+ add break</h1>
+            <h1 className="bg-navyBlue rounded-xl text-white">+ Personal Break</h1>
             { 8 > classesInCart.length ?
                 <div className="flex flex-row space-x-2">
                     <h1 className="text-green-400">{classesInCart.length}</h1>
@@ -59,9 +59,8 @@ export default function Cart() {
 
 
 
-            {classesInCart.map((element, index) => (
-                <CartClassCard key={index} CartClassName={element} />
-            ))}
+            {classesInCart.map((element, index) =>  <CartClassCard key={index} CartClassName={element}/>)
+                    }
 
 
 

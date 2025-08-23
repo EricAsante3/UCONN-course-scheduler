@@ -37,6 +37,7 @@ export default function FullSchedulePopUp() {
 
                 <div className="space-y-4">
                     {classData.map((classSection, index) => {
+
                         return <FullViewClassCard key={index} classData={classSection}></FullViewClassCard>
                         })
                     }
@@ -70,9 +71,8 @@ export default function FullSchedulePopUp() {
                         <div className="flex flex-row space-x-4 items-center justify-center">
                             <div onClick={() => setInstructionView(false)} className="relative aspect-square w-12 ">
                                 <SearchArrow className="scale-x-[-1]"></SearchArrow>
-                                <p className="absolute w-full text-center -bottom-5">Back</p>
                             </div>
-                            <h1 className="text-4xl">Registration Instructions</h1>
+                            <h1 className="text-4xl">Instructions</h1>
                         </div>
 
                         <div className="flex space-x-24">

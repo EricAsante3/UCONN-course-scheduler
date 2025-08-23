@@ -29,6 +29,7 @@ export class PrimarySection {
             this.time = structuredClone(classInfo.time)
             this.completeSectionSchedule = structuredClone(classInfo.completeSectionSchedule)
             convertScheduleToEvents(this.events, this.time, this.className, this.classSection)
+            console.log(this.time)
         } else {
             this.time = parseSchedule(classInfo.time)
             this.completeSectionSchedule = parseSchedule(classInfo.time)

@@ -182,10 +182,12 @@ export class Class {
                 }
             }
         }
-        if (Object.values(this.parsedSections)[0].crn = "") {
-            outputDict["generalInfo"] = Object.values(Object.values(this.parsedSections)[0].dependentSections)[0]
+        if (Object.values(this.parsedSections)[0].crn === "") {
+            let values = Object.values(Object.values(this.parsedSections)[0].dependentSections);
+            outputDict["generalInfo"] = values[values.length - 1]
+
         } else {
-            outputDict["generalInfo"] = Object.values(this.parsedSections)[0]
+            outputDict["generalInfo"] = Object.values(this.parsedSections)[0];
         }
 
 

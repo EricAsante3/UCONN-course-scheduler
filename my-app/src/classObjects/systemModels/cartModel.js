@@ -46,7 +46,7 @@ export class CartModel {
     // #classesInCart
     currentCartClasses() {
         let output = Object.keys(this.#cartClasses)
-
+        console.log(this.BreakModel.returnIntervalCount())
         if (this.BreakModel.returnIntervalCount() > 0) {
             output.unshift("BREAK")
         }
@@ -98,7 +98,7 @@ export class CartModel {
             return {"status": 500, "value": "Empty Cart"};
         }
 
-        if (this.BreakModel.returnIntervalCount() > 0) {
+        if (this.BreakModel.inclusionStatus) {
             processedClasses["BREAK"] = this.BreakModel.handlePreScheduleProcessing()["value"]
         }
 
@@ -123,6 +123,10 @@ export class CartModel {
     }
 
     classInclusionChange(className) {
+        if (className === "BREAK") {
+            this.BreakModel.handleInclusionChnage()
+            return
+        }
         this.#cartClasses[className].handleInclusionChange()
     }
 
@@ -139,6 +143,11 @@ export class CartModel {
         const eventColorThemes = {}
 
         for (const [className, CRN] of Object.entries(scheduleDict)) {
+            if (className === "BREAK") {
+                eventArray.push(...this.BreakModel.handleCalenderProcessing())
+                eventColorThemes["BREAK"] = {colorName: "BREAK", lightColors: this.BreakModel.colorTheme}
+                continue
+            }
             const classSection = this.#cartClasses[className].parsedSections[CRN]
             eventArray.push(...classSection.events)
             eventColorThemes[className.replace(/\s+/g, "")] = {colorName: className.replace(/\s+/g, ""), lightColors: this.#cartClasses[className].colorTheme}
@@ -150,6 +159,10 @@ export class CartModel {
         const classData = []
 
         for (const [className, CRN] of Object.entries(scheduleDict)) {
+            if (className === "BREAK"){
+                classData.push({className: "BREAK", Prof: "", seats: "", crn: "", instructionMode: ""})
+                continue
+            }
             classData.push({className: this.#cartClasses[className].parsedSections[CRN].className, Prof: this.#cartClasses[className].parsedSections[CRN].professor, seats: this.#cartClasses[className].parsedSections[CRN].sectionAvailableSeats, crn: this.#cartClasses[className].parsedSections[CRN].completeSectionCrn, instructionMode: this.#cartClasses[className].parsedSections[CRN].instructionMode})
         }
         return classData
