@@ -32,12 +32,28 @@ export default function Cart() {
 
         
         <div className="w-full pr-8 pl-8  flex items-center justify-between bg-foreground rounded-2xl ">
-            <h1 className="bg-navyBlue rounded-xl text-white">+ Personal Break</h1>
+            
+
+            { classesInCart.includes("BREAK") ?
+                <div >
+                </div>                
+                :
+                <div className="cursor-pointer" onClick={() => {CartStates.setBreakViewPopup(true)}}>
+                    <h2 className="text-Text text-3xl font-bold">+ Personal Break</h2>
+                </div>
+            }
+
+
+
+
+
+
+
             { 8 > classesInCart.length ?
-                <div className="flex flex-row space-x-2">
-                    <h1 className="text-green-400">{classesInCart.length}</h1>
-                    <h1>/</h1>
-                    <h1>8</h1>
+                <div className="flex flex-row space-x-2 text-3xl font-bold">
+                    <h2 className="text-greenColor">{classesInCart.length}</h2>
+                    <h2>/</h2>
+                    <h2>8</h2>
                 </div> 
             :
                 <div className="flex flex-row space-x-2">

@@ -20,9 +20,9 @@ export default function DetailViewPopUp() {
               <div className=" w-2/3 h-full flex flex-col justify-between border-b border-Text/45">
                 <div className="relative w-full ">
                   <div className="mt-10">
-                    <h1 className="text-4xl text-center">{CartStates.detailedViewContent["generalInfo"].className}</h1>
-                    <h1 className="text-2xl text-center">{CartStates.detailedViewContent["generalInfo"].title}</h1>
-                    <p className="text-center">{CartStates.detailedViewContent["generalInfo"].units} Credits * {CartStates.detailedViewContent["generalInfo"].academicCareer} * {CartStates.detailedViewContent["generalInfo"].campus}</p>
+                    <h2 className="text-4xl text-center font-bold">{CartStates.detailedViewContent["generalInfo"].className}</h2>
+                    <h2 className="text-2xl text-center">{CartStates.detailedViewContent["generalInfo"].title}</h2>
+                    <h2 className="text-center">{CartStates.detailedViewContent["generalInfo"].units} Credits * {CartStates.detailedViewContent["generalInfo"].academicCareer} * {CartStates.detailedViewContent["generalInfo"].campus}</h2>
                   </div>
 
 
@@ -33,7 +33,7 @@ export default function DetailViewPopUp() {
 
                 </div>
                 <div>
-                  <h1 className="text-4xl text-center">Professors/Sections</h1>
+                  <h2 className="text-4xl text-center">Professors/Sections</h2>
                 </div>
               </div>
 

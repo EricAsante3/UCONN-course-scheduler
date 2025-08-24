@@ -10,7 +10,7 @@ export function ProfessorColum({professorName, sectionData, className, states}) 
     return (
                 <div id="smallBoxes" className="rounded-2xl flex flex-col h-full w-[400px] bg-foreground">
                   <div className="rounded-2xl  w-full bg-Highlight h-20 flex items-center justify-center">
-                    <h1 className="text-2xl w-4/5 truncate text-Text">{professorName}</h1>
+                    <h2 className="text-2xl font-semibold w-4/5 truncate text-Text">{professorName}</h2>
 
 
                     {!(CartStates.viewProfessorConstraint(className) === professorName) ?
@@ -41,7 +41,7 @@ export function ProfessorColum({professorName, sectionData, className, states}) 
                         return <MainComponent key={index} primarySectionData={value}></MainComponent>
                     })}
 
-                    <div className="w-2/3 h-px border-b border-red-600/50" />
+                    <div className="w-2/3 h-px border-b border-redColor/50" />
 
 
                     {sectionData.closed.map((value, index) => {

@@ -5,10 +5,9 @@ import { ToggleClassIconOn } from "@/app/Icons/Icons";
 import { InfoIcon } from "@/app/Icons/Icons";
 import { LockIconLocked } from "@/app/Icons/Icons";
 import { LockIconUnlocked } from "@/app/Icons/Icons";
-
-
-
-
+import { UserLockIconClosed } from "@/app/Icons/Icons";
+import { UserLockIconOpen } from "@/app/Icons/Icons";
+import { UserLockIcon } from "@/app/Icons/Icons";
 
 
 
@@ -55,7 +54,7 @@ export default function CartClassCard({CartClassName}) {
             {CartStates.viewProfessorConstraint(CartClassName) === "" ?
 
                 <button disabled={CartStates.scheduling} className={`aspect-square w-10  ${CartStates.scheduling ? 'opacity-50' : ''}`}>
-                    <LockIconUnlocked></LockIconUnlocked>
+                    <UserLockIcon className="fill-Text"></UserLockIcon>
                 </button>
 
                 :
@@ -63,7 +62,7 @@ export default function CartClassCard({CartClassName}) {
                     CartStates.professorConstraintRemover(CartClassName)
                     setlocked(!locked)
                     }} className={`aspect-square w-10  ${CartStates.scheduling ? 'opacity-50' : 'cursor-pointer'}`}>
-                    <LockIconLocked></LockIconLocked>
+                    <UserLockIconClosed className="fill-Text"></UserLockIconClosed>
                 </button>
             }
 

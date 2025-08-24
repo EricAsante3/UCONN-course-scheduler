@@ -68,7 +68,7 @@ export default function LeftSide({setLeadClass, loadingSearch, setLoadingSearch}
     <div className="flex flex-col justify-start mt-4">
 
         <div className="flex items-center mb-4 justify-between">
-            <h1 className="w-fit">Search</h1>
+            <h2 className="w-fit text-3xl font-bold">Search</h2>
         </div>
 
 
@@ -109,7 +109,7 @@ export default function LeftSide({setLeadClass, loadingSearch, setLoadingSearch}
         <div className="mt-4 flex flex-row justify-start items-start w-full space-x-4">
 
             <div className="w-full">                
-                <select className="w-full" disabled={loadingSearch} value={SearchBlockStates.Term} onChange={(e) => {
+                <select className="w-full cursor-pointer" disabled={loadingSearch} value={SearchBlockStates.Term} onChange={(e) => {
                 SearchBlockStates.setTerm(e.target.value)
                 setLeadClass(null)
                 SearchBlockStates.setSearchBlockResults({"status": 0, "value": {}})
@@ -123,8 +123,8 @@ export default function LeftSide({setLeadClass, loadingSearch, setLoadingSearch}
                 </select>
             </div>
 
-            <div className="w-full">                
-                <select className="w-full" disabled={loadingSearch} value={SearchBlockStates.Campus} onChange={(e) => {
+            <div className="w-full ">                
+                <select className="w-full cursor-pointer" disabled={loadingSearch} value={SearchBlockStates.Campus} onChange={(e) => {
                     SearchBlockStates.setCampus(e.target.value)
                     setLeadClass(null)
                     SearchBlockStates.setSearchBlockResults({"status": 0, "value": {}})
@@ -146,8 +146,14 @@ export default function LeftSide({setLeadClass, loadingSearch, setLoadingSearch}
     </div>
 
 
-    <div className="flex ">
-    Student Resources
+    <div className="flex flex-col">
+        <h1 className="text-3xl font-bold">
+            Student Resources
+        </h1>
+
+        <div className="bg-red-400 h-full">
+            sd
+        </div>
     </div>
 
     </div>

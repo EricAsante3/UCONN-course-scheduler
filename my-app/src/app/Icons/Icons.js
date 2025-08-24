@@ -109,8 +109,7 @@ export const LockIconLocked = (props) => {
       fill="none"
       viewBox="0 0 24 24"
       strokeWidth={1.5}
-      stroke="#723212"
-      className="w-full h-full"
+      className="w-full h-full stroke-redColor"
       {...props}
     >
       <path
@@ -167,7 +166,7 @@ export const TrashIcon = (props) => {
       style={{ fill: "var(--foreground)" }}      
       viewBox="0 0 24 24"
       strokeWidth={1.5}
-      stroke="#ff000d"
+      className="stroke-redColor"
       width="100%"
       height="100%"
       {...props}
@@ -234,6 +233,74 @@ export const InfoIcon = ({ fill = "#000000", ...props }) => {
     </svg>
   );
 };
+
+
+
+export function UserLockIconClosed({ className = "", color = "currentColor" }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+    <path       className="fill-Text" d="M12.5 12.5C15.4006 12.5 17.75 10.1506 17.75 7.25C17.75 4.34938 15.4006 2 12.5 2C9.59937 2 7.25 4.34938 7.25 7.25C7.25 10.1506 9.59937 12.5 12.5 12.5ZM12.5 15.125C8.99563 15.125 2 16.8837 2 20.375V23H23V20.375C23 16.8837 16.0044 15.125 12.5 15.125Z" fill=""/>
+    <path d="M17.4 16.6538V14.5385C17.4 13.8652 17.1471 13.2196 16.6971 12.7435C16.247 12.2674 15.6365 12 15 12C14.3635 12 13.753 12.2674 13.3029 12.7435C12.8529 13.2196 12.6 13.8652 12.6 14.5385V16.6538M12.2 23H17.8C18.1183 23 18.4235 22.8663 18.6485 22.6283C18.8736 22.3902 19 22.0674 19 21.7308V17.9231C19 17.5865 18.8736 17.2636 18.6485 17.0256C18.4235 16.7876 18.1183 16.6538 17.8 16.6538H12.2C11.8817 16.6538 11.5765 16.7876 11.3515 17.0256C11.1264 17.2636 11 17.5865 11 17.9231V21.7308C11 22.0674 11.1264 22.3902 11.3515 22.6283C11.5765 22.8663 11.8817 23 12.2 23Z" className="stroke-redColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"  transform="translate(2, 0)"/>
+
+    </svg>
+  );
+}
+
+
+
+export function UserLockIcon({ className = "", color = "currentColor" }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+    <path d="M12.5 12.5C15.4006 12.5 17.75 10.1506 17.75 7.25C17.75 4.34938 15.4006 2 12.5 2C9.59937 2 7.25 4.34938 7.25 7.25C7.25 10.1506 9.59937 12.5 12.5 12.5ZM12.5 15.125C8.99563 15.125 2 16.8837 2 20.375V23H23V20.375C23 16.8837 16.0044 15.125 12.5 15.125Z" fill=""/>
+
+    </svg>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+export function UserLockIconOpen({ className = "", color = "currentColor" }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      <path
+        d="M12.5 12.5C15.4006 12.5 17.75 10.1506 17.75 7.25C17.75 4.34937 15.4006 2 12.5 2C9.59937 2 7.25 4.34937 7.25 7.25C7.25 10.1506 9.59937 12.5 12.5 12.5ZM12.5 15.125C8.99562 15.125 2 16.8837 2 20.375V23H23V20.375C23 16.8837 16.0044 15.125 12.5 15.125Z"
+        fill="#000"
+      />
+      <path
+        d="M17.2857 17.2308V15.3077C17.2857 14.6957 17.5341 14.1087 17.9761 13.6759C18.4182 13.2431 19.0177 13 19.6429 13C20.268 13 20.8676 13.2431 21.3096 13.6759C21.7517 14.1087 22 14.6957 22 15.3077V17.2308M12.1786 23H17.6786C17.9911 23 18.2909 22.8784 18.5119 22.662C18.733 22.4457 18.8571 22.1522 18.8571 21.8462V18.3846C18.8571 18.0786 18.733 17.7851 18.5119 17.5687C18.2909 17.3523 17.9911 17.2308 17.6786 17.2308H12.1786C11.866 17.2308 11.5662 17.3523 11.3452 17.5687C11.1242 17.7851 11 18.0786 11 18.3846V21.8462C11 22.1522 11.1242 22.4457 11.3452 22.662C11.5662 22.8784 11.866 23 12.1786 23Z"
+        stroke="#FFF"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+
+
+
 
 export default function SearchIcon({ className = "", color = "currentColor" }) {
   return (

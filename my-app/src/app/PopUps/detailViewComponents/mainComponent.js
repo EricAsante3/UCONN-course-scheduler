@@ -13,7 +13,7 @@ export function MainComponent({primarySectionData}) {
                 { primarySectionData.sectionAvailableSeats > 0 ?
                     <h1>Seats Open: {primarySectionData.sectionAvailableSeats}</h1>
                     :
-                    <div className="bg-red-500/50 rounded-2xl pl-2 pr-2">
+                    <div className="bg-redColor/50 rounded-2xl pl-4 pr-4 h-fit">
                         <h1 className="">Section Full</h1>
                     </div>
 

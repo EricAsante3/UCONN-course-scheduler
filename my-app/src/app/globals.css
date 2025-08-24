@@ -5,6 +5,17 @@
   min-width: 1424px;
   --navyBlue: #000E2F;
 
+  --redColor: #de1a24;
+
+  --greenColor: #3f8f29;
+
+  --font-geist-mono: "Geist Mono", "Geist Mono Fallback";
+  --font-geist-sans: "Geist", "Geist Fallback";
+
+  /* Default font variables for general use */
+  --default-font-family: var(--font-geist-sans);
+  --default-mono-font-family: var(--font-geist-mono);
+
 }
 
 
@@ -44,8 +55,8 @@
   --color-boxshadow1: var(--box-shadow1);
   --color-boxshadow2: var(--box-shadow2);
   --color-navyBlue: var(--navyBlue);
-
-
+  --color-redColor: var(--redColor);
+  --color-greenColor: var(--greenColor);
 
 
 
@@ -68,10 +79,21 @@
 
 
 body {
+  font-family: var(--default-font-family);
   background: var(--background);
   color: var(--Text);
-  font-family: Arial, Helvetica, sans-serif;
 }
+
+
+
+
+
+h2 {
+  font-family: var(--default-mono-font-family);
+}
+
+
+
 
 
 #mainBoxes {

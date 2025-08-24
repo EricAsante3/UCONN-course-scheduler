@@ -23,6 +23,6 @@ export default function ScheduleCard({schedule, index}) {
         <div className="aspect-square w-10">
           <CalenderICon></CalenderICon>
         </div>
-        <h1 className="text-2xl">Schedule {index}</h1>
+        <h2 className="text-2xl font-bold">Schedule {index}</h2>
     </div>
   )}

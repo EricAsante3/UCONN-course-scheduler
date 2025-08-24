@@ -34,11 +34,11 @@ export default function FullViewClassCard({classData}) {
                     <button onClick={() => {
                         ScheduleBlockStates.sectionConstraintAdder(classData.className, classData.crn)
                         setlocked(!locked)
-                        }} className="aspect-square w-6 flex items-center justify-center">
+                        }} className="aspect-square w-8 flex items-center justify-center cursor-pointer">
                         <LockIconUnlocked ></LockIconUnlocked>
                     </button>
                     :
-                    <button className="aspect-square w-6 flex items-center justify-center">
+                    <button className="aspect-square w-8 flex items-center justify-center">
                         <LockIconLocked></LockIconLocked>
                     </button>
                     }
@@ -47,12 +47,12 @@ export default function FullViewClassCard({classData}) {
             </div>
 
             <div className="mr-2 ml-2 flex flex-row justify-between">
-                <p>Seats: {classData.seats}</p>
-                <p>Registration #: {classData.crn}</p>
+                <p className="opacity-80">Seats: {classData.seats}</p>
+                <p className="">Registration #: {classData.crn}</p>
             </div>
-            <p className="ml-2 w-[252px] truncate">{classData.instructionMode}</p>
+            <p className="opacity-80 ml-2 w-[252px] truncate">{classData.instructionMode}</p>
 
-            <p className="ml-2 w-[252px] truncate">Prof: {classData.Prof}</p>
+            <p className="opacity-80 ml-2 w-[252px] truncate">Prof: {classData.Prof}</p>
         </div>
 
         : 

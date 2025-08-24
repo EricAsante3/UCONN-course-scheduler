@@ -98,7 +98,7 @@ export class CartModel {
             return {"status": 500, "value": "Empty Cart"};
         }
 
-        if (this.BreakModel.inclusionStatus) {
+        if (this.BreakModel.inclusionStatus && this.BreakModel.intervalCount > 0) {
             processedClasses["BREAK"] = this.BreakModel.handlePreScheduleProcessing()["value"]
         }
 

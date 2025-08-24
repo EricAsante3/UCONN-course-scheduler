@@ -8,11 +8,31 @@ import { createViewWeek,} from '@schedule-x/calendar'
 import '@schedule-x/theme-default/dist/index.css'
 import { createEventsServicePlugin } from '@schedule-x/events-service'
 
-function FullCalendar() {
+function minutesToTime(minutes) {
+  let hours = Math.floor(minutes / 60);
+  let mins = minutes % 60;
+  let ampm = hours >= 12 ? "pm" : "am";
+
+  // Convert 24h → 12h format
+  hours = hours % 12;
+  if (hours === 0) hours = 12;
+
+  // Pad minutes with leading 0 if needed
+  let minsStr = mins < 10 ? "0" + mins : mins;
+
+  return `${hours}:${minsStr}${ampm}`;
+}
+
+function intervalToTimeString(interval) {
+  let [start, end] = interval;
+  return `${minutesToTime(start)} - ${minutesToTime(end)}`;
+}
 
 
+function FullCalendar({calenderEvents}) {
     const config = {
-
+    events: calenderEvents.events,
+    calendars: calenderEvents.themes,
 
     selectedDate: '2025-10-19',
     firstDayOfWeek: 0,
@@ -41,13 +61,6 @@ function FullCalendar() {
 }
  
 
-
-
-
-
-
-
-
 function handleTimeChange(time) {
     const [hours, minutes] = time.split(":").map(Number);
     const minutesAfterMidnight = hours * 60 + minutes;
@@ -66,93 +79,158 @@ function handleTimeChange(time) {
 
 export default function BreakSelectPopUp() {
     const {CartStates} = useContext(DataContext);
-    const [locked, setlocked] = useState(false)
+    const [reload, setReload] = useState(false)
     const [weekday, setWeekday] = useState("monday"); // default value
 
-    const [startTimeDisplay, setStartTimeDisplay] = useState("00:00");
-    const [endTimeDisplay, setEndTimeDisplay] = useState("00:00");
+    const constBreakIntervals = CartStates.returnBreakIntervals()
+    const calenderEvents = CartStates.popUpSchedulerBuilder({"BREAK": "BREAK"})
 
-    const [startTime, setStartTime] = useState(0);
-    const [endTime, setEndTime] = useState(0);
 
-    useEffect(() => console.log(weekday), [weekday])
+    const [startTimeDisplay, setStartTimeDisplay] = useState("08:00");
+    const [endTimeDisplay, setEndTimeDisplay] = useState("17:00");
+
+    const [startTime, setStartTime] = useState(480);
+    const [endTime, setEndTime] = useState(1020);
+
     return (
         <>
             <div className="fixed inset-0 bg-black/50 z-30 "></div>
 
             <div className="rounded-2xl bg-background absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  flex flex- items-center justify-between h-[800px] min-h-[800px] w-[800px] min-w-[800px]">
-                <div className="h-full w-[70%] bg-red-700 p-2 flex items-center justify-center">
-                    <FullCalendar></FullCalendar>
+                <div className="h-full w-[70%]  p-2 flex items-center justify-center">
+                    <FullCalendar key={reload} calenderEvents={calenderEvents}></FullCalendar>
                 </div>
 
-                <div className="h-full w-[30%] bg-blue-700 flex flex-col items-center justify-evenly">
+                <div className="relative h-full w-[30%]  flex flex-col items-center justify-evenly p-2 space-y-2 mb-4">
 
-                    <div className="flex items-center justify-center flex-col">
-                    <h1>Week Day Select:</h1>
-                    <select
-                        id="weekday"
-                        name="weekday"
-                        value={weekday}
-                        onChange={(e) => setWeekday(e.target.value)}
-                    >
-                        <option value="monday">Monday</option>
-                        <option value="tuesday">Tuesday</option>
-                        <option value="wednesday">Wednesday</option>
-                        <option value="thursday">Thursday</option>
-                        <option value="friday">Friday</option>
-                        <option value="saturday">Saturday</option>
-                        <option value="sunday">Sunday</option>
-                    </select>
+                        <div onClick={() => {CartStates.setBreakViewPopup(false)}} className="aspect-square w-16">
+                            <CloseSquareIcon></CloseSquareIcon>
+                        </div>
 
-                    <p className="mt-2">Currently selected: {weekday}</p>
+                    <div className="flex flex-col  h-1/2 w-full bg-Text p-2  rounded-2xl text-background space-y-8">
+
+                        <h2 className="font-bold text-lg text-center">Add Break Interval</h2>
+
+                        <div className="flex flex-col w-full items-center justify-center ">
+                        <h1 className="">Week Day Select:</h1>
+                        <select
+                            className="bg-Highlight/20 cursor-pointer"
+                            id="weekday"
+                            name="weekday"
+                            value={weekday}
+                            onChange={(e) => setWeekday(e.target.value)}
+                        >
+                            <option value="monday">Monday</option>
+                            <option value="tuesday">Tuesday</option>
+                            <option value="wednesday">Wednesday</option>
+                            <option value="thursday">Thursday</option>
+                            <option value="friday">Friday</option>
+                            <option value="saturday">Saturday</option>
+                            <option value="sunday">Sunday</option>
+                        </select>
+
+                        </div>
+
+
+
+
+                        <div className="flex items-center justify-center flex-col">
+                            <h1>Start Time Select:</h1>
+
+                            <input
+                                type="time"
+                                value={startTimeDisplay}
+                                className="bg-Highlight/20 cursor-pointer"
+                                onChange={(e) => {
+                                    setStartTimeDisplay(e.target.value)
+                                    setStartTime(handleTimeChange(e.target.value))
+                                }}
+
+
+
+                            />
+                        </div>
+
+                        <div className="flex items-center justify-center flex-col">
+                            <div className="">
+                                <h1>End Time Select:</h1>
+                            </div>
+
+                            <input
+                                type="time"
+                                value={endTimeDisplay}
+                                className="bg-Highlight/20 cursor-pointer"
+
+                                onChange={(e) => {
+                                    setEndTimeDisplay(e.target.value)
+                                    setEndTime(handleTimeChange(e.target.value))
+                                }}
+                            />
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+                        <h2 onClick={() => {
+                            CartStates.addInterval([startTime, endTime], weekday)
+                            setReload(!reload)
+                        }} className="w-full text-center text-2xl font-bold bg-Highlight/20 rounded-full cursor-pointer">ADD</h2>
+
                     </div>
 
-                    <div className="flex items-center justify-center flex-col">
-                        <h1>Start Time Select:</h1>
 
-                        <input
-                            type="time"
-                            value={startTimeDisplay}
-                        
-                            onChange={(e) => {
-                                setStartTimeDisplay(e.target.value)
-                                setStartTime(handleTimeChange(e.target.value))
-                            }}
+                    <div className="flex flex-col  h-1/2 w-full bg-Text p-2  rounded-2xl text-background space-y-4">
+
+                        <h2 className="font-bold text-lg text-center">Remove Interval</h2>
+
+                        <div className="w-full h-full overflow-y-scroll flex flex-col p-2 space-y-1">
 
 
+                            {Object.entries(constBreakIntervals).map(([day, intervals]) => (
+                            <div key={day}>
 
-                        />
+                                {intervals.length > 0 ? (
+                                intervals.map((interval, i) => (
+
+                                    <div className="w-full cursor-pointer" key={i}>
+                                        <div className="flex flex-row space-x-4">
+                                            <h1 className="font-bold ">{day}</h1>
+                                            <h1>X</h1>
+                                        </div>
+
+                                        
+                                        <p onClick={() => {CartStates.removeInterval(day, i )
+                                                                        setReload(!reload)
+
+                                        }} key={i}>{intervalToTimeString(interval)}</p> 
+                                    </div>
+
+                                    
+
+                                    
+                                ))
+                                ) : (
+                                    null
+                                )}
+
+                            </div>
+                            ))}
+
+
+
+
+
+
+                        </div>
+
                     </div>
-
-                    <div className="flex items-center justify-center flex-col">
-                        <h1>End Time Select:</h1>
-
-                        <input
-                            type="time"
-                            value={endTimeDisplay}
-                            onChange={(e) => {
-                                setEndTimeDisplay(e.target.value)
-                                setEndTime(handleTimeChange(e.target.value))
-                            }}
-                        />
-                    </div>
-
-
-
-
-
-
-
-
-                    <div onClick={() => {CartStates.setBreakViewPopup(false)}} className="aspect-square w-12">
-                        <CloseSquareIcon></CloseSquareIcon>
-                    </div>
-
-
-                    <h1 onClick={() => {
-                        console.log([startTime, endTime], weekday)
-                        console.log(CartStates.addInterval([startTime, endTime], weekday))
-                    }} className="bg-green-400">Submit</h1>
 
 
 

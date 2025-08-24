@@ -42,23 +42,23 @@ export default function ScheduleBlock() {
 
 
                       
-                      <div className="  h-full w-full flex flex-col items-center justify-center">
+                      <div className="  h-full w-full flex flex-col items-center justify-center ">
                         { ScheduleBlockStates.validSchedules["status"] === 200 ?   
                             ( ScheduleBlockStates.validSchedules["value"].length >= 200 ?
-                              <h1 className="text-4xl w-fit">Possible Schedules: First Possible 200</h1> :
-                              <h1 className="text-4xl w-fit">Possible Schedules: {ScheduleBlockStates.validSchedules["value"].length}</h1>
+                              <h2 className="text-4xl w-fit font-bold">Possible Schedules: First Possible 200</h2> :
+                              <h2 className="text-4xl w-fit font-bold">Possible Schedules: {ScheduleBlockStates.validSchedules["value"].length}</h2>
                             ) :
 
                             
 
                           ScheduleBlockStates.validSchedules["status"] === 350 ? 
 
-                            <h1 className="text-4xl w-fit">Possible Schedules: (Time Limit Ecceded) returned {ScheduleBlockStates.validSchedules["value"].length} schedules</h1> :
+                            <h2 className="text-4xl w-fit font-bold">Possible Schedules: (Time Limit Ecceded) returned {ScheduleBlockStates.validSchedules["value"].length} schedules</h2> :
 
-                            <h1 className="text-4xl w-fit">Possible Schedules: 0</h1>
+                            <h2 className="text-4xl w-fit font-bold">Possible Schedules: 0</h2>
                         }
 
-                        <p className="w-fit">(Consider using section/professor lock feature for faster generation and finding more schedules)</p>
+                        <h2 className="w-fit opacity-70">(Use the section/professor lock feature to generate schedules faster and explore more options)</h2>
                       </div> 
 
                     
@@ -109,7 +109,7 @@ export default function ScheduleBlock() {
                   (ScheduleBlockStates.validSchedules["value"] === "Home" ? null : 
 
 
-                    <div className="text-black text-3xl flex items-center justify-center flex-col bg-white h-16">
+                    <div className="text-black text-3xl flex items-center justify-center flex-col bg-white h-32">
                       {ScheduleBlockStates.validSchedules["value"]}
                     </div>
 

@@ -17,9 +17,9 @@ export default function LeadClassCard({element}) {
 
 
 
-            <h1 className="h-[32px]">{element[0].subject} {element[0].catalogNbr}</h1>
-            <p className="text-sm truncate w-[256px] h-[20px]">{element[0].title}</p>
-            { CartSingleton.inCartCheck(element[0].subject + " " + element[0].catalogNbr) ? <AddToCartIcon className="aspect-square w-8 absolute top-1 right-3 fill-green-400"/> : <AddToCartIcon className="aspect-square w-8 absolute top-1 right-3"/>}
+            <h2 className="h-[32px] font-bold">{element[0].subject} {element[0].catalogNbr}</h2>
+            <p className="text-sm truncate w-[256px] h-[20px] opacity-70">{element[0].title}</p>
+            { CartSingleton.inCartCheck(element[0].subject + " " + element[0].catalogNbr) ? <AddToCartIcon className="aspect-square w-8 absolute top-1 right-3 fill-greenColor"/> : <AddToCartIcon className="aspect-square w-8 absolute top-1 right-3"/>}
         </div>
     )
 }

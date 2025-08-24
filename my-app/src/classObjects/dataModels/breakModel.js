@@ -13,15 +13,11 @@ export class Break {
             onContainer: "#000000",
         };
 
-  intervalCount = 1
+  intervalCount = 0
+
 
   breakSchedule = {
-                    "monday": [
-                      [
-                        870,
-                        920
-                      ]
-                    ],
+                    "monday": [],
                     "tuesday": [],
                     "wednesday": [],
                     "thursday": [],
@@ -29,8 +25,6 @@ export class Break {
                     "saturday": [],
                     "sunday": []
                   }
-
-
 
 
     addInterval(interval, weekDay) {
@@ -41,8 +35,6 @@ export class Break {
 
       // 2. Clone existing schedule
       let cloneArray = structuredClone(this.breakSchedule[weekDay]);
-
-
 
       console.log(cloneArray)
       // 3. Insert while keeping sorted
@@ -56,14 +48,33 @@ export class Break {
       }
 
       // 5. Save updated schedule
-      this.breakSchedule[weekDay] = cloneArray;
+      this.breakSchedule[weekDay] = structuredClone(cloneArray)
+      
+      this.intervalCount = this.intervalCount + 1
 
       return { status: 200, value: "Successfully Added Interval" };
     }
 
-    removeInterval(){
 
+
+
+    removeInterval(weekDay, index) {
+      this.breakSchedule[weekDay].splice(index, 1)
+      this.intervalCount = this.intervalCount - 1
     }
+
+
+
+
+
+
+
+    returnBreakIntervals() {
+      return this.breakSchedule
+    }
+
+
+
 
     returnIntervalCount(){
         return this.intervalCount

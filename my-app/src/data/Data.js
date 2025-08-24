@@ -139,9 +139,25 @@ export default function DataProvider({ children }) {
 
 
     function addInterval(interval, weekDay) {
-        return CartSingleton.BreakModel.addInterval(interval, weekDay)
+        const outPut = CartSingleton.BreakModel.addInterval(interval, weekDay)
+        setCartElements(CartSingleton.currentCartClasses())
+        setGenerationHold(false)
+        return outPut
     }
 
+
+    function removeInterval(weekDay, index) {
+        CartSingleton.BreakModel.removeInterval(weekDay, index)
+        setCartElements(CartSingleton.currentCartClasses())
+        setGenerationHold(false)
+    }
+
+
+
+
+    function returnBreakIntervals() {
+        return CartSingleton.BreakModel.returnBreakIntervals()
+    }
 
 
     function removeFromCart(className) {
@@ -219,7 +235,7 @@ export default function DataProvider({ children }) {
     }
 
     const SearchBlockStates = { searchBlockResults, setSearchBlockResults, SearchBlockFetch, Campus, Term, setCampus, setTerm, appendToCart, scheduling}
-    const CartStates = {cartElements, removeFromCart, ScheduleGeneration, setLargeCalenderPopUpVisiablity, changeClassInclusion, viewClassInclusionStatus, scheduling, returnClassColor, viewProfessorConstraint, viewSectionConstraint, professorConstraintRemover, professorConstraintAdder, sectionConstraintRemover, sectionConstraintAdder, detailedViewPreProccesor, detailedViewPopUpVisiablity, setDetailedViewPopUpVisiablity, detailedViewContent, setDetailedViewContent, addInterval, setBreakViewPopup, breakViewPopup}
+    const CartStates = {cartElements, removeFromCart, ScheduleGeneration, setLargeCalenderPopUpVisiablity, changeClassInclusion, viewClassInclusionStatus, scheduling, returnClassColor, viewProfessorConstraint, viewSectionConstraint, professorConstraintRemover, professorConstraintAdder, sectionConstraintRemover, sectionConstraintAdder, detailedViewPreProccesor, detailedViewPopUpVisiablity, setDetailedViewPopUpVisiablity, detailedViewContent, setDetailedViewContent, addInterval, setBreakViewPopup, breakViewPopup, returnBreakIntervals, popUpSchedulerBuilder, removeInterval}
     const ScheduleBlockStates = {largeCalenderPopUpVisiablity, setLargeCalenderPopUpVisiablity, validSchedules, currentScheduleSmallPopUp, smallCalenderPopUpVisiablity, setCurrentScheduleSmallPopUp, setSmallCalenderPopUpVisiablity, popUpSchedulerBuilder, currentScheduleLargePopUp, setCurrentScheduleLargePopUp, FullCalenderClassCardProccessing, scheduling, returnClassColor, viewSectionConstraint, sectionConstraintRemover, sectionConstraintAdder, detailedViewPopUpVisiablity, breakViewPopup} 
 
     

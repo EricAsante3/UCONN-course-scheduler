@@ -61,18 +61,16 @@ export default function FullSchedulePopUp() {
 
                 { instructionView ?
 
-                
-
-
+            
                 <div className=" bg-navyBlue  text-white rounded-2xl">
 
                     <div className=" flex items-center justify-between relative h-[60px] w-full pr-12 pl-12">
 
                         <div className="flex flex-row space-x-4 items-center justify-center">
-                            <div onClick={() => setInstructionView(false)} className="relative aspect-square w-12 ">
+                            <div onClick={() => setInstructionView(false)} className="relative aspect-square w-12 cursor-pointer ">
                                 <SearchArrow className="scale-x-[-1]"></SearchArrow>
                             </div>
-                            <h1 className="text-4xl">Instructions</h1>
+                            <h2 className="text-4xl font-bold">Instructions</h2>
                         </div>
 
                         <div className="flex space-x-24">
@@ -87,7 +85,7 @@ export default function FullSchedulePopUp() {
 
                         </div>
 
-                        <button onClick={() => {ScheduleBlockStates.setLargeCalenderPopUpVisiablity(false)}} className="aspect-square w-14">
+                        <button onClick={() => {ScheduleBlockStates.setLargeCalenderPopUpVisiablity(false)}} className="aspect-square w-14 cursor-pointer">
                             <CloseSquareIcon></CloseSquareIcon>
                         </button>
                         
@@ -103,7 +101,7 @@ export default function FullSchedulePopUp() {
                                 <div className="border border-b opacity-30 h-px w-full"/>
                             </div>
 
-                            <div className="flex flex-col p-4 text-center">
+                            <div className="flex flex-col p-4 text-center opacity-80">
                                 <h1>Log in to Student Admin and click Manage Classes.</h1>
                             </div>
 
@@ -130,7 +128,7 @@ export default function FullSchedulePopUp() {
                                 <div className="border border-b opacity-30 h-px w-full"/>
                             </div>
 
-                            <div className="flex flex-col p-4 text-center">
+                            <div className="flex flex-col p-4 text-center opacity-80">
                                 <h1>Navigate to Class Search and Enroll.</h1>
 
                                 <h1>
@@ -158,7 +156,7 @@ export default function FullSchedulePopUp() {
                                 <div className="border border-b opacity-30 h-px w-full"/>
                             </div>
 
-                            <div className="flex  p-4 text-center">
+                            <div className="flex flex-col p-4 text-center opacity-80">
                                 <h1>Copy and paste the Registration #/CRN from the class cards on the left-hand panel into the search box.</h1>
                             </div>
 
@@ -187,24 +185,24 @@ export default function FullSchedulePopUp() {
                             <div className="aspect-square w-10">
                             <CalenderICon></CalenderICon>
                             </div>
-                            <h1 className="text-4xl">Schedule {ScheduleBlockStates.currentScheduleLargePopUp.calenderNumber}</h1>
+                            <h2 className="text-4xl font-bold">Schedule {ScheduleBlockStates.currentScheduleLargePopUp.calenderNumber}</h2>
                         </div>
 
                         <div className="flex space-x-24">
 
-                            <div onClick={() => (saveAsJPEG())} className="flex items-center justify-center">
-                                <DownloadIcon className="aspect-square w-10 "></DownloadIcon>
-                                <p className="text-sm">Download</p>
+                            <div  className="flex items-center justify-center space-x-4">
+                                <DownloadIcon onClick={() => (saveAsJPEG())} className="aspect-square w-10 cursor-pointer "></DownloadIcon>
+                                <p className="text-sm opacity-70">Download</p>
                             </div>
 
-                            <div onClick={() => setInstructionView(true)} className="flex items-center justify-center">
-                                <Enroll className="aspect-square w-10 "></Enroll>
-                                <p className="text-sm">Register Classes</p>
+                            <div  className="flex items-center justify-center space-x-4">
+                                <Enroll onClick={() => setInstructionView(true)} className="aspect-square w-10 cursor-pointer "></Enroll>
+                                <p className="text-sm opacity-70">Register Classes</p>
                             </div>
 
                         </div>
 
-                        <button onClick={() => {ScheduleBlockStates.setLargeCalenderPopUpVisiablity(false)}} className="aspect-square w-14">
+                        <button onClick={() => {ScheduleBlockStates.setLargeCalenderPopUpVisiablity(false)}} className="aspect-square w-14 cursor-pointer">
                             <CloseSquareIcon></CloseSquareIcon>
                         </button>
                         
