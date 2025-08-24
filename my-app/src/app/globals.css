@@ -1,4 +1,13 @@
+@font-face {
+  font-family: "MyCustomFont";
+  src: url('/fonts/Minecraft.ttf') format('truetype'); /* 'opentype' works too, but usually 'truetype' */
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 @import "tailwindcss";
+
 
 :root {
   max-width: 1280rem;
@@ -15,9 +24,8 @@
   /* Default font variables for general use */
   --default-font-family: var(--font-geist-sans);
   --default-mono-font-family: var(--font-geist-mono);
-
+  --font-minecraft: "MyCustomFont", sans-serif;
 }
-
 
 
 .light {
@@ -25,10 +33,6 @@
   --foreground: #f3f4f6;
   --box-shadow1: rgba(0, 0, 0, 0.19);
   --box-shadow2: rgba(0, 0, 0, 0.23);
-
-
-
-
   --Text: #000;
   --Highlight: #DCE0E2;
   --Accent: #E4002B;
@@ -39,9 +43,6 @@
   --foreground: #212325;
   --box-shadow1: rgba(255, 255, 255, 0.089);
   --box-shadow2: rgba(223, 223, 223, 0.23);
-
-
-
   --Text: #ffffff;
   --Highlight: #888a8c;
   --Accent: #E4002B;
@@ -57,20 +58,9 @@
   --color-navyBlue: var(--navyBlue);
   --color-redColor: var(--redColor);
   --color-greenColor: var(--greenColor);
-
-
-
-
-
-
-
-
-
-
-
+  --font-minecraft: "MyCustomFont", "sans-serif";
   --color-Accent: var(--Accent);
   --color-Highlight: var(--Highlight);
-
   --color-Text: var(--Text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -92,7 +82,9 @@ h2 {
   font-family: var(--default-mono-font-family);
 }
 
-
+h3 {
+  font-family: var(--font-minecraft);
+}
 
 
 

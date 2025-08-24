@@ -8,7 +8,7 @@ import { useContext } from "react";
 import FullSchedulePopUp from "./PopUps/fullSchedulePopUp";
 import DetailViewPopUp from "./PopUps/DetailViewPopUp";
 import BreakSelectPopUp from "./PopUps/breakSelectPopUp";
-
+import Sprite from "./Sprite/SpriteAnimation";
 
 
 export default function Home() {
@@ -23,13 +23,14 @@ export default function Home() {
             <div className="relative h-fit w-1/2 flex items-center justify-center  mt-8 ">
               <img className="w-sm" src="/minecraft_title.png" alt="Logo" />
 
-              <div className="absolute -right-28 bottom-4 w-72 text-yellow-500 text-xs font-bold -rotate-18 text-center">
-                <h2 className="truncate">Just remember one step at a time</h2>
+              <div className="absolute -right-28 -bottom-4 w-72 text-yellow-500 text-lg font-bold -rotate-18 text-center ">
+                <h3 className="truncate font-minecraft">Version 2 !!!</h3>
               </div>
             </div>
 
-              <img className=" absolute top-16 z-10 left-12 aspect-square w-20" src="/Sleeping9.png" alt="Logo" />
-
+          <div className="absolute top-26 z-10 left-36">
+            <Sprite></Sprite>
+          </div>
 
           </div>
 
@@ -65,7 +66,8 @@ export default function Home() {
 
       }
 
-
+      <h2   onClick={() => window.open( "https://www.linkedin.com/in/eric-asante-8a7275220", "_blank")} 
+      className="absolute cursor-pointer font-bold top-2 left-2">Created by Eric Asante</h2>
 
     </div>
   );
