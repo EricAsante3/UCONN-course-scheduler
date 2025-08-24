@@ -9,7 +9,7 @@ import FullSchedulePopUp from "./PopUps/fullSchedulePopUp";
 import DetailViewPopUp from "./PopUps/DetailViewPopUp";
 import BreakSelectPopUp from "./PopUps/breakSelectPopUp";
 import Sprite from "./Sprite/SpriteAnimation";
-
+import { motion } from "framer-motion";
 
 export default function Home() {
   const {ScheduleBlockStates} = useContext(DataContext);
@@ -23,9 +23,9 @@ export default function Home() {
             <div className="relative h-fit w-1/2 flex items-center justify-center  mt-8 ">
               <img className="w-sm" src="/minecraft_title.png" alt="Logo" />
 
-              <div className="absolute -right-28 -bottom-4 w-72 text-yellow-500 text-lg font-bold -rotate-18 text-center ">
+              <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className="absolute -right-28 -bottom-4 w-72 text-yellow-500 text-lg font-bold -rotate-18 text-center ">
                 <h3 className="truncate font-minecraft">Version 2 !!!</h3>
-              </div>
+              </motion.div>
             </div>
 
           <div className="absolute top-26 z-10 left-36">

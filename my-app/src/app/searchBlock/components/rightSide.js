@@ -17,7 +17,7 @@ export default function RightSide({leadClass, loadingSearch}) {
 
   return (
     <SkeletonTheme  baseColor="#cccccc" highlightColor="#ffffff">
-      <div className="relative p-2 overflow-y-scroll">
+      <div className="relative p-2 overflow-y-scroll mt-6 ">
 
 
 

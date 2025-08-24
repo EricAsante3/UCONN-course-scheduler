@@ -17,6 +17,7 @@
     "@schedule-x/theme-default": "^2.36.0",
     "axios": "^1.11.0",
     "axios-cookiejar-support": "^6.0.4",
+    "framer-motion": "^12.23.12",
     "html2canvas": "^1.4.1",
     "jsdom": "^26.1.0",
     "next": "15.4.6",

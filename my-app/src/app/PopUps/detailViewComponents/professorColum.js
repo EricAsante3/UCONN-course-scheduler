@@ -3,6 +3,8 @@ import { LockIconUnlocked } from "@/app/Icons/Icons"
 import { useState, useContext } from "react"
 import { DataContext } from "@/data/Data"
 import { LockIconLocked } from "@/app/Icons/Icons"
+import { motion } from "framer-motion"
+
 
 export function ProfessorColum({professorName, sectionData, className, states}) {
         const {CartStates} = useContext(DataContext);
@@ -13,18 +15,34 @@ export function ProfessorColum({professorName, sectionData, className, states}) 
                     <h2 className="text-2xl font-semibold w-4/5 truncate text-Text">{professorName}</h2>
 
 
-                    {!(CartStates.viewProfessorConstraint(className) === professorName) ?
-                        <button onClick={() => {
+
+
+                    { sectionData.open.length > 0 ?
+
+
+
+                    (!(CartStates.viewProfessorConstraint(className) === professorName) ?
+                        <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} onClick={() => {
                             CartStates.professorConstraintAdder(className, professorName)
                             states[1](!states[0])
                             }} className="aspect-square w-8 flex items-center justify-center">
                             <LockIconUnlocked ></LockIconUnlocked>
-                        </button>
+                        </motion.button>
                         :
                         <button className="aspect-square w-8 flex items-center justify-center">
                             <LockIconLocked></LockIconLocked>
-                        </button>
+                        </button>)
+
+                    :
+                            null
+
                     }
+
+
+
+
+
+
 
 
 

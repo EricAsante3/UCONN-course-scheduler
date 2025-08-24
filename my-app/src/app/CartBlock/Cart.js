@@ -2,7 +2,7 @@ import { use, useContext, useEffect, useState } from "react"
 import CartClassCard from "./components/classCard"
 import { DataContext } from "@/data/Data"
 import { SunMoon } from "../Icons/Icons";
-
+import { motion } from "framer-motion";
 
 
 
@@ -15,7 +15,7 @@ export default function Cart() {
 
     return (
     <div id="mainBoxes" className="relative grid grid-rows-[10%_75%_15%] bg-foreground aspect-square rounded-2xl min-w-xl w-xl row-span-1 col-span-1 justify-self-center text-2xl">
-        <button onClick={() => {
+        <motion.button whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }} onClick={() => {
 
             if (document.body.classList.contains("light")) {
                 document.body.classList.remove("light");
@@ -34,7 +34,7 @@ export default function Cart() {
         className="absolute cursor-pointer -right-20 -top-0 h-16 w-16 ">
 
         <SunMoon theme={theme}></SunMoon>
-        </button>
+        </motion.button>
 
         
         <div className="w-full pr-8 pl-8  flex items-center justify-between bg-foreground rounded-2xl ">

@@ -2,7 +2,7 @@ import { DataContext } from "@/data/Data";
 import { useContext, useState } from "react";
 import { LockIconUnlocked } from "@/app/Icons/Icons";
 import { LockIconLocked } from "@/app/Icons/Icons";
-
+import { motion } from "framer-motion";
 
 function hexToRgba(hex, alpha) {
   const r = parseInt(hex.slice(1, 3), 16);
@@ -31,12 +31,12 @@ export default function FullViewClassCard({classData}) {
                 <h1 className="text-2xl w-28 text-center">{classData.className}</h1>
 
                 {ScheduleBlockStates.viewSectionConstraint(classData.className) === "" ?
-                    <button onClick={() => {
+                    <motion.button whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }} onClick={() => {
                         ScheduleBlockStates.sectionConstraintAdder(classData.className, classData.crn)
                         setlocked(!locked)
                         }} className="aspect-square w-8 flex items-center justify-center cursor-pointer">
                         <LockIconUnlocked ></LockIconUnlocked>
-                    </button>
+                    </motion.button>
                     :
                     <button className="aspect-square w-8 flex items-center justify-center">
                         <LockIconLocked></LockIconLocked>
