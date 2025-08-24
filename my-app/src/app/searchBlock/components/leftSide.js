@@ -151,8 +151,9 @@ export default function LeftSide({setLeadClass, loadingSearch, setLoadingSearch}
             Student Resources
         </h1>
 
-        <div className="bg-red-400 h-full">
-            sd
+        <div className="h-full w-full p-2 overflow-y-scroll">
+            <h2 className="text-lg font-semibold">Confused on something?</h2>
+            <div className="bg-background rounded-2xl">Vist ...</div>
         </div>
     </div>
 

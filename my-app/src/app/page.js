@@ -16,12 +16,21 @@ export default function Home() {
   return (
     <div className="relative flex items-center justify-center">
       <div className="min-w-7xl w-7xl ">
-        <div className="relative grid grid-cols-2 grid-rows-[100px_1fr_1fr]">
+        <div className=" grid grid-cols-2 grid-rows-[150px_1fr_1fr] ">
 
-          <div className="col-span-2 h-full p-4 ">
-            <div className="bg-foreground h-full">
-              sa
+          <div className="relative col-span-2 h-full flex justify-center w-1/2 justify-self-center self-center ">
+
+            <div className="relative h-fit w-1/2 flex items-center justify-center  mt-8 ">
+              <img className="w-sm" src="/minecraft_title.png" alt="Logo" />
+
+              <div className="absolute -right-28 bottom-4 w-72 text-yellow-500 text-xs font-bold -rotate-18 text-center">
+                <h2 className="truncate">Just remember one step at a time</h2>
+              </div>
             </div>
+
+              <img className=" absolute top-16 z-10 left-12 aspect-square w-20" src="/Sleeping9.png" alt="Logo" />
+
+
           </div>
 
           <SearchBlock></SearchBlock>

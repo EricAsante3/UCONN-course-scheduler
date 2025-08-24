@@ -302,6 +302,65 @@ export function UserLockIconOpen({ className = "", color = "currentColor" }) {
 
 
 
+export const SunMoon = ({ theme, ...props }) => {
+
+  return (
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 800 800"
+
+      xmlns="http://www.w3.org/2000/svg"
+      {...props} // allow passing additional props like className, style, etc.
+    >
+      <g clipPath="url(#clip0_1_5)">
+        <path
+          d="M41 253H88.5556M88.557 419.444L136.113 371.889M255 419.444V467M373.889 371.889L421.444 419.444M88.5556 86.5556L136.111 134.111M421.444 253H469M373.887 134.111L421.442 86.5556M255 39V86.5556M326.333 253C326.333 292.397 294.397 324.333 255 324.333C215.603 324.333 183.667 292.397 183.667 253C183.667 213.603 215.603 181.667 255 181.667C294.397 181.667 326.333 213.603 326.333 253Z"
+          stroke={theme === true ? "#FFA500" : "#000000"} 
+          strokeWidth="50"
+          fill={theme === true ? "#FFED29" : "none"} 
+
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={theme === false ? "opacity-50" : ""}
+
+        />
+
+        <path
+          strokeWidth="20"
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M526.781 706.157C469.806 706.157 418.771 678.774 386.656 636.18C531.866 665.884 662.127 537.033 632.181 390.66C674.776 422.776 702.156 473.8 702.156 530.775C702.156 627.473 623.478 706.157 526.781 706.157ZM540.372 312C572.466 341.989 592.546 384.712 592.546 432.129C592.546 581.9 408.929 652.376 308 544.345C315.015 659.107 410.266 750 526.781 750C647.856 750 746 651.85 746 530.775C746 414.26 655.112 319.015 540.372 312Z"
+          fill={theme === false ? "#0C317A" : "none"} 
+
+          stroke={theme === false ? "#4797D3" : "#000000"}
+          
+          
+          
+          className={theme === true ? "opacity-50" : ""}
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_1_5">
+          <rect width="800" height="800" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+  );
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 export default function SearchIcon({ className = "", color = "currentColor" }) {
   return (
     <svg

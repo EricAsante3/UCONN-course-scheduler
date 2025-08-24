@@ -1,7 +1,7 @@
-import { useContext, useEffect } from "react"
+import { use, useContext, useEffect, useState } from "react"
 import CartClassCard from "./components/classCard"
 import { DataContext } from "@/data/Data"
-
+import { SunMoon } from "../Icons/Icons";
 
 
 
@@ -9,8 +9,11 @@ import { DataContext } from "@/data/Data"
 export default function Cart() {
     const {CartStates} = useContext(DataContext);
     const classesInCart = CartStates.cartElements
-    return (
+    const [theme, setTheme] = useState(0)
 
+    useEffect(() => setTheme(document.body.classList.contains("light")))
+
+    return (
     <div id="mainBoxes" className="relative grid grid-rows-[10%_75%_15%] bg-foreground aspect-square rounded-2xl min-w-xl w-xl row-span-1 col-span-1 justify-self-center text-2xl">
         <button onClick={() => {
 
@@ -18,16 +21,19 @@ export default function Cart() {
                 document.body.classList.remove("light");
                 document.body.classList.add("dark");
                 localStorage.setItem("theme", "dark")
+                setTheme(false)
 
             } else {
                 document.body.classList.remove("dark");
                 document.body.classList.add("light");
                 localStorage.setItem("theme", "light")
+                setTheme(true)
             }
 
         }} 
-        className="absolute -right-25 h-12 w-24 bg-amber-200">
+        className="absolute cursor-pointer -right-20 -top-0 h-16 w-16 ">
 
+        <SunMoon theme={theme}></SunMoon>
         </button>
 
         
@@ -84,8 +90,8 @@ export default function Cart() {
         </div>
 
         <div className="w-full p-2 bg-foreground rounded-2xl">
-            <button onClick={() => {CartStates.ScheduleGeneration()}} className="bg-blue-500 h-full w-full rounded-full">
-                generate
+            <button id="mainBoxes" disabled={CartStates.scheduling} onClick={() => {CartStates.ScheduleGeneration()}}   className={`bg-navyBlue h-full w-full rounded-full text-white ${ CartStates.scheduling || CartStates.generationHold ? "opacity-50" : "opacity-100 cursor-pointer"}`}>
+                <h2 className="text-4xl font-bold">Schedule</h2>
             </button>
         </div>
     </div>
