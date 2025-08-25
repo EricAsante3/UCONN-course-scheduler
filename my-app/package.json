@@ -30,6 +30,7 @@
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
+    "gh-pages": "^6.3.0",
     "jest": "^30.0.5",
     "tailwindcss": "^4"
   }
