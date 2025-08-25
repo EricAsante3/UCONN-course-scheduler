@@ -2,7 +2,7 @@
 import { useEffect, useState, useContext, useRef } from "react"
 import { DataContext } from "@/data/Data"
 import { classAlias } from "./classAlias"
-
+import { motion } from "framer-motion"
 
 
 
@@ -59,7 +59,6 @@ export default function LeftSide({setLeadClass, loadingSearch, setLoadingSearch}
             }
     }
 
-    useEffect(() => {console.log(loadingSearch)}, [currentInput, loadingSearch])
 
   return (
 
@@ -147,13 +146,35 @@ export default function LeftSide({setLeadClass, loadingSearch, setLoadingSearch}
 
 
     <div className="flex flex-col">
-        <h1 className="text-3xl font-bold">
+        <h2 className="text-3xl font-bold">
             Student Resources
-        </h1>
+        </h2>
 
-        <div className="h-full w-full p-2 overflow-y-scroll">
-            <h2 className="text-lg font-semibold">Confused on something?</h2>
-            <div className="bg-background rounded-2xl">Vist ...</div>
+        <div className="h-full w-full p-2 overflow-y-scroll space-y-4">
+
+            <div>
+                <h2 className="text-lg font-semibold">Need networking or resume help?</h2>
+                <motion.div onClick={() => window.open( "https://career.uconn.edu/meet-with-a-career-coach/", "_blank")} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} className="p-2 flex items-center justify-center cursor-pointer">
+                    <h2 className="bg-navyBlue rounded-2xl text-md text-center text-white font-semibold">Meet with a Career Coach</h2>
+                </motion.div>
+            </div>
+
+
+            <div>
+                <h2 className="text-lg font-semibold">Have questions about your academics, curriculum, or major?</h2>
+                <motion.div whileHover={{ scale: 1.05 }} onClick={() => window.open( "https://undergraduate.cahnr.uconn.edu/make-appointment/", "_blank")} whileTap={{ scale: 0.9 }} className="p-2 flex items-center justify-center cursor-pointer">
+                    <h2 className="bg-navyBlue rounded-2xl text-md text-center text-white font-semibold">Meet with a Academic Advisor</h2>
+                </motion.div>
+            </div>
+
+
+            <div>
+                <h2 className="text-lg font-semibold">Need help with math or writing courses?</h2>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} onClick={() => window.open( "https://library.uconn.edu/services/tutoring/", "_blank")}  className="p-2 flex items-center justify-center cursor-pointer">
+                    <h2 className="bg-navyBlue rounded-2xl text-md text-center text-white font-semibold">Visit the Q/W center</h2>
+                </motion.div>
+            </div>
+
         </div>
     </div>
 

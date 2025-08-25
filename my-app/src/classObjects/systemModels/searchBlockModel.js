@@ -8,11 +8,7 @@ export class SearchBlockModel {
     url = "https://xd3z212q15.execute-api.us-east-1.amazonaws.com/Dev/GetClasses"
 
     async search(Class, Term, Campus){
-        console.log({
-                "Class": Class,
-                "Term": Term,
-                "Campus": Campus
-            })
+
         try {
             const response = await axios.post(this.url, {
                 "Class": Class,

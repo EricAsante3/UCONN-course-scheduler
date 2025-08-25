@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import DataProvider from "@/data/Data";
 import { useEffect } from "react";
+import Head from "next/head";
 
 
 const geistSans = Geist({
@@ -39,6 +40,15 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+
+
+      <head>
+        <title>UCONN Course Scheduler</title>
+        <link rel="icon" type="image/x-icon" href="/Standing1.ico" />
+      </head>
+
+
+
       <body className={`  ${geistSans.variable} ${geistMono.variable} antialiased `}>
         <DataProvider>
           {children}

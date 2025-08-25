@@ -46,7 +46,6 @@ export class CartModel {
     // #classesInCart
     currentCartClasses() {
         let output = Object.keys(this.#cartClasses)
-        console.log(this.BreakModel.returnIntervalCount())
         if (this.BreakModel.returnIntervalCount() > 0) {
             output.unshift("BREAK")
         }

@@ -8,7 +8,6 @@ import { motion } from "framer-motion"
 
 export function ProfessorColum({professorName, sectionData, className, states}) {
         const {CartStates} = useContext(DataContext);
-        console.log(className)
     return (
                 <div id="smallBoxes" className="rounded-2xl flex flex-col h-full w-[400px] bg-foreground">
                   <div className="rounded-2xl  w-full bg-Highlight h-20 flex items-center justify-center">

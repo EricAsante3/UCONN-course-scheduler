@@ -12,7 +12,6 @@ export default function LeadClassCard({element}) {
                 if (CartSingleton.inCartCheck(element[0].subject + " " + element[0].catalogNbr)) return
 
                 const output = SearchBlockStates.appendToCart(element[0].subject + " " + element[0].catalogNbr, element)
-                console.log(output)
             }}>
 
 

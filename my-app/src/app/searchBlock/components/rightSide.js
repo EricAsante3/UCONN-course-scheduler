@@ -11,7 +11,6 @@ export default function RightSide({leadClass, loadingSearch}) {
   const { SearchBlockStates } = useContext(DataContext);
 
   useEffect(() => {
-    console.log(SearchBlockStates.searchBlockResults.status)
   }, [SearchBlockStates.searchBlockResults, leadClass])
   
 
@@ -19,21 +18,24 @@ export default function RightSide({leadClass, loadingSearch}) {
     <SkeletonTheme  baseColor="#cccccc" highlightColor="#ffffff">
       <div className="relative p-2 overflow-y-scroll mt-6 ">
 
-
-
       {loadingSearch ? null : (
 
         (SearchBlockStates.searchBlockResults["status"] ?? 500) === 0 ? 
           <SearchIcon className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 fill-Highlight opacity-15" color="#656565"></SearchIcon>
 
 
-          : (SearchBlockStates.searchBlockResults["status"] ?? 500) === 350 ? <div>no results</div> 
-        
+          : (SearchBlockStates.searchBlockResults["status"] ?? 500) === 350 ? 
+          
+          <div className="w-full flex-col flex items-center justify-center">
+            <h2>No classes returned</h2>
+            <h2>(Possible classes not ready)</h2>
+          </div>          
         
         :  (SearchBlockStates.searchBlockResults["status"] ?? 500) > 200 ? 
         
-        <div>Error</div>        
-        
+          <div className="w-full flex items-center justify-center">
+            <h2>Error</h2>
+          </div>        
         
         :(
           <>
@@ -41,7 +43,9 @@ export default function RightSide({leadClass, loadingSearch}) {
               SearchBlockStates.searchBlockResults["value"][leadClass] !== undefined ? (
                 <LeadClassCard element={SearchBlockStates.searchBlockResults["value"][leadClass]} />
               ) : (
-                <div>{leadClass} not found</div>
+                <div className="w-full flex items-center justify-center">
+                    <h2>{leadClass} not found</h2>
+                </div>
               )
             )}
 
@@ -52,14 +56,6 @@ export default function RightSide({leadClass, loadingSearch}) {
           </>
         )
       )}
-
-
-
-
-
-
-
-
 
         { loadingSearch ? 
         <>

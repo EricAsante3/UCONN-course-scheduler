@@ -191,7 +191,6 @@ export class Class {
         }
 
 
-        console.log(outputDict)
         return outputDict
     }
     

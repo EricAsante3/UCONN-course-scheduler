@@ -21,7 +21,6 @@ export default function CartClassCard({CartClassName}) {
         color = CartStates.returnClassColor(CartClassName)
     }
 
-    console.log(inclusionStatus)
   return (
 
 

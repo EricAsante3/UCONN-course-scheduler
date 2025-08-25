@@ -15,7 +15,6 @@ export default function ClassCard({element}) {
                 if (CartSingleton.inCartCheck(element[0].subject + " " + element[0].catalogNbr)) return
 
                 const output = SearchBlockStates.appendToCart(element[0].subject + " " + element[0].catalogNbr, element)
-                console.log(output)
             }} 
             className={`relative w-full h-16 rounded p-2 mt-4 ${SearchBlockStates.scheduling ? "pointer-events-none" : "cursor-pointer bg-Highlight"}`}>
 

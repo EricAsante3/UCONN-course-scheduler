@@ -29,12 +29,11 @@ namespace DataObjects
 
                     if (ConflictDetectionHashMap[conflictCourse]["conflictCRNs"].Count == (ConflictDetectionHashMap[conflictCourse].Count - 1))
                     {
-                        Console.WriteLine("All class section time conflict between" + this.CourseName + conflictCourse);
                         
                         return new Dictionary<string, object>
                         {
                             { "terminate", true },
-                            { "value", "All class section time conflict between" + this.CourseName + conflictCourse }
+                            { "value", "All sections of " + this.CourseName + " conflict with " + conflictCourse + " in the schedule" }
                         };
 
                     }

@@ -173,7 +173,6 @@ export default function DataProvider({ children }) {
     }
 
     function changeClassInclusion(className) {
-        console.log(className)
         CartSingleton.classInclusionChange(className)
         setGenerationHold(false)
     }
@@ -197,7 +196,6 @@ export default function DataProvider({ children }) {
 
         setScheduling(true)
         const PreScheduleOutput = CartSingleton.handlePreScheduleProcessing()
-        console.log(CartSingleton.handlePreScheduleProcessing())
 
         if (PreScheduleOutput["status"] > 200) {
 
@@ -205,7 +203,6 @@ export default function DataProvider({ children }) {
 
         } else {
             const schedulingOutPut = await CartBlockSingleton.schedule(PreScheduleOutput)
-            console.log(schedulingOutPut)
             setValidSchedules(JSON.parse(schedulingOutPut))
         }
 
@@ -226,7 +223,6 @@ export default function DataProvider({ children }) {
 
     async function SearchBlockFetch(Class) {
         const output = await SearchBlockSingleton.search(Class, Term, Campus)
-        console.log(typeof JSON.parse(output))
         await setSearchBlockResults(JSON.parse(output))
     }
 

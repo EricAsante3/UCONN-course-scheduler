@@ -38,8 +38,7 @@ function FullCalendar({className}) {
    const calendar = useCalendarApp(config)
 
   return (
-    <div onClick={() =>     console.log(eventsService.getAll())
-} className={`w-full ${className}`}>
+    <div className={`w-full ${className}`}>
       <ScheduleXCalendar calendarApp={calendar} />
     </div>
   )

@@ -740,7 +740,6 @@ const Cartinstance = new CartModel()
   const output = Cartinstance.handlePreScheduleProcessing()
   fs.writeFileSync('COLOEE.txt', JSON.stringify(Cartinstance.miniScheduleViewProccessing({ "ACCT 6211": "1272", "ECE 2001": "8176", "ACCT 2001": "1188" })), 'utf8');
 
-  console.log()
   expect(Object.keys(output["value"]).length).toBe(3);
 
   Cartinstance.classInclusionChange("ACCT 2001")

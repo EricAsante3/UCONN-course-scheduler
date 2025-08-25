@@ -36,7 +36,6 @@ export class Break {
       // 2. Clone existing schedule
       let cloneArray = structuredClone(this.breakSchedule[weekDay]);
 
-      console.log(cloneArray)
       // 3. Insert while keeping sorted
       sortedInsert(cloneArray, [interval]);
 
@@ -95,8 +94,6 @@ export class Break {
                     "sunday": []
                     }
       this.intervalCount = 0
-      console.log(this.intervalCount)
-      console.log("ssssssssssssssssssss")
       this.inclusionStatus = true
 
     }
@@ -105,7 +102,6 @@ export class Break {
     handleCalenderProcessing() {
       const events = []
       convertScheduleToEvents(events, this.breakSchedule, "BREAK", "BREAK")
-      console.log(events)
       return events
     }
 

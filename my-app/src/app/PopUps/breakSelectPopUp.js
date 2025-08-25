@@ -53,8 +53,7 @@ function FullCalendar({calenderEvents}) {
    const calendar = useCalendarApp(config)
 
   return (
-    <div onClick={() =>     console.log(eventsService.getAll())
-} className={`w-full `}>
+    <div className={`w-full `}>
       <ScheduleXCalendar calendarApp={calendar} />
     </div>
   )
@@ -64,7 +63,6 @@ function FullCalendar({calenderEvents}) {
 function handleTimeChange(time) {
     const [hours, minutes] = time.split(":").map(Number);
     const minutesAfterMidnight = hours * 60 + minutes;
-    console.log(minutesAfterMidnight)
     return minutesAfterMidnight
 }
 
