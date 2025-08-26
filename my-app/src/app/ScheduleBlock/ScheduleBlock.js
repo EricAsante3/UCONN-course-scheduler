@@ -27,10 +27,8 @@ export default function ScheduleBlock() {
   return (
           <div className="col-span-2 p-4 h-[556px] min-h-[556px] ">
             
-            <div className="bg-[#000e2f] text-white grid grid-rows-[15%_85%] h-full rounded-2xl p-2 max-h-2xl overflow-y-scroll">
+            <div className="bg-[#000e2f] text-white grid grid-rows-[15%_85%] h-full rounded-2xl p-2 max-h-2xl">
                 <div className="h-full rounded-2xl flex items-center justify-evenly p-2">
-
-
 
                     { ScheduleBlockStates.validSchedules["status"] > 200 ? null  :
                       <button onClick={() => setPage((p) => Math.max(p - 1, 0))} disabled={page === 0}className="rounded-full h-full w-28">
@@ -40,16 +38,12 @@ export default function ScheduleBlock() {
                       </button>
                     }
 
-
-                      
                       <div className="  h-full w-full flex flex-col items-center justify-center ">
                         { ScheduleBlockStates.validSchedules["status"] === 200 ?   
                             ( ScheduleBlockStates.validSchedules["value"].length >= 200 ?
                               <h2 className="text-4xl w-fit font-bold">Possible Schedules: First Possible 200</h2> :
                               <h2 className="text-4xl w-fit font-bold">Possible Schedules: {ScheduleBlockStates.validSchedules["value"].length}</h2>
                             ) :
-
-                            
 
                           ScheduleBlockStates.validSchedules["status"] === 350 ? 
 
@@ -59,11 +53,7 @@ export default function ScheduleBlock() {
                         }
 
                         <h2 className="w-fit opacity-70">(Use the section/professor lock feature to generate schedules faster and explore more options)</h2>
-                      </div> 
-
-                    
-
-
+                      </div>
 
                     { ScheduleBlockStates.validSchedules["status"] > 200 ?   
                       null
@@ -73,34 +63,20 @@ export default function ScheduleBlock() {
                       disabled={(page + 1) * pageSize >= ScheduleBlockStates.validSchedules["value"].length} 
                       className="rounded-full h-full w-28 ">
 
-
                         { (page + 1) * pageSize >= ScheduleBlockStates.validSchedules["value"].length ? null :
                             <SearchArrow className="" ></SearchArrow>
                         }
-
 
                       </button>
                       
                     }
 
-
-
-
-
                 </div>
 
                 <div className=" h-full rounded-2xl text-black pt-4 overflow-y-scroll ">
 
-
-
-
-
-
-
-
-
                 { ScheduleBlockStates.scheduling ? 
-                
+
                   <Loader></Loader>
 
                 :                
@@ -108,14 +84,11 @@ export default function ScheduleBlock() {
                 
                   (ScheduleBlockStates.validSchedules["value"] === "Home" ? null : 
 
-
                     <div className="text-black text-3xl flex items-center justify-center flex-col bg-white h-32">
                       {ScheduleBlockStates.validSchedules["value"]}
                     </div>
 
                   )
-
-
 
                 :
                   (currentSchedules.map((schedule, index) => (
@@ -123,20 +96,10 @@ export default function ScheduleBlock() {
                   )))
                 }
 
-
-
-
-
-
-
-
                 </div>
 
             </div>
 
-
-
-
-
           </div>
+  
   )}

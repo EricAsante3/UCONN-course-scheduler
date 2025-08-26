@@ -38,9 +38,12 @@ export default function FullViewClassCard({classData}) {
                         <LockIconUnlocked ></LockIconUnlocked>
                     </motion.button>
                     :
-                    <button className="aspect-square w-8 flex items-center justify-center">
+                    <motion.button whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }} onClick={() => {
+                        ScheduleBlockStates.sectionConstraintRemover(classData.className)
+                        setlocked(!locked)
+                        }} className="aspect-square w-8 flex items-center justify-center cursor-pointer">
                         <LockIconLocked></LockIconLocked>
-                    </button>
+                    </motion.button>
                     }
 
 

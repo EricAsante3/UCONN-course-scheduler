@@ -33,7 +33,7 @@ export default function FullSchedulePopUp() {
             <div className="fixed inset-0 bg-black/50 z-30 "></div>
 
             <div ref={componentRef} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  flex items-center justify-center min-h-[900px]">
-            <div className=" grid grid-cols-[270px_1124px] gap-4   w-fit p-4 h-[900px] min-h-[900px]">
+            <div className="relative grid grid-cols-[270px_1124px] gap-4   w-fit p-4 h-[900px] min-h-[900px]">
 
                 <div className="space-y-4">
                     {classData.map((classSection, index) => {
@@ -42,21 +42,11 @@ export default function FullSchedulePopUp() {
                         })
                     }
                 </div>
+                
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <h2 className="text-white absolute left-2 font-bold  -top-24 text-6xl">
+                    Schedule View
+                </h2>
 
 
                 { instructionView ?

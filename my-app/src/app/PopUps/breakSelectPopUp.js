@@ -90,6 +90,9 @@ export default function BreakSelectPopUp() {
     const [startTime, setStartTime] = useState(480);
     const [endTime, setEndTime] = useState(1020);
 
+    const [status, setStatus] = useState({status: 200, value: ""});
+
+
     return (
         <>
             <div className="fixed inset-0 bg-black/50 z-30 "></div>
@@ -144,8 +147,6 @@ export default function BreakSelectPopUp() {
                                     setStartTime(handleTimeChange(e.target.value))
                                 }}
 
-
-
                             />
                         </div>
 
@@ -173,11 +174,13 @@ export default function BreakSelectPopUp() {
 
 
 
-
+                        <div className="w-xl text-center  absolute -top-4  right-32">
+                            <h2 className="text-white font-bold">{status.value}</h2>
+                        </div>
 
 
                         <h2 onClick={() => {
-                            CartStates.addInterval([startTime, endTime], weekday)
+                            setStatus(CartStates.addInterval([startTime, endTime], weekday))
                             setReload(!reload)
                         }} className="w-full text-center text-2xl font-bold bg-Highlight/20 rounded-full cursor-pointer">ADD</h2>
 

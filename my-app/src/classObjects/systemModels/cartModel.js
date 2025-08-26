@@ -12,13 +12,9 @@ export class CartModel {
     }
 
 
-
-
     detailedViewPreProccesor(className) {
         return this.#cartClasses[className].detailedViewPreProccesor(className)
     }
-
-
 
 
     addClass(className, classList) { /// edge case already in cart
@@ -30,6 +26,7 @@ export class CartModel {
 
         return 500
     }
+
 
     // removeclass
     removeClass(className) {
@@ -75,8 +72,6 @@ export class CartModel {
     }
 
 
-    
-
     professorConstraintAdder(className, lockedProfessor) {
         this.#cartClasses[className].constraints["lockedProfessor"] = lockedProfessor
     }
@@ -94,7 +89,7 @@ export class CartModel {
         let processedClasses = {};
 
         if (Object.values(this.#cartClasses).length === 0) {
-            return {"status": 500, "value": "Empty Cart"};
+            return {"status": 500, "value": "No classes in cart to schedule"};
         }
 
         if (this.BreakModel.inclusionStatus && this.BreakModel.intervalCount > 0) {

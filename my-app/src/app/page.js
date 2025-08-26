@@ -43,7 +43,7 @@ export default function Home() {
 
 
           {ScheduleBlockStates.smallCalenderPopUpVisiablity && !ScheduleBlockStates.largeCalenderPopUpVisiablity? 
-            <PopUpCalendar className={"absolute bottom-8 -left-8"}></PopUpCalendar> 
+            <PopUpCalendar className={"absolute bottom-8 left-32"}></PopUpCalendar> 
             : null}
 
 

@@ -19,7 +19,7 @@ export default function ScheduleCard({schedule, index}) {
     onMouseLeave={() => ScheduleBlockStates.setSmallCalenderPopUpVisiablity(false)}
     
     
-    className=" h-16 bg-white rounded-2xl text-black flex items-center justify-center mb-4 space-x-4 hover:border-2 border-red-500">
+    className=" cursor-pointer h-16 bg-white rounded-2xl text-black flex items-center justify-center mb-4 space-x-4 hover:border-2 border-red-500">
         <div className="aspect-square w-10">
           <CalenderICon></CalenderICon>
         </div>

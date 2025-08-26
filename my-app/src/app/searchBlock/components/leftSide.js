@@ -70,77 +70,74 @@ export default function LeftSide({setLeadClass, loadingSearch, setLoadingSearch}
             <h2 className="w-fit text-3xl font-bold">Search</h2>
         </div>
 
-
-
-
-
-        <input id="smallBoxes"
-            className="w-full bg-Highlight rounded-lg p-2 focus:outline-none"
-            value={currentInput}
-            onChange={(e) => setCurrentInput(e.target.value.toUpperCase())}
-            onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                    handleSubmit(currentInput)
-                }
-                const allowed = /[A-Z0-9 ]/;
-                const key = e.key.toUpperCase();
-                
-                if (
-                e.key === "Backspace" ||
-                e.key === "Delete" ||
-                e.key === "ArrowLeft" ||
-                e.key === "ArrowRight" ||
-                e.key === "Tab"
-                ) {
-                return;
-                }
-
-                if (!allowed.test(key)) {
-                e.preventDefault();
-                }
-            }}
-            placeholder="CSE or CSE 1010... etc"
-            disabled={loadingSearch}
-        />
-
+        <div className="flex flex-col">
         
+            <input id="smallBoxes"
+                className="w-full bg-Highlight rounded-lg p-2 focus:outline-none"
+                value={currentInput}
+                onChange={(e) => setCurrentInput(e.target.value.toUpperCase())}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        handleSubmit(currentInput)
+                    }
+                    const allowed = /[A-Z0-9 ]/;
+                    const key = e.key.toUpperCase();
+                    
+                    if (
+                    e.key === "Backspace" ||
+                    e.key === "Delete" ||
+                    e.key === "ArrowLeft" ||
+                    e.key === "ArrowRight" ||
+                    e.key === "Tab"
+                    ) {
+                    return;
+                    }
 
-        <div className="mt-4 flex flex-row justify-start items-start w-full space-x-4">
+                    if (!allowed.test(key)) {
+                    e.preventDefault();
+                    }
+                }}
+                placeholder="Type Here..."
+                disabled={loadingSearch}
+            />
 
-            <div className="w-full">                
-                <select className="w-full cursor-pointer" disabled={loadingSearch} value={SearchBlockStates.Term} onChange={(e) => {
+            <h2 className="p-2 text-xs text-Text ">CSE or CSE 1010... etc</h2>
+        </div>
+
+        <div className="mt-1 flex flex-row justify-start items-start w-full space-x-4 text-Text ">
+
+            <div className="w-full text-Text bg-background">                
+                <select className="w-full cursor-pointer text-Text bg-background" disabled={loadingSearch} value={SearchBlockStates.Term} onChange={(e) => {
                 SearchBlockStates.setTerm(e.target.value)
                 setLeadClass(null)
                 SearchBlockStates.setSearchBlockResults({"status": 0, "value": {}})
                 previousSearch.current = null
                 }}>                        
-                    <option value="Fall 2025">Fall 2025</option>
-                    <option value="Spring 2026">Spring 2026</option>
-                    <option value="Summer 2026">Summer 2026</option>
-                    <option value="Fall 2026">Fall 2026</option>
+                    <option className="text-Text bg-background" value="Fall 2025">Fall 2025</option>
+                    <option className="text-Text bg-background" value="Spring 2026">Spring 2026</option>
+                    <option className="text-Text bg-background" value="Summer 2026">Summer 2026</option>
+                    <option className="text-Text bg-background" value="Fall 2026">Fall 2026</option>
 
                 </select>
             </div>
 
-            <div className="w-full ">                
-                <select className="w-full cursor-pointer" disabled={loadingSearch} value={SearchBlockStates.Campus} onChange={(e) => {
+            <div className="w-full text-Text bg-background">                
+                <select className="w-full cursor-pointer text-Text bg-background" disabled={loadingSearch} value={SearchBlockStates.Campus} onChange={(e) => {
                     SearchBlockStates.setCampus(e.target.value)
                     setLeadClass(null)
                     SearchBlockStates.setSearchBlockResults({"status": 0, "value": {}})
                     previousSearch.current = null
                     }}>  
 
-                    <option value="Storrs">Storrs</option>
-                    <option value="Hartford">Hartford</option>
-                    <option value="Stamford">Stamford</option>
-                    <option value="Waterbury">Waterbury</option>
-                    <option value="Avery Point">Avery Point</option>
+                    <option className="text-Text bg-background" value="Storrs">Storrs</option>
+                    <option className="text-Text bg-background" value="Hartford">Hartford</option>
+                    <option className="text-Text bg-background" value="Stamford">Stamford</option>
+                    <option className="text-Text bg-background" value="Waterbury">Waterbury</option>
+                    <option className="text-Text bg-background" value="Avery Point">Avery Point</option>
                 </select>
             </div>
             
         </div>
-
-
 
     </div>
 
@@ -152,26 +149,26 @@ export default function LeftSide({setLeadClass, loadingSearch, setLoadingSearch}
 
         <div className="h-full w-full p-2 overflow-y-scroll space-y-4">
 
-            <div>
+            <div className="space-y-2">
                 <h2 className="text-lg font-semibold">Need networking or resume help?</h2>
-                <motion.div onClick={() => window.open( "https://career.uconn.edu/meet-with-a-career-coach/", "_blank")} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} className="p-2 flex items-center justify-center cursor-pointer">
-                    <h2 className="bg-navyBlue rounded-2xl text-md text-center text-white font-semibold">Meet with a Career Coach</h2>
+                <motion.div onClick={() => window.open( "https://career.uconn.edu/meet-with-a-career-coach/", "_blank")} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} className=" flex cursor-pointer">
+                    <h2 className="bg-navyBlue rounded-lg text-sm p-3 text-center text-white font-semibold">Meet with a Career Coach</h2>
                 </motion.div>
             </div>
 
 
-            <div>
+            <div className="space-y-2">
                 <h2 className="text-lg font-semibold">Have questions about your academics, curriculum, or major?</h2>
-                <motion.div whileHover={{ scale: 1.05 }} onClick={() => window.open( "https://undergraduate.cahnr.uconn.edu/make-appointment/", "_blank")} whileTap={{ scale: 0.9 }} className="p-2 flex items-center justify-center cursor-pointer">
-                    <h2 className="bg-navyBlue rounded-2xl text-md text-center text-white font-semibold">Meet with a Academic Advisor</h2>
+                <motion.div whileHover={{ scale: 1.05 }} onClick={() => window.open( "https://undergraduate.cahnr.uconn.edu/make-appointment/", "_blank")} whileTap={{ scale: 0.9 }} className="flex cursor-pointer">
+                    <h2 className="bg-navyBlue rounded-lg text-sm p-3 text-white font-semibold">Meet an Academic Advisor</h2>
                 </motion.div>
             </div>
 
 
-            <div>
+            <div className="space-y-2">
                 <h2 className="text-lg font-semibold">Need help with math or writing courses?</h2>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} onClick={() => window.open( "https://library.uconn.edu/services/tutoring/", "_blank")}  className="p-2 flex items-center justify-center cursor-pointer">
-                    <h2 className="bg-navyBlue rounded-2xl text-md text-center text-white font-semibold">Visit the Q/W center</h2>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} onClick={() => window.open( "https://library.uconn.edu/services/tutoring/", "_blank")}  className="flex cursor-pointer">
+                    <h2 className="bg-navyBlue rounded-lg text-sm p-3 text-center text-white font-semibold">Visit the Q/W center</h2>
                 </motion.div>
             </div>
 

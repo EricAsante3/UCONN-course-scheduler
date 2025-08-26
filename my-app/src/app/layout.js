@@ -41,19 +41,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
 
-
       <head>
         <title>UCONN Course Scheduler</title>
         <link rel="icon" type="image/x-icon" href="/Standing1.ico" />
       </head>
-
-
 
       <body className={`  ${geistSans.variable} ${geistMono.variable} antialiased `}>
         <DataProvider>
           {children}
         </DataProvider>
       </body>
+      
     </html>
   );
 }

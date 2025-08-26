@@ -24,13 +24,17 @@ export function ProfessorColum({professorName, sectionData, className, states}) 
                         <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} onClick={() => {
                             CartStates.professorConstraintAdder(className, professorName)
                             states[1](!states[0])
-                            }} className="aspect-square w-8 flex items-center justify-center">
+                            }} className="aspect-square w-8 flex items-center justify-center cursor-pointer">
                             <LockIconUnlocked ></LockIconUnlocked>
                         </motion.button>
                         :
-                        <button className="aspect-square w-8 flex items-center justify-center">
+                        <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} onClick={() => {
+                            CartStates.professorConstraintRemover(className)
+                            states[1](!states[0])
+                            }} 
+                            className="aspect-square w-8 flex items-center justify-center cursor-pointer">
                             <LockIconLocked></LockIconLocked>
-                        </button>)
+                        </motion.button>)
 
                     :
                             null

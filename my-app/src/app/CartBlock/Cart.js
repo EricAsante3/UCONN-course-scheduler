@@ -5,6 +5,12 @@ import { SunMoon } from "../Icons/Icons";
 import { motion } from "framer-motion";
 
 
+const scrollToBottom = () => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
+    });
+}
 
 export default function Cart() {
     const {CartStates} = useContext(DataContext);
@@ -89,10 +95,12 @@ export default function Cart() {
 
         </div>
 
-        <div className="w-full p-2 bg-foreground rounded-2xl">
-            <button id="mainBoxes" disabled={CartStates.scheduling} onClick={() => {CartStates.ScheduleGeneration()}}   className={`bg-navyBlue h-full w-full rounded-full text-white ${ CartStates.scheduling || CartStates.generationHold ? "opacity-50" : "opacity-100 cursor-pointer"}`}>
+        <div className="flex items-center justify-center w-full p-4 bg-foreground rounded-2xl">
+            <motion.button whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }} id="mainBoxes" disabled={CartStates.scheduling} onClick={() => {CartStates.ScheduleGeneration()
+                scrollToBottom()
+            }}   className={`bg-navyBlue h-full w-5/6 rounded-full text-white ${ CartStates.scheduling || CartStates.generationHold ? "opacity-50" : "opacity-100 cursor-pointer"}`}>
                 <h2 className="text-4xl font-bold">Schedule</h2>
-            </button>
+            </motion.button>
         </div>
     </div>
 

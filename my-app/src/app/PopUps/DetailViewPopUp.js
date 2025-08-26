@@ -33,7 +33,7 @@ export default function DetailViewPopUp() {
 
                 </div>
                 <div>
-                  <h2 className="text-4xl text-center">Professors/Sections</h2>
+                  <h2 className="text-4xl text-center">Professors/Sections View</h2>
                 </div>
               </div>
 
