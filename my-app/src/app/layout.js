@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
 
       <head>
         <title>UCONN Course Scheduler</title>
-        <link rel="icon" type="image/x-icon" href="/Standing1.ico" />
+        <link rel="icon" type="image/x-icon" href="/UCONN-Course-Scheduler/Standing1.ico" />
       </head>
 
       <body className={`  ${geistSans.variable} ${geistMono.variable} antialiased `}>
@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
           {children}
         </DataProvider>
       </body>
-      
+
     </html>
   );
 }

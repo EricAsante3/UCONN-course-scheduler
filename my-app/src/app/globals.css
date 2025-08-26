@@ -1,6 +1,6 @@
 @font-face {
   font-family: "MyCustomFont";
-  src: url('/fonts/Minecraft.ttf') format('truetype'); /* 'opentype' works too, but usually 'truetype' */
+  src: url('/UCONN-Course-Scheduler/fonts/Minecraft.ttf') format('truetype'); /* 'opentype' works too, but usually 'truetype' */
   font-weight: normal;
   font-style: normal;
 }

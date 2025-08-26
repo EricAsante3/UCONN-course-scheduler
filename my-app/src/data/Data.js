@@ -203,6 +203,7 @@ export default function DataProvider({ children }) {
 
         } else {
             const schedulingOutPut = await CartBlockSingleton.schedule(PreScheduleOutput)
+            console.log(JSON.parse(schedulingOutPut))
             setValidSchedules(JSON.parse(schedulingOutPut))
         }
 

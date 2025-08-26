@@ -55,7 +55,7 @@ function Sprite({
     <div className="sprite-container">
       <div className="sprite-frame">
         <img
-          src={`/Sleeping${frame}.png`}
+          src={`/UCONN-Course-Scheduler/Sleeping${frame}.png`}
           alt={`Sprite frame ${frame}`}
           width={64}
           height={64}

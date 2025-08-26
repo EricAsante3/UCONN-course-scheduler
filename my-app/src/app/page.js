@@ -21,7 +21,7 @@ export default function Home() {
           <div className="relative col-span-2 h-full flex justify-center w-1/2 justify-self-center self-center ">
 
             <div className="relative h-fit w-1/2 flex items-center justify-center  mt-8 ">
-              <img className="w-sm" src="/minecraft_title.png" alt="Logo" />
+              <img className="w-sm" src="/UCONN-Course-Scheduler/minecraft_title.png" alt="Logo" />
 
               <motion.div  animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 3, repeat: Infinity, repeatType: "loop", ease: "linear", }}className="absolute -right-28 -bottom-4 w-72 text-yellow-500 text-lg font-bold -rotate-18 text-center ">
                 <h3 className="truncate font-minecraft">Version 2 !!!</h3>

@@ -97,7 +97,7 @@ export default function BreakSelectPopUp() {
         <>
             <div className="fixed inset-0 bg-black/50 z-30 "></div>
 
-            <div className="rounded-2xl bg-background absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  flex flex- items-center justify-between h-[800px] min-h-[800px] w-[800px] min-w-[800px]">
+            <div id="mainBoxes" className="rounded-2xl bg-background absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  flex flex- items-center justify-between h-[800px] min-h-[800px] w-[800px] min-w-[800px]">
                 <div className="h-full w-[70%]  p-2 flex items-center justify-center">
                     <FullCalendar key={reload} calenderEvents={calenderEvents}></FullCalendar>
                 </div>
@@ -200,17 +200,17 @@ export default function BreakSelectPopUp() {
                                 {intervals.length > 0 ? (
                                 intervals.map((interval, i) => (
 
-                                    <div className="w-full cursor-pointer" key={i}>
+                                    <div onClick={() => {CartStates.removeInterval(day, i )
+                                                        setReload(!reload)
+        }} 
+        className="w-full cursor-pointer" key={i}>
                                         <div className="flex flex-row space-x-4">
                                             <h1 className="font-bold ">{day}</h1>
                                             <h1>X</h1>
                                         </div>
 
                                         
-                                        <p onClick={() => {CartStates.removeInterval(day, i )
-                                                                        setReload(!reload)
-
-                                        }} key={i}>{intervalToTimeString(interval)}</p> 
+                                        <p  key={i}>{intervalToTimeString(interval)}</p> 
                                     </div>
 
                                     

@@ -32,7 +32,7 @@ export default function FullSchedulePopUp() {
 
             <div className="fixed inset-0 bg-black/50 z-30 "></div>
 
-            <div ref={componentRef} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  flex items-center justify-center min-h-[900px]">
+            <div  ref={componentRef} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  flex items-center justify-center min-h-[900px]">
             <div className="relative grid grid-cols-[270px_1124px] gap-4   w-fit p-4 h-[900px] min-h-[900px]">
 
                 <div className="space-y-4">
@@ -97,7 +97,7 @@ export default function FullSchedulePopUp() {
 
                             <div className="flex flex-col items-center justify-around h-full ">
                                 <div >
-                                    <img src="/step1.png" alt="Logo" width={500} height={500} />
+                                    <img src="/UCONN-Course-Scheduler/step1.png" alt="Logo" width={500} height={500} />
                                 </div>
 
                             </div>
@@ -128,7 +128,7 @@ export default function FullSchedulePopUp() {
 
                             <div className="flex flex-col items-center justify-around h-full ">
                                 <div >
-                                    <img src="/step2.png" alt="Logo" width={500} height={500} />
+                                    <img src="/UCONN-Course-Scheduler/step2.png" alt="Logo" width={500} height={500} />
                                 </div>
 
                             </div>
@@ -152,11 +152,11 @@ export default function FullSchedulePopUp() {
 
                             <div className="flex flex-col items-center justify-around h-full ">
                                 <div style={{ height: 200, overflow: "hidden" }}>
-                                    <img src="/step3.png" alt="Logo" width={500} height={500} />
+                                    <img src="/UCONN-Course-Scheduler/step3.png" alt="Logo" width={500} height={500} />
                                 </div>
 
                                 <div style={{ height: 200, overflow: "hidden" }}>
-                                    <img src="/step4.png" alt="Logo" width={400} height={400} />
+                                    <img src="/UCONN-Course-Scheduler/step4.png" alt="Logo" width={400} height={400} />
                                 </div>
                             </div>
 
