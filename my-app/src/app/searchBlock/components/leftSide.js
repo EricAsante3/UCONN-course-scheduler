@@ -8,15 +8,21 @@ import { motion } from "framer-motion"
 
 
 
-export default function LeftSide({setLeadClass, loadingSearch, setLoadingSearch}) {
+export default function LeftSide({divRef, setLeadClass, loadingSearch, setLoadingSearch}) {
     const previousSearch = useRef(null)
     const [currentInput, setCurrentInput] = useState("");
     const {SearchBlockStates} = useContext(DataContext);
 
 
+    const scrollToTop = () => {
+        if (divRef.current) {
+          divRef.current.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    };
+
+
     async function action(inputarray) {
         setLoadingSearch(true)
-        console.log("loadini")
         await SearchBlockStates.SearchBlockFetch(inputarray[0])
         if (inputarray.length > 1) setLeadClass(inputarray[0] + " " + inputarray[1])
         else setLeadClass(null)
@@ -78,6 +84,7 @@ export default function LeftSide({setLeadClass, loadingSearch, setLoadingSearch}
                 onChange={(e) => setCurrentInput(e.target.value.toUpperCase())}
                 onKeyDown={(e) => {
                     if (e.key === "Enter") {
+                        scrollToTop()
                         handleSubmit(currentInput)
                     }
                     const allowed = /[A-Z0-9 ]/;

@@ -196,7 +196,7 @@ export default function DataProvider({ children }) {
 
         setScheduling(true)
         const PreScheduleOutput = CartSingleton.handlePreScheduleProcessing()
-
+        console.log(PreScheduleOutput)
         if (PreScheduleOutput["status"] > 200) {
 
             setValidSchedules(PreScheduleOutput)

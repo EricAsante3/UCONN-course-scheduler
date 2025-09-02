@@ -7,7 +7,7 @@ import LoadingClassCard from "../assets/loadingClassCard";
 import LeadClassCard from "../assets/leadClassCard";
 import SearchIcon from "@/app/Icons/Icons";
 
-export default function RightSide({leadClass, loadingSearch}) {
+export default function RightSide({divRef, leadClass, loadingSearch}) {
   const { SearchBlockStates } = useContext(DataContext);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function RightSide({leadClass, loadingSearch}) {
 
   return (
     <SkeletonTheme  baseColor="#cccccc" highlightColor="#ffffff">
-      <div className="relative p-2 overflow-y-scroll mt-6 ">
+      <div ref={divRef} className="relative p-2 overflow-y-scroll mt-6 ">
 
       {loadingSearch ? null : (
 

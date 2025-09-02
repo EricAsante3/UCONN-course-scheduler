@@ -138,7 +138,12 @@ export class Class {
                 }
             })
 
-            return { status: 200, value: {"AllClassCRNs": AllClassCRNs, "SectionEntries": AllClassTimeSlots} }
+            if (0 < AllClassCRNs.length) {
+                return { status: 200, value: {"AllClassCRNs": AllClassCRNs, "SectionEntries": AllClassTimeSlots} }
+            } else {
+                return { status: 500, value: "Detected no open classes for " + this.className }
+            }
+
         }
 
         // NO LOCK CASE
