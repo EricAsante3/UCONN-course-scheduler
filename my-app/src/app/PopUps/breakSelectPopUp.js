@@ -7,6 +7,7 @@ import { useCalendarApp, ScheduleXCalendar } from '@schedule-x/react'
 import { createViewWeek,} from '@schedule-x/calendar' 
 import '@schedule-x/theme-default/dist/index.css'
 import { createEventsServicePlugin } from '@schedule-x/events-service'
+import { motion } from "framer-motion"
 
 function minutesToTime(minutes) {
   let hours = Math.floor(minutes / 60);
@@ -104,7 +105,7 @@ export default function BreakSelectPopUp() {
 
                 <div className="relative h-full w-[30%]  flex flex-col items-center justify-evenly p-2 space-y-2 mb-4">
 
-                        <div onClick={() => {CartStates.setBreakViewPopup(false)}} className="aspect-square w-16">
+                        <div onClick={() => {CartStates.setBreakViewPopup(false)}} className="aspect-square w-16 cursor-pointer">
                             <CloseSquareIcon></CloseSquareIcon>
                         </div>
 
@@ -175,14 +176,19 @@ export default function BreakSelectPopUp() {
 
 
                         <div className="w-xl text-center  absolute -top-4  right-32">
-                            <h2 className="text-white font-bold">{status.value}</h2>
+                            { status.status > 200 ?
+                                <h2 className="text-white font-bold bg-redColor">{status.value}</h2>
+                                
+                                :
+                                <h2 className="text-white font-bold bg-greenColor">{status.value}</h2>
+                            }
                         </div>
 
 
-                        <h2 onClick={() => {
+                        <motion.h2 whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} onClick={() => {
                             setStatus(CartStates.addInterval([startTime, endTime], weekday))
                             setReload(!reload)
-                        }} className="w-full text-center text-2xl font-bold bg-Highlight/20 rounded-full cursor-pointer">ADD</h2>
+                        }} className="w-full text-center text-2xl font-bold bg-Highlight/20 rounded-full cursor-pointer">ADD</motion.h2>
 
                     </div>
 
@@ -200,8 +206,10 @@ export default function BreakSelectPopUp() {
                                 {intervals.length > 0 ? (
                                 intervals.map((interval, i) => (
 
-                                    <div onClick={() => {CartStates.removeInterval(day, i )
+                                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} onClick={() => {CartStates.removeInterval(day, i )
                                                         setReload(!reload)
+                                                        setStatus({status: 200, value: ""})
+
         }} 
         className="w-full cursor-pointer" key={i}>
                                         <div className="flex flex-row space-x-4">
@@ -211,7 +219,7 @@ export default function BreakSelectPopUp() {
 
                                         
                                         <p  key={i}>{intervalToTimeString(interval)}</p> 
-                                    </div>
+                                    </motion.div>
 
                                     
 

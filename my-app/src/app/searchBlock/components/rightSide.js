@@ -31,11 +31,22 @@ export default function RightSide({divRef, leadClass, loadingSearch}) {
             <h2>(Possible classes not ready)</h2>
           </div>          
         
-        :  (SearchBlockStates.searchBlockResults["status"] ?? 500) > 200 ? 
+
+
+        : (SearchBlockStates.searchBlockResults["status"] ?? 500) === 459 ? 
+
+
+          <div className="w-full flex items-center justify-center text-center">
+            <h2>Please select a campus and term</h2>
+          </div>
+
+
+        : (SearchBlockStates.searchBlockResults["status"] ?? 500) > 200 ? 
         
           <div className="w-full flex items-center justify-center">
             <h2>Error</h2>
-          </div>        
+          </div>
+
         
         :(
           <>

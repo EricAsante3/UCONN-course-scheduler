@@ -7,14 +7,34 @@ import { classAlias } from './classAlias.js';
 const jar = new CookieJar();
 const session = wrapper(axios.create({ jar }));
 
+
+
+function getTermCode(termString) {
+    const [season, yearStr] = termString.split(" ");
+    const year = parseInt(yearStr, 10);
+    const lastDigit = year % 10;
+  
+    const seasonMap = {
+      spring: 3,
+      summer: 5,
+      fall: 8,
+      winter: 1
+    };
+  
+    const termDigit = seasonMap[season.toLowerCase()];
+    if (!termDigit) return null; // invalid season
+  
+    return `12${lastDigit}${termDigit}`;
+}
+
+
 export class SearchBlock {
 
     url = "https://student.studentadmin.uconn.edu/psc/CSGUE/EMPLOYEE/SA/c/UC_ENROLL.UC_GUEST_CLS_SCH.GBL"
     header = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)', 'Referer': this.url }
-    terms = {"Fall 2025": "1258", "Spring 2026": "1263", "Summer 2026": "1265", "Fall 2026": "1268"}
 
     async search(Class,Campus,Term){
-        const rawHtml = await this.htmlScraper(Class,Campus,Term)
+        const rawHtml = await this.htmlScraper(Class,Campus,getTermCode(Term))
         if (rawHtml["status"] > 200) {return rawHtml}
         const parsedHtml = this.htmlParser(rawHtml["value"])
         return parsedHtml
@@ -60,16 +80,13 @@ export class SearchBlock {
             return {"status": 500, "value": "Invalid Campus Selection"}
         }
 
-        if (!Object.keys(this.terms).includes(Term)) {
-            return {"status": 500, "value": "Invalid Term Selection"}
-        }
+
         
         if (!classAlias.includes(Class)){
             return {"status": 500, "value": "Invalid Class Selection"}
         }
-        console.log(Class)
 
-        formdata["UC_DERIVED_GST_STRM"] = this.terms[Term]
+        formdata["UC_DERIVED_GST_STRM"] = Term
         formdata["ICAction"] = "UC_DERIVED_GST_SEARCH_PB"
         formdata["UC_DERIVED_GST_ENRL_STAT$chk"] = "C"
         formdata["UC_DERIVED_GST_SUBJECT"] = Class

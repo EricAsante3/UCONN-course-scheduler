@@ -33,7 +33,7 @@ export default function ScheduleBlock() {
                     { ScheduleBlockStates.validSchedules["status"] > 200 ? null  :
                       <button onClick={() => setPage((p) => Math.max(p - 1, 0))} disabled={page === 0}className="rounded-full h-full w-28">
                         { page === 0 ? null :
-                            <SearchArrow className="transform scale-x-[-1]" ></SearchArrow>
+                            <SearchArrow className="transform scale-x-[-1] cursor-pointer" ></SearchArrow>
                         }
                       </button>
                     }
@@ -61,7 +61,7 @@ export default function ScheduleBlock() {
                       <button           
                       onClick={() => setPage((p) => (p + 1) * pageSize < ScheduleBlockStates.validSchedules["value"].length ? p + 1 : p)}  
                       disabled={(page + 1) * pageSize >= ScheduleBlockStates.validSchedules["value"].length} 
-                      className="rounded-full h-full w-28 ">
+                      className="rounded-full h-full w-28 cursor-pointer ">
 
                         { (page + 1) * pageSize >= ScheduleBlockStates.validSchedules["value"].length ? null :
                             <SearchArrow className="" ></SearchArrow>

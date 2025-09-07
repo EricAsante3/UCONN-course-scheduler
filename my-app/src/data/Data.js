@@ -65,8 +65,8 @@ export default function DataProvider({ children }) {
     // search states 
 
 
-    const [Campus, setCampus] = useState("Storrs");
-    const [Term, setTerm] = useState("Fall 2025");
+    const [Campus, setCampus] = useState("None");
+    const [Term, setTerm] = useState("None");
 
     const [searchBlockResults, setSearchBlockResults] = useState({"status": 0, "value": {}});
     ///
@@ -196,14 +196,12 @@ export default function DataProvider({ children }) {
 
         setScheduling(true)
         const PreScheduleOutput = CartSingleton.handlePreScheduleProcessing()
-        console.log(PreScheduleOutput)
         if (PreScheduleOutput["status"] > 200) {
 
             setValidSchedules(PreScheduleOutput)
 
         } else {
             const schedulingOutPut = await CartBlockSingleton.schedule(PreScheduleOutput)
-            console.log(JSON.parse(schedulingOutPut))
             setValidSchedules(JSON.parse(schedulingOutPut))
         }
 

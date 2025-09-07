@@ -156,7 +156,7 @@ export default function CartClassCard({CartClassName}) {
                 
             <InfoIcon></InfoIcon>
             <div className=" opacity-70 text-xs  bg-Highlight border border-Text absolute w-24  rounded-2xl top-10 text-center -left-7 invisible group-hover:visible">
-                <h1>P/S View</h1>
+                <h1 className="font-bold">Edit Breaks</h1>
             </div>
         </motion.div>
         <div className="w-56">
@@ -181,20 +181,29 @@ export default function CartClassCard({CartClassName}) {
 
 
 
+
+
+
+
                 { inclusionStatus ? 
                     <>
                         <ToggleClassIconOff></ToggleClassIconOff>
 
-                        <div className=" opacity-70 text-xs  bg-Highlight border border-Text absolute w-24  rounded-2xl top-10 text-center -left-7 invisible group-hover:visible">
-                            <h1>Inclusion: Off</h1>
+                        <div className=" space-x-2 opacity-70 text-xs items-center justify-center flex  bg-Highlight border border-Text absolute w-24  rounded-2xl top-10 text-center -left-7 invisible group-hover:visible">
+                            <h1>Inclusion:</h1>
+                            <h1 className="font-bold">Off</h1>
                         </div>
+
                     </>
                 :
                     <>
                         <ToggleClassIconOn ></ToggleClassIconOn>
-                        <div className=" opacity-70 text-xs  bg-Highlight border border-Text absolute w-24  rounded-2xl top-10 text-center -left-7 invisible group-hover:visible">
-                            <h1>Inclusion: On</h1>
+
+                        <div className=" space-x-2 opacity-70 text-xs items-center justify-center flex  bg-Highlight border border-Text absolute w-24  rounded-2xl top-10 text-center -left-7 invisible group-hover:visible">
+                            <h1>Inclusion:</h1>
+                            <h1 className="font-bold">On</h1>
                         </div>
+
                     </>
                 }
 

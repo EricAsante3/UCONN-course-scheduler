@@ -4,11 +4,22 @@ import { CalenderICon } from "@/app/Icons/Icons";
 
 export default function ScheduleCard({schedule, index}) {
   const {ScheduleBlockStates} = useContext(DataContext);
+
+  const scrollToMiddle = () => {
+    const middle = document.body.scrollHeight / 10;
+
+    window.scrollTo({
+      top: middle,
+      behavior: 'smooth'
+    });
+}
+
   return (
     <div 
     onClick={() => {
       ScheduleBlockStates.setLargeCalenderPopUpVisiablity(true)
       ScheduleBlockStates.setCurrentScheduleLargePopUp({"calenderNumber": index, "scheduleData": schedule})
+      scrollToMiddle()
     }}
 
     onMouseEnter={() => {

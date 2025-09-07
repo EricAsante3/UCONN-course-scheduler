@@ -8,7 +8,8 @@ import { CloseSquareIcon } from "../Icons/Icons";
 import { CalenderICon } from "../Icons/Icons";
 import html2canvas from "html2canvas";
 import { SearchArrow } from "../Icons/Icons";
-
+import { motion } from "framer-motion";
+import { RatingIcon } from "../Icons/Icons";
 
 export default function FullSchedulePopUp() {
     const {ScheduleBlockStates} = useContext(DataContext);
@@ -44,10 +45,19 @@ export default function FullSchedulePopUp() {
                 </div>
                 
 
-                <h2 className="text-white absolute left-2 font-bold  -top-24 text-6xl">
+                <h2 className="text-white absolute left-78 font-bold  -top-10 text-5xl">
                     Schedule View
                 </h2>
 
+                <motion.div onClick={() => window.open( "https://docs.google.com/forms/d/e/1FAIpQLSevzH1_VFX_uiLqEGiyjHPNMWfOdAt0G6P5K6m40-1vsEGqSA/viewform?usp=dialog", "_blank")} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="flex flex-row  rounded-4xl items-center justify-center space-x-4 text-white absolute  h-5 w-64 right-20 font-bold  -top-4 text-5xl cursor-pointer">
+                    <div className=" ">
+                    <RatingIcon></RatingIcon>
+
+                    </div>
+                    <div className="flex items-center justify-center">
+                        <h2 className="text-sm text-white">Leave A Review</h2>
+                    </div>
+                </motion.div>
 
                 { instructionView ?
 

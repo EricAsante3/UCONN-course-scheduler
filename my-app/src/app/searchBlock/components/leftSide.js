@@ -3,7 +3,7 @@ import { useEffect, useState, useContext, useRef } from "react"
 import { DataContext } from "@/data/Data"
 import { classAlias } from "./classAlias"
 import { motion } from "framer-motion"
-
+import { getNextTerms } from "@/classObjects/helperFunctions"
 
 
 
@@ -12,7 +12,15 @@ export default function LeftSide({divRef, setLeadClass, loadingSearch, setLoadin
     const previousSearch = useRef(null)
     const [currentInput, setCurrentInput] = useState("");
     const {SearchBlockStates} = useContext(DataContext);
+    const [terms, setTerms] = useState([]);
 
+
+    useEffect(() => {
+        setTerms(getNextTerms())
+    }, [])
+
+    useEffect(() => {
+    }, [terms])
 
     const scrollToTop = () => {
         if (divRef.current) {
@@ -111,31 +119,36 @@ export default function LeftSide({divRef, setLeadClass, loadingSearch, setLoadin
             <h2 className="p-2 text-xs text-Text ">CSE or CSE 1010... etc</h2>
         </div>
 
-        <div className="mt-1 flex flex-row justify-start items-start w-full space-x-4 text-Text ">
+        <div className="mt-2 flex flex-row justify-start items-start w-full space-x-4 text-Text ">
 
-            <div className="w-full text-Text bg-background">                
-                <select className="w-full cursor-pointer text-Text bg-background" disabled={loadingSearch} value={SearchBlockStates.Term} onChange={(e) => {
+            <div  className="w-full text-Text ">  
+                <h2 className=" text-xs text-Text ">Select Term:</h2>              
+                <select id="smallBoxes" className="w-full cursor-pointer text-Text bg-background text-ellipsis " disabled={loadingSearch} value={SearchBlockStates.Term} onChange={(e) => {
                 SearchBlockStates.setTerm(e.target.value)
                 setLeadClass(null)
                 SearchBlockStates.setSearchBlockResults({"status": 0, "value": {}})
                 previousSearch.current = null
                 }}>                        
-                    <option className="text-Text bg-background" value="Fall 2025">Fall 2025</option>
-                    <option className="text-Text bg-background" value="Spring 2026">Spring 2026</option>
-                    <option className="text-Text bg-background" value="Summer 2026">Summer 2026</option>
-                    <option className="text-Text bg-background" value="Fall 2026">Fall 2026</option>
+                    <option className="text-Text bg-background" value="None">---</option>
+
+
+                    { terms.map((term, index) => {
+                        return <option key={index} className="text-Text bg-background" value={term}>{term}</option>
+                        })
+                    }
 
                 </select>
             </div>
 
-            <div className="w-full text-Text bg-background">                
-                <select className="w-full cursor-pointer text-Text bg-background" disabled={loadingSearch} value={SearchBlockStates.Campus} onChange={(e) => {
+            <div  className="w-full text-Text">
+                <h2 className=" text-xs text-Text ">Select Campus:</h2>              
+                <select id="smallBoxes" className="w-full cursor-pointer text-Text text-ellipsis bg-background" disabled={loadingSearch} value={SearchBlockStates.Campus} onChange={(e) => {
                     SearchBlockStates.setCampus(e.target.value)
                     setLeadClass(null)
                     SearchBlockStates.setSearchBlockResults({"status": 0, "value": {}})
                     previousSearch.current = null
                     }}>  
-
+                    <option className="text-Text bg-background" value="None">---</option>
                     <option className="text-Text bg-background" value="Storrs">Storrs</option>
                     <option className="text-Text bg-background" value="Hartford">Hartford</option>
                     <option className="text-Text bg-background" value="Stamford">Stamford</option>

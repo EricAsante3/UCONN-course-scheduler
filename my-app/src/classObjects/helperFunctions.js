@@ -263,3 +263,33 @@ export function ScheduleObjectToString(schedule) {
     .map(([time, days]) => `${time} / ${mergeConsecutiveDays(days)}`)
     .join(", ");
 }
+
+export function getNextTerms(currentDate = new Date(), n = 3) {
+  const terms = ['Winter', 'Spring', 'Summer', 'Fall'];
+  const month = currentDate.getMonth() + 1; // getMonth() is 0-based in JS
+  let currentTerm;
+
+  if ([1, 2].includes(month)) {
+    currentTerm = 'Winter';
+  } else if ([3, 4, 5].includes(month)) {
+    currentTerm = 'Spring';
+  } else if ([6, 7, 8].includes(month)) {
+    currentTerm = 'Summer';
+  } else {
+    currentTerm = 'Fall';
+  }
+
+  let termIndex = terms.indexOf(currentTerm);
+  let year = currentDate.getFullYear();
+  const result = [];
+
+  for (let i = 0; i < n; i++) {
+    result.push(`${terms[termIndex]} ${year}`);
+    termIndex = (termIndex + 1) % terms.length;
+    if (termIndex === 0) {
+      year += 1; // wrap back to Winter, increment year
+    }
+  }
+
+  return result;
+}

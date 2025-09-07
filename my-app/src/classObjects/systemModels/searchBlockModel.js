@@ -8,6 +8,9 @@ export class SearchBlockModel {
     url = "https://xd3z212q15.execute-api.us-east-1.amazonaws.com/Dev/GetClasses"
 
     async search(Class, Term, Campus){
+        if (Campus === "None" || Term === "None") {
+            return JSON.stringify({"status": 459, "value": "Please select Term and Campus"})
+        }
 
         try {
             const response = await axios.post(this.url, {
@@ -22,7 +25,7 @@ export class SearchBlockModel {
 
             return response.data
         } catch (error) {
-            return {"status": 500, "value": "Internal Error"}
+            return JSON.stringify({"status": 500, "value": "Internal Error"})
         }
     }
     

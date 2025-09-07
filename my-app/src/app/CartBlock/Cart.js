@@ -51,7 +51,7 @@ export default function Cart() {
                 </div>                
                 :
                 <div className="cursor-pointer" onClick={() => {CartStates.setBreakViewPopup(true)}}>
-                    <h2 className="text-Text text-3xl font-bold">+ Personal Break</h2>
+                    <motion.h2 whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} className="text-Text text-3xl font-bold">+ Personal Break</motion.h2>
                 </div>
             }
 
