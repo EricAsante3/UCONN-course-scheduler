@@ -3,7 +3,31 @@ import { DataContext } from "@/data/Data"
 import ScheduleCard from "./components/scheduleCard";
 import Loader from "./components/loader";
 import { SearchArrow } from "../Icons/Icons";
+import { motion } from "framer-motion";
 
+const MotionLoadingScheduleCard = motion(ScheduleCard);
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { x: -200, opacity: 0 },
+  show: { 
+    x: 0, 
+    opacity: 1,
+    transition: {
+      x: { type: "spring", stiffness: 150, damping: 20 },
+      opacity: { duration: 0.6 } // fade speed
+    }
+  },
+};
 
 
 export default function ScheduleBlock() {
@@ -91,9 +115,17 @@ export default function ScheduleBlock() {
                   )
 
                 :
-                  (currentSchedules.map((schedule, index) => (
-                    <ScheduleCard key={index} index={start + index + 1} schedule={schedule} />
-                  )))
+                  
+                  <motion.div variants={containerVariants} initial="hidden" animate="show">
+                    {currentSchedules.map((schedule, index) => (
+                      <MotionLoadingScheduleCard
+                        key={index}
+                        index={start + index + 1}
+                        schedule={schedule}
+                        variants={cardVariants}
+                      />
+                    ))}
+                  </motion.div>
                 }
 
                 </div>

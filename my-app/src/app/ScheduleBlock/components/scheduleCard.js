@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { DataContext } from "@/data/Data";
 import { CalenderICon } from "@/app/Icons/Icons";
 
-export default function ScheduleCard({schedule, index}) {
+export default function ScheduleCard({schedule, index, className = "", style, ...props}) {
   const {ScheduleBlockStates} = useContext(DataContext);
 
   const scrollToMiddle = () => {
@@ -15,7 +15,7 @@ export default function ScheduleCard({schedule, index}) {
 }
 
   return (
-    <div 
+    <div {...props}
     onClick={() => {
       ScheduleBlockStates.setLargeCalenderPopUpVisiablity(true)
       ScheduleBlockStates.setCurrentScheduleLargePopUp({"calenderNumber": index, "scheduleData": schedule})

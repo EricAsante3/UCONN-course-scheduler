@@ -6,6 +6,8 @@ import ClassCard from "../assets/classcard";
 import LoadingClassCard from "../assets/loadingClassCard";
 import LeadClassCard from "../assets/leadClassCard";
 import SearchIcon from "@/app/Icons/Icons";
+import { motion } from "framer-motion";
+
 
 export default function RightSide({divRef, leadClass, loadingSearch}) {
   const { SearchBlockStates } = useContext(DataContext);

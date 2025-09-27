@@ -11,6 +11,30 @@ import { SearchArrow } from "../Icons/Icons";
 import { motion } from "framer-motion";
 import { RatingIcon } from "../Icons/Icons";
 
+const MotionLoadingClassCard = motion(FullViewClassCard);
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { x: -100, opacity: 0 },
+  show: { 
+    x: 0, 
+    opacity: 1,
+    transition: {
+      x: { type: "spring", stiffness: 50, damping: 20 }, // slide speed
+      opacity: { duration: 0.5 } // fade speed
+    }
+  },
+};
+
 export default function FullSchedulePopUp() {
     const {ScheduleBlockStates} = useContext(DataContext);
     const componentRef = useRef();
@@ -36,18 +60,22 @@ export default function FullSchedulePopUp() {
             <div  ref={componentRef} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  flex items-center justify-center min-h-[900px]">
             <div className="relative grid grid-cols-[270px_1124px] gap-4   w-fit p-4 h-[900px] min-h-[900px]">
 
-                <div className="space-y-4">
-                    {classData.map((classSection, index) => {
+                <motion.div className="space-y-4"
+                      variants={containerVariants}
+                        initial="hidden"
+                        animate="show">
 
-                        return <FullViewClassCard key={index} classData={classSection}></FullViewClassCard>
+                    {classData.map((classSection, index) => {
+                        return <MotionLoadingClassCard key={index} classData={classSection} variants={cardVariants}></MotionLoadingClassCard>
                         })
                     }
-                </div>
+                </motion.div>
                 
 
                 <h2 className="text-white absolute left-78 font-bold  -top-10 text-5xl">
                     Schedule View
                 </h2>
+
 
                 <motion.div onClick={() => window.open( "https://docs.google.com/forms/d/e/1FAIpQLSevzH1_VFX_uiLqEGiyjHPNMWfOdAt0G6P5K6m40-1vsEGqSA/viewform?usp=dialog", "_blank")} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="flex flex-row  rounded-4xl items-center justify-center space-x-4 text-white absolute  h-5 w-64 right-20 font-bold  -top-4 text-5xl cursor-pointer">
                     <div className=" ">

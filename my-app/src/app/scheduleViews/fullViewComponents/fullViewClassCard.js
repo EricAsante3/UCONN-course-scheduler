@@ -13,7 +13,7 @@ function hexToRgba(hex, alpha) {
 
 
 
-export default function FullViewClassCard({classData}) {
+export default function FullViewClassCard({classData, className = "", style, ...props}) {
     const [locked, setlocked] = useState(false);
     const {ScheduleBlockStates} = useContext(DataContext);
     let color
@@ -26,7 +26,7 @@ export default function FullViewClassCard({classData}) {
         
         
         {classData.className !== "BREAK" ? 
-        <div className="w-full h-fit bg-navyBlue p-2 text-white rounded-2xl" style={{ border: `1px solid ${hexToRgba(color, 0.8)}` }}>        
+        <div {...props} className="w-full h-fit bg-navyBlue p-2 text-white rounded-2xl" style={{ border: `1px solid ${hexToRgba(color, 0.8)}` }}>        
             <div className=" bg-black h-3/6 w-full rounded-full flex items-center justify-evenly">
                 <h2 className="text-2xl w-40 text-center">{classData.className}</h2>
                 {ScheduleBlockStates.viewSectionConstraint(classData.className) === "" ?
