@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  node-backend:
+    build: ./classDataFecthing-backend
+    ports:
+      - "5178:5178"
+    restart: unless-stopped
+
+  dotnet-backend:
+    build: ./scheduling-backend
+    ports:
+      - "5041:5041"
+    restart: unless-stopped
+
+  nextjs-frontend:
+    build: ./frontEnd-code
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
