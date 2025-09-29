@@ -1,0 +1,238 @@
+{
+  "status": 200,
+  "value": {
+    "BREAK": {
+      "AllClassCRNs": [
+        "BREAK"
+      ],
+      "SectionEntries": [
+        {
+          "Crn": "BREAK",
+          "ClassName": "BREAK",
+          "MeetingTime": {
+            "monday": [
+              
+            ],
+            "tuesday": [],
+            "wednesday": [{
+                "Crn": "BREAK",
+                "ClassName": "BREAK",
+                "TimeSlots": [
+                  570,
+                  620
+                ]
+              }],
+            "thursday": [],
+            "friday": [],
+            "saturday": [],
+            "sunday": []
+          }
+        }
+      ]
+    },
+    "ECE 3101": {
+      "AllClassCRNs": [
+        "8062",
+        "8063",
+        "8065",
+        "8066"
+      ],
+      "SectionEntries": [
+        {
+          "Crn": "8062",
+          "ClassName": "ECE 3101",
+          "MeetingTime": {
+            "monday": [],
+            "tuesday": [
+              {
+                "Crn": "8062",
+                "ClassName": "ECE 3101",
+                "TimeSlots": [
+                  570,
+                  620
+                ]
+              }
+            ],
+            "wednesday": [
+              {
+                "Crn": "8062",
+                "ClassName": "ECE 3101",
+                "TimeSlots": [
+                  610,
+                  660
+                ]
+              }
+            ],
+            "thursday": [
+              {
+                "Crn": "8062",
+                "ClassName": "ECE 3101",
+                "TimeSlots": [
+                  570,
+                  620
+                ]
+              }
+            ],
+            "friday": [],
+            "saturday": [],
+            "sunday": []
+          }
+        },
+        {
+          "Crn": "8063",
+          "ClassName": "ECE 3101",
+          "MeetingTime": {
+            "monday": [],
+            "tuesday": [
+              {
+                "Crn": "8063",
+                "ClassName": "ECE 3101",
+                "TimeSlots": [
+                  570,
+                  620
+                ]
+              }
+            ],
+            "wednesday": [
+              {
+                "Crn": "8063",
+                "ClassName": "ECE 3101",
+                "TimeSlots": [
+                  870,
+                  920
+                ]
+              }
+            ],
+            "thursday": [
+              {
+                "Crn": "8063",
+                "ClassName": "ECE 3101",
+                "TimeSlots": [
+                  570,
+                  620
+                ]
+              }
+            ],
+            "friday": [],
+            "saturday": [],
+            "sunday": []
+          }
+        },
+        {
+          "Crn": "8065",
+          "ClassName": "ECE 3101",
+          "MeetingTime": {
+            "monday": [],
+            "tuesday": [
+              {
+                "Crn": "8065",
+                "ClassName": "ECE 3101",
+                "TimeSlots": [
+                  570,
+                  620
+                ]
+              }
+            ],
+            "wednesday": [
+              {
+                "Crn": "8065",
+                "ClassName": "ECE 3101",
+                "TimeSlots": [
+                  610,
+                  660
+                ]
+              }
+            ],
+            "thursday": [
+              {
+                "Crn": "8065",
+                "ClassName": "ECE 3101",
+                "TimeSlots": [
+                  570,
+                  620
+                ]
+              }
+            ],
+            "friday": [],
+            "saturday": [],
+            "sunday": []
+          }
+        },
+        {
+          "Crn": "8066",
+          "ClassName": "ECE 3101",
+          "MeetingTime": {
+            "monday": [],
+            "tuesday": [
+              {
+                "Crn": "8066",
+                "ClassName": "ECE 3101",
+                "TimeSlots": [
+                  570,
+                  620
+                ]
+              }
+            ],
+            "wednesday": [
+              {
+                "Crn": "8066",
+                "ClassName": "ECE 3101",
+                "TimeSlots": [
+                  870,
+                  920
+                ]
+              }
+            ],
+            "thursday": [
+              {
+                "Crn": "8066",
+                "ClassName": "ECE 3101",
+                "TimeSlots": [
+                  570,
+                  620
+                ]
+              }
+            ],
+            "friday": [],
+            "saturday": [],
+            "sunday": []
+          }
+        }
+      ]
+    },
+    "ANTH 4097W": {
+      "AllClassCRNs": [
+        "13684",
+        "14263"
+      ],
+      "SectionEntries": [
+        {
+          "Crn": "13684",
+          "ClassName": "ANTH 4097W",
+          "MeetingTime": {
+            "monday": [],
+            "tuesday": [],
+            "wednesday": [],
+            "thursday": [],
+            "friday": [],
+            "saturday": [],
+            "sunday": []
+          }
+        },
+        {
+          "Crn": "14263",
+          "ClassName": "ANTH 4097W",
+          "MeetingTime": {
+            "monday": [],
+            "tuesday": [],
+            "wednesday": [],
+            "thursday": [],
+            "friday": [],
+            "saturday": [],
+            "sunday": []
+          }
+        }
+      ]
+    }
+  }
+}
