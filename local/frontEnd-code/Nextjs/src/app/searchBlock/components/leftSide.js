@@ -180,7 +180,7 @@ export default function LeftSide({divRef, setLeadClass, loadingSearch, setLoadin
 
             <div className="space-y-2">
                 <h2 className="text-lg font-semibold">Have questions about your academics, curriculum, or major?</h2>
-                <motion.div whileHover={{ scale: 1.05 }} onClick={() => window.open( "https://undergraduate.cahnr.uconn.edu/make-appointment/", "_blank")} whileTap={{ scale: 0.9 }} className="flex cursor-pointer">
+                <motion.div whileHover={{ scale: 1.05 }} onClick={() => window.open( "https://advising.uconn.edu", "_blank")} whileTap={{ scale: 0.9 }} className="flex cursor-pointer">
                     <h2 className="bg-navyBlue rounded-lg text-sm p-3 text-white font-semibold">Meet an Academic Advisor</h2>
                 </motion.div>
             </div>
