@@ -19,4 +19,3 @@ It consists of multiple backend services and a frontend application.
 ## Deployment Diagram
 
 ![Deployment Diagram](screenshots/Deployment_Diagram.svg)
-
