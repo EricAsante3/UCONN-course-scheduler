@@ -1,6 +1,7 @@
 # UCONN Course Scheduler
 
-This project is a course scheduling application for UConn students. It consists of multiple backend services and a frontend application.
+This project is a course scheduling application for UConn students. 
+It consists of multiple backend services and a frontend application.
 
 ## [Visit Website Here](https://ericasante3.github.io/UCONN-Course-Scheduler)
 
