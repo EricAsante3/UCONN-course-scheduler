@@ -20,7 +20,7 @@ export default function Cart() {
     useEffect(() => setTheme(document.body.classList.contains("light")))
 
     return (
-    <div id="mainBoxes" className="relative grid grid-rows-[10%_75%_15%] bg-foreground aspect-square rounded-2xl min-w-xl w-xl row-span-1 col-span-1 justify-self-center text-2xl">
+    <div className="mainBoxes relative grid grid-rows-[10%_75%_15%] bg-foreground aspect-square rounded-2xl min-w-xl w-xl row-span-1 col-span-1 justify-self-center text-2xl">
         <motion.button whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }} onClick={() => {
 
             if (document.body.classList.contains("light")) {
@@ -96,10 +96,10 @@ export default function Cart() {
         </div>
 
         <div className="flex items-center justify-center w-full p-4 bg-foreground rounded-2xl">
-            <motion.button whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }} id="mainBoxes" disabled={CartStates.scheduling} onClick={() => {CartStates.ScheduleGeneration()
+            <motion.button whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }} disabled={CartStates.scheduling} onClick={() => {CartStates.ScheduleGeneration()
                 scrollToBottom()
-            }}   className={`bg-navyBlue h-full w-5/6 rounded-full text-white ${ CartStates.scheduling || CartStates.generationHold ? "opacity-50" : "opacity-100 cursor-pointer"}`}>
-                <h2 className="text-4xl font-bold">Schedule</h2>
+            }}   className={`mainBoxes text-4xl font-bold bg-navyBlue h-full w-5/6 rounded-full text-white ${ CartStates.scheduling || CartStates.generationHold ? "opacity-50" : "opacity-100 cursor-pointer"}`}>
+                Schedule
             </motion.button>
         </div>
     </div>

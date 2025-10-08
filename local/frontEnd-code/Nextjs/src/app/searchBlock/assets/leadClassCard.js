@@ -7,7 +7,7 @@ export default function LeadClassCard({element}) {
     const {SearchBlockStates} = useContext(DataContext);
 
     return (
-        <div id="smallBoxes" className={`relative w-full h-16 rounded p-2 mt-4 mb-8 ${SearchBlockStates.scheduling ? "pointer-events-none" : "cursor-pointer bg-Highlight"}`} onClick={() => {
+        <div className={`smallBoxes relative w-full h-16 rounded p-2 mt-4 mb-8 ${SearchBlockStates.scheduling ? "pointer-events-none" : "cursor-pointer bg-Highlight"}`} onClick={() => {
                 if (SearchBlockStates.scheduling) return
                 if (CartSingleton.inCartCheck(element[0].subject + " " + element[0].catalogNbr)) return
 

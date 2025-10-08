@@ -98,7 +98,7 @@ export default function BreakSelectPopUp() {
         <>
             <div className="fixed inset-0 bg-black/50 z-30 "></div>
 
-            <div id="mainBoxes" className="rounded-2xl bg-background absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  flex flex- items-center justify-between h-[800px] min-h-[800px] w-[800px] min-w-[800px]">
+            <div className="mainBoxes rounded-2xl bg-background absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  flex flex- items-center justify-between h-[800px] min-h-[800px] w-[800px] min-w-[800px]">
                 <div className="h-full w-[70%]  p-2 flex items-center justify-center">
                     <FullCalendar key={reload} calenderEvents={calenderEvents}></FullCalendar>
                 </div>
@@ -122,13 +122,13 @@ export default function BreakSelectPopUp() {
                             value={weekday}
                             onChange={(e) => setWeekday(e.target.value)}
                         >
-                            <option value="monday">Monday</option>
-                            <option value="tuesday">Tuesday</option>
-                            <option value="wednesday">Wednesday</option>
-                            <option value="thursday">Thursday</option>
-                            <option value="friday">Friday</option>
-                            <option value="saturday">Saturday</option>
-                            <option value="sunday">Sunday</option>
+                            <option className="text-Text bg-background" value="monday">Monday</option>
+                            <option className="text-Text bg-background" value="tuesday">Tuesday</option>
+                            <option className="text-Text bg-background" value="wednesday">Wednesday</option>
+                            <option className="text-Text bg-background" value="thursday">Thursday</option>
+                            <option className="text-Text bg-background" value="friday">Friday</option>
+                            <option className="text-Text bg-background" value="saturday">Saturday</option>
+                            <option className="text-Text bg-background" value="sunday">Sunday</option>
                         </select>
 
                         </div>
@@ -138,7 +138,6 @@ export default function BreakSelectPopUp() {
 
                         <div className="flex items-center justify-center flex-col">
                             <h1>Start Time Select:</h1>
-
                             <input
                                 type="time"
                                 value={startTimeDisplay}
@@ -160,20 +159,12 @@ export default function BreakSelectPopUp() {
                                 type="time"
                                 value={endTimeDisplay}
                                 className="bg-Highlight/20 cursor-pointer"
-
                                 onChange={(e) => {
                                     setEndTimeDisplay(e.target.value)
                                     setEndTime(handleTimeChange(e.target.value))
                                 }}
                             />
                         </div>
-
-
-
-
-
-
-
 
                         <div className="w-xl text-center  absolute -top-4  right-32">
                             { status.status > 200 ?

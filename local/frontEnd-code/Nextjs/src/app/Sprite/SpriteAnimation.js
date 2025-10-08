@@ -20,6 +20,8 @@ function Sprite({
   const [currentDir, setCurrentDir] = useState("Left");
   const [currentCorr, setCurrentCorr] = useState(0);
 
+  useEffect
+
 
   useEffect(() => {
     if (stage !== "Walking") return;
@@ -97,6 +99,9 @@ function Sprite({
   useEffect(() => {
     if (isPaused) return;
     if (stage === "Transition") return;
+
+    if (frame > 10) return
+
 
     let timeout;
     const tick = () => {
@@ -192,6 +197,8 @@ function Sprite({
 
 
   return (
+    <>
+    { frame < 10 ? (
 
     <div className="sprite-container">
       <div className="sprite-frame">
@@ -204,8 +211,11 @@ function Sprite({
           style={{ left: `${currentCorr}px` }}/>
       </div>
 
-    </div>
-
+    </div>)
+    :
+    null
+  }
+  </>
   );
 }
 

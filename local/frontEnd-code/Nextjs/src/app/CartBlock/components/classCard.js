@@ -34,7 +34,7 @@ export default function CartClassCard({CartClassName}) {
 
     
 
-    <div id="smallBoxes" className="relative bg-foreground h-16 rounded-md flex items-center justify-evenly">
+    <div className="smallBoxes relative bg-foreground h-16 rounded-md flex items-center justify-evenly">
 
 
         <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} onClick={() => {
@@ -158,7 +158,7 @@ export default function CartClassCard({CartClassName}) {
 
     </div>
     :
-    <div id="smallBoxes" className="relative bg-foreground h-16 rounded-md flex items-center justify-evenly">
+    <div className="smallBoxes relative bg-foreground h-16 rounded-md flex items-center justify-evenly">
 
 
         <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}  onClick={() => {CartStates.setBreakViewPopup(true)}} className="group relative aspect-square w-10 cursor-pointer">

@@ -10,13 +10,13 @@ export default function ClassCard({element}) {
 
 
     return (
-        <div id="smallBoxes" onClick={() => {
+        <div onClick={() => {
                 if (SearchBlockStates.scheduling) return
                 if (CartSingleton.inCartCheck(element[0].subject + " " + element[0].catalogNbr)) return
 
                 const output = SearchBlockStates.appendToCart(element[0].subject + " " + element[0].catalogNbr, element)
             }} 
-            className={`relative w-full h-16 rounded p-2 mt-4 ${SearchBlockStates.scheduling ? "pointer-events-none" : "cursor-pointer bg-Highlight"}`}>
+            className={`smallBoxes relative w-full h-16 rounded p-2 mt-4 ${SearchBlockStates.scheduling ? "pointer-events-none" : "cursor-pointer bg-Highlight"}`}>
 
 
             <h2 className="h-[32px] font-bold">{element[0].subject} {element[0].catalogNbr}</h2>

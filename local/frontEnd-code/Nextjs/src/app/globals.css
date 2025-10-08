@@ -88,10 +88,10 @@ h3 {
 
 
 
-#mainBoxes {
+.mainBoxes {
   box-shadow: var(--box-shadow1) 0px 10px 20px, var(--box-shadow2) 0px 6px 6px;
 }
 
-#smallBoxes {
+.smallBoxes {
   box-shadow: var(--box-shadow2) 0px 3px 8px;
 }

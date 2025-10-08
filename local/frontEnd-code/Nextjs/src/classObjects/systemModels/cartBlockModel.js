@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export class CartBlockModel {
 
-    url = "http://localhost:5041/Schedule"
+    url = "https://xd3z212q15.execute-api.us-east-1.amazonaws.com/Dev/Schedule"
 
     async schedule(preProccedClassed){
         try {
@@ -13,7 +13,7 @@ export class CartBlockModel {
             }
             });
 
-            return response.data
+            return JSON.parse(response.data)
         } catch (error) {
             return JSON.stringify({"status": 500, "value": "Internal Error"})
         }

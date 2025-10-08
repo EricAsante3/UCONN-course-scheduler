@@ -5,7 +5,7 @@ export function MainComponent({primarySectionData}) {
 
 
     return (
-        <div id="smallBoxes" className="w-full bg-background min-h-36  flex flex-col space-y-2 items-center rounded-2xl">
+        <div className="smallBoxes w-full bg-background min-h-36  flex flex-col space-y-2 items-center rounded-2xl">
             <div className="w-full h-1/2   grid grid-cols-[33%_43%_23%] grid-rows-[20%_80%] ">
             <div className="col-span-3 row-span-1 flex flex-row w-full justify-evenly">
                 <h1>Section: {primarySectionData.classSection}</h1>

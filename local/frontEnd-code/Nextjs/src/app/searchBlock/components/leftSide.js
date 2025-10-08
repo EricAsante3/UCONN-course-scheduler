@@ -13,7 +13,7 @@ export default function LeftSide({divRef, setLeadClass, loadingSearch, setLoadin
     const [currentInput, setCurrentInput] = useState("");
     const {SearchBlockStates} = useContext(DataContext);
     const [terms, setTerms] = useState([]);
-
+    const [inputStatus, setinputStatus] = useState(true);
 
     useEffect(() => {
         setTerms(getNextTerms())
@@ -40,7 +40,8 @@ export default function LeftSide({divRef, setLeadClass, loadingSearch, setLoadin
 
 
     async function handleSubmit (Class) {
-        validSearch(Class)
+        let output = await validSearch(Class)
+        setinputStatus(output)
     }
 
 
@@ -58,18 +59,22 @@ export default function LeftSide({divRef, setLeadClass, loadingSearch, setLoadin
             if (inputarray[0] === previousSearch.current) {
                 if (inputarray.length > 1) {
                     setLeadClass(inputarray[0] + " " + inputarray[1])
+                    return true
                 } else {
                     setLeadClass(null)
+                    return true
                 }
 
             } else {
                 if (!classAlias.includes(inputarray[0])) return false
                 await action(inputarray)
+                return true
             }
 
         } else {
                 if (!classAlias.includes(inputarray[0])) return false
                 await action(inputarray)
+                return true
             }
     }
 
@@ -82,12 +87,25 @@ export default function LeftSide({divRef, setLeadClass, loadingSearch, setLoadin
 
         <div className="flex items-center mb-4 justify-between">
             <h2 className="w-fit text-3xl font-bold">Search</h2>
+
+            { !inputStatus ?
+                <div>
+                    <h2 className="text-xs mt-2 text-redColor">Invalid Department</h2>
+                </div>
+            :
+                null
+            }
         </div>
 
         <div className="flex flex-col">
-        
-            <input id="smallBoxes"
-                className="w-full bg-Highlight rounded-lg p-2 focus:outline-none"
+
+            <input 
+
+                style={{
+                    border: !inputStatus ? "1px solid red" : "none",
+                }}
+
+                className="smallBoxes w-full bg-Highlight rounded-lg p-2 focus:outline-none "
                 value={currentInput}
                 onChange={(e) => setCurrentInput(e.target.value.toUpperCase())}
                 onKeyDown={(e) => {
@@ -123,7 +141,7 @@ export default function LeftSide({divRef, setLeadClass, loadingSearch, setLoadin
 
             <div  className="w-full text-Text ">  
                 <h2 className=" text-xs text-Text ">Select Term:</h2>              
-                <select id="smallBoxes" className="w-full cursor-pointer text-Text bg-background text-ellipsis " disabled={loadingSearch} value={SearchBlockStates.Term} onChange={(e) => {
+                <select className="smallBoxes w-full cursor-pointer text-Text bg-background text-ellipsis " disabled={loadingSearch} value={SearchBlockStates.Term} onChange={(e) => {
                 SearchBlockStates.setTerm(e.target.value)
                 SearchBlockStates.clearCart()
                 setLeadClass(null)
@@ -143,7 +161,7 @@ export default function LeftSide({divRef, setLeadClass, loadingSearch, setLoadin
 
             <div  className="w-full text-Text">
                 <h2 className=" text-xs text-Text ">Select Campus:</h2>              
-                <select id="smallBoxes" className="w-full cursor-pointer text-Text text-ellipsis bg-background" disabled={loadingSearch} value={SearchBlockStates.Campus} onChange={(e) => {
+                <select className="smallBoxes w-full cursor-pointer text-Text text-ellipsis bg-background" disabled={loadingSearch} value={SearchBlockStates.Campus} onChange={(e) => {
                     SearchBlockStates.setCampus(e.target.value)
                     setLeadClass(null)
                     SearchBlockStates.setSearchBlockResults({"status": 0, "value": {}})
