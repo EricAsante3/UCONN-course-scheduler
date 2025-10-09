@@ -89,8 +89,8 @@ export default function LeftSide({divRef, setLeadClass, loadingSearch, setLoadin
             <h2 className="w-fit text-3xl font-bold">Search</h2>
 
             { !inputStatus ?
-                <div>
-                    <h2 className="text-xs mt-2 text-redColor">Invalid Department</h2>
+                <div >
+                    <h2 className="text-xs mt-2 text-redColor w-full text-center">Invalid Department Code</h2>
                 </div>
             :
                 null
@@ -100,6 +100,9 @@ export default function LeftSide({divRef, setLeadClass, loadingSearch, setLoadin
         <div className="flex flex-col">
 
             <input 
+                id="department"
+                name="department"
+                type="text"
 
                 style={{
                     border: !inputStatus ? "1px solid red" : "none",
@@ -134,7 +137,7 @@ export default function LeftSide({divRef, setLeadClass, loadingSearch, setLoadin
                 disabled={loadingSearch}
             />
 
-            <h2 className="pt-2 pb-2 text-[10px] text-Text ">Enter department: (e.g., CSE or CSE 1010)</h2>
+            <label for="department" className="pt-2 pb-2 text-[10px] text-Text ">Enter department: (e.g., CSE or CSE 1010)</label>
         </div>
 
         <div className="mt-2 flex flex-row justify-start items-start w-full space-x-4 text-Text ">

@@ -63,12 +63,13 @@ export default function Home() {
 
       }
 
-      <div className="mainBoxes absolute h-16 font-bold top-0 left-0 w-full bg-navyBlue  items-center flex flex-row justify-between">
-        <img src="/uconn-wordmark-side-white.png" className="ml-8 h-12 w-auto" alt="UConnLogo" />
+      <div className="mainBoxes absolute h-20 font-bold top-0 left-0 w-full bg-navyBlue  items-center flex flex-row justify-between">
+        <img src="/uconn-wordmark-side-white.png" className="ml-8 h-10 w-auto" alt="UConnLogo" />
         <div className="flex flex-col justify-center mr-8">
           <h1 className="text-3xl text-white text-center">Student Course Scheduler</h1>
-          <h2 className="text-xs text-white text-center">"For Students, By Students" | Created by Eric Asante</h2>
-
+          <h2 className="text-xs text-white text-center">
+            {'"For Students, By Students" | Created by Eric Asante'}
+          </h2>
         </div>
 
       </div>

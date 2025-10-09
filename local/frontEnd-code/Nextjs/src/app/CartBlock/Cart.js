@@ -37,7 +37,8 @@ export default function Cart() {
             }
 
         }} 
-        className="absolute cursor-pointer -right-20 -top-0 h-16 w-16 ">
+        className="absolute cursor-pointer -right-20 -top-0 h-16 w-16 "
+        aria-label="Sun/Moon Icon">
 
         <SunMoon theme={theme}></SunMoon>
         </motion.button>

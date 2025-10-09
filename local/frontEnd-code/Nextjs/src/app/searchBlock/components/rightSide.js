@@ -39,7 +39,7 @@ export default function RightSide({divRef, leadClass, loadingSearch}) {
 
 
           <div className="w-full flex items-center justify-center text-center">
-            <h2>Please select a campus and term</h2>
+            <h2>Please select a Campus and Term</h2>
           </div>
 
 
