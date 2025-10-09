@@ -137,7 +137,7 @@ export default function LeftSide({divRef, setLeadClass, loadingSearch, setLoadin
                 disabled={loadingSearch}
             />
 
-            <label for="department" className="pt-2 pb-2 text-[10px] text-Text ">Enter department: (e.g., CSE or CSE 1010)</label>
+            <label htmlFor="department" className="pt-2 pb-2 text-[10px] text-Text ">Enter department: (e.g., CSE or CSE 1010)</label>
         </div>
 
         <div className="mt-2 flex flex-row justify-start items-start w-full space-x-4 text-Text ">
