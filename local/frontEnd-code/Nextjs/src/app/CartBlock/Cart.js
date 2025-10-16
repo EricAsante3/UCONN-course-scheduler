@@ -20,7 +20,7 @@ export default function Cart() {
     useEffect(() => setTheme(document.body.classList.contains("light")))
 
     return (
-    <div className="mainBoxes relative grid grid-rows-[10%_75%_15%] bg-foreground aspect-square rounded-2xl min-w-xl w-xl row-span-1 col-span-1 justify-self-center text-2xl">
+    <div className="mainBoxes relative grid grid-rows-[10%_75%_15%] bg-foreground aspect-square rounded-2xl min-w-xl w-xl row-span-1 col-span-1 justify-self-center text-2xl xl:mb-0">
         <motion.button whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }} onClick={() => {
 
             if (document.body.classList.contains("light")) {
@@ -37,7 +37,7 @@ export default function Cart() {
             }
 
         }} 
-        className="absolute cursor-pointer -right-20 -top-0 h-16 w-16 "
+        className="absolute cursor-pointer -right-8 -top-8 h-16 w-16 "
         aria-label="Sun/Moon Icon">
 
         <SunMoon theme={theme}></SunMoon>

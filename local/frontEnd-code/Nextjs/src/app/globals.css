@@ -10,8 +10,10 @@
 
 
 :root {
+  background-color: #f0f0f0;
   max-width: 1280rem;
-  min-width: 1424px;
+  min-width: 640px;
+
   --navyBlue: #000E2F;
 
   --redColor: #de1a24;

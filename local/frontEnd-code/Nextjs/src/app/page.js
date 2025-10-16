@@ -38,11 +38,10 @@ export default function Home() {
   }, [fadeOut]);
   
   return (
-    <div className="relative flex items-center justify-center flex-col">
+    <div className="relative flex items-center justify-center flex-col min-w-[640px]">
 
 
-      <div className=" h-[59px] font-bold top-0 left-0 w-full bg-navyBlue  items-center flex flex-row justify-between pl-32 pr-32">
-
+      <div className=" h-[59px] font-bold top-0 left-0 w-full bg-navyBlue  items-center flex flex-row justify-between pl-16 pr-16 ">
 
         <div className="flex flex-row justify-center items-center gap-4">
           <img src="/uconn.png" className="h-[20px] w-auto" alt="UConnLogo" />
@@ -51,8 +50,6 @@ export default function Home() {
           </div>
         </div>
 
-
-
         <div className="flex flex-row justify-center items-center  gap-8">
           <SearchIconHeader className=" cursor-pointer h-[20px] w-[20px]"></SearchIconHeader>
           <UConnAtoZIcon className=" cursor-pointer h-[20px] w-[20px]"></UConnAtoZIcon>
@@ -60,7 +57,7 @@ export default function Home() {
       </div>
 
       <div className="mainBoxes text-Text pt-2 border-[#eff3f7] h-[145px] font-bold top-0 left-0 w-full bg-foreground  items-center flex flex-row justify-center">
-        <div className="ml-32 h-full w-full flex flex-col justify-center pb-2">
+        <div className="ml-16 h-full w-full flex flex-col justify-center pb-2">
           <div className="mt-4">
             <h4 className="text-xs tracking-widest text-Text font-normal ">COLLEGE OF ENGINEERING</h4>
             <div className=" w-fit">
@@ -94,20 +91,18 @@ export default function Home() {
       </div>
 
 
-      <div className="min-w-7xl w-7xl ">
+      <div className="min-w[640px] w-full max-w-7xl">
 
-        <div className=" grid grid-cols-2 grid-rows-[80px_1fr_1fr] ">
+        <div className="grid grid-cols-1 grid-rows-[80px_1fr_1fr_1fr] xl:grid-cols-2 xl:grid-rows-[80px_1fr_1fr]">
 
-          <div className="relative col-span-2 h-full flex justify-center w-1/2 justify-self-center self-center">
+          <div className="relative h-full flex justify-center w-1/2 justify-self-center self-center col-span-1 xl:col-span-2">
 
             <div className="relative h-fit w-full flex items-center justify-center bg-green-600">
 
 
             </div>
 
-          <div className="absolute top-9 z-10 left-36">
-            <Sprite></Sprite>
-          </div>
+
 
           </div>
 
@@ -143,7 +138,8 @@ export default function Home() {
 
       }
 
-      <div className=" h-20 text-lg top-0 left-0 w-full bg-foreground pb-4 items-end flex flex-row justify-center gap-12">
+
+      <div className=" h-20 text-lg top-0 left-0 w-full bg-foreground pb-4 items-end flex flex-row justify-center gap-4 md:gap-12">
         <h1 className="">© University of Connecticut</h1>
         <h1 onClick={() => window.open( "https://uconn.edu/disclaimers-privacy-copyright/", "_blank")} className=" cursor-pointer">Disclaimers, Privacy, & Copyright</h1>
         <h1 onClick={() => window.open( "https://accessibility.uconn.edu", "_blank")} className=" cursor-pointer">Accessibility</h1>
