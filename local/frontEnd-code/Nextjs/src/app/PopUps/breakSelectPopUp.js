@@ -98,7 +98,7 @@ export default function BreakSelectPopUp() {
         <>
             <div className="fixed inset-0 bg-black/50 z-30 "></div>
 
-            <div className="mainBoxes rounded-2xl bg-background absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  flex flex- items-center justify-between h-[800px] min-h-[800px] w-[800px] min-w-[800px]">
+            <div className="mainBoxes rounded-2xl bg-background absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  flex flex- items-center justify-between h-[800px] min-h-[800px] w-[620px] min-w-[620px] xl:w-[640px] xl:min-w-[800px]">
                 <div className="h-full w-[70%]  p-2 flex items-center justify-center">
                     <FullCalendar key={reload} calenderEvents={calenderEvents}></FullCalendar>
                 </div>

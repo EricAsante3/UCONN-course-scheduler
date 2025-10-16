@@ -65,15 +65,15 @@ export default function ScheduleBlock() {
                       <div className="  h-full w-full flex flex-col items-center justify-center ">
                         { ScheduleBlockStates.validSchedules["status"] === 200 ?   
                             ( ScheduleBlockStates.validSchedules["value"].length >= 200 ?
-                              <h2 className="text-center text-xl w-fit font-bold xl:text-3xl">Possible Schedules: First Possible 200</h2> :
-                              <h2 className="text-center text-xl w-fit font-bold xl:text-3xl">Possible Schedules: {ScheduleBlockStates.validSchedules["value"].length}</h2>
+                              <h2 className="text-center text-lg w-fit font-bold xl:text-3xl">Possible Schedules: First Possible 200</h2> :
+                              <h2 className="text-center text-lg w-fit font-bold xl:text-3xl">Possible Schedules: {ScheduleBlockStates.validSchedules["value"].length}</h2>
                             ) :
 
                           ScheduleBlockStates.validSchedules["status"] === 350 ? 
 
-                            <h2 className=" text-center text-xl w-fit font-bold xl:text-3xl">Possible Schedules: (Time Limit Ecceded) returned {ScheduleBlockStates.validSchedules["value"].length} schedules</h2> :
+                            <h2 className=" text-center text-lg w-fit font-bold xl:text-3xl">Possible Schedules: (Time Limit Ecceded) returned {ScheduleBlockStates.validSchedules["value"].length} schedules</h2> :
 
-                            <h2 className="text-center text-xl w-fit font-bold xl:text-3xl">Possible Schedules: 0</h2>
+                            <h2 className="text-center text-lg w-fit font-bold xl:text-3xl">Possible Schedules: 0</h2>
                         }
 
                         <h2 className="w-full opacity-70 text-center text-xs xl:text-lg">(Use section/professor lock to generate schedules faster and explore more possibilities)</h2>

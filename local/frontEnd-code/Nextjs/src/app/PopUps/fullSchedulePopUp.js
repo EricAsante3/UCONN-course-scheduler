@@ -58,7 +58,7 @@ export default function FullSchedulePopUp() {
             <div className="fixed inset-0 bg-black/50 z-30 "></div>
 
             <div  ref={componentRef} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  flex items-center justify-center min-h-[900px]">
-            <div className="relative grid grid-cols-[270px_1124px] gap-4   w-fit p-4 h-[900px] min-h-[900px]">
+            <div className="relative grid xl:grid-row-[270px_1124px] gap-4 p-4 h-[900px] min-h-[900px] w-[640px] xl:w-full xl:grid-cols-[270px_1124px]">
 
                 <motion.div className="space-y-4"
                       variants={containerVariants}
@@ -72,7 +72,7 @@ export default function FullSchedulePopUp() {
                 </motion.div>
                 
 
-                <h2 className="text-white absolute left-78 font-bold  -top-10 text-5xl">
+                <h2 className="text-white absolute  font-bold   text-2xl left-8 -top-8 xl:-top-10 xl:left-78 xl:text-5xl">
                     Schedule View
                 </h2>
 
@@ -90,7 +90,7 @@ export default function FullSchedulePopUp() {
                 { instructionView ?
 
             
-                <div className=" bg-navyBlue  text-white rounded-2xl h-fit">
+                <div className=" bg-navyBlue w-[620px] text-white rounded-2xl h-fit xl:w-full">
 
                     <div className=" flex items-center justify-between relative h-[60px] w-full pr-12 pl-12">
 
@@ -205,18 +205,18 @@ export default function FullSchedulePopUp() {
                 </div>
                 :
 
-                <div className=" bg-navyBlue  text-white rounded-2xl h-fit">
+                <div className=" bg-navyBlue w-[620px] flex flex-col items-center justify-center  text-white rounded-2xl h-fit xl:w-full">
 
-                    <div className=" flex items-center justify-between relative h-[60px] w-full pr-12 pl-12">
+                    <div className=" flex items-center justify-between relative h-[60px] w-full pr-6 pl-6 xl:pr-12 xl:pl-12">
 
                         <div className="flex flex-row space-x-4 items-center justify-center">
                             <div className="aspect-square w-10">
                             <CalenderICon></CalenderICon>
                             </div>
-                            <h2 className="text-4xl font-bold">Schedule {ScheduleBlockStates.currentScheduleLargePopUp.calenderNumber}</h2>
+                            <h2 className="text-md xl:text-4xl font-bold">Schedule {ScheduleBlockStates.currentScheduleLargePopUp.calenderNumber}</h2>
                         </div>
 
-                        <div className="flex space-x-24">
+                        <div className="flex space-x-10 xl:space-x-24">
 
                             <div  className="flex items-center justify-center space-x-4">
                                 <DownloadIcon onClick={() => (saveAsJPEG())} className="aspect-square w-10 cursor-pointer "></DownloadIcon>
@@ -240,13 +240,6 @@ export default function FullSchedulePopUp() {
                 </div>
 
                 }
-
-
-
-
-
-
-
 
             </div>
 

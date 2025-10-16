@@ -32,9 +32,9 @@ export default function RootLayout({ children }) {
     }
 
 
+  }, [])
 
 
-  })
 
 
 
@@ -44,6 +44,13 @@ export default function RootLayout({ children }) {
       <head>
         <title>UCONN Course Scheduler</title>
         <link rel="icon" type="image/x-icon" href="/Standing1.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <meta name="description" content="A course scheduling tool for University of Connecticut students."></meta>
+        <meta name="keywords" content="UCONN, Course, Scheduler, University of Connecticut, Classes, Schedule, Planner"></meta>
+        <meta property="og:title" content="UCONN Course Scheduler"></meta>
+        <meta property="og:description" content="A course scheduling tool for University of Connecticut students."></meta>
+        <meta property="og:image" content="/Standing1.ico"></meta>
+        <meta property="og:type" content="website"></meta>
       </head>
 
       <body className={`  ${geistSans.variable} ${geistMono.variable} antialiased `}>

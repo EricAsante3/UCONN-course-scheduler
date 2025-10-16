@@ -38,7 +38,7 @@ function FullCalendar({className}) {
    const calendar = useCalendarApp(config)
 
   return (
-    <div className={`w-full ${className}`}>
+    <div className={`w-[600px] xl:w-full ${className}`}>
       <ScheduleXCalendar calendarApp={calendar} />
     </div>
   )

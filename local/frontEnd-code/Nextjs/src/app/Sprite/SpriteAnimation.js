@@ -198,7 +198,7 @@ function Sprite({
 
   return (
     <>
-    { frame < 10 ? (
+    { frame <= 8 ? (
 
     <div className="sprite-container">
       <div className="sprite-frame">

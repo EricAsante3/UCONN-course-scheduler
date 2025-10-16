@@ -35,10 +35,21 @@ export default function Home() {
       const timeout = setTimeout(() => setVisible(false), 500); // match duration
       return () => clearTimeout(timeout);
     }
+
+const viewport = document.querySelector('meta[name="viewport"]');
+    if (viewport) {
+      viewport.setAttribute('content', 'width=device-width, initial-scale=0.5, maximum-scale=5.0, user-scalable=yes');
+      
+      // Double tap to ensure it works
+      setTimeout(() => {
+        viewport.setAttribute('content', 'width=device-width, initial-scale=0.5, maximum-scale=5.0, user-scalable=yes');
+      }, 100);
+    }
+
   }, [fadeOut]);
   
   return (
-    <div className="relative flex items-center justify-center flex-col min-w-[640px]">
+    <div id="main-container" className="relative flex items-center justify-center flex-col min-w-[640px]">
 
 
       <div className=" h-[59px] font-bold top-0 left-0 w-full bg-navyBlue  items-center flex flex-row justify-between pl-16 pr-16 ">

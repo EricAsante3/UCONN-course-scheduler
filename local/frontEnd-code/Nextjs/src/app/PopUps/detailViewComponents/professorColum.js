@@ -9,7 +9,7 @@ import { motion } from "framer-motion"
 export function ProfessorColum({professorName, sectionData, className, states}) {
         const {CartStates} = useContext(DataContext);
     return (
-                <div className="smallBoxes rounded-2xl flex flex-col h-full w-[400px] bg-foreground">
+                <div className="smallBoxes rounded-2xl flex flex-col h-full min-w-[400px] bg-foreground">
                   <div className="rounded-2xl  w-full bg-Highlight h-20 flex items-center justify-center">
                     <h2 className="text-2xl font-semibold w-4/5 truncate text-Text">{professorName}</h2>
 

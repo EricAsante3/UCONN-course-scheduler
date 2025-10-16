@@ -13,7 +13,7 @@ export default function DetailViewPopUp() {
         <>
             <div className="fixed inset-0 bg-black/50 z-30 "></div>
 
-            <div className="mainBoxes rounded-2xl bg-background absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  flex flex-col items-center justify-between h-[900px] min-h-[800px] w-[1394px] min-w-[1394px]">
+            <div className="mainBoxes w-[600px] rounded-2xl bg-background absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  flex flex-col items-center justify-between h-[1000px] min-h-[900px] xl:w-[1394px] xl:min-w-[1394px]">
             
 
 
