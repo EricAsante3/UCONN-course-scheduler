@@ -79,6 +79,12 @@ export default function RightSide({divRef, leadClass, loadingSearch}) {
           <LoadingClassCard/>
           <LoadingClassCard/>
           <LoadingClassCard/>
+          <LoadingClassCard/>
+          <LoadingClassCard/>
+          <LoadingClassCard/>
+          <LoadingClassCard/>
+          <LoadingClassCard/>
+
         </> : null
         }
 

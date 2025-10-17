@@ -37,7 +37,7 @@ function PopUpCalendar({className}) {
    const calendar = useCalendarApp(config)
 
   return (
-    <div className={`w-[400px] ${className}`}>
+    <div className={` w-[250px] xs:w-[400px] ${className}`}>
       <ScheduleXCalendar calendarApp={calendar} />
     </div>
   )

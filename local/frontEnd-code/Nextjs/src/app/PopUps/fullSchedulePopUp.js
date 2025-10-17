@@ -58,9 +58,9 @@ export default function FullSchedulePopUp() {
             <div className="fixed inset-0 bg-black/50 z-30 "></div>
 
             <div  ref={componentRef} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  flex items-center justify-center min-h-[900px]">
-            <div className="relative grid xl:grid-row-[270px_1124px] gap-4 p-4 h-[900px] min-h-[900px] w-[640px] xl:w-full xl:grid-cols-[270px_1124px]">
+            <div className=" justify-items-center relative grid schedulebreakviewend:grid-row-[270px_1124px] gap-4 p-4 h-[1000px] min-h-[900px] w-[470px]  xs:w-[640px] md:w-[800px] schedulebreakview:w-[880px] lg:w-[1000px] schedulebreakviewend:w-full schedulebreakviewend:grid-cols-[270px_1124px]">
 
-                <motion.div className="space-y-4"
+                <motion.div className="space-y-4 w-full max-w-2/3 lg:max-w-full "
                       variants={containerVariants}
                         initial="hidden"
                         animate="show">
@@ -72,12 +72,12 @@ export default function FullSchedulePopUp() {
                 </motion.div>
                 
 
-                <h2 className="text-white absolute  font-bold   text-2xl left-8 -top-8 xl:-top-10 xl:left-78 xl:text-5xl">
+                <h2 className="text-white absolute   font-bold   text-2xl left-8 -top-8 schedulebreakviewend:-top-10 schedulebreakviewend:left-78 schedulebreakviewend:text-5xl">
                     Schedule View
                 </h2>
 
 
-                <motion.div onClick={() => window.open( "https://docs.google.com/forms/d/e/1FAIpQLSevzH1_VFX_uiLqEGiyjHPNMWfOdAt0G6P5K6m40-1vsEGqSA/viewform?usp=dialog", "_blank")} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="flex flex-row  rounded-4xl items-center justify-center space-x-4 text-white absolute  h-5 w-64 right-20 font-bold  -top-4 text-5xl cursor-pointer">
+                <motion.div onClick={() => window.open( "https://docs.google.com/forms/d/e/1FAIpQLSevzH1_VFX_uiLqEGiyjHPNMWfOdAt0G6P5K6m40-1vsEGqSA/viewform?usp=dialog", "_blank")} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className=" hidden xs:flex xs:visible flex-row  rounded-4xl items-center justify-center space-x-4 text-white absolute  h-5 w-64 right-20 font-bold  -top-4 text-5xl cursor-pointer">
                     <div className=" ">
                     <RatingIcon></RatingIcon>
 
@@ -90,7 +90,7 @@ export default function FullSchedulePopUp() {
                 { instructionView ?
 
             
-                <div className=" bg-navyBlue w-[620px] text-white rounded-2xl h-fit xl:w-full">
+                <div className=" bg-navyBlue w-[420px] lg:w-[900px] xs:w-[620px] text-white rounded-2xl h-fit schedulebreakviewend:w-full">
 
                     <div className=" flex items-center justify-between relative h-[60px] w-full pr-12 pl-12">
 
@@ -98,22 +98,12 @@ export default function FullSchedulePopUp() {
                             <div onClick={() => setInstructionView(false)} className="relative aspect-square w-12 cursor-pointer ">
                                 <SearchArrow className="scale-x-[-1]"></SearchArrow>
                             </div>
-                            <h2 className="text-4xl font-bold">Instructions</h2>
+                            <h2 className="text-lg sm:text-2xl md:text-4xl font-bold">Instructions</h2>
                         </div>
 
-                        <div className="flex space-x-24">
 
-                            <div className="flex items-center justify-center">
-                                <div className="aspect-square w-10 "></div>
-                            </div>
 
-                            <div className="flex items-center justify-center">
-                                <div className="aspect-square w-10 "></div>
-                            </div>
-
-                        </div>
-
-                        <button onClick={() => {ScheduleBlockStates.setLargeCalenderPopUpVisiablity(false)}} className="aspect-square w-14 cursor-pointer">
+                        <button onClick={() => {ScheduleBlockStates.setLargeCalenderPopUpVisiablity(false)}} className="h-14 w-14 cursor-pointer">
                             <CloseSquareIcon></CloseSquareIcon>
                         </button>
                         
@@ -205,25 +195,25 @@ export default function FullSchedulePopUp() {
                 </div>
                 :
 
-                <div className=" bg-navyBlue w-[620px] flex flex-col items-center justify-center  text-white rounded-2xl h-fit xl:w-full">
+                <div className=" bg-navyBlue w-[420px] lg:w-[900px] xs:w-[620px] flex flex-col items-center justify-center  text-white rounded-2xl h-fit schedulebreakviewend:w-full">
 
-                    <div className=" flex items-center justify-between relative h-[60px] w-full pr-6 pl-6 xl:pr-12 xl:pl-12">
+                    <div className=" flex items-center justify-between relative h-[60px] w-full pr-6 pl-6 schedulebreakviewend:pr-12 schedulebreakviewend:pl-12">
 
                         <div className="flex flex-row space-x-4 items-center justify-center">
                             <div className="aspect-square w-10">
                             <CalenderICon></CalenderICon>
                             </div>
-                            <h2 className="text-md xl:text-4xl font-bold">Schedule {ScheduleBlockStates.currentScheduleLargePopUp.calenderNumber}</h2>
+                            <h2 className="text-md schedulebreakviewend:text-4xl font-bold">Schedule {ScheduleBlockStates.currentScheduleLargePopUp.calenderNumber}</h2>
                         </div>
 
-                        <div className="flex space-x-10 xl:space-x-24">
+                        <div className="flex space-x-10 schedulebreakviewend:space-x-24">
 
-                            <div  className="flex items-center justify-center space-x-4">
+                            <div  className="hidden xs:flex xs:visible  items-center justify-center space-x-4">
                                 <DownloadIcon onClick={() => (saveAsJPEG())} className="aspect-square w-10 cursor-pointer "></DownloadIcon>
                                 <p className="text-sm opacity-70">Download</p>
                             </div>
 
-                            <div  className="flex items-center justify-center space-x-4">
+                            <div  className="hidden xs:flex xs:visible flex items-center justify-center space-x-4">
                                 <Enroll onClick={() => setInstructionView(true)} className="aspect-square w-10 cursor-pointer "></Enroll>
                                 <p className="text-sm opacity-70">Register Classes</p>
                             </div>

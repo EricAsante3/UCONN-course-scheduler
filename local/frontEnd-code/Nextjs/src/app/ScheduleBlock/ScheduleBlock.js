@@ -49,7 +49,7 @@ export default function ScheduleBlock() {
     useEffect(() => {setPage(0)}, [ScheduleBlockStates.scheduling])
 
   return (
-          <div className="col-span-1 p-4 h-[556px] min-h-[556px] w-[640px] justify-self-center xl:col-span-2 xl:w-full">
+          <div className="col-span-1 p-4 h-[556px] min-h-[556px] justify-self-center xl:col-span-2 min-w-[500px] w-3/4 sm:w-3/4 md:w-3/4 lg:w-3/4 xl:w-full">
             
             <div className="bg-[#000e2f] text-white grid grid-rows-[15%_85%] h-full rounded-2xl p-2 max-h-2xl">
                 <div className="h-full rounded-2xl flex items-center justify-evenly p-2">
@@ -76,7 +76,7 @@ export default function ScheduleBlock() {
                             <h2 className="text-center text-lg w-fit font-bold xl:text-3xl">Possible Schedules: 0</h2>
                         }
 
-                        <h2 className="w-full opacity-70 text-center text-xs xl:text-lg">(Use section/professor lock to generate schedules faster and explore more possibilities)</h2>
+                        <h2 className="w-full opacity-70 text-center text-xs xl:text-lg">(Use section/professor lock to generate faster and explore more possibilities)</h2>
                       </div>
 
                     { ScheduleBlockStates.validSchedules["status"] > 200 ?   

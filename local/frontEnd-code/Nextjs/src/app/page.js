@@ -9,8 +9,6 @@ import FullSchedulePopUp from "./PopUps/fullSchedulePopUp";
 import DetailViewPopUp from "./PopUps/DetailViewPopUp";
 import BreakSelectPopUp from "./PopUps/breakSelectPopUp";
 import { SearchIconHeader } from "./Icons/Icons";
-import Sprite from "./Sprite/SpriteAnimation";
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { UConnAtoZIcon } from "./Icons/Icons";
 
@@ -45,18 +43,27 @@ const viewport = document.querySelector('meta[name="viewport"]');
         viewport.setAttribute('content', 'width=device-width, initial-scale=0.5, maximum-scale=5.0, user-scalable=yes');
       }, 100);
     }
+    // Scroll to top
+    window.scrollTo(0, 0);
+
+    // Additional methods to ensure scroll to top works
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }, 100);
 
   }, [fadeOut]);
   
   return (
-    <div id="main-container" className="relative flex items-center justify-center flex-col min-w-[640px]">
+    <div id="main-container" className="relative flex items-center justify-center flex-col min-w-[300px]">
 
 
       <div className=" h-[59px] font-bold top-0 left-0 w-full bg-navyBlue  items-center flex flex-row justify-between pl-16 pr-16 ">
 
         <div className="flex flex-row justify-center items-center gap-4">
           <img src="/uconn.png" className="h-[20px] w-auto" alt="UConnLogo" />
-          <div className="border-l-2 border-[#3e4760] h-[20px] flex items-center justify-center">
+          <div className="border-l-2 border-[#3e4760] h-[20px]  items-center justify-center hidden md:visible md:flex ">
             <h1 className="  pl-4  cursor-pointer text-[17px] text-[#9faab2] text-center tracking-wider">UNIVERSITY OF CONNECTICUT</h1>
           </div>
         </div>
@@ -67,16 +74,16 @@ const viewport = document.querySelector('meta[name="viewport"]');
         </div>
       </div>
 
-      <div className="mainBoxes text-Text pt-2 border-[#eff3f7] h-[145px] font-bold top-0 left-0 w-full bg-foreground  items-center flex flex-row justify-center">
+      <div className="mainBoxes text-Text pt-2 border-[#eff3f7]  font-bold top-0 left-0 w-full bg-foreground  items-center flex flex-row justify-center h-[52px] md:h-[145px]">
         <div className="ml-16 h-full w-full flex flex-col justify-center pb-2">
-          <div className="mt-4">
-            <h4 className="text-xs tracking-widest text-Text font-normal ">COLLEGE OF ENGINEERING</h4>
-            <div className=" w-fit">
-              <h4 className="text-2xl [word-spacing:3px] text-Text">Student Course Scheduler</h4>
+          <div className="md:mt-4">
+            <h4 className="text-xs tracking-widest text-Text font-normal hidden md:visible md:flex ">COLLEGE OF ENGINEERING</h4>
+            <div className="h-full md:w-fit">
+              <h4 className="text-lg [word-spacing:3px] text-Text md:text-2xl">Student Course Scheduler</h4>
             </div>
-          </div>
+        </div>
 
-      <div className="relative mt-8">
+      <div className="relative mt-8 hidden md:visible md:flex">
       <h4
         className="text-md tracking-widest font-normal text-Text  cursor-pointer w-fit"
         onMouseEnter={handleMouseEnter}
@@ -102,13 +109,13 @@ const viewport = document.querySelector('meta[name="viewport"]');
       </div>
 
 
-      <div className="min-w[640px] w-full max-w-7xl">
+      <div className="min-w[300px] w-full max-w-7xl">
 
-        <div className="grid grid-cols-1 grid-rows-[80px_1fr_1fr_1fr] xl:grid-cols-2 xl:grid-rows-[80px_1fr_1fr]">
+        <div className="grid grid-cols-1 grid-rows-[80px_1fr_1fr_1fr] xl:grid-cols-2 xl:grid-rows-[80px_1fr_1fr] w-full ">
 
           <div className="relative h-full flex justify-center w-1/2 justify-self-center self-center col-span-1 xl:col-span-2">
 
-            <div className="relative h-fit w-full flex items-center justify-center bg-green-600">
+            <div className="relative h-fit w-full flex items-center justify-center ">
 
 
             </div>
@@ -126,7 +133,7 @@ const viewport = document.querySelector('meta[name="viewport"]');
 
 
           {ScheduleBlockStates.smallCalenderPopUpVisiablity && !ScheduleBlockStates.largeCalenderPopUpVisiablity? 
-            <PopUpCalendar className={"absolute bottom-8 left-32"}></PopUpCalendar> 
+            <PopUpCalendar className={"absolute bottom-4 left-4 xs:bottom-8 xs:left-4 md:left-32 md:bottom-64 xl:bottom-8 xl:left-32"}></PopUpCalendar> 
             : null}
 
 
@@ -150,7 +157,7 @@ const viewport = document.querySelector('meta[name="viewport"]');
       }
 
 
-      <div className=" h-20 text-lg top-0 left-0 w-full bg-foreground pb-4 items-end flex flex-row justify-center gap-4 md:gap-12">
+      <div className=" h-20 text-xs xs:text-lg top-0 left-0 w-full bg-foreground pb-4 items-end flex flex-row justify-center gap-4 md:gap-12">
         <h1 className="">© University of Connecticut</h1>
         <h1 onClick={() => window.open( "https://uconn.edu/disclaimers-privacy-copyright/", "_blank")} className=" cursor-pointer">Disclaimers, Privacy, & Copyright</h1>
         <h1 onClick={() => window.open( "https://accessibility.uconn.edu", "_blank")} className=" cursor-pointer">Accessibility</h1>

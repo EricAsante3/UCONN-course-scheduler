@@ -20,7 +20,7 @@ export default function Cart() {
     useEffect(() => setTheme(document.body.classList.contains("light")))
 
     return (
-    <div className="mainBoxes relative grid grid-rows-[10%_75%_15%] bg-foreground aspect-square rounded-2xl min-w-xl w-xl row-span-1 col-span-1 justify-self-center text-2xl xl:mb-0">
+    <div className="mainBoxes relative grid grid-rows-[10%_75%_15%] bg-foreground aspect-square rounded-2xl row-span-1 col-span-1 justify-self-center text-2xl min-w-[400px] w-3/4 sm:w-3/4 md:w-3/4 lg:w-3/4 xl:w-xl xl:mb-0">
         <motion.button whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }} onClick={() => {
 
             if (document.body.classList.contains("light")) {
@@ -52,7 +52,7 @@ export default function Cart() {
                 </div>                
                 :
                 <div className="cursor-pointer" onClick={() => {CartStates.setBreakViewPopup(true)}}>
-                    <motion.h2 whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} className="text-Text text-3xl font-bold">+ Personal Break</motion.h2>
+                    <motion.h2 whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} className="text-Text text-2xl xs:text-3xl font-bold">+ Personal Break</motion.h2>
                 </div>
             }
 
@@ -99,7 +99,7 @@ export default function Cart() {
         <div className="flex items-center justify-center w-full p-4 bg-foreground rounded-2xl">
             <motion.button whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.2 }} disabled={CartStates.scheduling} onClick={() => {CartStates.ScheduleGeneration()
                 scrollToBottom()
-            }}   className={`mainBoxes text-4xl font-bold bg-navyBlue h-full w-5/6 rounded-full text-white ${ CartStates.scheduling || CartStates.generationHold ? "opacity-50" : "opacity-100 cursor-pointer"}`}>
+            }}   className={`mainBoxes text-xl xs:text-4xl font-bold bg-navyBlue h-full w-5/6 rounded-full text-white ${ CartStates.scheduling || CartStates.generationHold ? "opacity-50" : "opacity-100 cursor-pointer"}`}>
                 Schedule
             </motion.button>
         </div>

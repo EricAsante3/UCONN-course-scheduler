@@ -12,7 +12,7 @@ export default function SearchBlock() {
   const [leadClass, setLeadClass] = useState(null);
 
   return (
-    <div className="mainBoxes grid grid-rows-1 grid-cols-2 rounded-2xl relative bg-foreground aspect-square min-w-xl w-xl row-span-1 col-span-1 justify-self-center text-2xl mb-12 xl:mb-0">
+    <div className="mainBoxes grid grid-rows-1 grid-cols-2 rounded-2xl relative bg-foreground aspect-square row-span-1 col-span-1 justify-self-center text-2xl mb-12 min-w-[400px] w-3/4 sm:w-3/4 md:w-3/4 lg:w-3/4 xl:w-xl xl:mb-0">
 
           <div className="absolute -top-10 z-10 right-24">
             <Sprite></Sprite>

@@ -11,7 +11,6 @@ function Sprite({
   pauseDuration = getRandomNumber(2500, 4000),
   walkingDuration = 8000,
   rightBorder = 80,
-  leftBorder = -420
 }) {
   const [stage, setStage] = useState("Sleeping");
   const [frame, setFrame] = useState(1);
@@ -20,7 +19,22 @@ function Sprite({
   const [currentDir, setCurrentDir] = useState("Left");
   const [currentCorr, setCurrentCorr] = useState(0);
 
-  useEffect
+    const [leftBorder, setLeftBorder] = useState(-100); // default value
+
+  useEffect(() => {
+    function updateLeftBorder() {
+      const width = window.innerWidth;
+      if (width >= 1280) setLeftBorder(-420);    // xl
+      else if (width >= 768) setLeftBorder(-250);  // md
+      else if (width >= 640) setLeftBorder(-150);  // sm
+      else setLeftBorder(-100);                      // default (mobile)
+    }
+
+    updateLeftBorder(); // run on mount
+
+    window.addEventListener('resize', updateLeftBorder);
+    return () => window.removeEventListener('resize', updateLeftBorder);
+  }, []);
 
 
   useEffect(() => {

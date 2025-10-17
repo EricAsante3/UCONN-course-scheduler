@@ -184,7 +184,7 @@ export default function LeftSide({divRef, setLeadClass, loadingSearch, setLoadin
     </div>
 
 
-    <div className="flex flex-col">
+    <div className=" flex-col hidden xs:visible xs:flex">
         <h2 className="text-3xl font-bold">
             Student Resources
         </h2>
