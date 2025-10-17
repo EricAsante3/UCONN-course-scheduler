@@ -1,6 +1,6 @@
 @font-face {
   font-family: "MyCustomFont";
-  src: url('/fonts/Minecraft.ttf') format('truetype'); /* 'opentype' works too, but usually 'truetype' */
+  src: url('/fonts/Delicious-1GoyZ.otf') format('truetype'); /* 'opentype' works too, but usually 'truetype' */
   font-weight: normal;
   font-style: normal;
 }
@@ -26,7 +26,7 @@
   /* Default font variables for general use */
   --default-font-family: var(--font-geist-sans);
   --default-mono-font-family: var(--font-geist-mono);
-  --font-minecraft: "MyCustomFont", sans-serif;
+  --font-cursize: "MyCustomFont", sans-serif;
 }
 
 
@@ -59,7 +59,7 @@
   --color-navyBlue: var(--navyBlue);
   --color-redColor: var(--redColor);
   --color-greenColor: var(--greenColor);
-  --font-minecraft: "MyCustomFont", "sans-serif";
+  --font-cursize: "MyCustomFont", "sans-serif";
   --color-Accent: var(--Accent);
   --color-Highlight: var(--Highlight);
   --color-Text: var(--Text);
@@ -89,7 +89,7 @@ h2 {
 }
 
 h3 {
-  font-family: var(--font-minecraft);
+  font-family: var(--font-cursize);
 }
 
 

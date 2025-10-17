@@ -83,7 +83,10 @@ export default function Cart() {
             
 
 
-
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  h-full w-full text-6xl sm:text-7xl md:text-8xl xl:text-8xl text-foreground/80 text-center items-center justify-center flex flex-col">
+                <h3>&quot;For Students,</h3>
+                <h3>By Students&quot;</h3>
+            </div>
 
 
 
