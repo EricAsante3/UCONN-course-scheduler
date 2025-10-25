@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
 
       <head>
-        <title>UCONN Course Scheduler</title>
+        <title>UConn Course Scheduler</title>
         <link rel="icon" type="image/x-icon" href="/Standing1.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
         <meta name="description" content="A course scheduling tool for University of Connecticut students."></meta>

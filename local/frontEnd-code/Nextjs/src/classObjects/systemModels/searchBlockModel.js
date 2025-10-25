@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export class SearchBlockModel {
 
-    url = "https://xd3z212q15.execute-api.us-east-1.amazonaws.com/Dev/GetClasses"
+    url = process.env.NEXT_PUBLIC_IP_URL + "/node-backend" + "/GetClasses"
 
     async search(Class, Term, Campus){
         if (Campus === "None" || Term === "None") {
