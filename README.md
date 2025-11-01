@@ -5,7 +5,7 @@ It consists of multiple backend services and a frontend application.
 
 ## [Visit Website Here](https://ericasante3.github.io/UCONN-Course-Scheduler)
 
-![First Image](screenshots/s1.jpg)
+![First Image](screenshots/s1.jpeg)
 
 ![Second Image](screenshots/s2.jpg)
 
