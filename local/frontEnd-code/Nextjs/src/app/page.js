@@ -1,4 +1,8 @@
 "use client"
+import React from "react";
+import ReactDOM from "react-dom";
+import packageJson from "../../package.json"
+
 import SearchBlock from "./searchBlock/searchBlock";
 import ScheduleBlock from "./ScheduleBlock/ScheduleBlock";
 import Cart from "./CartBlock/Cart";
@@ -13,6 +17,13 @@ import { useEffect, useState } from "react";
 import { UConnAtoZIcon } from "./Icons/Icons";
 
 export default function Home() {
+
+  useEffect(() => {
+    console.log("React version:", React.version);
+    console.log("ReactDOM version:", ReactDOM.version);
+    console.log("Next.js version:", packageJson.dependencies.next);
+  }, []);
+
   const {ScheduleBlockStates} = useContext(DataContext);
 
   const [visible, setVisible] = useState(false);
